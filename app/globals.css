@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-brand-blue: #057cc3;
+  --color-sennheiser-gray: #f4f4f6;
+  --color-sennheiser-footer: #013746;
+  --color-metan-orange: #df532b;
+  --color-neumann-orange: #ef7622;
+  --color-merging-red: #fe6466;
+
+  /* Font Family Mapping for Tailwind v4
+     This maps the 'font-neumann' class to your local font variable 
+  */
+  --font-neumann: var(--font-ff-unit-pro);
+}
+
+@layer base {
+  html, body {
+    @apply antialiased font-sans;
+    /* Remove any background-color lines from here */
+  }
+}

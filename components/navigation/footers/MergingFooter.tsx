@@ -1,0 +1,137 @@
+"use client";
+
+import React from 'react';
+import { ArrowUp } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+export default function Footer() {
+  const pathname = usePathname();
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  // Helper component to handle "Scroll to Top if on same page" logic
+  const FooterLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+    const isActive = pathname === href;
+
+    return (
+      <Link 
+        href={href} 
+        className="hover:text-brand-blue transition-colors duration-100"
+        onClick={(e) => {
+          if (isActive) {
+            e.preventDefault();
+            scrollToTop();
+          }
+        }}
+      >
+        {children}
+      </Link>
+    );
+  };
+
+  return (
+    <footer className="bg-[#013746] text-white pt-6 pb-6 px-6 mt-0">
+      <div className="max-w-full mx-auto">
+        
+        {/* --- TOP SECTION: LOGO & SCROLL BUTTON --- */}
+        <div className="flex justify-between items-center pb-24">
+          <div className="flex-shrink-0">
+            <Link 
+              href="/" 
+              aria-label="Anasayfa'ya git"
+              onClick={(e) => {
+                if (pathname === "/") {
+                  e.preventDefault();
+                  scrollToTop();
+                }
+              }}
+            >
+                <svg 
+                viewBox="0 0 155 20" 
+                className="h-5 w-auto fill-white cursor-pointer hover:fill-brand-blue transition-colors duration-300"
+                aria-label="Sennheiser Logo"
+                >
+                <path d="M79.328 4.076h2.276v11.852h-2.9l-3.376-5.452a27.436 27.436 0 01-1.07-1.967h-.033v7.42H71.94V4.075h2.678l4 6.457c.267.425.496.873.686 1.339V4.075h.023zm13.091 4.852h-3.966V4.072H85.56v11.852h2.891v-5.057h3.967v5.057h2.906V4.072h-2.906v4.856zm-42.336 1.844h3.759V8.99h-3.759V5.905h5.031v-1.83h-7.932v11.852h8.017v-1.975h-5.116v-3.1zm-10.44-4a.529.529 0 01.43-.872h4.312V4.076h-5.102a2.504 2.504 0 00-1.776.662 2.535 2.535 0 00-.813 1.72c0 .694.052 1.2 1.088 2.294l3.839 4.048a.659.659 0 01-.445 1.152h-4.733v1.976h5.415a2.772 2.772 0 002.025-.78 2.804 2.804 0 00.857-2.005c0-.786-.185-1.31-1.212-2.381l-3.886-3.99zm26.068 5.085a8.629 8.629 0 00-.686-1.338l-4-6.457h-2.678v11.866h2.276V8.525h.034s.473 1.028 1.069 1.967l3.379 5.451h2.902V4.076H65.73v7.786l-.02-.005zm63.941-1.085h3.758V8.99h-3.758V5.905h5.031v-1.83h-7.932v11.852h8.017v-1.975h-5.116v-3.18zm17.848 5.156h-3.147l-2.263-4.866h-1.268v4.866h-2.897V4.076h5.282c2.546 0 3.73 1.596 3.73 3.438a3.423 3.423 0 01-.627 1.97 3.38 3.38 0 01-1.645 1.24l2.835 5.204zm-3.043-8.336c0-.549-.317-1.686-1.846-1.686h-1.793v3.37h1.759c1.591 0 1.88-1.18 1.88-1.684zm-25.284-.815a.53.53 0 01.431-.87h4.312V4.074h-5.121a2.502 2.502 0 00-1.775.662 2.538 2.538 0 00-.814 1.72c0 .695.052 1.2 1.089 2.295l3.838 4.047a.655.655 0 01-.431 1.176h-4.747v1.977h5.415a2.773 2.773 0 002.026-.781 2.813 2.813 0 00.856-2.005c0-.786-.185-1.31-1.211-2.381l-3.868-4.01v.002zm-16.995 4h3.758V8.992h-3.753V5.905h5.031v-1.83h-7.932v11.852h8.017v-1.975h-5.116v-3.177h-.005v.002zm8.273 5.157h2.901V4.076h-2.901v11.858zM0 0v20h26.504V0H0zm14.587 1.843c-1.576.61-3.091 1.952-4.312 4.648-.355.78-1.023 2.29-1.325 2.966-2.457 5.424-3.716 6.59-7.422 6.59V1.5H14.52a.175.175 0 01.162.264.177.177 0 01-.095.079zM25 3.947V18.5H11.983a.175.175 0 01-.155-.265.177.177 0 01.095-.078c1.575-.61 3.09-1.952 4.31-4.648.356-.78 1.023-2.29 1.325-2.966 2.453-5.424 3.711-6.59 7.417-6.59L25 3.947z" />
+                </svg>
+            </Link>
+          </div>
+          
+          <button 
+            onClick={scrollToTop}
+            className="w-6 h-6 cursor-pointer rounded-full bg-white text-[#013746] border-white/20 flex items-center justify-center hover:bg-[var(--color-brand-blue)] hover:text-white transition-all duration-300 group"
+          >
+            <ArrowUp className="w-4 h-4 group-hover:text-white transition-transform" />
+          </button>
+        </div>
+
+        {/* --- NAVIGATION LINKS GRID --- */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
+          <div className="space-y-2">
+            <h4 className="font-bold text-[#999999] text-sm">Ürünler</h4>
+            <ul className="space-y-2 font-bold text-xs text-gray-300">
+              {/* Product categories are currently static, but they can be wrapped in <FooterLink> as well if they become routes */}
+              <li className="hover:text-brand-blue cursor-pointer">Aksesuarlar</li>
+              <li className="hover:text-brand-blue cursor-pointer">Kulaklıklar</li>
+              <li className="hover:text-brand-blue cursor-pointer">Toplantı ve Konferans Sistemleri</li>
+              <li className="hover:text-brand-blue cursor-pointer">Mikrofonlar</li>
+              <li className="hover:text-brand-blue cursor-pointer">Monitörler</li>
+              <li className="hover:text-brand-blue cursor-pointer">Sesli Rehberlik Sistemleri</li>
+              <li className="hover:text-brand-blue cursor-pointer">Kablosuz Sistemler</li>
+              <li className="hover:text-brand-blue cursor-pointer">Çift Yönlü Haberleşme</li>
+              <li className="hover:text-brand-blue cursor-pointer">Video Konferans Sistemleri</li>
+              <li className="hover:text-brand-blue cursor-pointer">Ambeo (3 Boyutlu Ses)</li>
+              <li className="hover:text-brand-blue cursor-pointer">Yazılımlar</li>
+              <li className="hover:text-brand-blue cursor-pointer">Yedek Parça</li>
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <h4 className="font-bold text-[#999999] text-sm">Kurumsal</h4>
+            <nav aria-label="Footer Navigation">
+                <ul className="space-y-2 font-bold text-xs text-white">
+                    <li><FooterLink href="/hakkimizda">Hakkımızda</FooterLink></li>
+                    <li><FooterLink href="/hakkimizda/bayilerimiz">Bayilerimiz</FooterLink></li>
+                    <li><FooterLink href="/hakkimizda/referanslarimiz">Referanslarımız</FooterLink></li>
+                    <li><FooterLink href="/hakkimizda/finans">Finans</FooterLink></li>
+                    <li><FooterLink href="/hakkimizda/iletisim-bilgileri">İletişim Bilgileri</FooterLink></li>
+                    <li><FooterLink href="/hakkimizda/kunye">Künye</FooterLink></li>
+                </ul>
+            </nav>
+          </div>
+          <div className="space-y-2">
+            <h4 className="font-bold text-[#999999] text-sm">Destek</h4>
+            <ul className="space-y-2 font-bold text-xs text-white">
+              <li><FooterLink href="/teknik-servis">Teknik Servis</FooterLink></li>
+              <li className="hover:text-brand-blue cursor-pointer">Servis Ücretleri</li>
+              <li className="hover:text-brand-blue cursor-pointer">Müşteri Memnuniyeti</li>
+            </ul>
+          </div>
+          {/* ... Rest of your code remains the same ... */}
+          <div className="space-y-2">
+            <h4 className="font-bold text-[#999999] text-sm">Bilgi</h4>
+            <ul className="space-y-2 font-bold text-xs text-white">
+              <li className="hover:text-brand-blue cursor-pointer">Garanti Koşulları</li>
+              <li className="hover:text-brand-blue cursor-pointer">Gizlilik Politikası</li>
+              <li className="hover:text-brand-blue cursor-pointer">Kullanım Koşulları</li>
+              <li className="hover:text-brand-blue cursor-pointer">KVKK Hakkında</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* --- BOTTOM SECTION --- */}
+        <div className="mt-8 pt-6 border-t border-white/20 text-xs text-white flex justify-between">
+          <div className="flex space-x-6">
+            <span className="font-bold hover:text-brand-blue cursor-pointer">Gizlilik Politikası</span>
+            <span className="font-bold hover:text-brand-blue cursor-pointer">Yasal Uyarı</span>
+          </div>
+          <p className="font-bold text-[#999999]">© 2025 Metan Teknik Müm. ve Tic. AŞ. | Türkiye</p>
+        </div>
+      </div>
+    </footer>
+  );
+}

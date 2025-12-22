@@ -1,0 +1,183 @@
+"use client";
+
+import React from 'react';
+import Link from 'next/link';
+import { Facebook, Instagram, Youtube } from 'lucide-react';
+
+const footerNavigation = {
+  "company": [
+    { "name": "Hakkımızda", "href": "#" },
+    { "name": "Haberler", "href": "#" },
+    { "name": "B2B", "href": "#" },
+    { "name": "Ev Stüdyosunda Neumann", "href": "#" },
+    { "name": "Bülten Kaydı", "href": "#" },
+    { "name": "Kariyer", "href": "#" },
+    { "name": "Çerez Ayarları", "href": "#" }
+  ],
+  "services": [
+    { "name": "İndirmeler", "href": "#" },
+    { "name": "Garanti", "href": "#" },
+    { "name": "Servis", "href": "#" },
+    { "name": "Distribütör ve Servis Noktaları", "href": "#" },
+    { "name": "Mikrofon Sözlüğü", "href": "#" },
+    { "name": "Monitör Sözlüğü", "href": "#" },
+    { "name": "Bize Ulaşın", "href": "#" }
+  ],
+  "products": [
+    { "name": "Mikrofonlar", "href": "#" },
+    { "name": "Mikrofon Aksesuarları", "href": "#" },
+    { "name": "Preamfiler", "href": "#" },
+    { "name": "Monitörler", "href": "#" },
+    { "name": "Monitör Aksesuarları", "href": "#" },
+    { "name": "Kulaklıklar", "href": "#" },
+    { "name": "Geçmiş Ürünler", "href": "#" },
+    { "name": "Ses Kartları", "href": "#" }
+  ]
+};
+
+const legalLinks = [
+  { name: 'Imprint', href: '#' },
+  { name: 'Terms of use', href: '#' },
+  { name: 'Privacy policy', href: '#' },
+  { name: 'Terms & Conditions', href: '#' },
+  { name: 'Right of cancelation', href: '#' },
+  { name: 'Accessibility Statement', href: '#' },
+  { name: 'Product-related Protection of our Environment', href: '#' },
+];
+
+export default function NeumannFooter() {
+  return (
+    <footer className="bg-black text-[#999] py-20 px-5 font-neumann border-t border-white/5">
+      {/* 1. Navigation Columns - Centered within a 7-column grid */}
+        <div className="max-w-full mx-auto mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-7 gap-10">
+            {/* Company - Starts at column 3 on sm+ screens */}
+            <div className="sm:col-start-3">
+            <h5 className="text-white text-[12px] font-light uppercase mb-2 tracking-wide">KURUMSAL</h5>
+            <ul className="flex flex-col space-y-2">
+                {footerNavigation.company.map((link) => (
+                <li key={link.name}>
+                    <Link href={link.href} className="text-[14px] text-white/75 font-light hover:text-[var(--color-neumann-orange)] transition-colors duration-300">
+                    {link.name}
+                    </Link>
+                </li>
+                ))}
+            </ul>
+            </div>
+
+            {/* Services - Naturally follows to column 4 */}
+            <div>
+            <h5 className="text-white text-[12px] font-light uppercase mb-2 tracking-wide">SERVİSLER</h5>
+            <ul className="flex flex-col space-y-2">
+                {footerNavigation.services.map((link) => (
+                <li key={link.name}>
+                    <Link href={link.href} className="text-[14px] text-white/75 font-light hover:text-[var(--color-neumann-orange)] transition-colors duration-300">
+                    {link.name}
+                    </Link>
+                </li>
+                ))}
+            </ul>
+            </div>
+
+            {/* Products - Naturally follows to column 5 */}
+            <div>
+            <h5 className="text-white text-[12px] font-light uppercase mb-2 tracking-wide">ÜRÜNLER</h5>
+            <ul className="flex flex-col space-y-2">
+                {footerNavigation.products.map((link) => (
+                <li key={link.name}>
+                    <Link href={link.href} className="text-[14px] text-white/75 font-light hover:text-[var(--color-neumann-orange)] transition-colors duration-300">
+                    {link.name}
+                    </Link>
+                </li>
+                ))}
+            </ul>
+            </div>
+        </div>
+        </div>
+
+      {/* 2. Logo and Social Section */}
+      <div className="max-w-4xl mx-auto text-center border-b border-white/10 pb-12 mb-8">
+        <div className="inline-block w-48 mb-8">
+          <Link 
+            href="/neumann" 
+            className="block hover:opacity-80 transition-opacity duration-300 will-change-opacity"
+            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' } as React.CSSProperties}
+          >
+            <svg 
+              id="Layer_2" 
+              data-name="Layer 2" 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 600 132.3" 
+              className="w-full h-auto"
+            >
+              <defs>
+                <style>{`
+                  .cls-1, .cls-2 { fill: #b6b7b7; }
+                  .cls-2 { fill-rule: evenodd; }
+                  .cls-3 { fill: #fff; }
+                  .cls-4 { fill: #ef7622; }
+                `}</style>
+              </defs>
+              <g id="layer">
+                <path className="cls-3" d="M191.5,44.5h5.6l9.9,19.7c1.6,3,2.7,6.3,3.5,8.8h.1c-.3-2.3-.6-6.4-.6-10.1v-18.4h5.3v36.2h-6l-9.2-18.4c-2.2-4.5-3-7-3.8-9.6h-.1c.2,2.3.6,6.5.6,10.7v17.3h-5.3v-36.2"/>
+                <polyline className="cls-3" points="225 44.5 244.6 44.5 244.6 49.4 230.7 49.4 230.7 59.4 242.2 59.4 242.2 64.2 230.7 64.2 230.7 75.8 245.5 75.8 245.5 80.7 225 80.7 225 44.5"/>
+                <path className="cls-3" d="M253,69.9v-25.4h5.6v25c0,4.7,1.2,7.1,5.4,7.1,3.5,0,6.1-1.7,7.5-3.1v-29h5.6v36.2h-4.1l-.9-3.2c-2.1,2.1-4.9,4-8.9,4-5.4,0-10.2-3.1-10.2-11.6"/>
+                <path className="cls-3" d="M286.9,44.5h8.4l5.8,19.5c.9,2.9,1.2,5.2,1.4,7.2h.1c.2-2,.3-4.3,1.2-7.2l5.7-19.5h8.6v36.2h-5.6v-20.8c0-4.4.4-10,.4-11.4h-.4c-.3,1.5-1.4,6.7-2.8,11.1l-4.7,14.9h-5.7l-4.7-14.6c-1.3-4.1-2.5-10.2-2.7-11.5h-.1c0,1.6.3,7.4.3,12v20.3h-5.2v-36.2"/>
+                <path className="cls-3" d="M335.6,44.5h6.1l10.8,36.2h-6.2l-2.5-9.3h-11l-2.6,9.3h-5.9l11.3-36.2M334.1,66.9h8.5l-1.9-7.1c-1.4-5-1.7-7.6-2.1-10h-.1c-.5,2.6-.9,5-2.3,10l-2.1,7.1Z"/>
+                <path className="cls-3" d="M358.9,44.5h5.6l9.9,19.7c1.6,3,2.7,6.3,3.5,8.8h.1c-.3-2.3-.6-6.4-.6-10.1v-18.4h5.3v36.2h-6l-9.2-18.4c-2.2-4.5-3-7-3.8-9.6h-.1c.2,2.3.6,6.5.6,10.7v17.3h-5.3v-36.2"/>
+                <path className="cls-3" d="M392.4,44.5h5.6l9.9,19.7c1.6,3,2.7,6.3,3.5,8.8h.1c-.3-2.3-.6-6.4-.6-10.1v-18.4h5.3v36.2h-5.9l-9.2-18.4c-2.2-4.5-3-7-3.8-9.6h-.1c.2,2.3.6,6.5.6,10.7v17.3h-5.3v-36.2"/>
+                <path className="cls-3" d="M424,76.8c0-2.5,1.9-4.5,4.4-4.5s4.4,1.9,4.4,4.5-1.9,4.5-4.4,4.5-4.4-2-4.4-4.5"/>
+                <path className="cls-1" d="M440.1,44.5h11.6c6.9,0,10,3.6,10,9.5,0,3.8-1.1,6.1-4.7,7.6,3.7,1,6.3,3.5,6.3,8.8,0,7.2-4.3,10.3-11.3,10.3h-11.9v-36.2M451.3,59.5c3.8,0,4.7-1.7,4.7-5.2s-1-5.2-4.8-5.2h-5.4v10.3h5.5v.1ZM451.3,76c4.5,0,6-1.7,6-5.8s-1.7-5.8-6.2-5.8h-5.2v11.6h5.4Z"/>
+                <polyline className="cls-1" points="470.9 44.5 490.4 44.5 490.4 49.4 476.6 49.4 476.6 59.4 488.1 59.4 488.1 64.2 476.6 64.2 476.6 75.8 491.4 75.8 491.4 80.7 470.9 80.7 470.9 44.5"/>
+                <path className="cls-1" d="M499,44.5h10.9c7.6,0,11.6,3.4,11.6,10.1,0,5.6-2.1,8.1-6.8,9.5,2.1.7,3.6,2.6,4.9,6.3l3.6,10.2h-6.1l-3.4-10.2c-1.4-4.1-3-5-6-5h-3v15.3h-5.7v-36.2M509.9,60.9c4.4,0,5.8-1.9,5.8-6.1,0-3.9-1.5-5.5-5.8-5.5h-5.2v11.6h5.2Z"/>
+                <polyline className="cls-1" points="529.8 44.5 535.5 44.5 535.5 75.8 548.2 75.8 548.2 80.7 529.8 80.7 529.8 44.5"/>
+                <polyline className="cls-1" points="554.1 77.6 558.2 77 558.2 48.3 554.1 47.6 554.1 44.5 568 44.5 568 47.6 563.9 48.3 563.9 77 568 77.6 568 80.7 554.1 80.7 554.1 77.6"/>
+                <path className="cls-1" d="M576.2,44.5h5.6l9.9,19.7c1.6,3,2.7,6.3,3.5,8.8h.1c-.3-2.3-.6-6.4-.6-10.1v-18.4h5.3v36.2h-6l-9.2-18.4c-2.2-4.5-3-7-3.8-9.6h-.1c.2,2.3.6,6.5.6,10.7v17.3h-5.3v-36.2"/>
+                <polyline className="cls-4" points="149.6 52.8 149.6 77.7 160.9 65.2 149.6 52.8"/>
+                <polyline className="cls-4" points="165 52.8 165 77.7 176.3 65.2 165 52.8"/>
+                <path className="cls-2" d="M72.6,68.3V19.8h-12.8v34l-1.6-1.9V18.3h15.9v51.9l-1.5-1.9M59.8,64v48.4h12.8v-33.7l1.5,1.8v33.6h-15.9v-51.8l1.6,1.7ZM66.2,126.5L5.8,66.2,66.2,5.9l60.3,60.3-60.3,60.3ZM66.2,132.3L0,66.2,66.1,0l66.1,66.1-66,66.2ZM59.8,61.3l-3.7-4.2v37.5c-11.6-4.2-20.1-15.4-20.1-28.4,0-6.5,2.1-12.6,5.6-17.5,3.6-5,8.6-8.8,14.4-10.9v1.9c-10.7,4.1-18.4,14.5-18.4,26.5,0,11,6.3,20.7,15.6,25.3v-1.8c-8.3-4.6-14-13.5-14-23.6,0-11.3,7-21,16.8-24.9v1.9c-8.8,3.9-15.1,12.7-15.1,23,0,9.1,4.8,17.3,12.3,21.7v-1.9c-6.4-4.2-10.6-11.6-10.6-19.7,0-9.3,5.6-17.6,13.4-21.4v2c-7,3.8-11.8,10.9-11.8,19.3,0,7.2,3.4,13.8,9,17.7v-32.8l1-.7,5.4,6.2v4.8h.2ZM72.6,71l3.6,4.1v-37.4c11.7,4.2,20.1,15.4,20.1,28.4,0,6.5-2.1,12.6-5.6,17.5-3.6,5-8.6,8.8-14.4,10.9v-1.9c10.7-4.1,18.3-14.5,18.3-26.5,0-11.1-6.3-20.7-15.6-25.4v1.8c8.3,4.6,14.1,13.5,14.1,23.6,0,11.2-7,21-16.8,24.9v-1.9c8.8-3.9,15.1-12.7,15.1-22.9,0-9.2-4.8-17.3-12.3-21.7v1.9c6.4,4.2,10.6,11.6,10.6,19.8,0,9.3-5.5,17.6-13.4,21.3v-2c7-3.8,11.8-10.9,11.8-19.3,0-7.3-3.4-13.9-9-17.8v32.9l-1,.7-5.3-6.2v-4.8h-.2ZM61.7,99.2h1.8l5.4,8.3v-8.3h1.8v11.4h-1.8l-5.4-8.2v8.2h-1.8v-11.4ZM61.7,86.3h1.8l5.4,8.3v-8.3h1.8v11.4h-1.8l-5.4-8.2v8.2h-1.8v-11.4ZM65.3,73.3h1.9l3.5,11.4h-1.9l-.5-1.8h-4.2l-.6,1.8h-1.8l3.6-11.4ZM66.2,76.3l-1.6,4.9h3.1l-1.5-4.9ZM61.7,71.8v-11.4h1.2l3.3,3.9,3.3-3.9h1.2v11.3h-1.8v-7.9l-2.6,3.2-2.8-3.2v7.9h-1.8v.1ZM61.7,54.7v-7.2h1.8v7c0,1.9,1.5,2.7,2.7,2.7,1.3,0,2.7-.7,2.7-2.7v-7h1.8v7.2c0,2.5-1.9,4.4-4.5,4.4-2.6,0-4.5-1.8-4.5-4.4ZM61.7,21.6h1.8l5.4,8.3v-8.3h1.8v11.4h-1.8l-5.4-8.2v8.2h-1.8v-11.4ZM61.7,34.6h9v1.8h-7.2v3.1h7.2v1.8h-7.2v2.9h7.2v1.8h-9v-11.4Z"/>
+              </g>
+            </svg>
+          </Link>
+        </div>
+
+        <nav aria-label="Social media navigation">
+          <ul className="flex justify-center space-x-8 text-white/60">
+            <li>
+              <Link href="https://www.facebook.com/neumann/" className="hover:text-white transition-colors">
+                <Facebook size={18} />
+              </Link>
+            </li>
+            <li>
+              <Link href="https://www.instagram.com/neumann.berlin/" className="hover:text-white transition-colors">
+                <Instagram size={18} />
+              </Link>
+            </li>
+            <li>
+              <Link href="https://www.youtube.com/user/GeorgNeumannGmbH" className="hover:text-white transition-colors">
+                <Youtube size={18} />
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* 3. Bottom Copyright and Legal Section */}
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between text-[11px] font-medium tracking-tight">
+        <p className="mb-4 md:mb-0">
+          © 2018 - {new Date().getFullYear()} <Link href="#" className="hover:text-white underline decoration-white/20 underline-offset-4">Georg Neumann GmbH</Link>
+        </p>
+        
+        <ul className="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-2">
+          {legalLinks.map((link) => (
+            <li key={link.name}>
+              <Link href={link.href} className="hover:text-white transition-colors whitespace-nowrap">
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </footer>
+  );
+}
