@@ -98,7 +98,7 @@ export default function NeumannPage() {
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-neumann overflow-x-hidden">
       
-      <section className="relative h-[70vh] w-full bg-[#0a0a0a] overflow-hidden">
+      <section className="relative h-[55vh] w-full bg-[#0a0a0a] overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
