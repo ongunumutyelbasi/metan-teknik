@@ -104,7 +104,8 @@ export default function NeumannPage() {
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-neumann overflow-x-hidden">
       
-      <section className="relative h-[85vh] w-full bg-[#0a0a0a] overflow-hidden">
+      {/* 1. Reduced height to 70vh */}
+      <section className="relative h-[70vh] w-full bg-[#0a0a0a] overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -123,7 +124,8 @@ export default function NeumannPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-transparent to-transparent" />
             </div>
 
-            <div className="relative z-20 h-full w-full max-w-[1400px] mx-auto px-12 md:px-20 flex items-center">
+            {/* 2. Increased max-width and reduced horizontal padding */}
+            <div className="relative z-20 h-full w-full max-w-[1600px] mx-auto px-6 md:px-12 flex items-center">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full items-center">
                 
                 {/* Text Content */}
@@ -133,10 +135,12 @@ export default function NeumannPage() {
                   <span className="text-[#ef7622] text-[10px] font-bold uppercase tracking-[0.4em] mb-4 block italic">
                     Neumann // 0{index + 1}
                   </span>
-                  <h2 className="text-4xl md:text-6xl font-medium mb-6 tracking-tighter text-white uppercase leading-none">
+                  {/* 3. Reduced title font size */}
+                  <h2 className="text-3xl md:text-5xl font-medium mb-4 tracking-tighter text-white uppercase leading-none">
                     {slide.title}
                   </h2>
-                  <p className="text-base text-[24px] font-light mb-10 text-white/50 max-w-md leading-tight">
+                  {/* 4. Reduced subtitle font size */}
+                  <p className="text-lg font-light mb-8 text-white/50 max-w-md leading-tight">
                     {slide.subtitle}
                   </p>
                   <Link 
@@ -151,13 +155,13 @@ export default function NeumannPage() {
                 <div className={`hidden lg:flex justify-end transition-all duration-1000 delay-300 transform ${
                   index === current ? "translate-x-0 opacity-100 scale-100" : "translate-x-12 opacity-0 scale-95"
                 }`}>
-                  <div className="relative w-full max-w-[500px] aspect-square animate-soft-float flex items-center justify-center">
+                  <div className="relative w-full max-w-[450px] aspect-square animate-soft-float flex items-center justify-center">
                     <Image 
                       src={slide.productImg}
                       alt={slide.title}
                       fill
                       className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-                      sizes="500px"
+                      sizes="450px"
                       priority={index === 0}
                       unoptimized
                     />
@@ -168,9 +172,9 @@ export default function NeumannPage() {
           </div>
         ))}
 
-        {/* --- CONTROLS SECTION - Aligned with Slides --- */}
-        <div className="absolute bottom-12 left-0 w-full z-40">
-          <div className="max-w-[1400px] mx-auto px-12 md:px-20 flex items-center justify-between">
+        {/* --- CONTROLS SECTION - Narrower margins and slightly higher bottom position --- */}
+        <div className="absolute bottom-8 left-0 w-full z-40">
+          <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex items-center justify-between">
             
             <div className="flex gap-10">
               {slides.map((_, i) => (
