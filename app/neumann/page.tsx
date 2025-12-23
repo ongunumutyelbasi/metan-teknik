@@ -48,7 +48,7 @@ const slides = [
 
 export default function NeumannPage() {
   const [current, setCurrent] = useState(0);
-  const [progress, setProgress] = useState(0); // Start at 0 for clockwise logic
+  const [progress, setProgress] = useState(0);
   const requestRef = useRef<number | null>(null);
 
   const nextSlide = (e?: React.MouseEvent) => {
@@ -72,7 +72,6 @@ export default function NeumannPage() {
 
     const animate = (time: number) => {
       const elapsed = time - startTime;
-      // Calculate progress from 0 to 100 for clockwise growth
       const currentProgress = Math.min((elapsed / SLIDE_DURATION) * 100, 100);
       
       setProgress(currentProgress);
@@ -92,13 +91,13 @@ export default function NeumannPage() {
   }, [current]);
 
   const circumference = 2 * Math.PI * 18;
-  // Inverted logic: offset starts at full circumference and goes to 0 for clockwise fill
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-neumann overflow-x-hidden">
       
-      <section className="relative h-[55vh] w-full bg-[#0a0a0a] overflow-hidden">
+      {/* Updated height: 55vh on mobile, 85vh on desktop */}
+      <section className="relative h-[55vh] lg:h-[85vh] w-full bg-[#0a0a0a] overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -163,7 +162,6 @@ export default function NeumannPage() {
         <div className="absolute bottom-8 left-0 w-full z-40">
           <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex items-center justify-between">
             
-            {/* Reduced gap from gap-10 to gap-6 */}
             <div className="flex gap-6">
               {slides.map((_, i) => (
                 <button key={i} onClick={() => jumpToSlide(i)} className="relative group">
@@ -219,7 +217,6 @@ export default function NeumannPage() {
         </div>
       </section>
 
-      {/* Grid section remains unchanged */}
       <section className="py-24 px-8 max-w-[1400px] mx-auto bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
           <div className="group relative aspect-square bg-[#f8f8f8] p-12 flex flex-col justify-between border border-gray-100">
