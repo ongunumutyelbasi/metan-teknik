@@ -1,9 +1,9 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, ChevronDown } from 'lucide-react';
+import { Search, ChevronDown, Menu, X } from 'lucide-react';
 
 const navLinks = [
   { name: 'ÜRÜNLER', href: '#' },
@@ -13,43 +13,41 @@ const navLinks = [
   { name: 'HAKKIMIZDA', href: '#' },
 ];
 
-function BrandsDropdown() {
-  const brands = [
-    { 
-      name: "METAN TEKNİK", 
-      href: "/", 
-      logo: "/images/metan-icon.png", 
-      hoverColor: "#df532b" 
-    },
-    { 
-      name: "SENNHEISER", 
-      href: "/sennheiser", 
-      logo: "/images/SVG/sennheiser-icon.svg", 
-      hoverColor: "#057cc3" 
-    },
-    { 
-      name: "NEUMANN", 
-      href: "/neumann", 
-      logo: "/images/SVG/neumann-inverse-icon.svg", 
-      hoverColor: "#ef7622" 
-    },
-    { 
-      name: "MERGING", 
-      href: "/merging", 
-      logo: "/images/SVG/merging-icon.svg", 
-      hoverColor: "#e30613" 
-    },
-  ];
+const brands = [
+  { 
+    name: "METAN TEKNİK", 
+    href: "/", 
+    logo: "/images/metan-icon.png", 
+    hoverColor: "#df532b" 
+  },
+  { 
+    name: "SENNHEISER", 
+    href: "/sennheiser", 
+    logo: "/images/SVG/sennheiser-icon.svg", 
+    hoverColor: "#057cc3" 
+  },
+  { 
+    name: "NEUMANN", 
+    href: "/neumann", 
+    logo: "/images/SVG/neumann-inverse-icon.svg", 
+    hoverColor: "#ef7622" 
+  },
+  { 
+    name: "MERGING", 
+    href: "/merging", 
+    logo: "/images/SVG/merging-icon.svg", 
+    hoverColor: "#e30613" 
+  },
+];
 
+function BrandsDropdown() {
   return (
     <div className="relative group">
-      {/* State persistence: group-hover ensures orange color stays while dropdown is open */}
-      <button className="flex items-center space-x-2 px-4 py-2 border border-white/20 rounded-full text-[12px] tracking-[0.1em] font-medium text-white transition-all duration-300 uppercase group-hover:border-[#ef7622] group-hover:text-[#ef7622]">
+      <button className="flex items-center space-x-2 px-3 lg:px-4 py-2 border border-white/20 rounded-full text-[10px] lg:text-[12px] tracking-[0.1em] font-medium text-white transition-all duration-300 uppercase group-hover:border-[#ef7622] group-hover:text-[#ef7622]">
         <span>MARKALAR</span>
         <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
       </button>
 
-      {/* Dropdown Menu */}
       <div className="absolute right-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[60]">
         <div className="w-max bg-[#111] border border-white/10 rounded-xl shadow-2xl p-2 overflow-hidden">
           {brands.map((brand) => (
@@ -84,42 +82,85 @@ function BrandsDropdown() {
 }
 
 export default function NeumannHeader() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="h-[88px] w-full font-neumann bg-black flex items-center px-4 border-b border-white/10 sticky top-0 z-50">
+    <header className="h-[72px] lg:h-[88px] w-full font-neumann bg-black flex items-center px-4 lg:px-8 border-b border-white/10 sticky top-0 z-50">
       <div className="max-w-none w-full flex items-center justify-between">
         
-        {/* 1. Restored Logo Section */}
-        <Link href="/neumann" className="flex-shrink-0">
-          <Image 
-            src="/images/SVG/neumann-light.svg" 
-            alt="Neumann Logo" 
-            width={256} 
-            height={56} 
-            className="h-14 w-auto object-contain"
-            priority
-          />
-        </Link>
+        {/* Logo Section */}
+        <div className="flex items-center">
+          {/* Desktop Logo */}
+          <Link href="/neumann" className="hidden lg:block">
+            <Image 
+              src="/images/SVG/neumann-light.svg" 
+              alt="Neumann Logo" 
+              width={256} 
+              height={56} 
+              className="h-14 w-auto object-contain"
+              priority
+            />
+          </Link>
+          {/* Mobile Logo (Icon Only) */}
+          <Link href="/neumann" className="lg:hidden">
+            <Image 
+              src="/images/SVG/neumann-inverse-icon.svg" 
+              alt="Neumann Icon" 
+              width={40} 
+              height={40} 
+              className="h-10 w-auto object-contain"
+              priority
+            />
+          </Link>
+        </div>
 
-        {/* 2. Navigation Section */}
-        <nav className="hidden lg:flex items-center space-x-6">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
               href={link.href}
-              className="text-[16px] text-white font-light tracking-[0.05em] hover:text-[#ef7622] transition-colors duration-200"
+              className="text-[14px] xl:text-[16px] text-white font-light tracking-[0.05em] hover:text-[#ef7622] transition-colors duration-200"
             >
               {link.name}
             </Link>
           ))}
         </nav>
 
-        {/* 3. Action Section */}
-        <div className="flex items-center space-x-6 text-white">
+        {/* Action Section */}
+        <div className="flex items-center space-x-3 lg:space-x-6 text-white">
           <button className="hover:text-[#ef7622] cursor-pointer transition-colors p-2" aria-label="Search">
-            <Search size={22} strokeWidth={1.5} />
+          {/* Use a fixed size for the SVG and let Tailwind handle the container if needed */}
+            <Search size={22} strokeWidth={1.5} className="w-[20px] h-[20px] lg:w-[22px] lg:h-[22px]" />
           </button>
+          
           <BrandsDropdown />
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="lg:hidden p-2 hover:text-[#ef7622] transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`fixed inset-0 top-[72px] bg-black z-40 lg:hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <nav className="flex flex-col p-8 space-y-6">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.name} 
+              href={link.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="text-[20px] text-white font-light tracking-[0.1em] border-b border-white/5 pb-4"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
       </div>
     </header>
   );
