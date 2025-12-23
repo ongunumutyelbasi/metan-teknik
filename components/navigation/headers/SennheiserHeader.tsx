@@ -38,7 +38,6 @@ export default function SennheiserHeader() {
     };
   }, [pathname]);
 
-  // Prevent background scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -62,14 +61,21 @@ export default function SennheiserHeader() {
       <div className="max-w-full mx-auto flex items-center relative">
         
         {/* --- MOBILE ONLY CONTROLS (LEFT) --- */}
-        <div className="flex lg:hidden items-center space-x-2">
+        <div className="flex lg:hidden items-center space-x-2 z-[70]">
           <button 
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="w-14 h-14 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c]"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="w-10 h-10 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c] relative overflow-hidden"
           >
-            <Menu size={20} />
+            {/* Animated Icon Toggle */}
+            <div className={`transition-all duration-500 flex items-center justify-center ${isMobileMenuOpen ? 'rotate-90 opacity-0 scale-0' : 'rotate-0 opacity-100 scale-100'}`}>
+              <Menu size={20} />
+            </div>
+            <div className={`absolute transition-all duration-500 flex items-center justify-center ${isMobileMenuOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-0'}`}>
+              <X size={20} />
+            </div>
           </button>
-          <button className="w-14 h-14 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c]">
+          
+          <button className={`w-10 h-10 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c] transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             <Search size={20} />
           </button>
         </div>
@@ -87,7 +93,7 @@ export default function SennheiserHeader() {
 
         {/* Desktop Nav Pill (Original) */}
         <nav className={`relative hidden lg:flex items-center h-[52px] rounded-full bg-[#f4f4f6] transition-all duration-700 ease-in-out px-8 ${isScrolled ? 'ml-0 pl-4 space-x-4' : 'ml-[175px]'}`}>
-          <div className={`transition-all duration-500 flex items-center overflow-hidden ${isScrolled ? 'w-8 opacity-100' : 'w-0 opacity-0'}`}>
+          <div className={`transition-all duration-500 flex items-center overflow-hidden ${isScrolled ? 'w-8 opacity-100 mr-2' : 'w-0 opacity-0'}`}>
             <Link href="/sennheiser" className="group flex items-center shrink-0">
               <svg viewBox="0 0 27.82 19.14" className="h-5 w-[27.82px] fill-current text-black group-hover:text-brand-blue transition-colors duration-300">
                 <path d="M14.61,0H0v14.64h1.81V1.81h11.11c.57-.85,1.14-1.43,1.68-1.81h0ZM13.21,19.14h14.61V4.51h-1.81v12.8h-11.11c-.54.86-1.11,1.45-1.68,1.84h0ZM14.33,16.5c-1.61,2.62-3.11,2.64-4.95,2.64H0v-3.71h2.93c1.94,0,3.5-.98,4.33-2.38L13.52,2.64C15.1.03,16.6,0,18.44,0h9.38v3.68h-2.93c-1.94,0-3.5.98-4.33,2.41l-6.24,10.41h0Z"/>
@@ -115,9 +121,9 @@ export default function SennheiserHeader() {
           </div>
 
           {/* Mobile Only S-Logo (Far Right) */}
-          <div className="lg:hidden flex items-center">
+          <div className="lg:hidden flex items-center z-[70]">
             <Link href="/sennheiser" className="group">
-              <svg viewBox="0 0 27.82 19.14" className={`h-6 w-auto fill-current transition-colors duration-500 ${navTheme === 'light' ? 'text-white' : 'text-black'} group-hover:text-brand-blue`}>
+              <svg viewBox="0 0 27.82 19.14" className={`h-6 w-auto fill-current transition-colors duration-500 ${isMobileMenuOpen ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')} group-hover:text-brand-blue`}>
                 <path d="M14.61,0H0v14.64h1.81V1.81h11.11c.57-.85,1.14-1.43,1.68-1.81h0ZM13.21,19.14h14.61V4.51h-1.81v12.8h-11.11c-.54.86-1.11,1.45-1.68,1.84h0ZM14.33,16.5c-1.61,2.62-3.11,2.64-4.95,2.64H0v-3.71h2.93c1.94,0,3.5-.98,4.33-2.38L13.52,2.64C15.1.03,16.6,0,18.44,0h9.38v3.68h-2.93c-1.94,0-3.5.98-4.33,2.41l-6.24,10.41h0Z"/>
               </svg>
             </Link>
@@ -125,16 +131,9 @@ export default function SennheiserHeader() {
         </div>
       </div>
 
-      {/* --- MOBILE MENU OVERLAY --- */}
-      <div className={`fixed inset-0 bg-white transition-all duration-500 ease-in-out lg:hidden z-[60] ${isMobileMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-full invisible'}`}>
-        <div className="flex flex-col h-full pt-24 px-8">
-          <button 
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="absolute top-8 left-8 w-14 h-14 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c]"
-          >
-            <X size={20} />
-          </button>
-
+      {/* --- MOBILE MENU OVERLAY (Sliding from Left) --- */}
+      <div className={`fixed inset-0 bg-white transition-transform duration-500 ease-in-out lg:hidden z-[60] ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="flex flex-col h-full pt-28 px-8">
           <nav className="flex flex-col space-y-6 mb-12">
             {links.map((link) => (
               <Link 
