@@ -65,11 +65,11 @@ export default function SennheiserHeader() {
         <div className="flex lg:hidden items-center space-x-2">
           <button 
             onClick={() => setIsMobileMenuOpen(true)}
-            className="w-10 h-10 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c]"
+            className="w-20 h-20 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c]"
           >
             <Menu size={20} />
           </button>
-          <button className="w-10 h-10 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c]">
+          <button className="w-20 h-20 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c]">
             <Search size={20} />
           </button>
         </div>
@@ -130,7 +130,7 @@ export default function SennheiserHeader() {
         <div className="flex flex-col h-full pt-24 px-8">
           <button 
             onClick={() => setIsMobileMenuOpen(false)}
-            className="absolute top-8 left-8 w-10 h-10 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c]"
+            className="absolute top-8 left-8 w-20 h-10 flex items-center justify-center bg-[#f4f4f6] rounded-full text-[#5d5b5c]"
           >
             <X size={20} />
           </button>
