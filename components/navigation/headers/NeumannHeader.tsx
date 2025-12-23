@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Search, ChevronDown, Menu, X } from 'lucide-react';
@@ -41,19 +41,40 @@ const brands = [
 ];
 
 function BrandsDropdown() {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="relative group">
-      <button className="flex items-center space-x-2 px-3 lg:px-4 py-2 border border-white/20 rounded-full text-[10px] lg:text-[12px] tracking-[0.1em] font-medium text-white transition-all duration-300 uppercase group-hover:border-[#ef7622] group-hover:text-[#ef7622]">
+    <div className="relative" ref={dropdownRef}>
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className={`flex items-center space-x-2 px-3 lg:px-4 py-2 border rounded-full text-[10px] lg:text-[12px] tracking-[0.1em] font-medium transition-all duration-300 uppercase 
+          ${isOpen ? 'border-[#ef7622] text-[#ef7622]' : 'border-white/20 text-white'} 
+          lg:hover:border-[#ef7622] lg:hover:text-[#ef7622]`}
+      >
         <span>MARKALAR</span>
-        <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
+        <ChevronDown size={14} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-      <div className="absolute right-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[60]">
+      {/* Dropdown Menu */}
+      <div className={`absolute right-0 top-full pt-3 transition-all duration-300 z-[70] ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
         <div className="w-max bg-[#111] border border-white/10 rounded-xl shadow-2xl p-2 overflow-hidden">
           {brands.map((brand) => (
             <Link 
               key={brand.name} 
               href={brand.href} 
+              onClick={() => setIsOpen(false)}
               className="flex items-center space-x-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/brand"
               style={{ '--brand-hover': brand.hoverColor } as React.CSSProperties}
             >
@@ -90,7 +111,7 @@ export default function NeumannHeader() {
         
         {/* Logo Section */}
         <div className="flex items-center">
-          {/* Desktop Logo (Already white/light) */}
+          {/* Desktop Logo */}
           <Link href="/neumann" className="hidden lg:block">
             <Image 
               src="/images/SVG/neumann-light.svg" 
@@ -138,7 +159,9 @@ export default function NeumannHeader() {
           {/* Mobile Menu Toggle */}
           <button 
             className="lg:hidden p-2 hover:text-[#ef7622] transition-colors relative z-[60]"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => {
+                setIsMenuOpen(!isMenuOpen);
+            }}
             aria-label="Toggle Menu"
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
