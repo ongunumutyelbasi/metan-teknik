@@ -48,7 +48,7 @@ const slides = [
 
 export default function NeumannPage() {
   const [current, setCurrent] = useState(0);
-  const [progress, setProgress] = useState(100);
+  const [progress, setProgress] = useState(0); // Start at 0 for clockwise logic
   const requestRef = useRef<number | null>(null);
 
   const nextSlide = (e?: React.MouseEvent) => {
@@ -67,24 +67,17 @@ export default function NeumannPage() {
   };
 
   useEffect(() => {
-    const nextIndex = (current + 1) % slides.length;
-    const img = new window.Image();
-    img.src = slides[nextIndex].lifestyleImg;
-    const prodImg = new window.Image();
-    prodImg.src = slides[nextIndex].productImg;
-  }, [current]);
-
-  useEffect(() => {
-    setProgress(100);
+    setProgress(0);
     const startTime = performance.now();
 
     const animate = (time: number) => {
       const elapsed = time - startTime;
-      const remaining = Math.max(100 - (elapsed / SLIDE_DURATION) * 100, 0);
+      // Calculate progress from 0 to 100 for clockwise growth
+      const currentProgress = Math.min((elapsed / SLIDE_DURATION) * 100, 100);
       
-      setProgress(remaining);
+      setProgress(currentProgress);
 
-      if (remaining <= 0) {
+      if (currentProgress >= 100) {
         nextSlide();
       } else {
         requestRef.current = requestAnimationFrame(animate);
@@ -99,12 +92,12 @@ export default function NeumannPage() {
   }, [current]);
 
   const circumference = 2 * Math.PI * 18;
+  // Inverted logic: offset starts at full circumference and goes to 0 for clockwise fill
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-neumann overflow-x-hidden">
       
-      {/* 1. Reduced height to 70vh */}
       <section className="relative h-[70vh] w-full bg-[#0a0a0a] overflow-hidden">
         {slides.map((slide, index) => (
           <div
@@ -124,22 +117,18 @@ export default function NeumannPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-transparent to-transparent" />
             </div>
 
-            {/* 2. Increased max-width and reduced horizontal padding */}
             <div className="relative z-20 h-full w-full max-w-[1600px] mx-auto px-6 md:px-12 flex items-center">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full items-center">
                 
-                {/* Text Content */}
                 <div className={`transition-all duration-1000 transform ${
                   index === current ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
                 }`}>
                   <span className="text-[#ef7622] text-[10px] font-bold uppercase tracking-[0.4em] mb-4 block italic">
                     Neumann // 0{index + 1}
                   </span>
-                  {/* 3. Reduced title font size */}
                   <h2 className="text-3xl md:text-5xl font-medium mb-4 tracking-tighter text-white uppercase leading-none">
                     {slide.title}
                   </h2>
-                  {/* 4. Reduced subtitle font size */}
                   <p className="text-lg font-light mb-8 text-white/50 max-w-md leading-tight">
                     {slide.subtitle}
                   </p>
@@ -151,7 +140,6 @@ export default function NeumannPage() {
                   </Link>
                 </div>
 
-                {/* Floating Product Image */}
                 <div className={`hidden lg:flex justify-end transition-all duration-1000 delay-300 transform ${
                   index === current ? "translate-x-0 opacity-100 scale-100" : "translate-x-12 opacity-0 scale-95"
                 }`}>
@@ -172,11 +160,11 @@ export default function NeumannPage() {
           </div>
         ))}
 
-        {/* --- CONTROLS SECTION - Narrower margins and slightly higher bottom position --- */}
         <div className="absolute bottom-8 left-0 w-full z-40">
           <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex items-center justify-between">
             
-            <div className="flex gap-10">
+            {/* Reduced gap from gap-10 to gap-6 */}
+            <div className="flex gap-6">
               {slides.map((_, i) => (
                 <button key={i} onClick={() => jumpToSlide(i)} className="relative group">
                   <span className={`text-[11px] font-bold transition-colors ${
@@ -231,7 +219,7 @@ export default function NeumannPage() {
         </div>
       </section>
 
-      {/* --- GRID SECTION --- */}
+      {/* Grid section remains unchanged */}
       <section className="py-24 px-8 max-w-[1400px] mx-auto bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
           <div className="group relative aspect-square bg-[#f8f8f8] p-12 flex flex-col justify-between border border-gray-100">
