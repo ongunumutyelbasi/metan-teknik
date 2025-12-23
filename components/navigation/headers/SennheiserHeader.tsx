@@ -3,11 +3,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react'; // Added icons for mobile menu
 import { BrandsDropdown, SearchButton } from '../HeaderHelpers';
 
 export default function SennheiserHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [navTheme, setNavTheme] = useState<'dark' | 'light'>('dark');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -36,6 +38,15 @@ export default function SennheiserHeader() {
     };
   }, [pathname]);
 
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
+
   const links = [
     { name: "Ürünler", href: "/sennheiser/urunler" },
     { name: "Uygulamalar", href: "/sennheiser/uygulamalar" },
@@ -50,8 +61,8 @@ export default function SennheiserHeader() {
     <header className="fixed top-0 left-0 w-full z-50 pt-5 px-5">
       <div className="max-w-full mx-auto flex items-center relative">
         
-        {/* Main Logo Container */}
-        <div className="absolute left-0 top-0 h-[52px] flex items-center">
+        {/* --- DESKTOP ONLY LOGO (LEFT) --- */}
+        <div className="absolute left-0 top-0 h-[52px] hidden lg:flex items-center">
           <div className={`transition-opacity duration-500 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             <Link href="/sennheiser" className="group">
               <svg viewBox="0 0 155 20" className={`h-5 w-auto fill-current transition-colors duration-500 ${navTheme === 'light' ? 'text-white' : 'text-black'} group-hover:text-brand-blue`}>
@@ -61,22 +72,29 @@ export default function SennheiserHeader() {
           </div>
         </div>
 
-        {/* FIXED NAVIGATION PADDING:
-            - Unscrolled: pl-8 pr-8 ensures equal balance on both ends.
-            - Scrolled: pl-4 + logo (w-8) + gap (space-x-4) effectively creates equal weight with pr-8.
-        */}
-        <nav className={`relative flex items-center h-[52px] rounded-full bg-[#f4f4f6] transition-all duration-700 ease-in-out px-8 ${isScrolled ? 'ml-0 pl-4 space-x-4' : 'ml-[175px]'}`}>
+        {/* --- NAVIGATION PILL (DESKTOP & MOBILE) --- */}
+        <nav className={`relative flex items-center h-[52px] rounded-full bg-[#f4f4f6] transition-all duration-700 ease-in-out px-4 lg:px-8 
+          ${isScrolled ? 'ml-0' : 'lg:ml-[175px]'} 
+          w-full lg:w-auto flex-1 lg:flex-none justify-between lg:justify-start`}>
           
-          {/* S-Logo for scrolled state */}
-          <div className={`transition-all duration-500 flex items-center overflow-hidden ${isScrolled ? 'w-8 opacity-100' : 'w-0 opacity-0'}`}>
-            <Link href="/sennheiser" className="group flex items-center shrink-0">
-              <svg viewBox="0 0 27.82 19.14" className="h-5 w-[27.82px] fill-current text-black group-hover:text-brand-blue transition-colors duration-300">
-                <path d="M14.61,0H0v14.64h1.81V1.81h11.11c.57-.85,1.14-1.43,1.68-1.81h0ZM13.21,19.14h14.61V4.51h-1.81v12.8h-11.11c-.54.86-1.11,1.45-1.68,1.84h0ZM14.33,16.5c-1.61,2.62-3.11,2.64-4.95,2.64H0v-3.71h2.93c1.94,0,3.5-.98,4.33-2.38L13.52,2.64C15.1.03,16.6,0,18.44,0h9.38v3.68h-2.93c-1.94,0-3.5.98-4.33,2.41l-6.24,10.41h0Z"/>
-              </svg>
-            </Link>
-          </div>
+          {/* Mobile: Hamburger Button (Left in Pill) */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 text-[#5d5b5c] hover:text-brand-blue transition-colors"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
 
-          <ul className="flex space-x-6 text-[13px] font-medium whitespace-nowrap">
+          {/* Desktop Nav Links */}
+          <ul className="hidden lg:flex items-center space-x-6 text-[13px] font-medium whitespace-nowrap ml-4">
+            {/* S-Logo for scrolled state */}
+            <div className={`transition-all duration-500 flex items-center overflow-hidden ${isScrolled ? 'w-8 opacity-100 mr-2' : 'w-0 opacity-0'}`}>
+              <Link href="/sennheiser" className="group flex items-center shrink-0">
+                <svg viewBox="0 0 27.82 19.14" className="h-5 w-[27.82px] fill-current text-black group-hover:text-brand-blue transition-colors duration-300">
+                  <path d="M14.61,0H0v14.64h1.81V1.81h11.11c.57-.85,1.14-1.43,1.68-1.81h0ZM13.21,19.14h14.61V4.51h-1.81v12.8h-11.11c-.54.86-1.11,1.45-1.68,1.84h0ZM14.33,16.5c-1.61,2.62-3.11,2.64-4.95,2.64H0v-3.71h2.93c1.94,0,3.5-.98,4.33-2.38L13.52,2.64C15.1.03,16.6,0,18.44,0h9.38v3.68h-2.93c-1.94,0-3.5.98-4.33,2.41l-6.24,10.41h0Z"/>
+                </svg>
+              </Link>
+            </div>
             {links.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="text-[#5d5b5c] hover:text-brand-blue transition-colors duration-300">
@@ -85,12 +103,46 @@ export default function SennheiserHeader() {
               </li>
             ))}
           </ul>
+
+          {/* Mobile Logo: Icon on the Right (within Pill) */}
+          <div className="lg:hidden flex items-center">
+            <Link href="/sennheiser" className="group flex items-center">
+              <svg viewBox="0 0 27.82 19.14" className="h-6 w-auto fill-current text-black group-hover:text-brand-blue transition-colors duration-300">
+                <path d="M14.61,0H0v14.64h1.81V1.81h11.11c.57-.85,1.14-1.43,1.68-1.81h0ZM13.21,19.14h14.61V4.51h-1.81v12.8h-11.11c-.54.86-1.11,1.45-1.68,1.84h0ZM14.33,16.5c-1.61,2.62-3.11,2.64-4.95,2.64H0v-3.71h2.93c1.94,0,3.5-.98,4.33-2.38L13.52,2.64C15.1.03,16.6,0,18.44,0h9.38v3.68h-2.93c-1.94,0-3.5.98-4.33,2.41l-6.24,10.41h0Z"/>
+              </svg>
+            </Link>
+          </div>
         </nav>
 
-        {/* Right side Actions */}
-        <div className="ml-auto flex items-center space-x-2">
+        {/* Right side Actions (Visible on both) */}
+        <div className="ml-auto flex items-center space-x-2 pl-3">
             <BrandsDropdown />
             <SearchButton hoverClass="hover:bg-brand-blue" />
+        </div>
+      </div>
+
+      {/* --- MOBILE FULLSCREEN MENU OVERLAY --- */}
+      <div className={`fixed inset-0 bg-white transition-all duration-500 ease-in-out lg:hidden ${isMobileMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-full invisible'} z-[45]`}>
+        <div className="flex flex-col h-full pt-28 px-8">
+          <ul className="space-y-6">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link 
+                  href={link.href} 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-2xl font-semibold text-black hover:text-brand-blue transition-colors block"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          
+          <div className="mt-auto mb-12 border-t border-gray-100 pt-8">
+             <p className="text-gray-400 text-sm mb-4 tracking-widest uppercase">Select Brand</p>
+             {/* Note: You could also replicate brand switcher here if desired, 
+                 but it is already slickly available in the header pill */}
+          </div>
         </div>
       </div>
     </header>
