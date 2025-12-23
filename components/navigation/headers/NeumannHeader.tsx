@@ -44,7 +44,6 @@ function BrandsDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -56,19 +55,22 @@ function BrandsDropdown() {
   }, []);
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative group" ref={dropdownRef}>
+      {/* Button: Clickable on mobile, hover handles desktop via group class */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className={`flex items-center space-x-2 px-3 lg:px-4 py-2 border rounded-full text-[10px] lg:text-[12px] tracking-[0.1em] font-medium transition-all duration-300 uppercase 
           ${isOpen ? 'border-[#ef7622] text-[#ef7622]' : 'border-white/20 text-white'} 
-          lg:hover:border-[#ef7622] lg:hover:text-[#ef7622]`}
+          lg:group-hover:border-[#ef7622] lg:group-hover:text-[#ef7622]`}
       >
         <span>MARKALAR</span>
-        <ChevronDown size={14} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown size={14} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''} lg:group-hover:rotate-180`} />
       </button>
 
-      {/* Dropdown Menu */}
-      <div className={`absolute right-0 top-full pt-3 transition-all duration-300 z-[70] ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+      {/* Dropdown Menu: Visible via state (mobile) OR hover (desktop) */}
+      <div className={`absolute right-0 top-full pt-3 transition-all duration-300 z-[70] 
+        ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible lg:group-hover:opacity-100 lg:group-hover:visible'}
+      `}>
         <div className="w-max bg-[#111] border border-white/10 rounded-xl shadow-2xl p-2 overflow-hidden">
           {brands.map((brand) => (
             <Link 
@@ -111,7 +113,6 @@ export default function NeumannHeader() {
         
         {/* Logo Section */}
         <div className="flex items-center">
-          {/* Desktop Logo */}
           <Link href="/neumann" className="hidden lg:block">
             <Image 
               src="/images/SVG/neumann-light.svg" 
@@ -122,7 +123,6 @@ export default function NeumannHeader() {
               priority
             />
           </Link>
-          {/* Mobile Logo (Black SVG turned White) */}
           <Link href="/neumann" className="lg:hidden">
             <Image 
               src="/images/SVG/neumann-inverse-icon.svg" 
@@ -156,12 +156,9 @@ export default function NeumannHeader() {
           
           <BrandsDropdown />
 
-          {/* Mobile Menu Toggle */}
           <button 
             className="lg:hidden p-2 hover:text-[#ef7622] transition-colors relative z-[60]"
-            onClick={() => {
-                setIsMenuOpen(!isMenuOpen);
-            }}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
