@@ -86,11 +86,11 @@ export default function NeumannHeader() {
 
   return (
     <header className="h-[72px] lg:h-[88px] w-full font-neumann bg-black flex items-center px-4 lg:px-8 border-b border-white/10 sticky top-0 z-50">
-      <div className="max-w-none w-full flex items-center justify-between">
+      <div className="max-w-none w-full flex items-center justify-between relative z-50">
         
         {/* Logo Section */}
         <div className="flex items-center">
-          {/* Desktop Logo */}
+          {/* Desktop Logo (Already white/light) */}
           <Link href="/neumann" className="hidden lg:block">
             <Image 
               src="/images/SVG/neumann-light.svg" 
@@ -101,14 +101,14 @@ export default function NeumannHeader() {
               priority
             />
           </Link>
-          {/* Mobile Logo (Icon Only) */}
+          {/* Mobile Logo (Black SVG turned White) */}
           <Link href="/neumann" className="lg:hidden">
             <Image 
               src="/images/SVG/neumann-inverse-icon.svg" 
               alt="Neumann Icon" 
               width={40} 
               height={40} 
-              className="h-10 w-auto object-contain"
+              className="h-10 w-auto object-contain brightness-0 invert" 
               priority
             />
           </Link>
@@ -130,15 +130,14 @@ export default function NeumannHeader() {
         {/* Action Section */}
         <div className="flex items-center space-x-3 lg:space-x-6 text-white">
           <button className="hover:text-[#ef7622] cursor-pointer transition-colors p-2" aria-label="Search">
-          {/* Use a fixed size for the SVG and let Tailwind handle the container if needed */}
-            <Search size={22} strokeWidth={1.5} className="w-[20px] h-[20px] lg:w-[22px] lg:h-[22px]" />
+            <Search strokeWidth={1.5} className="w-[20px] h-[20px] lg:w-[22px] lg:h-[22px]" />
           </button>
           
           <BrandsDropdown />
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="lg:hidden p-2 hover:text-[#ef7622] transition-colors"
+            className="lg:hidden p-2 hover:text-[#ef7622] transition-colors relative z-[60]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -148,14 +147,18 @@ export default function NeumannHeader() {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 top-[72px] bg-black z-40 lg:hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div 
+        className={`fixed inset-0 top-0 pt-[72px] bg-black z-40 lg:hidden transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
         <nav className="flex flex-col p-8 space-y-6">
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
               href={link.href}
               onClick={() => setIsMenuOpen(false)}
-              className="text-[20px] text-white font-light tracking-[0.1em] border-b border-white/5 pb-4"
+              className="text-[18px] text-white font-light tracking-[0.1em] border-b border-white/5 pb-4"
             >
               {link.name}
             </Link>
