@@ -175,10 +175,11 @@ export default function MetanHeader() {
         </div>
 
         <div className="flex flex-col h-full pt-[76px] relative">
-          {/* Changed mx-10 to mx-8 to match nav padding */}
-          <div className="mt-8 border-b border-gray-100 mx-8" />
+          {/* Top line moved up significantly (mt-2 instead of mt-8) */}
+          <div className="mt-2 border-b border-gray-100 mx-8" />
           
-          <nav className="flex flex-col space-y-1 mt-2 px-8 overflow-y-auto">
+          {/* Added flex-1 to push nav list to fill available top space */}
+          <nav className="flex flex-col space-y-1 mt-2 px-8 overflow-y-auto flex-1">
             {links.map((link, idx) => (
               <Link 
                 key={link.href}
@@ -194,44 +195,44 @@ export default function MetanHeader() {
             ))}
           </nav>
 
-          <div className="mt-auto mb-8 px-8 relative">
-            {/* Changed left-10/right-10 to left-0/right-0 to match button width exactly */}
-            <div className={`absolute bottom-full left-0 right-0 mb-4 flex flex-col space-y-2 p-2 bg-white rounded-2xl shadow-xl border border-black/5 transition-all duration-500 ${
-              isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
-            }`}>
-              {brands.map((brand, idx) => (
-                <Link 
-                  key={brand.name} 
-                  href={brand.href} 
-                  className={`flex items-center space-x-4 p-4 bg-gray-50/50 border border-black/5 rounded-xl transition-all duration-500 active:bg-gray-100 transform ${
-                    isMobileBrandsOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                  }`}
-                  style={{ transitionDelay: `${idx * 40}ms` }}
-                >
-                  <div 
-                    className="w-5 h-5 bg-gray-500"
-                    style={{
-                      maskImage: `url(${brand.logo})`,
-                      WebkitMaskImage: `url(${brand.logo})`,
-                      maskRepeat: 'no-repeat',
-                      maskSize: 'contain',
-                    }}
-                  />
-                  <span className="text-xs font-bold tracking-regular uppercase text-gray-700">{brand.name}</span>
-                </Link>
-              ))}
-            </div>
+          <div className="mt-auto mb-8 px-8 flex flex-col items-start">
+            <div className="relative w-full">
+              <div className={`absolute bottom-full left-0 right-0 mb-4 flex flex-col space-y-2 p-2 bg-white rounded-2xl shadow-xl border border-black/5 transition-all duration-500 ${
+                isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
+              }`}>
+                {brands.map((brand, idx) => (
+                  <Link 
+                    key={brand.name} 
+                    href={brand.href} 
+                    className={`flex items-center space-x-4 p-4 bg-gray-50/50 border border-black/5 rounded-xl transition-all duration-500 active:bg-gray-100 transform ${
+                      isMobileBrandsOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                    }`}
+                    style={{ transitionDelay: `${idx * 40}ms` }}
+                  >
+                    <div 
+                      className="w-5 h-5 bg-gray-500"
+                      style={{
+                        maskImage: `url(${brand.logo})`,
+                        WebkitMaskImage: `url(${brand.logo})`,
+                        maskRepeat: 'no-repeat',
+                        maskSize: 'contain',
+                      }}
+                    />
+                    <span className="text-xs font-bold tracking-regular uppercase text-gray-700">{brand.name}</span>
+                  </Link>
+                ))}
+              </div>
 
-            <button 
-              onClick={() => setIsMobileBrandsOpen(!isMobileBrandsOpen)}
-              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl bg-white shadow-sm active:bg-gray-50 transition-colors"
-            >
-              <span className="text-[11px] font-bold uppercase tracking-regular text-gray-900">Markalarımız</span>
-              {isMobileBrandsOpen ? <Minus size={16} /> : <Plus size={16} />}
-            </button>
+              <button 
+                onClick={() => setIsMobileBrandsOpen(!isMobileBrandsOpen)}
+                className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl bg-white shadow-sm active:bg-gray-50 transition-colors"
+              >
+                <span className="text-[11px] font-bold uppercase tracking-regular text-gray-900">Markalarımız</span>
+                {isMobileBrandsOpen ? <Minus size={16} /> : <Plus size={16} />}
+              </button>
+            </div>
             
-            {/* Bottom line already inside the px-8 container, so it matches width automatically */}
-            <div className="mt-6 border-t border-gray-100" />
+            <div className="mt-6 border-t border-gray-100 w-full" />
           </div>
         </div>
       </div>
