@@ -43,9 +43,11 @@ export default function MetanHeader() {
 
   const links = [
     { name: "Hakkımızda", href: "/hakkimizda" },
-    { name: "Şirketler", href: "/sirketler" },
-    { name: "Finans", href: "/hakkimizda/finans" },
-    { name: "İletişim", href: "/hakkimizda/iletisim-bilgileri" },
+    { name: "Künye", href: "/kunye" },
+    { name: "Bayilerimiz", href: "/hakkimizda/finans" },
+    { name: "Referanslarımız", href: "/hakkimizda/iletisim-bilgileri" },
+    { name: "Finans", href: "/hakkimizda/iletisim-bilgileri" },
+    { name: "İletişim Bilgilerimiz", href: "/hakkimizda/iletisim-bilgileri" },
   ];
 
   const brands = [
