@@ -108,45 +108,15 @@ export default function MetanHeader() {
         {/* --- UTILITIES --- */}
         <div className="flex items-center ml-auto">
           <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
-            <div className="relative group">
-              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
-                <span>Markalar</span>
-                <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
-              </button>
-              
-              <div className="absolute right-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                <div className="w-max bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-black/5 p-2 overflow-hidden">
-                  {brands.map((brand) => (
-                    <Link 
-                      key={brand.name} 
-                      href={brand.href} 
-                      className="flex items-center space-x-4 px-4 py-3 rounded-xl hover:bg-black/5 transition-all duration-300 group/item"
-                      style={{ '--brand-color': brand.hoverColor } as React.CSSProperties}
-                    >
-                      <div 
-                        className="w-5 h-5 bg-gray-400 group-hover/item:bg-[var(--brand-color)] transition-colors duration-300"
-                        style={{
-                          maskImage: `url(${brand.logo})`,
-                          WebkitMaskImage: `url(${brand.logo})`,
-                          maskRepeat: 'no-repeat',
-                          maskSize: 'contain',
-                        }}
-                      />
-                      <span className="text-[12.5px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap uppercase tracking-regular">
-                        {brand.name}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-            
+            <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
+              <span>Markalar</span>
+              <ChevronDown size={14} />
+            </button>
             <button className={`${utilityBaseClass} ${utilityThemeClass} w-9 h-9 cursor-pointer`}>
               <Search size={16} strokeWidth={2.5} />
             </button>
           </div>
 
-          {/* Mobile Controls */}
           <div className="flex lg:hidden items-center space-x-3">
              <button className={`relative z-[70] ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}>
                 <Search size={20} strokeWidth={2} />
@@ -162,14 +132,14 @@ export default function MetanHeader() {
       </div>
 
       {/* --- MOBILE FULLSCREEN MENU --- */}
-      <div className={`fixed inset-0 bg-white z-[60] transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
+      <div className={`fixed inset-0 bg-white z-[60] w-screen h-screen overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="flex flex-col h-full pt-[76px] px-10">
-          {/* Top Divider */}
+        <div className="flex flex-col h-full pt-[76px] px-10 relative">
+          
           <div className="mt-8 border-b border-gray-100" />
           
-          <nav className="flex flex-col space-y-6 mt-8">
+          <nav className="flex flex-col space-y-6 mt-8 overflow-y-auto">
             {links.map((link, idx) => (
               <Link 
                 key={link.href}
@@ -185,51 +155,44 @@ export default function MetanHeader() {
             ))}
           </nav>
 
-          {/* Brand Drop-up Area */}
-          <div className="mt-auto mb-12">
-            <div className={`relative transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              
-              {/* Drop-up Content */}
-              <div className={`flex flex-col space-y-2 mb-4 transition-all duration-500 overflow-hidden ${isMobileBrandsOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                {brands.map((brand) => (
-                  <Link 
-                    key={brand.name} 
-                    href={brand.href} 
-                    className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl"
-                  >
-                    <div 
-                      className="w-5 h-5 bg-gray-500"
-                      style={{
-                        maskImage: `url(${brand.logo})`,
-                        WebkitMaskImage: `url(${brand.logo})`,
-                        maskRepeat: 'no-repeat',
-                        maskSize: 'contain',
-                      }}
-                    />
-                    <span className="text-xs font-bold tracking-regular uppercase text-gray-700">{brand.name}</span>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Main Brand Trigger Button */}
-              <button 
-                onClick={() => setIsMobileBrandsOpen(!isMobileBrandsOpen)}
-                className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl bg-white shadow-sm"
-              >
-                <span className="text-[11px] font-bold uppercase tracking-regular text-gray-900">Markalarımız</span>
-                <ChevronDown size={16} className={`transition-transform duration-500 ${isMobileBrandsOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              <div className="mt-8 border-t border-gray-100 pt-8">
-                 {/* TR, EN, DE buttons remain hidden as requested */}
-                 {/* <div className="flex items-center space-x-6 text-[11px] font-bold tracking-regular text-black uppercase">
-                    <button className="text-metan-orange">TR</button>
-                    <button className="text-gray-300">EN</button>
-                    <button className="text-gray-300">DE</button>
-                 </div> 
-                 */}
-              </div>
+          {/* Bottom Brands Section - Locked to bottom */}
+          <div className="mt-auto mb-10 relative">
+            
+            {/* Brands Drop-up: Absolute positioned so it doesn't push the button */}
+            <div className={`absolute bottom-full left-0 w-full mb-4 flex flex-col space-y-2 transition-all duration-500 ${
+              isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
+            }`}>
+              {brands.map((brand) => (
+                <Link 
+                  key={brand.name} 
+                  href={brand.href} 
+                  className="flex items-center space-x-4 p-4 bg-gray-50 border border-black/5 rounded-xl active:bg-gray-100"
+                >
+                  <div 
+                    className="w-5 h-5 bg-gray-500"
+                    style={{
+                      maskImage: `url(${brand.logo})`,
+                      WebkitMaskImage: `url(${brand.logo})`,
+                      maskRepeat: 'no-repeat',
+                      maskSize: 'contain',
+                    }}
+                  />
+                  <span className="text-xs font-bold tracking-regular uppercase text-gray-700">{brand.name}</span>
+                </Link>
+              ))}
             </div>
+
+            {/* Trigger Button: Remains in a fixed position at the bottom */}
+            <button 
+              onClick={() => setIsMobileBrandsOpen(!isMobileBrandsOpen)}
+              className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl bg-white shadow-sm active:bg-gray-50 transition-colors"
+            >
+              <span className="text-[11px] font-bold uppercase tracking-regular text-gray-900">Markalarımız</span>
+              <ChevronDown size={16} className={`transition-transform duration-500 ${isMobileBrandsOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            {/* Added a small buffer to the bottom divider */}
+            <div className="mt-8 border-t border-gray-100" />
           </div>
         </div>
       </div>
