@@ -75,11 +75,11 @@ export default function MetanHeader() {
     }`}>
       <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-0 lg:px-8">
         
-        {/* --- BRANDING --- */}
-        <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 pl-6 lg:pl-0 lg:pr-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        {/* --- BRANDING (BASE LAYER) --- */}
+        <div className={`relative z-[40] flex-shrink-0 flex items-center h-10 pl-8 lg:pl-0 lg:pr-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/" className="px-2 py-1">
             <Image 
-              src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
+              src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
               alt="Metan Logo" width={120} height={32} priority 
               className="h-7 w-auto object-contain transition-all duration-500"
             />
@@ -162,8 +162,20 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
+        {/* DUPLICATE LOGO (OVERLAY LAYER) - Matches exact position of base logo */}
+        <div className="absolute top-0 left-0 w-full h-[76px] flex items-center pr-6 pl-0">
+          <div className="relative flex-shrink-0 flex items-center h-10 pl-8">
+            <Link href="/" className="px-2 py-1">
+              <Image 
+                src="/images/metan-logo.webp"
+                alt="Metan Logo Overlay" width={120} height={32} priority 
+                className="h-7 w-auto object-contain"
+              />
+            </Link>
+          </div>
+        </div>
+
         <div className="flex flex-col h-full pt-[76px] relative">
-          
           <div className="mt-8 border-b border-gray-100 mx-10" />
           
           <nav className="flex flex-col space-y-1 mt-2 px-10 overflow-y-auto">
@@ -183,7 +195,6 @@ export default function MetanHeader() {
           </nav>
 
           <div className="mt-auto mb-8 px-10 relative">
-            {/* Added white background and rounded corners to the container */}
             <div className={`absolute bottom-full left-10 right-10 mb-4 flex flex-col space-y-2 p-2 bg-white rounded-2xl shadow-xl border border-black/5 transition-all duration-500 ${
               isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
             }`}>
