@@ -76,7 +76,7 @@ export default function MetanHeader() {
       <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-0 lg:px-8">
         
         {/* --- BRANDING --- */}
-        <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 px-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 lg:pl-0 lg:pr-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/" className="px-2 py-1">
             <Image 
               src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
@@ -183,14 +183,18 @@ export default function MetanHeader() {
           </nav>
 
           <div className="mt-auto mb-8 px-10 relative">
-            <div className={`absolute bottom-full left-10 right-10 mb-4 flex flex-col space-y-2 transition-all duration-500 ${
+            {/* Added white background and rounded corners to the container */}
+            <div className={`absolute bottom-full left-10 right-10 mb-4 flex flex-col space-y-2 p-2 bg-white rounded-2xl shadow-xl border border-black/5 transition-all duration-500 ${
               isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
             }`}>
-              {brands.map((brand) => (
+              {brands.map((brand, idx) => (
                 <Link 
                   key={brand.name} 
                   href={brand.href} 
-                  className="flex items-center space-x-4 p-4 bg-white border border-black/5 rounded-xl shadow-sm active:bg-gray-50"
+                  className={`flex items-center space-x-4 p-4 bg-gray-50/50 border border-black/5 rounded-xl transition-all duration-500 active:bg-gray-100 transform ${
+                    isMobileBrandsOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${idx * 40}ms` }}
                 >
                   <div 
                     className="w-5 h-5 bg-gray-500"
