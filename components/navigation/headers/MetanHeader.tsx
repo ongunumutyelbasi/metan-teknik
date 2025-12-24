@@ -162,17 +162,17 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="flex flex-col h-full pt-[76px] pr-6 pl-0 relative">
+        <div className="flex flex-col h-full pt-[76px] relative">
           
-          <div className="mt-8 border-b border-gray-100" />
+          <div className="mt-8 border-b border-gray-100 mx-10" />
           
-          <nav className="flex flex-col space-y-1 mt-6 overflow-y-auto">
+          <nav className="flex flex-col space-y-1 mt-2 px-10 overflow-y-auto">
             {links.map((link, idx) => (
               <Link 
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-3 text-2xl font-light uppercase tracking-tighter text-black transition-all duration-700 transform ${
+                className={`block py-3 text-xl font-light uppercase tracking-tighter text-black transition-all duration-700 transform ${
                   isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${idx * 50}ms` }}
@@ -182,8 +182,8 @@ export default function MetanHeader() {
             ))}
           </nav>
 
-          <div className="mt-auto mb-8 relative">
-            <div className={`absolute bottom-full left-0 w-full mb-4 flex flex-col space-y-2 transition-all duration-500 ${
+          <div className="mt-auto mb-8 px-10 relative">
+            <div className={`absolute bottom-full left-10 right-10 mb-4 flex flex-col space-y-2 transition-all duration-500 ${
               isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
             }`}>
               {brands.map((brand) => (
