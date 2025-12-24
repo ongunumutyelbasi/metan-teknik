@@ -14,7 +14,6 @@ export default function MetanHeader() {
   const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
 
-  // Handle Scroll and Theme Detection
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     const observerOptions = { rootMargin: '-10% 0px -85% 0px', threshold: 0 };
@@ -40,13 +39,9 @@ export default function MetanHeader() {
     };
   }, [pathname]);
 
-  // Handle Mobile Width Detection
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    
-    // Check initially
     checkMobile();
-
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -56,7 +51,6 @@ export default function MetanHeader() {
     if (!isMobileMenuOpen) setIsMobileBrandsOpen(false);
   }, [isMobileMenuOpen]);
 
-  // Derived state: Header is "solid" if scrolled OR if we are on mobile
   const isHeaderSolid = isScrolled || isMobile;
 
   const links = [
@@ -77,7 +71,6 @@ export default function MetanHeader() {
 
   const utilityBaseClass = "transition-all duration-500 backdrop-blur-xl border flex items-center justify-center rounded-xl";
   
-  // Updated utility logic to account for isHeaderSolid (Mobile/Scrolled)
   const utilityThemeClass = (isHeaderSolid || isMobileMenuOpen) 
     ? "border-black/[0.12] text-black hover:bg-black/[0.15]" 
     : (navTheme === 'light' 
@@ -92,19 +85,17 @@ export default function MetanHeader() {
     }`}>
       <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-0 lg:px-8">
         
-        {/* --- BRANDING (BASE LAYER) --- */}
-        <div className={`relative z-[40] flex-shrink-0 flex items-center h-10 pl-4 lg:pl-0 lg:pr-6 transition-all duration-500 ${isHeaderSolid ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        {/* --- BRANDING: z-[80] keeps it above the mobile menu --- */}
+        <div className={`relative z-[80] flex-shrink-0 flex items-center h-10 pl-4 lg:pl-0 lg:pr-6 transition-all duration-500 ${isHeaderSolid ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/" className="px-2 py-1">
             <Image 
-              // Switch to colored logo if Scrolled OR Mobile OR Dark Theme is active
-              src={isHeaderSolid || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
+              src={isHeaderSolid || navTheme === 'dark' || isMobileMenuOpen ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
               alt="Metan Logo" width={120} height={32} priority 
               className="h-7 w-auto object-contain transition-all duration-500"
             />
           </Link>
         </div>
 
-        {/* --- MAIN NAVIGATION (DESKTOP) --- */}
         <nav className="hidden lg:flex flex-grow pl-6">
           <ul className="flex items-center space-x-2">
             {links.map((link) => (
@@ -123,7 +114,6 @@ export default function MetanHeader() {
           </ul>
         </nav>
 
-        {/* --- UTILITIES --- */}
         <div className="flex items-center ml-auto">
           <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isHeaderSolid ? 'border-black/5' : 'border-white/10'}`}>
             <div className="relative group">
@@ -163,12 +153,12 @@ export default function MetanHeader() {
           </div>
 
           <div className="flex lg:hidden items-center space-x-3">
-             <button className={`relative z-[70] ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}>
+             <button className={`relative z-[80] ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}>
                 <Search size={20} strokeWidth={2} />
              </button>
              <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`z-[70] relative ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}
+                className={`z-[80] relative ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}
              >
                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
              </button>
@@ -180,18 +170,7 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="absolute top-0 left-0 w-full h-[76px] flex items-center pr-6 pl-0">
-          <div className="relative flex-shrink-0 flex items-center h-10 pl-4">
-            <Link href="/" className="px-2 py-1">
-              <Image 
-                src="/images/metan-logo.webp"
-                alt="Metan Logo Overlay" width={120} height={32} priority 
-                className="h-7 w-auto object-contain"
-              />
-            </Link>
-          </div>
-        </div>
-
+        {/* Removed duplicate logo container as main logo is now visible via z-index */}
         <div className="flex flex-col h-full pt-[76px] relative">
           <div className="mt-2 border-b border-gray-100 mx-8" />
           
@@ -247,7 +226,6 @@ export default function MetanHeader() {
                 {isMobileBrandsOpen ? <Minus size={16} /> : <Plus size={16} />}
               </button>
             </div>
-            
             <div className="mt-6 border-t border-gray-100 w-full" />
           </div>
         </div>
