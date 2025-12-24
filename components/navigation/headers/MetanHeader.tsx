@@ -73,13 +73,11 @@ export default function MetanHeader() {
         ? 'bg-white border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
     }`}>
-      {/* Side paddings set to px-8 to match the search icon's right gutter */}
       <div className="max-w-[1800px] w-full mx-auto flex items-center px-8">
         
         {/* --- BRANDING --- */}
-        {/* Added px-6 to give logo space from the left edge and the line */}
         <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 px-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
-          <Link href="/">
+          <Link href="/" className="px-2 py-1">
             <Image 
               src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
               alt="Metan Logo" width={120} height={32} priority 
@@ -89,19 +87,19 @@ export default function MetanHeader() {
         </div>
 
         {/* --- MAIN NAVIGATION (DESKTOP) --- */}
-        {/* Added pl-10 to create distance between the line and the first nav item */}
-        <nav className="hidden lg:flex flex-grow pl-10">
-          <ul className="flex items-center space-x-6">
+        <nav className="hidden lg:flex flex-grow pl-6">
+          <ul className="flex items-center space-x-2">
             {links.map((link) => (
               <li key={link.href}>
                 <Link 
                   href={link.href} 
-                  className={`text-[12px] font-medium uppercase tracking-regular transition-all duration-300 relative group ${
+                  className={`inline-block px-4 py-3 text-[12px] font-medium uppercase tracking-regular transition-all duration-300 relative group ${
                     isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
                   }`}
                 >
                   {link.name}
-                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-metan-orange transition-all duration-300 group-hover:w-full" />
+                  {/* Underline adjusted to sit exactly under text even with padding */}
+                  <span className="absolute bottom-2 left-4 right-4 h-0.5 bg-metan-orange transition-all duration-300 w-0 group-hover:w-[calc(100%-32px)]" />
                 </Link>
               </li>
             ))}
@@ -169,13 +167,13 @@ export default function MetanHeader() {
           
           <div className="mt-8 border-b border-gray-100" />
           
-          <nav className="flex flex-col space-y-6 mt-8 overflow-y-auto">
+          <nav className="flex flex-col space-y-2 mt-8 overflow-y-auto">
             {links.map((link, idx) => (
               <Link 
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-2xl font-light uppercase tracking-tighter text-black transition-all duration-700 transform ${
+                className={`block py-3 text-2xl font-light uppercase tracking-tighter text-black transition-all duration-700 transform ${
                   isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${idx * 50}ms` }}
