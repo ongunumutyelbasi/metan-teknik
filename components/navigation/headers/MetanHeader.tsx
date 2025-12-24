@@ -55,13 +55,17 @@ export default function MetanHeader() {
     { name: "MERGING", href: "/merging", logo: "/images/SVG/merging-icon.svg", hoverColor: "#e30613" },
   ];
 
-  const utilityBaseClass = "transition-all duration-500 backdrop-blur-xl border flex items-center justify-center rounded-xl";
+  const utilityBaseClass = "transition-all duration-700 backdrop-blur-xl border flex items-center justify-center rounded-xl";
+  
+  // Refined theme class for seamless fading between states
   const utilityThemeClass = isScrolled 
-    ? "bg-black/5 border-black/10 text-black hover:bg-black/10" 
-    : (navTheme === 'light' ? "bg-white/10 border-white/10 text-white hover:bg-white/20" : "bg-black/5 border-black/10 text-black hover:bg-black/10");
+    ? "bg-black/[0.05] border-black/[0.08] text-black hover:bg-black/[0.12]" 
+    : (navTheme === 'light' 
+        ? "bg-white/[0.12] border-white/[0.15] text-white hover:bg-white/[0.25]" 
+        : "bg-black/[0.05] border-black/[0.08] text-black hover:bg-black/[0.12]");
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b h-[76px] flex items-center ${
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 border-b h-[76px] flex items-center ${
       isScrolled 
         ? 'bg-white/95 backdrop-blur-md border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
@@ -69,12 +73,12 @@ export default function MetanHeader() {
       <div className="max-w-[1800px] w-full mx-auto flex items-center px-6 lg:px-12">
         
         {/* --- BRANDING --- */}
-        <div className={`flex-shrink-0 pr-10 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        <div className={`flex-shrink-0 pr-10 h-10 flex items-center transition-all duration-700 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/">
             <Image 
               src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"} 
               alt="Metan Logo" width={120} height={32} priority 
-              className="h-7 w-auto object-contain transition-all duration-500"
+              className="h-7 w-auto object-contain transition-all duration-700"
             />
           </Link>
         </div>
@@ -86,7 +90,7 @@ export default function MetanHeader() {
               <li key={link.href}>
                 <Link 
                   href={link.href} 
-                  className={`text-[12px] font-medium uppercase tracking-regular transition-all duration-300 relative group ${
+                  className={`text-[12px] font-medium uppercase tracking-widest transition-all duration-300 relative group ${
                     isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
                   }`}
                 >
@@ -100,10 +104,10 @@ export default function MetanHeader() {
 
         {/* --- UTILITIES --- */}
         <div className="flex items-center ml-auto">
-          <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
+          <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-700 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
             
             <div className="relative group">
-              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
+              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-widest space-x-2`}>
                 <span>Markalar</span>
                 <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
               </button>
@@ -127,7 +131,7 @@ export default function MetanHeader() {
                           maskSize: 'contain',
                         }}
                       />
-                      <span className="text-[12.5px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap uppercase tracking-regular">
+                      <span className="text-[12.5px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap uppercase tracking-widest">
                         {brand.name}
                       </span>
                     </Link>
@@ -163,7 +167,7 @@ export default function MetanHeader() {
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="flex flex-col h-full pt-28 pb-12 px-10">
-          <div className="text-[11px] font-medium tracking-regular uppercase text-gray-400 mb-10 border-b border-gray-100 pb-4">
+          <div className="text-[11px] font-medium tracking-widest uppercase text-gray-400 mb-10 border-b border-gray-100 pb-4">
             Keşfet
           </div>
           <nav className="flex flex-col space-y-8">
@@ -198,13 +202,13 @@ export default function MetanHeader() {
                           maskSize: 'contain',
                         }}
                       />
-                      <span className="text-[10px] font-bold tracking-regular uppercase text-gray-500">{brand.name.split(' ')[0]}</span>
+                      <span className="text-[10px] font-bold tracking-widest uppercase text-gray-500">{brand.name.split(' ')[0]}</span>
                    </Link>
                 ))}
               </div>
               
               <div className="flex items-center justify-between border-t border-gray-100 pt-8">
-                <div className="flex items-center space-x-6 text-xs font-medium tracking-regular text-black uppercase">
+                <div className="flex items-center space-x-6 text-xs font-medium tracking-widest text-black uppercase">
                   <button className="text-metan-orange font-bold">TR</button>
                   <button className="text-gray-300">EN</button>
                   <button className="text-gray-300">DE</button>
