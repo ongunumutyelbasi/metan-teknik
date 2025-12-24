@@ -56,7 +56,7 @@ export default function MetanHeader() {
     { name: "METAN TEKNİK", href: "/", logo: "/images/metan-icon.png", hoverColor: "#df532b" },
     { name: "SENNHEISER", href: "/sennheiser", logo: "/images/SVG/sennheiser-icon.svg", hoverColor: "#057cc3" },
     { name: "NEUMANN", href: "/neumann", logo: "/images/SVG/neumann-inverse-icon.svg", hoverColor: "#ef7622" },
-    { name: "MERGING", href: "/merging", logo: "/images/SVG/merging-icon.svg", hoverColor: "#e30613" },
+    { name: "MERGING", href: "/metan-merging", logo: "/images/SVG/merging-icon.svg", hoverColor: "#e30613" },
   ];
 
   const utilityBaseClass = "transition-all duration-500 backdrop-blur-xl border flex items-center justify-center rounded-xl";
@@ -73,7 +73,7 @@ export default function MetanHeader() {
         ? 'bg-white border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
     }`}>
-      <div className="max-w-[1800px] w-full mx-auto flex items-center pl-6 pr-8">
+      <div className="max-w-[1800px] w-full mx-auto flex items-center px-6 lg:px-8">
         
         {/* --- BRANDING --- */}
         <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 px-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
@@ -98,7 +98,6 @@ export default function MetanHeader() {
                   }`}
                 >
                   {link.name}
-                  {/* Underline adjusted to sit exactly under text even with padding */}
                   <span className="absolute bottom-2 left-4 right-4 h-0.5 bg-metan-orange transition-all duration-300 w-0 group-hover:w-[calc(100%-32px)]" />
                 </Link>
               </li>
@@ -163,11 +162,11 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="flex flex-col h-full pt-[76px] px-10 relative">
+        <div className="flex flex-col h-full pt-[76px] px-6 relative">
           
           <div className="mt-8 border-b border-gray-100" />
           
-          <nav className="flex flex-col space-y-2 mt-8 overflow-y-auto">
+          <nav className="flex flex-col space-y-1 mt-6 overflow-y-auto">
             {links.map((link, idx) => (
               <Link 
                 key={link.href}
@@ -183,7 +182,7 @@ export default function MetanHeader() {
             ))}
           </nav>
 
-          <div className="mt-auto mb-14 relative">
+          <div className="mt-auto mb-8 relative">
             <div className={`absolute bottom-full left-0 w-full mb-4 flex flex-col space-y-2 transition-all duration-500 ${
               isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
             }`}>
@@ -215,7 +214,7 @@ export default function MetanHeader() {
               {isMobileBrandsOpen ? <Minus size={16} /> : <Plus size={16} />}
             </button>
             
-            <div className="mt-8 border-t border-gray-100" />
+            <div className="mt-6 border-t border-gray-100" />
           </div>
         </div>
       </div>
