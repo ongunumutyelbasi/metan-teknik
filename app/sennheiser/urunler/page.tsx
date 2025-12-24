@@ -51,7 +51,7 @@ export default function SennheiserMK4Page() {
                 <button 
                   onClick={prevImg}
                   disabled={currentImg === 0}
-                  className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center hover:bg-gray-50 transition-all shadow-sm disabled:opacity-20"
+                  className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center hover:bg-brand-blue transition-all disabled:opacity-20"
                 >
                   <svg width="12" height="12" viewBox="0 0 32 32" className="fill-current">
                     <path d="M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z"></path>
@@ -61,7 +61,7 @@ export default function SennheiserMK4Page() {
                 <button 
                   onClick={nextImg}
                   disabled={currentImg === productImages.length - 1}
-                  className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center hover:bg-gray-50 transition-all shadow-sm disabled:opacity-20"
+                  className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center hover:bg-brand-blue transition-all disabled:opacity-20"
                 >
                   <svg width="12" height="12" viewBox="0 0 32 32" className="fill-current">
                     <path d="M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z"></path>
