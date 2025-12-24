@@ -76,7 +76,7 @@ export default function MetanHeader() {
       <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-0 lg:px-8">
         
         {/* --- BRANDING --- */}
-        <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 pl-10 lg:pl-0 lg:pr-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 pl-6 lg:pl-0 lg:pr-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/" className="px-2 py-1">
             <Image 
               src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
