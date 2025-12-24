@@ -73,10 +73,10 @@ export default function MetanHeader() {
         ? 'bg-white border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
     }`}>
-      <div className="max-w-[1800px] w-full mx-auto flex items-center px-6 lg:px-12">
+      <div className="max-w-[1800px] w-full mx-auto flex items-center px-8 lg:px-16">
         
         {/* --- BRANDING --- */}
-        <div className={`relative z-[70] flex-shrink-0 pr-6 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r lg:mr-8`}>
           <Link href="/">
             <Image 
               src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
@@ -87,7 +87,7 @@ export default function MetanHeader() {
         </div>
 
         {/* --- MAIN NAVIGATION (DESKTOP) --- */}
-        <nav className="hidden lg:flex flex-grow pl-6">
+        <nav className="hidden lg:flex flex-grow">
           <ul className="flex items-center space-x-5">
             {links.map((link) => (
               <li key={link.href}>
@@ -108,14 +108,11 @@ export default function MetanHeader() {
         {/* --- UTILITIES --- */}
         <div className="flex items-center ml-auto">
           <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
-            
-            {/* Desktop Brand Dropdown */}
             <div className="relative group">
               <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
                 <span>Markalar</span>
                 <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
               </button>
-              
               <div className="absolute right-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                 <div className="w-max bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-black/5 p-2 overflow-hidden">
                   {brands.map((brand) => (
@@ -142,13 +139,11 @@ export default function MetanHeader() {
                 </div>
               </div>
             </div>
-
             <button className={`${utilityBaseClass} ${utilityThemeClass} w-9 h-9 cursor-pointer`}>
               <Search size={16} strokeWidth={2.5} />
             </button>
           </div>
 
-          {/* Mobile Controls */}
           <div className="flex lg:hidden items-center space-x-3">
              <button className={`relative z-[70] ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}>
                 <Search size={20} strokeWidth={2} />
@@ -164,7 +159,8 @@ export default function MetanHeader() {
       </div>
 
       {/* --- MOBILE FULLSCREEN MENU --- */}
-      <div className={`fixed inset-0 bg-white z-[60] w-screen h-screen overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
+      {/* Changed h-screen to h-[dvh] to handle Safari UI bars */}
+      <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="flex flex-col h-full pt-[76px] px-10 relative">
@@ -187,8 +183,8 @@ export default function MetanHeader() {
             ))}
           </nav>
 
-          {/* Bottom Brands Section */}
-          <div className="mt-auto mb-10 relative">
+          {/* Bottom Brands Section - Using mb-14 for safer clearance */}
+          <div className="mt-auto mb-14 relative">
             <div className={`absolute bottom-full left-0 w-full mb-4 flex flex-col space-y-2 transition-all duration-500 ${
               isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
             }`}>
