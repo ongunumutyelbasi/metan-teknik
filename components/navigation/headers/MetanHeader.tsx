@@ -87,7 +87,7 @@ export default function MetanHeader() {
 
         {/* --- MAIN NAVIGATION (DESKTOP) --- */}
         <nav className="hidden lg:flex flex-grow pl-10">
-          <ul className="flex items-center space-x-8">
+          <ul className="flex items-center space-x-5">
             {links.map((link) => (
               <li key={link.href}>
                 <Link 
