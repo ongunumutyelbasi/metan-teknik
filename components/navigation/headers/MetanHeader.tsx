@@ -88,7 +88,7 @@ export default function MetanHeader() {
                 <Link 
                   href={link.href} 
                   className={`text-[11px] font-medium uppercase tracking-[0.2em] transition-all duration-300 relative group ${
-                    isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
+                    isScrolled ? 'text-dark-gray' : (navTheme === 'light' ? 'text-white' : 'text-dark-gray')
                   }`}
                 >
                   {link.name}
@@ -105,7 +105,7 @@ export default function MetanHeader() {
             
             {/* Compact Brands Dropdown Utility */}
             <div className="relative group">
-              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-10 text-[11px] font-medium uppercase tracking-widest space-x-2`}>
+              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-10 text-[11px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
                 <span>Markalar</span>
                 <ChevronDown size={12} className="transition-transform duration-300 group-hover:rotate-180" />
               </button>
@@ -140,7 +140,7 @@ export default function MetanHeader() {
             </div>
             
             {/* Search Button Utility */}
-            <button className={`${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}>
+            <button className={`${utilityBaseClass} ${utilityThemeClass} w-10 h-10 cursor-pointer`}>
               <Search size={16} strokeWidth={2.5} />
             </button>
           </div>
@@ -202,13 +202,13 @@ export default function MetanHeader() {
                           maskSize: 'contain',
                         }}
                       />
-                      <span className="text-[9px] font-bold tracking-widest uppercase text-gray-500">{brand.name.split(' ')[0]}</span>
+                      <span className="text-[9px] font-bold tracking-regular uppercase text-gray-500">{brand.name.split(' ')[0]}</span>
                    </Link>
                 ))}
               </div>
               
               <div className="flex items-center justify-between border-t border-gray-100 pt-8">
-                <div className="flex items-center space-x-6 text-xs font-medium tracking-widest text-black uppercase">
+                <div className="flex items-center space-x-6 text-xs font-medium tracking-regular text-black uppercase">
                   <button className="text-metan-orange font-bold">TR</button>
                   <button className="text-gray-300">EN</button>
                   <button className="text-gray-300">DE</button>
