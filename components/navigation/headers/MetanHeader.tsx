@@ -54,14 +54,14 @@ export default function MetanHeader() {
       <div className="max-w-full mx-auto flex items-center justify-between relative h-[60px]">
         
         {/* --- LEFT: INTEGRATED LOGO & NAV SECTION --- */}
-        <div className={`flex items-center p-1.5 rounded-2xl transition-all duration-700 backdrop-blur-xl border border-white/10 shadow-2xl ${
-          isScrolled ? 'bg-white/70 translate-y-2' : 'bg-white/15'
+        <div className={`flex items-center p-1.5 rounded-2xl backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-700 ${
+          isScrolled ? 'bg-white/70' : 'bg-white/15'
         }`}>
-          {/* Static Metan Logo inside the glass container */}
+          {/* Static Metan Logo */}
           <div className="pl-4 pr-6 border-r border-white/20">
             <Link href="/" className="flex items-center">
               <Image 
-                src="/images/metan-logo.png" 
+                src="/images/metan-logo-white.png" 
                 alt="Metan Logo" width={110} height={30} priority 
                 className="h-6 w-auto object-contain"
               />
@@ -70,17 +70,16 @@ export default function MetanHeader() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:block">
-            <ul className="flex items-center space-x-1 px-2">
+            <ul className="flex items-center space-x-0.5 px-2">
               {links.map((link) => (
-                <li key={link.href} className="relative group">
+                <li key={link.href}>
                   <Link 
                     href={link.href} 
-                    className={`px-3.5 py-2.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-all duration-300 flex items-center space-x-2 ${
+                    className={`px-3 py-2.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-all duration-300 ${
                       isScrolled ? 'text-black hover:bg-black/5' : (navTheme === 'light' ? 'text-white hover:bg-white/10' : 'text-black hover:bg-black/5')
                     }`}
                   >
-                    <span>{link.name}</span>
-                    <span className="w-1 h-1 rounded-full bg-metan-orange opacity-0 scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100" />
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -88,15 +87,19 @@ export default function MetanHeader() {
           </nav>
         </div>
 
-        {/* --- RIGHT: MINIMAL UTILITY SECTION --- */}
+        {/* --- RIGHT: UTILITY SECTION --- */}
         <div className="flex items-center space-x-4 z-[70]">
-          {/* Desktop Utilities (Transparent backgrounds) */}
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Utilities Container (Matches Nav Container Style) */}
+          <div className={`hidden lg:flex items-center px-4 py-2 rounded-2xl backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-700 ${
+            isScrolled ? 'bg-white/70' : 'bg-white/15'
+          }`}>
             <div className={`transition-colors duration-500 ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
               <BrandsDropdown />
             </div>
-            <div className={`w-[1px] h-4 mx-2 ${isScrolled ? 'bg-black/10' : 'bg-white/20'}`} />
-            <SearchButton hoverClass="hover:text-metan-orange" />
+            <div className={`w-[1px] h-4 mx-3 ${isScrolled ? 'bg-black/10' : 'bg-white/20'}`} />
+            <div className={`transition-colors duration-500 ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
+              <SearchButton hoverClass="hover:text-metan-orange" />
+            </div>
           </div>
 
           {/* Mobile Toggle */}
