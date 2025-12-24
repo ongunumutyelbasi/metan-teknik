@@ -59,7 +59,7 @@ export default function MetanTeknikFooter() {
                 Kurumsal
               </h4>
               <ul className="space-y-3 text-sm">
-                {techLinks.map((link) => (
+                {resourceLinks.map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className="hover:text-metan-orange transition-colors duration-200">
                       {link.name}
@@ -75,7 +75,7 @@ export default function MetanTeknikFooter() {
                 Destek
               </h4>
               <ul className="space-y-3 text-sm">
-                {resourceLinks.map((link) => (
+                {techLinks.map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className="hover:text-metan-orange transition-colors duration-200">
                       {link.name}
