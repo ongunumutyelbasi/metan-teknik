@@ -73,7 +73,7 @@ export default function MetanHeader() {
         ? 'bg-white border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
     }`}>
-      <div className="max-w-[1800px] w-full mx-auto flex items-center px-6 lg:px-8">
+      <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pr-4 lg:px-8">
         
         {/* --- BRANDING --- */}
         <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 px-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
