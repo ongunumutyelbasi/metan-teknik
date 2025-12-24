@@ -39,7 +39,7 @@ export default function MetanPage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check for mobile to force dark nav theme
+  // Check for mobile to force dark nav theme and disable flex expansion
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
@@ -52,9 +52,7 @@ export default function MetanPage() {
       
       {/* --- MAIN COMPANY SHOWCASE --- */}
       <main 
-        /* Original code: data-nav-color="light" 
-           Mobile forces "dark" to ensure the header is solid/visible from the start 
-        */
+        /* data-nav-color: Mobile forces "dark" to ensure the header is solid/visible from the start */
         data-nav-color={isMobile ? "dark" : "light"} 
         className="relative flex flex-col lg:flex-row h-[100dvh] lg:h-screen w-full overflow-hidden bg-white lg:bg-black pt-[76px] lg:pt-0"
       >
@@ -64,9 +62,13 @@ export default function MetanPage() {
             key={company.id}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            className="relative flex-1 w-full lg:h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10 last:border-0"
+            className="relative flex-1 w-full lg:h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center overflow-hidden"
             style={{ 
-              flex: hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.4 : 0.8),
+              /* LOGIC CHANGE: 
+                 If isMobile is true, flex is always 1 (equal height).
+                 If isMobile is false (desktop), we use the hover expansion logic.
+              */
+              flex: isMobile ? 1 : (hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.4 : 0.8)),
               willChange: 'flex'
             }}
           >
@@ -98,7 +100,9 @@ export default function MetanPage() {
                   }`}
                 />
 
+                {/* Button Container */}
                 <div className={`transition-all duration-700 flex flex-col items-center text-center lg:absolute lg:top-[60%] lg:left-0 lg:w-full ${
+                  // On mobile: Always visible (opacity-100). On Desktop: Fades in on hover.
                   hoveredIndex === index ? "opacity-100 translate-y-0" : "opacity-100 lg:opacity-0 translate-y-0 lg:translate-y-10"
                 }`}>
                   <div className="inline-flex items-center bg-white/10 backdrop-blur-md lg:bg-white space-x-2 text-white lg:text-black border border-white/20 px-5 py-2 rounded-full transition-all duration-300 group">
@@ -110,7 +114,7 @@ export default function MetanPage() {
           </Link>
         ))}
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator (Hidden on mobile) */}
         <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
           <span className="text-white/70 text-[14px] uppercase tracking-regular mb-2 animate-pulse font-regular">
             Daha fazlası için kaydırın
