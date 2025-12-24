@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
@@ -13,7 +13,7 @@ const companies = [
     bgImage: "/images/Spectera_Product_Shot_In_Use_39_.jpg",
     description: "Profesyonel Ses Çözümleri ve Kablosuz Sistemler",
     link: "/sennheiser",
-    logoClass: "h-6 md:h-7"
+    logoClass: "h-5 md:h-7"
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const companies = [
     bgImage: "/images/Neumann_U47_Tube.jpg",
     description: "Efsanevi Stüdyo Mikrofonları ve Monitörleri",
     link: "/neumann", 
-    logoClass: "h-12 md:h-16"
+    logoClass: "h-10 md:h-16"
   },
   {
     id: 3,
@@ -31,20 +31,12 @@ const companies = [
     bgImage: "/images/PMX_15-A.jpg",
     description: "Yüksek Performanslı Ses Kartları ve Arabirimler",
     link: "/merging", 
-    logoClass: "h-12 md:h-16"
+    logoClass: "h-10 md:h-16"
   }
 ];
 
 export default function MetanPage() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  // Auto-cycle on mobile only to keep the hero dynamic
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % companies.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-sans overflow-x-hidden">
@@ -52,15 +44,25 @@ export default function MetanPage() {
       {/* --- MAIN COMPANY SHOWCASE --- */}
       <main 
         data-nav-color="light" 
-        className="relative flex flex-col lg:flex-row h-screen w-full overflow-hidden bg-black"
+        /* pt-[76px] on mobile ensures the first section starts below the header.
+           h-[100dvh] ensures the hero section fills exactly one screen height.
+        */
+        className="relative flex flex-col lg:flex-row h-[100dvh] lg:h-screen w-full overflow-hidden bg-black pt-[76px] lg:pt-0"
       >
         {companies.map((company, index) => (
-          <div
+          <Link
+            href={company.link}
             key={company.id}
-            onClick={() => setActiveIndex(index)}
-            className={`relative transition-all duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)] flex flex-col items-center justify-center overflow-hidden cursor-pointer
-              ${activeIndex === index ? "flex-[10] lg:flex-[1.5]" : "flex-1 lg:flex-[0.75]"}
-            `}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            /* flex-1 makes them take equal 1/3 height on mobile.
+               lg:flex-1 makes them take equal 1/3 width on desktop.
+            */
+            className="relative flex-1 w-full lg:h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10 last:border-0"
+            style={{ 
+              flex: hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.4 : 0.8),
+              willChange: 'flex'
+            }}
           >
             {/* Background Image Container */}
             <div className="absolute inset-0 z-0">
@@ -68,57 +70,43 @@ export default function MetanPage() {
                 src={company.bgImage}
                 alt={company.name}
                 fill
-                className={`object-cover transition-transform duration-[3000ms] ${
-                  activeIndex === index ? "scale-110 blur-0" : "scale-100 blur-[2px] lg:blur-0"
+                className={`object-cover transition-transform duration-[2000ms] ${
+                  hoveredIndex === index ? "scale-110" : "scale-100"
                 }`}
                 priority
               />
+              {/* Overlay: Darker on mobile for better text legibility in smaller heights */}
               <div className={`absolute inset-0 transition-opacity duration-700 bg-black ${
-                activeIndex === index ? "opacity-40" : "opacity-70"
+                hoveredIndex === index ? "opacity-50" : "opacity-65"
               }`} />
             </div>
 
-            {/* Logo Container - Pushed down on mobile to clear the header */}
-            <div className={`relative z-10 transition-all duration-700 transform flex flex-col items-center pt-20 lg:pt-0`}>
+            {/* Content Wrapper: Flexbox used to stack logo and button vertically */}
+            <div className="relative z-10 flex flex-col items-center justify-center space-y-4 px-6 w-full h-full">
                <Image 
                   src={company.logo} 
                   alt={`${company.name} Logo`} 
                   width={300} 
                   height={150} 
-                  className={`w-auto object-contain brightness-0 invert transition-all duration-700 ${
-                    activeIndex === index 
-                      ? "h-8 lg:h-10 scale-110 opacity-100" 
-                      : "h-5 lg:h-7 scale-90 opacity-50 lg:opacity-100"
+                  className={`${company.logoClass} w-auto object-contain brightness-0 invert transition-transform duration-700 ${
+                    hoveredIndex === index ? "scale-105" : "scale-100"
                   }`}
                 />
-            </div>
 
-            {/* Detail Section - Link is only active for the expanded item */}
-            <div className={`absolute bottom-[15%] lg:top-[58%] left-0 w-full px-10 transition-all duration-700 flex flex-col items-center text-center ${
-              activeIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
-            }`}>
-              <Link 
-                href={company.link}
-                className="inline-flex items-center bg-white space-x-3 text-black border border-white/50 px-8 py-3 rounded-full transition-all duration-300 active:scale-95"
-              >
-                <span className="text-xs font-bold uppercase tracking-regular">Markayı Keşfedin</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
+                {/* Markayı Keşfedin Button - Always visible on mobile, reveals on hover on desktop */}
+                <div className={`transition-all duration-700 flex flex-col items-center text-center lg:absolute lg:top-[60%] lg:left-0 lg:w-full ${
+                  hoveredIndex === index ? "opacity-100 translate-y-0" : "opacity-100 lg:opacity-0 translate-y-0 lg:translate-y-10"
+                }`}>
+                  <div className="inline-flex items-center bg-white/10 backdrop-blur-md lg:bg-white space-x-2 text-white lg:text-black border border-white/20 px-5 py-2 rounded-full transition-all duration-300 group">
+                    <span className="text-[10px] font-bold uppercase tracking-widest">Keşfet</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
             </div>
-          </div>
+          </Link>
         ))}
 
-        {/* Custom Mobile Indicators */}
-        <div className="absolute bottom-6 left-0 w-full flex justify-center space-x-2 lg:hidden z-20">
-          {companies.map((_, i) => (
-            <div 
-              key={i} 
-              className={`h-1 transition-all duration-500 rounded-full ${activeIndex === i ? "w-8 bg-white" : "w-2 bg-white/30"}`}
-            />
-          ))}
-        </div>
-
-        {/* Scroll Indicator (Desktop Only) */}
+        {/* Scroll Indicator (Hidden on mobile to save space) */}
         <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
           <span className="text-white/70 text-[14px] uppercase tracking-regular mb-2 animate-pulse font-regular">
             Daha fazlası için kaydırın
@@ -128,8 +116,8 @@ export default function MetanPage() {
       </main>
 
       {/* --- SECONDARY FEATURE --- */}
-      <section data-nav-color="dark" className="flex flex-col lg:flex-row min-h-[70vh] lg:h-[80vh] w-full overflow-hidden bg-white">
-        <div className="w-full lg:w-1/2 h-[50vh] lg:h-full relative bg-[#f4f4f6]">
+      <section data-nav-color="dark" className="flex flex-col lg:flex-row min-h-[80vh] w-full overflow-hidden bg-white">
+        <div className="w-full lg:w-1/2 h-[45vh] lg:h-auto relative bg-[#f4f4f6]">
           <Image 
             src="/images/hero-slide/md421-kompakt-drum.avif" 
             alt="Feature Lifestyle" 
@@ -139,7 +127,7 @@ export default function MetanPage() {
         </div>
         <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-16 lg:px-20 lg:py-0">
           <h4 className="text-metan-orange font-bold uppercase tracking-widest text-xs mb-4">Öne Çıkan Ürün</h4>
-          <h3 className="text-4xl lg:text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
+          <h3 className="text-3xl lg:text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
           <p className="text-lg lg:text-xl text-[#5d5b5c] mb-10 max-w-md leading-relaxed">
             Canlı performanslar ve stüdyo kayıtları için tasarlanmış, efsanevi MD 421 sesini sunan kompakt yapı.
           </p>
