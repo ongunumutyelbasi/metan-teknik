@@ -114,17 +114,7 @@ export default function MetanPage() {
       </main>
 
       {/* --- SECONDARY FEATURE (Swapped Sides) --- */}
-      <section data-nav-color="dark" className="relative flex flex-col lg:flex-row-reverse min-h-[80vh] w-full overflow-hidden bg-white">
-        <div className="w-full lg:w-1/2 h-[45vh] lg:h-auto relative bg-[#f4f4f6]">
-          <Image 
-            src="/images/hero-slide/md421-kompakt-drum.avif" 
-            alt="Feature Lifestyle" 
-            fill 
-            className="object-cover" 
-          />
-        </div>
-        
-        <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-16 lg:px-20 lg:py-0">
+      <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-16 lg:px-20 lg:py-0">
           <h4 className="text-metan-orange font-bold uppercase tracking-widest text-xs mb-4">Öne Çıkan Ürün</h4>
           <h3 className="text-3xl lg:text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
           <p className="text-lg lg:text-xl text-[#5d5b5c] mb-10 max-w-md leading-relaxed">
@@ -134,6 +124,16 @@ export default function MetanPage() {
             <span>Ürünü İncele</span>
             <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
+        </div>
+      
+      <section data-nav-color="dark" className="relative flex flex-col lg:flex-row-reverse min-h-[80vh] w-full overflow-hidden bg-white">
+        <div className="w-full lg:w-1/2 h-[45vh] lg:h-auto relative bg-[#f4f4f6]">
+          <Image 
+            src="/images/hero-slide/md421-kompakt-drum.avif" 
+            alt="Feature Lifestyle" 
+            fill 
+            className="object-cover" 
+          />
         </div>
 
         {/* Scroll Indicator added to this section as well */}
