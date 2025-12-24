@@ -49,9 +49,7 @@ export default function MetanPage() {
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-sans overflow-x-hidden">
       
-      {/* FIX: Using svh (Small Viewport Height) to prevent jumping when the address bar hides.
-          Added flex-shrink-0 to the children and forced equal basis to lock the heights.
-      */}
+      {/* --- MAIN COMPANY SHOWCASE --- */}
       <main 
         data-nav-color={isMobile ? "dark" : "light"} 
         className="relative flex flex-col lg:flex-row w-full overflow-hidden bg-white lg:bg-black pt-[76px] lg:pt-0"
@@ -66,7 +64,7 @@ export default function MetanPage() {
             className="relative w-full lg:h-full flex flex-col items-center justify-center overflow-hidden transition-[flex] duration-700 ease-in-out"
             style={{ 
               flex: isMobile ? '1 1 33.33%' : (hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.4 : 0.8)),
-              minHeight: 0 // Prevents content from pushing the height out
+              minHeight: 0
             }}
           >
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -99,16 +97,24 @@ export default function MetanPage() {
                   isMobile || hoveredIndex === index ? "opacity-100 translate-y-0" : "lg:opacity-0 lg:translate-y-10"
                 }`}>
                   <div className="inline-flex items-center bg-white/10 backdrop-blur-md lg:bg-white space-x-2 text-white lg:text-black border border-white/20 px-5 py-2 rounded-full transition-all duration-300">
-                    <span className="text-[10px] font-bold uppercase tracking-widest">Keşfet</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest">Markayı Keşfet</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
             </div>
           </Link>
         ))}
+
+        <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
+          <span className="text-white/70 text-[14px] uppercase tracking-regular mb-2 animate-pulse font-regular">
+            Daha fazlası için kaydırın
+          </span>
+          <ChevronDown className="text-white/40 w-8 h-8 animate-bounce" />
+        </div>
       </main>
 
-      <section data-nav-color="dark" className="flex flex-col lg:flex-row min-h-[80vh] w-full overflow-hidden bg-white">
+      {/* --- SECONDARY FEATURE (Swapped Sides) --- */}
+      <section data-nav-color="dark" className="relative flex flex-col lg:flex-row-reverse min-h-[80vh] w-full overflow-hidden bg-white">
         <div className="w-full lg:w-1/2 h-[45vh] lg:h-auto relative bg-[#f4f4f6]">
           <Image 
             src="/images/hero-slide/md421-kompakt-drum.avif" 
@@ -117,6 +123,7 @@ export default function MetanPage() {
             className="object-cover" 
           />
         </div>
+        
         <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-16 lg:px-20 lg:py-0">
           <h4 className="text-metan-orange font-bold uppercase tracking-widest text-xs mb-4">Öne Çıkan Ürün</h4>
           <h3 className="text-3xl lg:text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
@@ -127,6 +134,14 @@ export default function MetanPage() {
             <span>Ürünü İncele</span>
             <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
+        </div>
+
+        {/* Scroll Indicator added to this section as well */}
+        <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
+          <span className="text-black/40 text-[14px] uppercase tracking-regular mb-2 animate-pulse font-regular">
+            Daha fazlası için kaydırın
+          </span>
+          <ChevronDown className="text-black/20 w-8 h-8 animate-bounce" />
         </div>
       </section>
     </div>
