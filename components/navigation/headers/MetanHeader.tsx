@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Search, ChevronDown } from 'lucide-react';
+import { Menu, X, Search, ChevronDown, Plus, Minus } from 'lucide-react';
 
 export default function MetanHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -73,10 +73,12 @@ export default function MetanHeader() {
         ? 'bg-white border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
     }`}>
-      <div className="max-w-[1800px] w-full mx-auto flex items-center px-8 lg:px-16">
+      {/* Side paddings set to px-8 to match the search icon's right gutter */}
+      <div className="max-w-[1800px] w-full mx-auto flex items-center px-8">
         
         {/* --- BRANDING --- */}
-        <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r lg:mr-8`}>
+        {/* Added px-6 to give logo space from the left edge and the line */}
+        <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 px-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/">
             <Image 
               src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
@@ -87,8 +89,9 @@ export default function MetanHeader() {
         </div>
 
         {/* --- MAIN NAVIGATION (DESKTOP) --- */}
-        <nav className="hidden lg:flex flex-grow">
-          <ul className="flex items-center space-x-5">
+        {/* Added pl-10 to create distance between the line and the first nav item */}
+        <nav className="hidden lg:flex flex-grow pl-10">
+          <ul className="flex items-center space-x-6">
             {links.map((link) => (
               <li key={link.href}>
                 <Link 
@@ -159,7 +162,6 @@ export default function MetanHeader() {
       </div>
 
       {/* --- MOBILE FULLSCREEN MENU --- */}
-      {/* Changed h-screen to h-[dvh] to handle Safari UI bars */}
       <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
@@ -183,7 +185,6 @@ export default function MetanHeader() {
             ))}
           </nav>
 
-          {/* Bottom Brands Section - Using mb-14 for safer clearance */}
           <div className="mt-auto mb-14 relative">
             <div className={`absolute bottom-full left-0 w-full mb-4 flex flex-col space-y-2 transition-all duration-500 ${
               isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
@@ -192,7 +193,7 @@ export default function MetanHeader() {
                 <Link 
                   key={brand.name} 
                   href={brand.href} 
-                  className="flex items-center space-x-4 p-4 bg-gray-50 border border-black/5 rounded-xl active:bg-gray-100"
+                  className="flex items-center space-x-4 p-4 bg-white border border-black/5 rounded-xl shadow-sm active:bg-gray-50"
                 >
                   <div 
                     className="w-5 h-5 bg-gray-500"
@@ -213,7 +214,7 @@ export default function MetanHeader() {
               className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl bg-white shadow-sm active:bg-gray-50 transition-colors"
             >
               <span className="text-[11px] font-bold uppercase tracking-regular text-gray-900">Markalarımız</span>
-              <ChevronDown size={16} className={`transition-transform duration-500 ${isMobileBrandsOpen ? 'rotate-180' : ''}`} />
+              {isMobileBrandsOpen ? <Minus size={16} /> : <Plus size={16} />}
             </button>
             
             <div className="mt-8 border-t border-gray-100" />
