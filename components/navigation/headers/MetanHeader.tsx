@@ -47,7 +47,7 @@ export default function MetanHeader() {
     { name: "Bayilerimiz", href: "/hakkimizda/finans" },
     { name: "Referanslarımız", href: "/hakkimizda/iletisim-bilgileri" },
     { name: "Finans", href: "/hakkimizda/iletisim-bilgileri" },
-    { name: "İletişim Bilgilerimiz", href: "/hakkimizda/iletisim-bilgileri" },
+    { name: "İletişim", href: "/hakkimizda/iletisim-bilgileri" },
   ];
 
   const brands = [
@@ -75,7 +75,7 @@ export default function MetanHeader() {
       <div className="max-w-[1800px] w-full mx-auto flex items-center px-6 lg:px-12">
         
         {/* --- BRANDING --- */}
-        <div className={`flex-shrink-0 pr-10 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        <div className={`flex-shrink-0 pr-6 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/">
             <Image 
               src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"} 
@@ -86,7 +86,7 @@ export default function MetanHeader() {
         </div>
 
         {/* --- MAIN NAVIGATION (DESKTOP) --- */}
-        <nav className="hidden lg:flex flex-grow pl-10">
+        <nav className="hidden lg:flex flex-grow pl-6">
           <ul className="flex items-center space-x-5">
             {links.map((link) => (
               <li key={link.href}>
