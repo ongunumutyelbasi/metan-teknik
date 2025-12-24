@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Search } from 'lucide-react';
+import { Menu, X, Search, Globe } from 'lucide-react';
 import { BrandsDropdown, SearchButton } from '../HeaderHelpers';
 
 export default function MetanHeader() {
@@ -50,104 +50,114 @@ export default function MetanHeader() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 pt-6 px-6 lg:px-10">
-      <div className="max-w-full mx-auto flex items-center justify-between relative h-[60px]">
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${
+      isScrolled 
+        ? 'bg-white/90 backdrop-blur-md py-3 border-black/10' 
+        : 'bg-transparent py-6 border-transparent'
+    }`}>
+      <div className="max-w-[1800px] mx-auto flex items-center px-6 lg:px-12">
         
-        {/* --- LEFT: INTEGRATED LOGO & NAV SECTION --- */}
-        <div className={`flex items-center p-1.5 rounded-2xl backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-700 ${
-          isScrolled ? 'bg-white/70' : 'bg-white/15'
-        }`}>
-          {/* Static Metan Logo */}
-          <div className="pl-4 pr-6 border-r border-white/20">
-            <Link href="/" className="flex items-center">
-              <Image 
-                src="/images/metan-logo-white.png" 
-                alt="Metan Logo" width={110} height={30} priority 
-                className="h-6 w-auto object-contain"
-              />
-            </Link>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:block">
-            <ul className="flex items-center space-x-0.5 px-2">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <Link 
-                    href={link.href} 
-                    className={`px-3 py-2.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-all duration-300 ${
-                      isScrolled ? 'text-black hover:bg-black/5' : (navTheme === 'light' ? 'text-white hover:bg-white/10' : 'text-black hover:bg-black/5')
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+        {/* --- BRANDING --- */}
+        <div className="flex-shrink-0 pr-10 lg:border-r lg:border-black/5 h-10 flex items-center">
+          <Link href="/">
+            <Image 
+              src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.png" : "/images/metan-logo-white.png"} 
+              alt="Metan Logo" width={120} height={32} priority 
+              className="h-7 w-auto object-contain transition-all duration-500"
+            />
+          </Link>
         </div>
 
-        {/* --- RIGHT: UTILITY SECTION --- */}
-        <div className="flex items-center space-x-4 z-[70]">
-          {/* Desktop Utilities Container (Matches Nav Container Style) */}
-          <div className={`hidden lg:flex items-center px-4 py-2 rounded-2xl backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-700 ${
-            isScrolled ? 'bg-white/70' : 'bg-white/15'
-          }`}>
+        {/* --- MAIN NAVIGATION (DESKTOP) --- */}
+        <nav className="hidden lg:flex flex-grow pl-10">
+          <ul className="flex items-center space-x-8">
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link 
+                  href={link.href} 
+                  className={`text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 relative group ${
+                    isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
+                  }`}
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-metan-orange transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* --- UTILITIES & MOBILE --- */}
+        <div className="flex items-center ml-auto space-x-6">
+          {/* Desktop Utilities */}
+          <div className="hidden lg:flex items-center space-x-6 pl-10 border-l border-black/5">
             <div className={`transition-colors duration-500 ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
               <BrandsDropdown />
             </div>
-            <div className={`w-[1px] h-4 mx-3 ${isScrolled ? 'bg-black/10' : 'bg-white/20'}`} />
-            <div className={`transition-colors duration-500 ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
-              <SearchButton hoverClass="hover:text-metan-orange" />
+            <div className={`transition-colors duration-500 ${isScrolled ? 'text-black hover:text-metan-orange' : (navTheme === 'light' ? 'text-white hover:text-metan-orange' : 'text-black hover:text-metan-orange')}`}>
+              <SearchButton />
             </div>
+            <button className={`flex items-center space-x-1 text-[10px] font-bold uppercase tracking-widest ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
+              <Globe size={14} />
+              <span>TR</span>
+            </button>
           </div>
 
-          {/* Mobile Toggle */}
-          <div className="flex lg:hidden items-center bg-[#f4f4f6]/90 backdrop-blur-md rounded-full p-1 shadow-lg">
+          {/* Mobile Controls */}
+          <div className="flex lg:hidden items-center space-x-4">
+             <button className={`${isMobileMenuOpen ? 'text-black' : (isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black'))}`}>
+                <Search size={22} />
+             </button>
              <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`w-11 h-11 flex items-center justify-center rounded-full transition-all duration-500 ${
-                  isMobileMenuOpen ? 'bg-black text-white rotate-90' : 'bg-white text-black'
-                }`}
+                className="z-[70]"
              >
-               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+               {isMobileMenuOpen ? (
+                 <X size={28} className="text-black" />
+               ) : (
+                 <Menu size={28} className={isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')} />
+               )}
              </button>
           </div>
         </div>
       </div>
 
-      {/* --- MOBILE FULLSCREEN MENU --- */}
-      <div className={`fixed inset-0 bg-[#0a0a0a] z-[60] transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] lg:hidden ${
-        isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+      {/* --- MOBILE FULLSCREEN MENU (The "Slate") --- */}
+      <div className={`fixed inset-0 bg-[#f8f8f8] z-[60] transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
+        isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="flex flex-col h-full pt-32 pb-16 px-10">
-          <nav className="flex flex-col space-y-10">
+          <div className="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-8">Menü</div>
+          <nav className="flex flex-col space-y-6">
             {links.map((link, idx) => (
               <Link 
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`group relative text-5xl font-bold tracking-tighter transition-all duration-700 ${
-                  isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+                className={`text-4xl font-black uppercase tracking-tighter text-black transition-all duration-700 ${
+                  isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <span className="text-white group-hover:text-metan-orange transition-colors">{link.name}</span>
+                {link.name}
               </Link>
             ))}
           </nav>
 
-          <div className={`mt-auto pt-10 border-t border-white/10 transition-all duration-700 delay-500 ${
-            isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          <div className={`mt-auto pt-10 transition-all duration-1000 delay-500 ${
+            isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
           }`}>
-            <div className="flex flex-col space-y-8">
-              <div className="scale-110 origin-left invert brightness-0">
+            <div className="flex flex-col space-y-12">
+              <div className="scale-125 origin-left">
                 <BrandsDropdown />
               </div>
-              <div className="flex items-center space-x-6 text-[12px] font-black tracking-widest text-gray-500 uppercase">
-                <button className="text-metan-orange">TR</button>
-                <button className="hover:text-white transition-colors">EN</button>
-                <button className="hover:text-white transition-colors">DE</button>
+              <div className="flex flex-col space-y-4">
+                <div className="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400">Dil Seçimi</div>
+                <div className="flex items-center space-x-8 text-sm font-black text-black">
+                  <button className="border-b-2 border-metan-orange">TR</button>
+                  <button className="text-gray-300">EN</button>
+                  <button className="text-gray-300">DE</button>
+                </div>
               </div>
             </div>
           </div>
