@@ -11,8 +11,10 @@ export default function MetanHeader() {
   const [navTheme, setNavTheme] = useState<'dark' | 'light'>('dark');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileBrandsOpen, setIsMobileBrandsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
 
+  // Handle Scroll and Theme Detection
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     const observerOptions = { rootMargin: '-10% 0px -85% 0px', threshold: 0 };
@@ -38,10 +40,24 @@ export default function MetanHeader() {
     };
   }, [pathname]);
 
+  // Handle Mobile Width Detection
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    
+    // Check initially
+    checkMobile();
+
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
     if (!isMobileMenuOpen) setIsMobileBrandsOpen(false);
   }, [isMobileMenuOpen]);
+
+  // Derived state: Header is "solid" if scrolled OR if we are on mobile
+  const isHeaderSolid = isScrolled || isMobile;
 
   const links = [
     { name: "Hakkımızda", href: "/hakkimizda" },
@@ -61,7 +77,8 @@ export default function MetanHeader() {
 
   const utilityBaseClass = "transition-all duration-500 backdrop-blur-xl border flex items-center justify-center rounded-xl";
   
-  const utilityThemeClass = (isScrolled || isMobileMenuOpen) 
+  // Updated utility logic to account for isHeaderSolid (Mobile/Scrolled)
+  const utilityThemeClass = (isHeaderSolid || isMobileMenuOpen) 
     ? "border-black/[0.12] text-black hover:bg-black/[0.15]" 
     : (navTheme === 'light' 
         ? "bg-white/[0.15] border-white/[0.2] text-white hover:bg-white/[0.3]" 
@@ -69,17 +86,18 @@ export default function MetanHeader() {
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b h-[76px] flex items-center ${
-      isScrolled 
+      isHeaderSolid 
         ? 'bg-white border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
     }`}>
       <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-0 lg:px-8">
         
         {/* --- BRANDING (BASE LAYER) --- */}
-        <div className={`relative z-[40] flex-shrink-0 flex items-center h-10 pl-4 lg:pl-0 lg:pr-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        <div className={`relative z-[40] flex-shrink-0 flex items-center h-10 pl-4 lg:pl-0 lg:pr-6 transition-all duration-500 ${isHeaderSolid ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/" className="px-2 py-1">
             <Image 
-              src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
+              // Switch to colored logo if Scrolled OR Mobile OR Dark Theme is active
+              src={isHeaderSolid || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
               alt="Metan Logo" width={120} height={32} priority 
               className="h-7 w-auto object-contain transition-all duration-500"
             />
@@ -94,7 +112,7 @@ export default function MetanHeader() {
                 <Link 
                   href={link.href} 
                   className={`inline-block px-4 py-3 text-[12px] font-medium uppercase tracking-regular transition-all duration-300 relative group ${
-                    isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
+                    isHeaderSolid ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
                   }`}
                 >
                   {link.name}
@@ -107,7 +125,7 @@ export default function MetanHeader() {
 
         {/* --- UTILITIES --- */}
         <div className="flex items-center ml-auto">
-          <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
+          <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isHeaderSolid ? 'border-black/5' : 'border-white/10'}`}>
             <div className="relative group">
               <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
                 <span>Markalar</span>
@@ -175,10 +193,8 @@ export default function MetanHeader() {
         </div>
 
         <div className="flex flex-col h-full pt-[76px] relative">
-          {/* Top line moved up significantly (mt-2 instead of mt-8) */}
           <div className="mt-2 border-b border-gray-100 mx-8" />
           
-          {/* Added flex-1 to push nav list to fill available top space */}
           <nav className="flex flex-col space-y-1 mt-2 px-8 overflow-y-auto flex-1">
             {links.map((link, idx) => (
               <Link 
