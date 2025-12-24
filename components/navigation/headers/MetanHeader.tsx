@@ -57,14 +57,13 @@ export default function MetanHeader() {
     { name: "MERGING", href: "/merging", logo: "/images/SVG/merging-icon.svg", hoverColor: "#e30613" },
   ];
 
-  // Logic: Keep backdrop-blur-xl locked. Transition colors only.
   const utilityBaseClass = "transition-all duration-500 backdrop-blur-xl border flex items-center justify-center rounded-xl";
   
   const utilityThemeClass = isScrolled 
-    ? "bg-black/[0.08] border-black/[0.12] text-black hover:bg-black/[0.15]" 
+    ? "border-black/[0.12] text-black hover:bg-black/[0.15]" 
     : (navTheme === 'light' 
         ? "bg-white/[0.15] border-white/[0.2] text-white hover:bg-white/[0.3]" 
-        : "bg-black/[0.08] border-black/[0.12] text-black hover:bg-black/[0.15]");
+        : "border-black/[0.12] text-black hover:bg-black/[0.15]");
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b h-[76px] flex items-center ${
@@ -156,9 +155,9 @@ export default function MetanHeader() {
              )}
              <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="z-[70] relative w-10 h-10 flex items-center justify-center rounded-xl bg-black text-white"
+                className={`z-[70] relative ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}
              >
-               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
              </button>
           </div>
         </div>
