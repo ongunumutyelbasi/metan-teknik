@@ -113,21 +113,13 @@ export default function MetanPage() {
         </div>
       </main>
 
-      {/* --- SECONDARY FEATURE (Swapped Sides) --- */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-16 lg:px-20 lg:py-0">
-          <h4 className="text-metan-orange font-bold uppercase tracking-widest text-xs mb-4">Öne Çıkan Ürün</h4>
-          <h3 className="text-3xl lg:text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
-          <p className="text-lg lg:text-xl text-[#5d5b5c] mb-10 max-w-md leading-relaxed">
-            Canlı performanslar ve stüdyo kayıtları için tasarlanmış, efsanevi MD 421 sesini sunan kompakt yapı.
-          </p>
-          <button className="cursor-pointer bg-black text-white px-10 py-5 rounded-full text-sm font-bold flex items-center space-x-3 hover:bg-metan-orange transition-all w-fit group shadow-lg hover:shadow-metan-orange/20">
-            <span>Ürünü İncele</span>
-            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </button>
-        </div>
-      
-      <section data-nav-color="dark" className="relative flex flex-col lg:flex-row-reverse min-h-[80vh] w-full overflow-hidden bg-white">
-        <div className="w-full lg:w-1/2 h-[45vh] lg:h-auto relative bg-[#f4f4f6]">
+      {/* --- SECONDARY FEATURE (Compact Version) --- */}
+      <section 
+        data-nav-color="dark" 
+        className="relative flex flex-col lg:flex-row-reverse w-full overflow-hidden bg-white"
+      >
+        {/* Image side: Fixed height on mobile, auto on desktop with min-height */}
+        <div className="w-full lg:w-1/2 h-[40vh] lg:min-h-[600px] relative bg-[#f4f4f6]">
           <Image 
             src="/images/hero-slide/md421-kompakt-drum.avif" 
             alt="Feature Lifestyle" 
@@ -135,13 +127,28 @@ export default function MetanPage() {
             className="object-cover" 
           />
         </div>
+        
+        {/* Content side: Reduced padding for more compact feel */}
+        <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-12 lg:px-20 lg:py-16 xl:px-28">
+          <div className="max-w-xl">
+            <h4 className="text-metan-orange font-bold uppercase tracking-widest text-xs mb-4">Öne Çıkan Ürün</h4>
+            <h3 className="text-3xl lg:text-4xl xl:text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
+            <p className="text-base lg:text-lg text-[#5d5b5c] mb-8 leading-relaxed font-light">
+              Canlı performanslar ve stüdyo kayıtları için tasarlanmış, efsanevi MD 421 sesini sunan kompakt yapı.
+            </p>
+            <button className="cursor-pointer bg-black text-white px-8 py-4 rounded-full text-sm font-bold flex items-center space-x-3 hover:bg-metan-orange transition-all w-fit group shadow-lg hover:shadow-metan-orange/20">
+              <span>Ürünü İncele</span>
+              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </button>
+          </div>
+        </div>
 
-        {/* Scroll Indicator added to this section as well */}
-        <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
-          <span className="text-black/40 text-[14px] uppercase tracking-regular mb-2 animate-pulse font-regular">
+        {/* Pulsing indicator - can be removed if the section is very short */}
+        <div className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
+          <span className="text-black/30 text-[12px] uppercase tracking-regular mb-1 animate-pulse">
             Daha fazlası için kaydırın
           </span>
-          <ChevronDown className="text-black/20 w-8 h-8 animate-bounce" />
+          <ChevronDown className="text-black/10 w-6 h-6 animate-bounce" />
         </div>
       </section>
     </div>
