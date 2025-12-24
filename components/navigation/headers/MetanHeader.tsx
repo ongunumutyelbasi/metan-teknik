@@ -180,7 +180,7 @@ export default function MetanHeader() {
         <div className="flex flex-col h-full pt-[76px] relative">
           <div className="mt-8 border-b border-gray-100 mx-10" />
           
-          <nav className="flex flex-col space-y-1 mt-2 px-10 overflow-y-auto">
+          <nav className="flex flex-col space-y-1 mt-2 px-8 overflow-y-auto">
             {links.map((link, idx) => (
               <Link 
                 key={link.href}
@@ -196,7 +196,7 @@ export default function MetanHeader() {
             ))}
           </nav>
 
-          <div className="mt-auto mb-8 px-10 relative">
+          <div className="mt-auto mb-8 px-8 relative">
             <div className={`absolute bottom-full left-10 right-10 mb-4 flex flex-col space-y-2 p-2 bg-white rounded-2xl shadow-xl border border-black/5 transition-all duration-500 ${
               isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
             }`}>
