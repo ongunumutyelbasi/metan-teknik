@@ -90,7 +90,7 @@ export default function MetanHeader() {
               <li key={link.href}>
                 <Link 
                   href={link.href} 
-                  className={`text-[12px] font-medium uppercase tracking-widest transition-all duration-300 relative group ${
+                  className={`text-[12px] font-medium uppercase tracking-regular transition-all duration-300 relative group ${
                     isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
                   }`}
                 >
@@ -107,7 +107,7 @@ export default function MetanHeader() {
           <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-700 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
             
             <div className="relative group">
-              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-widest space-x-2`}>
+              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
                 <span>Markalar</span>
                 <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
               </button>
@@ -131,7 +131,7 @@ export default function MetanHeader() {
                           maskSize: 'contain',
                         }}
                       />
-                      <span className="text-[12.5px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap uppercase tracking-widest">
+                      <span className="text-[12.5px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap uppercase tracking-regular">
                         {brand.name}
                       </span>
                     </Link>
@@ -167,7 +167,7 @@ export default function MetanHeader() {
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="flex flex-col h-full pt-28 pb-12 px-10">
-          <div className="text-[11px] font-medium tracking-widest uppercase text-gray-400 mb-10 border-b border-gray-100 pb-4">
+          <div className="text-[11px] font-medium tracking-regular uppercase text-gray-400 mb-10 border-b border-gray-100 pb-4">
             Keşfet
           </div>
           <nav className="flex flex-col space-y-8">
@@ -202,13 +202,13 @@ export default function MetanHeader() {
                           maskSize: 'contain',
                         }}
                       />
-                      <span className="text-[10px] font-bold tracking-widest uppercase text-gray-500">{brand.name.split(' ')[0]}</span>
+                      <span className="text-[10px] font-bold tracking-regular uppercase text-gray-500">{brand.name.split(' ')[0]}</span>
                    </Link>
                 ))}
               </div>
               
               <div className="flex items-center justify-between border-t border-gray-100 pt-8">
-                <div className="flex items-center space-x-6 text-xs font-medium tracking-widest text-black uppercase">
+                <div className="flex items-center space-x-6 text-xs font-medium tracking-regular text-black uppercase">
                   <button className="text-metan-orange font-bold">TR</button>
                   <button className="text-gray-300">EN</button>
                   <button className="text-gray-300">DE</button>
