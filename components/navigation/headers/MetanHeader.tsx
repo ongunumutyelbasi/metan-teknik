@@ -59,7 +59,8 @@ export default function MetanHeader() {
 
   const utilityBaseClass = "transition-all duration-500 backdrop-blur-xl border flex items-center justify-center rounded-xl";
   
-  const utilityThemeClass = isScrolled 
+  // Forces dark icons/borders if either scrolled or mobile menu is open
+  const utilityThemeClass = (isScrolled || isMobileMenuOpen) 
     ? "border-black/[0.12] text-black hover:bg-black/[0.15]" 
     : (navTheme === 'light' 
         ? "bg-white/[0.15] border-white/[0.2] text-white hover:bg-white/[0.3]" 
@@ -77,7 +78,7 @@ export default function MetanHeader() {
         <div className={`flex-shrink-0 pr-6 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/">
             <Image 
-              src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"} 
+              src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
               alt="Metan Logo" width={120} height={32} priority 
               className="h-7 w-auto object-contain transition-all duration-500"
             />
@@ -148,11 +149,10 @@ export default function MetanHeader() {
 
           {/* Mobile Controls */}
           <div className="flex lg:hidden items-center space-x-3">
-             {!isMobileMenuOpen && (
-               <button className={`${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}>
-                  <Search size={20} strokeWidth={2} />
-               </button>
-             )}
+             {/* Search button now has z-[70] and stays visible when menu is open */}
+             <button className={`relative z-[70] ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}>
+                <Search size={20} strokeWidth={2} />
+             </button>
              <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`z-[70] relative ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}
@@ -209,11 +209,11 @@ export default function MetanHeader() {
               </div>
               
               <div className="flex items-center justify-between border-t border-gray-100 pt-8">
-                <div className="flex items-center space-x-6 text-xs font-medium tracking-regular text-black uppercase">
-                  <button className="text-metan-orange font-bold">TR</button>
-                  <button className="text-gray-300">EN</button>
-                  <button className="text-gray-300">DE</button>
-                </div>
+                {/* <div className="flex items-center space-x-6 text-xs font-medium tracking-regular text-black uppercase"> */}
+                {/*  <button className="text-metan-orange font-bold">TR</button> */}
+                {/*  <button className="text-gray-300">EN</button> */}
+                {/*  <button className="text-gray-300">DE</button> */}
+                {/*</div> */}
                 <div className="text-[10px] font-medium text-gray-400">© 2025 METAN</div>
               </div>
             </div>
