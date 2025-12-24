@@ -55,14 +55,13 @@ export default function MetanHeader() {
     { name: "MERGING", href: "/merging", logo: "/images/SVG/merging-icon.svg", hoverColor: "#e30613" },
   ];
 
-  // Constant blur for utility buttons as requested
   const utilityBaseClass = "transition-all duration-500 backdrop-blur-xl border flex items-center justify-center rounded-xl";
   const utilityThemeClass = isScrolled 
     ? "bg-black/5 border-black/10 text-black hover:bg-black/10" 
     : (navTheme === 'light' ? "bg-white/10 border-white/10 text-white hover:bg-white/20" : "bg-black/5 border-black/10 text-black hover:bg-black/10");
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b h-[88px] flex items-center ${
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b h-[76px] flex items-center ${
       isScrolled 
         ? 'bg-white/95 backdrop-blur-md border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
@@ -82,13 +81,13 @@ export default function MetanHeader() {
 
         {/* --- MAIN NAVIGATION (DESKTOP) --- */}
         <nav className="hidden lg:flex flex-grow pl-10">
-          <ul className="flex items-center space-x-6">
+          <ul className="flex items-center space-x-8">
             {links.map((link) => (
               <li key={link.href}>
                 <Link 
                   href={link.href} 
-                  className={`text-[11px] font-medium uppercase tracking-regular transition-all duration-300 relative group ${
-                    isScrolled ? 'text-dark-gray' : (navTheme === 'light' ? 'text-white' : 'text-dark-gray')
+                  className={`text-[12px] font-medium uppercase tracking-widest transition-all duration-300 relative group ${
+                    isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
                   }`}
                 >
                   {link.name}
@@ -103,21 +102,19 @@ export default function MetanHeader() {
         <div className="flex items-center ml-auto">
           <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
             
-            {/* Compact Brands Dropdown Utility */}
             <div className="relative group">
-              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-10 text-[11px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
+              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-widest space-x-2`}>
                 <span>Markalar</span>
-                <ChevronDown size={12} className="transition-transform duration-300 group-hover:rotate-180" />
+                <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
               </button>
               
-              <div className="absolute right-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                {/* w-max ensures container fits content width */}
+              <div className="absolute right-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                 <div className="w-max bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-black/5 p-2 overflow-hidden">
                   {brands.map((brand) => (
                     <Link 
                       key={brand.name} 
                       href={brand.href} 
-                      className="flex items-center space-x-4 px-3 py-3 rounded-xl hover:bg-black/5 transition-all duration-300 group/item"
+                      className="flex items-center space-x-4 px-4 py-3 rounded-xl hover:bg-black/5 transition-all duration-300 group/item"
                       style={{ '--brand-color': brand.hoverColor } as React.CSSProperties}
                     >
                       <div 
@@ -130,7 +127,7 @@ export default function MetanHeader() {
                           maskSize: 'contain',
                         }}
                       />
-                      <span className="text-[11px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap">
+                      <span className="text-[12.5px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap uppercase tracking-wide">
                         {brand.name}
                       </span>
                     </Link>
@@ -139,8 +136,7 @@ export default function MetanHeader() {
               </div>
             </div>
             
-            {/* Search Button Utility */}
-            <button className={`${utilityBaseClass} ${utilityThemeClass} w-10 h-10 cursor-pointer`}>
+            <button className={`${utilityBaseClass} ${utilityThemeClass} w-9 h-9 cursor-pointer`}>
               <Search size={16} strokeWidth={2.5} />
             </button>
           </div>
@@ -166,8 +162,8 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="flex flex-col h-full pt-32 pb-12 px-10">
-          <div className="text-[10px] font-medium tracking-[0.4em] uppercase text-gray-400 mb-10 border-b border-gray-100 pb-4">
+        <div className="flex flex-col h-full pt-28 pb-12 px-10">
+          <div className="text-[11px] font-medium tracking-[0.4em] uppercase text-gray-400 mb-10 border-b border-gray-100 pb-4">
             Keşfet
           </div>
           <nav className="flex flex-col space-y-8">
@@ -202,13 +198,13 @@ export default function MetanHeader() {
                           maskSize: 'contain',
                         }}
                       />
-                      <span className="text-[9px] font-bold tracking-regular uppercase text-gray-500">{brand.name.split(' ')[0]}</span>
+                      <span className="text-[10px] font-bold tracking-widest uppercase text-gray-500">{brand.name.split(' ')[0]}</span>
                    </Link>
                 ))}
               </div>
               
               <div className="flex items-center justify-between border-t border-gray-100 pt-8">
-                <div className="flex items-center space-x-6 text-xs font-medium tracking-regular text-black uppercase">
+                <div className="flex items-center space-x-6 text-xs font-medium tracking-widest text-black uppercase">
                   <button className="text-metan-orange font-bold">TR</button>
                   <button className="text-gray-300">EN</button>
                   <button className="text-gray-300">DE</button>
