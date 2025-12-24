@@ -38,7 +38,6 @@ export default function MetanHeader() {
     };
   }, [pathname]);
 
-  // Lock scroll when mobile menu is active
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
   }, [isMobileMenuOpen]);
@@ -51,107 +50,101 @@ export default function MetanHeader() {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-      isScrolled ? 'py-3 backdrop-blur-xl bg-white/80 border-b border-black/5' : 'py-6 bg-transparent'
-    }`}>
-      <div className="max-w-[1440px] mx-auto px-5 lg:px-12 flex items-center justify-between relative">
+    <header className="fixed top-0 left-0 w-full z-50 pt-6 px-6 lg:px-10">
+      <div className="max-w-full mx-auto flex items-center justify-between relative h-[60px]">
         
-        {/* --- LOGO --- */}
+        {/* --- LEFT: LOGO (Adaptive) --- */}
         <div className="flex-shrink-0 z-[70]">
-          <Link href="/" className="flex items-center group">
-            <Image 
-              src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.png" : "/images/metan-logo-white.png"} 
-              alt="Metan Logo" width={140} height={40} priority 
-              className="h-7 lg:h-8 w-auto object-contain transition-all duration-500"
-            />
+          <Link href="/" className="group flex items-center">
+            <div className="relative">
+              <Image 
+                src={isMobileMenuOpen || navTheme === 'dark' || isScrolled ? "/images/metan-logo.png" : "/images/metan-logo-white.png"} 
+                alt="Metan Logo" width={130} height={36} priority 
+                className="h-7 w-auto transition-all duration-500 group-hover:brightness-110"
+              />
+            </div>
           </Link>
         </div>
 
-        {/* --- DESKTOP NAV --- */}
-        <nav className="hidden lg:block absolute left-1/2 -translate-x-1/2">
-          <ul className="flex items-center space-x-10">
+        {/* --- CENTER: SEGMENTED NAVIGATION (DESKTOP) --- */}
+        <nav className={`hidden lg:flex items-center px-2 py-1.5 rounded-2xl transition-all duration-700 backdrop-blur-xl border border-white/10 shadow-2xl ${
+          isScrolled ? 'bg-white/70 translate-y-2' : 'bg-white/10'
+        }`}>
+          <ul className="flex items-center space-x-1 px-1">
             {links.map((link) => (
               <li key={link.href} className="relative group">
                 <Link 
                   href={link.href} 
-                  className={`text-[13px] uppercase tracking-[0.15em] font-semibold transition-colors duration-300 ${
-                    isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
-                  } group-hover:text-metan-orange`}
+                  className={`px-5 py-2.5 rounded-xl text-[12px] font-bold uppercase tracking-widest transition-all duration-300 flex items-center space-x-2 ${
+                    isScrolled ? 'text-black hover:bg-black/5' : (navTheme === 'light' ? 'text-white hover:bg-white/10' : 'text-black hover:bg-black/5')
+                  }`}
                 >
-                  {link.name}
+                  <span>{link.name}</span>
+                  <span className="w-1 h-1 rounded-full bg-metan-orange opacity-0 scale-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100" />
                 </Link>
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-metan-orange transition-all duration-300 group-hover:w-full" />
               </li>
             ))}
           </ul>
         </nav>
 
-        {/* --- RIGHT UTILITIES & MOBILE TOGGLE --- */}
-        <div className="flex items-center space-x-2 lg:space-x-6 z-[70]">
-          {/* Desktop Only Tools */}
-          <div className="hidden lg:flex items-center space-x-2">
+        {/* --- RIGHT: UTILITY BLOCK --- */}
+        <div className="flex items-center space-x-3 z-[70]">
+          {/* Desktop Utilities */}
+          <div className={`hidden lg:flex items-center p-1.5 rounded-2xl backdrop-blur-xl border border-white/10 transition-all duration-700 ${
+            isScrolled ? 'bg-white/70 translate-y-2 shadow-xl' : 'bg-white/10'
+          }`}>
             <BrandsDropdown />
+            <div className="w-[1px] h-4 bg-gray-400/30 mx-2" />
             <SearchButton hoverClass="hover:bg-metan-orange" />
           </div>
 
-          {/* Mobile Optimized Controls */}
-          <div className="flex lg:hidden items-center space-x-1">
+          {/* Mobile Optimized Morphing Toggle */}
+          <div className="flex lg:hidden items-center bg-[#f4f4f6] rounded-full p-1 shadow-lg">
              <button 
-                className={`w-11 h-11 flex items-center justify-center transition-colors duration-300 ${
-                  isMobileMenuOpen ? 'text-black' : (isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black'))
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`w-11 h-11 flex items-center justify-center rounded-full transition-all duration-500 ${
+                  isMobileMenuOpen ? 'bg-black text-white rotate-90' : 'bg-white text-black'
                 }`}
-                aria-label="Search"
              >
-                <Search size={22} strokeWidth={2.5} />
-             </button>
-             
-             <button 
-               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-               className={`w-11 h-11 flex items-center justify-center rounded-full transition-all duration-500 ${
-                 isMobileMenuOpen ? 'bg-black text-white rotate-90' : 'bg-[#f4f4f6] text-black'
-               }`}
-               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-             >
-               {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
              </button>
           </div>
         </div>
       </div>
 
-      {/* --- OPTIMISED MOBILE OVERLAY --- */}
-      <div className={`fixed inset-0 bg-white/98 backdrop-blur-2xl z-[60] transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] lg:hidden ${
-        isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+      {/* --- MOBILE FULLSCREEN CONTEXT MENU --- */}
+      <div className={`fixed inset-0 bg-[#0a0a0a] z-[60] transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] lg:hidden ${
+        isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
-        <div className="flex flex-col h-full pt-32 pb-12 px-8 overflow-y-auto">
-          {/* Main Navigation Links */}
-          <nav className="flex flex-col space-y-6">
+        <div className="flex flex-col h-full pt-32 pb-16 px-10">
+          <nav className="flex flex-col space-y-12">
             {links.map((link, idx) => (
               <Link 
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-4xl font-light tracking-tight text-black transition-all duration-700 transform ${
-                  isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+                className={`group relative text-5xl font-bold tracking-tighter transition-all duration-700 ${
+                  isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
                 }`}
-                style={{ transitionDelay: `${idx * 75}ms` }}
+                style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                {link.name}
+                <span className="text-white group-hover:text-metan-orange transition-colors">{link.name}</span>
+                <span className="absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-metan-orange opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
             ))}
           </nav>
 
-          {/* Bottom Utility Section */}
-          <div className={`mt-auto pt-10 border-t border-black/5 transition-all duration-700 delay-500 ${
-            isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+          <div className={`mt-auto pt-10 border-t border-white/10 transition-all duration-700 delay-500 ${
+            isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             <div className="flex flex-col space-y-8">
-              <div className="scale-110 origin-left">
+              <div className="scale-110 origin-left invert brightness-0">
                 <BrandsDropdown />
               </div>
-              <div className="flex items-center space-x-6 text-[11px] font-bold tracking-widest text-gray-400">
-                <button className="text-black border-b-2 border-metan-orange pb-1">TR</button>
-                <button className="hover:text-black transition-colors pb-1">EN</button>
-                <button className="hover:text-black transition-colors pb-1">DE</button>
+              <div className="flex items-center space-x-6 text-[12px] font-black tracking-widest text-gray-500">
+                <button className="text-metan-orange">TR</button>
+                <button className="hover:text-white transition-colors">EN</button>
+                <button className="hover:text-white transition-colors">DE</button>
               </div>
             </div>
           </div>
