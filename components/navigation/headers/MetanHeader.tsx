@@ -73,10 +73,10 @@ export default function MetanHeader() {
         ? 'bg-white border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
     }`}>
-      <div className="max-w-[1800px] w-full mx-auto flex items-center px-6 lg:px-12">
+      <div className="max-w-[1800px] w-full mx-auto flex items-center px-8 lg:px-16">
         
         {/* --- BRANDING --- */}
-        <div className={`relative z-[70] flex-shrink-0 pr-6 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r lg:mr-8`}>
           <Link href="/">
             <Image 
               src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
@@ -87,7 +87,7 @@ export default function MetanHeader() {
         </div>
 
         {/* --- MAIN NAVIGATION (DESKTOP) --- */}
-        <nav className="hidden lg:flex flex-grow pl-6">
+        <nav className="hidden lg:flex flex-grow">
           <ul className="flex items-center space-x-5">
             {links.map((link) => (
               <li key={link.href}>
@@ -109,7 +109,6 @@ export default function MetanHeader() {
         <div className="flex items-center ml-auto">
           <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
             
-            {/* Desktop Brand Dropdown */}
             <div className="relative group">
               <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
                 <span>Markalar</span>
