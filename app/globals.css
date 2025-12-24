@@ -8,6 +8,7 @@
   --color-metan-orange: #df532b;
   --color-neumann-orange: #ef7622;
   --color-merging-red: #fe6466;
+  --color-dark-gray: #525252;
 
   /* Font Family Mapping for Tailwind v4
      This maps the 'font-neumann' class to your local font variable 

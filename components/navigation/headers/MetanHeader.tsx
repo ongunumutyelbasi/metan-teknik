@@ -76,7 +76,6 @@ export default function MetanHeader() {
       <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-0 lg:px-8">
         
         {/* --- BRANDING (BASE LAYER) --- */}
-        {/* Changed pl-8 to pl-4 for mobile only */}
         <div className={`relative z-[40] flex-shrink-0 flex items-center h-10 pl-4 lg:pl-0 lg:pr-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/" className="px-2 py-1">
             <Image 
@@ -163,8 +162,6 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        {/* DUPLICATE LOGO (OVERLAY LAYER) */}
-        {/* Changed pl-8 to pl-4 here as well to match the base layer */}
         <div className="absolute top-0 left-0 w-full h-[76px] flex items-center pr-6 pl-0">
           <div className="relative flex-shrink-0 flex items-center h-10 pl-4">
             <Link href="/" className="px-2 py-1">
@@ -178,7 +175,8 @@ export default function MetanHeader() {
         </div>
 
         <div className="flex flex-col h-full pt-[76px] relative">
-          <div className="mt-8 border-b border-gray-100 mx-10" />
+          {/* Changed mx-10 to mx-8 to match nav padding */}
+          <div className="mt-8 border-b border-gray-100 mx-8" />
           
           <nav className="flex flex-col space-y-1 mt-2 px-8 overflow-y-auto">
             {links.map((link, idx) => (
@@ -197,7 +195,8 @@ export default function MetanHeader() {
           </nav>
 
           <div className="mt-auto mb-8 px-8 relative">
-            <div className={`absolute bottom-full left-10 right-10 mb-4 flex flex-col space-y-2 p-2 bg-white rounded-2xl shadow-xl border border-black/5 transition-all duration-500 ${
+            {/* Changed left-10/right-10 to left-0/right-0 to match button width exactly */}
+            <div className={`absolute bottom-full left-0 right-0 mb-4 flex flex-col space-y-2 p-2 bg-white rounded-2xl shadow-xl border border-black/5 transition-all duration-500 ${
               isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
             }`}>
               {brands.map((brand, idx) => (
@@ -231,6 +230,7 @@ export default function MetanHeader() {
               {isMobileBrandsOpen ? <Minus size={16} /> : <Plus size={16} />}
             </button>
             
+            {/* Bottom line already inside the px-8 container, so it matches width automatically */}
             <div className="mt-6 border-t border-gray-100" />
           </div>
         </div>
