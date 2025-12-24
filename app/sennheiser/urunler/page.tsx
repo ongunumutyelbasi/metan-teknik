@@ -97,16 +97,16 @@ export default function SennheiserMK4Page() {
           <nav className="flex items-center space-x-2 text-[12px] text-gray-400 mb-10 font-medium">
             <Home className="w-3.5 h-3.5" />
             <span>/</span>
-            <span className="hover:text-black cursor-pointer uppercase tracking-widest text-[10px]">Products</span>
+            <span className="hover:text-black cursor-pointer tracking-widest text-[10px]">Products</span>
             <span>/</span>
-            <span className="hover:text-black cursor-pointer uppercase tracking-widest text-[10px]">Microphones</span>
+            <span className="hover:text-black cursor-pointer tracking-widest text-[10px]">Microphones</span>
             <span>/</span>
-            <span className="text-black font-bold uppercase tracking-widest text-[10px]">MK 4</span>
+            <span className="text-black font-bold tracking-widest text-[10px]">MK 4</span>
           </nav>
 
           <div className="max-w-md">
             <h1 className="text-[80px] leading-[0.9] font-bold mb-6 tracking-tighter">MK 4</h1>
-            <p className="text-[13px] text-gray-500 mb-12 tracking-wide font-medium uppercase">Article No. 504298</p>
+            <p className="text-[13px] text-gray-500 mb-12 tracking-wide font-medium">Article No. 504298</p>
             
             <div className="mb-10">
               <span className="text-[42px] font-bold tracking-tight">£339.00*</span>
