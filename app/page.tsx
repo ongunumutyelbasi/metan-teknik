@@ -101,7 +101,7 @@ export default function MetanPage() {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none">
-          <span className="text-white/60 text-[16px] uppercase tracking-regular mb-2 animate-pulse font-medium">
+          <span className="text-white/70 text-[14px] uppercase tracking-regular mb-2 animate-pulse font-regular">
             Daha fazlası için kaydırın
           </span>
           <ChevronDown className="text-white/40 w-8 h-8 animate-bounce" />

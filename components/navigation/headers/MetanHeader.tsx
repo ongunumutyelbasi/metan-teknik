@@ -70,7 +70,7 @@ export default function MetanHeader() {
 
         <div className="ml-auto flex items-center space-x-2">
             <BrandsDropdown />
-            <SearchButton hoverClass="hover:bg-metan-orange" />
+            <SearchButton hoverClass="cursor-pointer hover:bg-metan-orange" />
         </div>
       </div>
     </header>
