@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
@@ -37,17 +37,26 @@ const companies = [
 
 export default function MetanPage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check for mobile to force dark nav theme
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-sans overflow-x-hidden">
       
       {/* --- MAIN COMPANY SHOWCASE --- */}
       <main 
-        data-nav-color="light" 
-        /* pt-[76px] on mobile ensures the first section starts below the header.
-           h-[100dvh] ensures the hero section fills exactly one screen height.
+        /* Original code: data-nav-color="light" 
+           Mobile forces "dark" to ensure the header is solid/visible from the start 
         */
-        className="relative flex flex-col lg:flex-row h-[100dvh] lg:h-screen w-full overflow-hidden bg-black pt-[76px] lg:pt-0"
+        data-nav-color={isMobile ? "dark" : "light"} 
+        className="relative flex flex-col lg:flex-row h-[100dvh] lg:h-screen w-full overflow-hidden bg-white lg:bg-black pt-[76px] lg:pt-0"
       >
         {companies.map((company, index) => (
           <Link
@@ -55,9 +64,6 @@ export default function MetanPage() {
             key={company.id}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            /* flex-1 makes them take equal 1/3 height on mobile.
-               lg:flex-1 makes them take equal 1/3 width on desktop.
-            */
             className="relative flex-1 w-full lg:h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10 last:border-0"
             style={{ 
               flex: hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.4 : 0.8),
@@ -75,13 +81,12 @@ export default function MetanPage() {
                 }`}
                 priority
               />
-              {/* Overlay: Darker on mobile for better text legibility in smaller heights */}
               <div className={`absolute inset-0 transition-opacity duration-700 bg-black ${
                 hoveredIndex === index ? "opacity-50" : "opacity-65"
               }`} />
             </div>
 
-            {/* Content Wrapper: Flexbox used to stack logo and button vertically */}
+            {/* Content Wrapper */}
             <div className="relative z-10 flex flex-col items-center justify-center space-y-4 px-6 w-full h-full">
                <Image 
                   src={company.logo} 
@@ -93,7 +98,6 @@ export default function MetanPage() {
                   }`}
                 />
 
-                {/* Markayı Keşfedin Button - Always visible on mobile, reveals on hover on desktop */}
                 <div className={`transition-all duration-700 flex flex-col items-center text-center lg:absolute lg:top-[60%] lg:left-0 lg:w-full ${
                   hoveredIndex === index ? "opacity-100 translate-y-0" : "opacity-100 lg:opacity-0 translate-y-0 lg:translate-y-10"
                 }`}>
@@ -106,7 +110,7 @@ export default function MetanPage() {
           </Link>
         ))}
 
-        {/* Scroll Indicator (Hidden on mobile to save space) */}
+        {/* Scroll Indicator */}
         <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
           <span className="text-white/70 text-[14px] uppercase tracking-regular mb-2 animate-pulse font-regular">
             Daha fazlası için kaydırın
