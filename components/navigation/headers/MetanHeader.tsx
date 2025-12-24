@@ -4,8 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Search, Globe } from 'lucide-react';
-import { BrandsDropdown, SearchButton } from '../HeaderHelpers';
+import { Menu, X, Search, Globe, ChevronDown } from 'lucide-react';
 
 export default function MetanHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,11 +48,18 @@ export default function MetanHeader() {
     { name: "İletişim", href: "/hakkimizda/iletisim-bilgileri" },
   ];
 
+  const brands = [
+    { name: "METAN TEKNİK", href: "/", logo: "/images/metan-icon.png", hoverColor: "#df532b" },
+    { name: "SENNHEISER", href: "/sennheiser", logo: "/images/SVG/sennheiser-icon.svg", hoverColor: "#057cc3" },
+    { name: "NEUMANN", href: "/neumann", logo: "/images/SVG/neumann-inverse-icon.svg", hoverColor: "#ef7622" },
+    { name: "MERGING", href: "/merging", logo: "/images/SVG/merging-icon.svg", hoverColor: "#e30613" },
+  ];
+
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-md py-3 border-black/5 shadow-sm' 
-        : 'bg-transparent py-6 border-transparent'
+        ? 'bg-white/95 backdrop-blur-md border-black/5 shadow-sm py-6' 
+        : 'bg-transparent border-transparent py-6'
     }`}>
       <div className="max-w-[1800px] mx-auto flex items-center px-6 lg:px-12">
         
@@ -75,7 +81,7 @@ export default function MetanHeader() {
               <li key={link.href}>
                 <Link 
                   href={link.href} 
-                  className={`text-[11px] font-black uppercase tracking-[0.25em] transition-all duration-300 relative group ${
+                  className={`text-[11px] font-light uppercase tracking-[0.2em] transition-all duration-300 relative group ${
                     isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
                   }`}
                 >
@@ -90,14 +96,52 @@ export default function MetanHeader() {
         {/* --- UTILITIES --- */}
         <div className="flex items-center ml-auto space-x-6">
           <div className={`hidden lg:flex items-center space-x-8 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
-            <div className={`transition-colors duration-500 ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
-              <BrandsDropdown />
+            
+            {/* Custom Integrated Brands Dropdown */}
+            <div className="relative group">
+              <button className={`flex items-center space-x-2 text-[11px] font-light uppercase tracking-widest transition-colors duration-300 ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
+                <span>Markalar</span>
+                <ChevronDown size={12} className="transition-transform duration-300 group-hover:rotate-180" />
+              </button>
+              
+              <div className="absolute right-0 top-full pt-8 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                <div className="w-max bg-white rounded-xl shadow-2xl border border-gray-100 p-2 overflow-hidden">
+                  {brands.map((brand) => (
+                    <Link 
+                      key={brand.name} 
+                      href={brand.href} 
+                      className="flex items-center space-x-4 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all duration-300 group/item"
+                      style={{ '--brand-color': brand.hoverColor } as React.CSSProperties}
+                    >
+                      <div 
+                        className="w-5 h-5 bg-[#b3b8be] group-hover/item:bg-[var(--brand-color)] transition-colors duration-300"
+                        style={{
+                          maskImage: `url(${brand.logo})`,
+                          WebkitMaskImage: `url(${brand.logo})`,
+                          maskRepeat: 'no-repeat',
+                          WebkitMaskRepeat: 'no-repeat',
+                          maskSize: 'contain',
+                          WebkitMaskSize: 'contain',
+                          maskPosition: 'center',
+                          WebkitMaskPosition: 'center',
+                        }}
+                      />
+                      <span className="text-[12px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap">
+                        {brand.name}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
             
-            <SearchButton hoverClass="text-metan-orange" />
+            {/* Integrated Search Button */}
+            <button className={`transition-all duration-300 hover:text-metan-orange ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
+              <Search size={16} strokeWidth={2} />
+            </button>
             
-            <button className={`flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
-              <Globe size={14} strokeWidth={2.5} />
+            <button className={`flex items-center space-x-2 text-[10px] font-light uppercase tracking-widest ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
+              <Globe size={14} strokeWidth={1.5} />
               <span>TR</span>
             </button>
           </div>
@@ -106,7 +150,7 @@ export default function MetanHeader() {
           <div className="flex lg:hidden items-center space-x-5">
              {!isMobileMenuOpen && (
                <button className={`transition-colors duration-300 ${isScrolled ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')}`}>
-                  <Search size={22} strokeWidth={2} />
+                  <Search size={22} strokeWidth={1.5} />
                </button>
              )}
              <button 
@@ -128,7 +172,7 @@ export default function MetanHeader() {
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="flex flex-col h-full pt-32 pb-12 px-10">
-          <div className="text-[10px] font-black tracking-[0.4em] uppercase text-gray-400 mb-10 border-b border-gray-100 pb-4">
+          <div className="text-[10px] font-light tracking-[0.4em] uppercase text-gray-400 mb-10 border-b border-gray-100 pb-4">
             Keşfet
           </div>
           <nav className="flex flex-col space-y-8">
@@ -137,7 +181,7 @@ export default function MetanHeader() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-4xl font-black uppercase tracking-tighter text-black transition-all duration-700 transform ${
+                className={`text-4xl font-light uppercase tracking-tighter text-black transition-all duration-700 transform ${
                   isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                 }`}
                 style={{ transitionDelay: `${idx * 100}ms` }}
@@ -151,16 +195,33 @@ export default function MetanHeader() {
             isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             <div className="flex flex-col space-y-10">
-              <div className="scale-110 origin-left">
-                <BrandsDropdown />
+              {/* Mobile Brands List */}
+              <div className="grid grid-cols-2 gap-4">
+                {brands.map((brand) => (
+                   <Link key={brand.name} href={brand.href} className="flex items-center space-x-2">
+                      <div 
+                        className="w-4 h-4 bg-gray-400"
+                        style={{
+                          maskImage: `url(${brand.logo})`,
+                          WebkitMaskImage: `url(${brand.logo})`,
+                          maskRepeat: 'no-repeat',
+                          WebkitMaskRepeat: 'no-repeat',
+                          maskSize: 'contain',
+                          WebkitMaskSize: 'contain',
+                        }}
+                      />
+                      <span className="text-[10px] font-bold tracking-widest uppercase text-gray-600">{brand.name.split(' ')[0]}</span>
+                   </Link>
+                ))}
               </div>
+              
               <div className="flex items-center justify-between border-t border-gray-100 pt-8">
-                <div className="flex items-center space-x-6 text-xs font-black tracking-widest text-black">
-                  <button className="text-metan-orange">TR</button>
-                  <button className="text-gray-300 hover:text-black">EN</button>
-                  <button className="text-gray-300 hover:text-black">DE</button>
+                <div className="flex items-center space-x-6 text-xs font-light tracking-widest text-black">
+                  <button className="text-metan-orange font-bold">TR</button>
+                  <button className="text-gray-300">EN</button>
+                  <button className="text-gray-300">DE</button>
                 </div>
-                <div className="text-[10px] font-bold text-gray-400">© 2025 METAN</div>
+                <div className="text-[10px] font-light text-gray-400">© 2025 METAN</div>
               </div>
             </div>
           </div>
