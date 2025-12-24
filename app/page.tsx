@@ -39,7 +39,6 @@ export default function MetanPage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check for mobile to force dark nav theme and disable flex expansion
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
@@ -50,45 +49,40 @@ export default function MetanPage() {
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-sans overflow-x-hidden">
       
-      {/* --- MAIN COMPANY SHOWCASE --- */}
+      {/* FIX: Height is now calc(100dvh - 76px) on mobile to account for the header padding.
+          This ensures the container doesn't exceed the viewport height.
+      */}
       <main 
-        /* data-nav-color: Mobile forces "dark" to ensure the header is solid/visible from the start */
         data-nav-color={isMobile ? "dark" : "light"} 
-        className="relative flex flex-col lg:flex-row h-[100dvh] lg:h-screen w-full overflow-hidden bg-white lg:bg-black pt-[76px] lg:pt-0"
+        className="relative flex flex-col lg:flex-row w-full overflow-hidden bg-white lg:bg-black pt-[76px] lg:pt-0"
+        style={{ height: isMobile ? 'calc(100dvh - 76px)' : '100vh' }}
       >
         {companies.map((company, index) => (
           <Link
             href={company.link}
             key={company.id}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            className="relative flex-1 w-full lg:h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center overflow-hidden"
+            onMouseEnter={() => !isMobile && setHoveredIndex(index)}
+            onMouseLeave={() => !isMobile && setHoveredIndex(null)}
+            className="relative w-full lg:h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center overflow-hidden"
             style={{ 
-              /* LOGIC CHANGE: 
-                 If isMobile is true, flex is always 1 (equal height).
-                 If isMobile is false (desktop), we use the hover expansion logic.
-              */
-              flex: isMobile ? 1 : (hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.4 : 0.8)),
-              willChange: 'flex'
+              flex: isMobile ? '1 1 0%' : (hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.4 : 0.8)),
             }}
           >
-            {/* Background Image Container */}
             <div className="absolute inset-0 z-0">
               <Image
                 src={company.bgImage}
                 alt={company.name}
                 fill
                 className={`object-cover transition-transform duration-[2000ms] ${
-                  hoveredIndex === index ? "scale-110" : "scale-100"
+                  !isMobile && hoveredIndex === index ? "scale-110" : "scale-100"
                 }`}
                 priority
               />
               <div className={`absolute inset-0 transition-opacity duration-700 bg-black ${
-                hoveredIndex === index ? "opacity-50" : "opacity-65"
+                !isMobile && hoveredIndex === index ? "opacity-50" : "opacity-65"
               }`} />
             </div>
 
-            {/* Content Wrapper */}
             <div className="relative z-10 flex flex-col items-center justify-center space-y-4 px-6 w-full h-full">
                <Image 
                   src={company.logo} 
@@ -96,14 +90,12 @@ export default function MetanPage() {
                   width={300} 
                   height={150} 
                   className={`${company.logoClass} w-auto object-contain brightness-0 invert transition-transform duration-700 ${
-                    hoveredIndex === index ? "scale-105" : "scale-100"
+                    !isMobile && hoveredIndex === index ? "scale-105" : "scale-100"
                   }`}
                 />
 
-                {/* Button Container */}
                 <div className={`transition-all duration-700 flex flex-col items-center text-center lg:absolute lg:top-[60%] lg:left-0 lg:w-full ${
-                  // On mobile: Always visible (opacity-100). On Desktop: Fades in on hover.
-                  hoveredIndex === index ? "opacity-100 translate-y-0" : "opacity-100 lg:opacity-0 translate-y-0 lg:translate-y-10"
+                  isMobile || hoveredIndex === index ? "opacity-100 translate-y-0" : "lg:opacity-0 lg:translate-y-10"
                 }`}>
                   <div className="inline-flex items-center bg-white/10 backdrop-blur-md lg:bg-white space-x-2 text-white lg:text-black border border-white/20 px-5 py-2 rounded-full transition-all duration-300 group">
                     <span className="text-[10px] font-bold uppercase tracking-widest">Keşfet</span>
@@ -113,17 +105,8 @@ export default function MetanPage() {
             </div>
           </Link>
         ))}
-
-        {/* Scroll Indicator (Hidden on mobile) */}
-        <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
-          <span className="text-white/70 text-[14px] uppercase tracking-regular mb-2 animate-pulse font-regular">
-            Daha fazlası için kaydırın
-          </span>
-          <ChevronDown className="text-white/40 w-8 h-8 animate-bounce" />
-        </div>
       </main>
 
-      {/* --- SECONDARY FEATURE --- */}
       <section data-nav-color="dark" className="flex flex-col lg:flex-row min-h-[80vh] w-full overflow-hidden bg-white">
         <div className="w-full lg:w-1/2 h-[45vh] lg:h-auto relative bg-[#f4f4f6]">
           <Image 
