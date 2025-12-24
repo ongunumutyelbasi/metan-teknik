@@ -49,13 +49,13 @@ export default function MetanPage() {
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-sans overflow-x-hidden">
       
-      {/* FIX: Height is now calc(100dvh - 76px) on mobile to account for the header padding.
-          This ensures the container doesn't exceed the viewport height.
+      {/* FIX: Using svh (Small Viewport Height) to prevent jumping when the address bar hides.
+          Added flex-shrink-0 to the children and forced equal basis to lock the heights.
       */}
       <main 
         data-nav-color={isMobile ? "dark" : "light"} 
         className="relative flex flex-col lg:flex-row w-full overflow-hidden bg-white lg:bg-black pt-[76px] lg:pt-0"
-        style={{ height: isMobile ? 'calc(100dvh - 76px)' : '100vh' }}
+        style={{ height: isMobile ? 'calc(100svh - 76px)' : '100vh' }}
       >
         {companies.map((company, index) => (
           <Link
@@ -63,12 +63,13 @@ export default function MetanPage() {
             key={company.id}
             onMouseEnter={() => !isMobile && setHoveredIndex(index)}
             onMouseLeave={() => !isMobile && setHoveredIndex(null)}
-            className="relative w-full lg:h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center overflow-hidden"
+            className="relative w-full lg:h-full flex flex-col items-center justify-center overflow-hidden transition-[flex] duration-700 ease-in-out"
             style={{ 
-              flex: isMobile ? '1 1 0%' : (hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.4 : 0.8)),
+              flex: isMobile ? '1 1 33.33%' : (hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.4 : 0.8)),
+              minHeight: 0 // Prevents content from pushing the height out
             }}
           >
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 pointer-events-none">
               <Image
                 src={company.bgImage}
                 alt={company.name}
@@ -97,7 +98,7 @@ export default function MetanPage() {
                 <div className={`transition-all duration-700 flex flex-col items-center text-center lg:absolute lg:top-[60%] lg:left-0 lg:w-full ${
                   isMobile || hoveredIndex === index ? "opacity-100 translate-y-0" : "lg:opacity-0 lg:translate-y-10"
                 }`}>
-                  <div className="inline-flex items-center bg-white/10 backdrop-blur-md lg:bg-white space-x-2 text-white lg:text-black border border-white/20 px-5 py-2 rounded-full transition-all duration-300 group">
+                  <div className="inline-flex items-center bg-white/10 backdrop-blur-md lg:bg-white space-x-2 text-white lg:text-black border border-white/20 px-5 py-2 rounded-full transition-all duration-300">
                     <span className="text-[10px] font-bold uppercase tracking-widest">Keşfet</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
