@@ -53,10 +53,10 @@ export default function MetanTeknikFooter() {
               </div>
             </div>
 
-            {/* HİZMETLER */}
+            {/* KURUMSAL */}
             <div>
               <h4 className="text-white text-xs font-bold uppercase tracking-regular mb-3 flex items-center">
-                Hizmetler
+                Kurumsal
               </h4>
               <ul className="space-y-3 text-sm">
                 {techLinks.map((link) => (
@@ -69,10 +69,10 @@ export default function MetanTeknikFooter() {
               </ul>
             </div>
 
-            {/* KAYNAKLAR */}
+            {/* DESTEK */}
             <div>
               <h4 className="text-white text-xs font-bold uppercase tracking-regular mb-3 flex items-center">
-                Kaynaklar
+                Destek
               </h4>
               <ul className="space-y-3 text-sm">
                 {resourceLinks.map((link) => (
