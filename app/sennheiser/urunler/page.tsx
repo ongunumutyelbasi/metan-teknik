@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, ArrowUpRight, Download, Star, Home } from 'lucide-react';
+import { ArrowUpRight, Download, Star, Home } from 'lucide-react';
 
 const specs = [
   { label: "Transducer principle", value: "externally polarized condenser microphone" },
@@ -31,7 +31,7 @@ export default function SennheiserMK4Page() {
       <main className="flex h-screen w-full overflow-hidden">
         
         {/* LEFT PANEL: Gallery with Grey Background */}
-        <div className="w-1/2 flex flex-col h-full bg-[#f0f0f2] relative">
+        <div className="w-1/2 flex flex-col h-full bg-[#edeef0] relative">
           <div className="flex-1 flex items-center justify-center w-full relative p-20"> 
             <div className="relative w-full h-full max-w-md aspect-square">
               <Image 
@@ -43,77 +43,96 @@ export default function SennheiserMK4Page() {
               />
             </div>
 
-            {/* NAVIGATION ARROWS: Pinned to bottom-right of the grey section */}
-            <div className="absolute bottom-10 right-10 flex items-center space-x-4 z-30">
-              <span className="text-sm font-medium text-gray-500">
+            {/* NAVIGATION CLUSTER: Using Sennheiser's exact SVG paths */}
+            <div className="absolute bottom-10 right-10 flex items-center space-x-6 z-30">
+              <span className="text-[13px] font-bold text-black tracking-tight">
                 {currentImg + 1} / {productImages.length}
               </span>
+              
               <div className="flex space-x-2">
-                <button onClick={prevImg} className="cursor-pointer w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-all shadow-sm">
-                  <ChevronLeft className="w-5 h-5 text-black" />
+                {/* PREVIOUS BUTTON */}
+                <button 
+                  onClick={prevImg}
+                  disabled={currentImg === 0}
+                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
+                  aria-label="Previous slide"
+                >
+                  <svg width="12" height="12" viewBox="0 0 32 32" className="fill-current">
+                    <title>chevron-left</title>
+                    <path d="M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z"></path>
+                  </svg>
                 </button>
-                <button onClick={nextImg} className="cursor-pointer w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-all shadow-sm">
-                  <ChevronRight className="w-5 h-5 text-black" />
+
+                {/* NEXT BUTTON */}
+                <button 
+                  onClick={nextImg}
+                  disabled={currentImg === productImages.length - 1}
+                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
+                  aria-label="Next slide"
+                >
+                  <svg width="12" height="12" viewBox="0 0 32 32" className="fill-current">
+                    <title>chevron-right</title>
+                    <path d="M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z"></path>
+                  </svg>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* RIGHT PANEL: Product Details with White Background */}
-        <div className="w-1/2 flex flex-col h-full bg-white relative px-12 lg:px-20 justify-center">
+        {/* RIGHT PANEL: Product Details */}
+        <div className="w-1/2 flex flex-col h-full bg-white relative px-12 lg:px-24 justify-center">
           
-          {/* Breadcrumbs */}
-          <nav className="flex items-center space-x-2 text-[13px] text-gray-500 mb-8">
+          <nav className="flex items-center space-x-2 text-[12px] text-gray-400 mb-8 font-medium">
             <Home className="w-3.5 h-3.5" />
             <span>/</span>
-            <span>Products</span>
+            <span className="hover:text-black cursor-pointer transition-colors">Products</span>
             <span>/</span>
-            <span>Microphones</span>
+            <span className="hover:text-black cursor-pointer transition-colors">Microphones</span>
             <span>/</span>
-            <span className="font-bold text-black">MK 4</span>
+            <span className="text-black font-bold">MK 4</span>
           </nav>
 
-          <div className="max-w-md">
-            <h1 className="text-6xl font-bold mb-4 tracking-tight">MK 4</h1>
-            <p className="text-sm text-gray-500 mb-8 uppercase tracking-wide">Article No. 504298</p>
+          <div className="max-w-lg">
+            <h1 className="text-7xl font-bold mb-4 tracking-tighter">MK 4</h1>
+            <p className="text-[13px] text-gray-500 mb-10 tracking-wide font-medium">Article No. 504298</p>
             
-            <div className="mb-6">
-              <span className="text-3xl font-bold">£339.00*</span>
-              <p className="text-[11px] text-gray-400 mt-1">*incl. VAT</p>
+            <div className="mb-8">
+              <span className="text-4xl font-bold tracking-tight">£339.00*</span>
+              <p className="text-[11px] text-gray-400 mt-1 font-medium">*incl. VAT</p>
             </div>
 
-            <p className="text-sm font-bold mb-10">Delivery time: 3-5 days</p>
+            <p className="text-[14px] font-bold mb-10 tracking-tight">Delivery time: 3-5 days</p>
 
-            <div className="flex items-center space-x-3">
-              <button className="bg-black text-white px-10 py-4 rounded-full text-sm font-bold hover:bg-gray-800 transition-all">
+            <div className="flex items-center space-x-4">
+              <button className="bg-black text-white px-12 py-4.5 rounded-full text-[13px] font-bold hover:bg-[#333] transition-all tracking-wide">
                 Add to cart
               </button>
-              <button className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-all">
-                <Star className="w-5 h-5 fill-current text-gray-400" />
+              <button className="w-14 h-14 rounded-full bg-[#f6f6f6] flex items-center justify-center hover:bg-[#eeeeee] transition-all group">
+                <Star className="w-5 h-5 text-black group-hover:scale-110 transition-transform" />
               </button>
             </div>
           </div>
         </div>
       </main>
 
-      {/* --- TECHNICAL SPECS SECTION --- */}
-      <section className="py-24 bg-[#f6f6f6] px-8 lg:px-20 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12">Technical Specifications</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-2 border-t border-gray-200 pt-8">
+      {/* --- TECHNICAL SPECS --- */}
+      <section className="py-32 bg-[#f6f6f7] px-8 lg:px-24">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl font-bold mb-16 tracking-tight">Technical Specifications</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-2 border-t border-gray-200 pt-10">
             {specs.map((spec, i) => (
-              <div key={i} className="flex justify-between py-4 border-b border-gray-200 text-sm">
-                <span className="font-bold text-gray-400 uppercase tracking-wider">{spec.label}</span>
-                <span className="text-right font-medium">{spec.value}</span>
+              <div key={i} className="flex justify-between py-5 border-b border-gray-200 text-[14px]">
+                <span className="font-bold text-gray-400 uppercase tracking-widest text-[11px]">{spec.label}</span>
+                <span className="text-right font-bold text-black">{spec.value}</span>
               </div>
             ))}
           </div>
           
-          <div className="mt-12 flex space-x-8">
-            <button className="flex items-center space-x-2 text-xs font-bold border-b-2 border-black pb-1 hover:opacity-50 transition-all">
+          <div className="mt-16">
+            <button className="flex items-center space-x-3 text-[12px] font-bold border-b-2 border-black pb-1 hover:text-gray-500 transition-all uppercase tracking-widest">
               <Download className="w-4 h-4" />
-              <span>SPEC SHEET (PDF)</span>
+              <span>Spec Sheet (PDF)</span>
             </button>
           </div>
         </div>
