@@ -16,7 +16,6 @@ const specs = [
 export default function SennheiserMK4Page() {
   const [currentImg, setCurrentImg] = useState(0);
   
-  // Mock gallery for the arrows
   const productImages = [
     "/images/products/sennheiser-mk4-front.png",
     "/images/products/sennheiser-mk4-side.png",
@@ -32,12 +31,12 @@ export default function SennheiserMK4Page() {
       {/* --- HERO SPLIT SECTION (100vh) --- */}
       <main data-nav-color="dark" className="flex h-screen w-full overflow-hidden">
         
-        {/* LEFT PANEL: Product Image & Navigation */}
-        <div className="w-1/2 flex flex-col h-full bg-white relative px-6 pb-6">
-          {/* Header Spacer (since header is absolute/fixed) */}
+        {/* LEFT PANEL */}
+        <div className="w-1/2 flex flex-col h-full bg-white relative px-8 pb-12">
+          {/* Header Spacer */}
           <div className="h-[76px] w-full flex-shrink-0" />
 
-          {/* IMAGE SECTION */}
+          {/* IMAGE SECTION - The container for the product image and pinned arrows */}
           <div className="flex-1 flex items-center justify-center w-full min-h-0 relative"> 
             <div className="relative w-full max-w-xl aspect-square">
               <Image 
@@ -49,8 +48,8 @@ export default function SennheiserMK4Page() {
               />
             </div>
 
-            {/* NAVIGATION ARROWS (Mirrored from Hero) */}
-            <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2 z-30">
+            {/* NAVIGATION ARROWS: Pinned to bottom-right of THIS section with px-8 padding */}
+            <div className="absolute bottom-0 right-8 flex space-x-2 z-30">
               <button onClick={prevImg} className="cursor-pointer group w-12 h-12 rounded-full bg-[#f4f4f6] flex items-center justify-center hover:bg-black transition-all duration-300">
                 <ChevronLeft className="w-5 h-5 text-[#545252] group-hover:text-white transition-colors" />
               </button>
@@ -61,20 +60,20 @@ export default function SennheiserMK4Page() {
           </div>
 
           {/* PRODUCT INFO SECTION */}
-          <div className="w-full flex-shrink-0 pt-0 relative z-20">
+          <div className="w-full flex-shrink-0 pt-8 relative z-20">
             <h4 className="text-sm font-bold tracking-widest text-gray-400 uppercase mb-2">Studio Microphones</h4>
             <h3 className="text-5xl font-semibold mb-6 tracking-tight">MK 4</h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
+            <p className="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed font-light">
               Ev, proje ve profesyonel stüdyolar için profesyonel kalitede geniş diyaframlı gerçek kondansatör mikrofon.
             </p>
-            <button className="cursor-pointer bg-black text-white px-8 py-4 rounded-full text-sm font-bold flex items-center space-x-2 hover:bg-brand-blue transition-all w-fit group">
+            <button className="cursor-pointer bg-black text-white px-10 py-4 rounded-full text-sm font-bold flex items-center space-x-3 hover:bg-metan-orange transition-all w-fit group shadow-lg">
               <span>Satın Alma Kanalları</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
           </div>
         </div>
 
-        {/* RIGHT PANEL: Lifestyle/Atmosphere Image */}
+        {/* RIGHT PANEL */}
         <div className="w-1/2 relative bg-[#f4f4f6]">
           <Image 
             src="/images/products/mk4-lifestyle.webp"
@@ -85,7 +84,7 @@ export default function SennheiserMK4Page() {
         </div>
       </main>
 
-      {/* --- TECHNICAL SPECS SECTION (Compact) --- */}
+      {/* --- TECHNICAL SPECS SECTION --- */}
       <section className="py-24 bg-[#f6f6f6] px-8 lg:px-20">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-light mb-12">Teknik Özellikler</h2>
@@ -131,7 +130,7 @@ export default function SennheiserMK4Page() {
               ))}
             </ul>
           </div>
-          <div className="w-full lg:w-1/2 aspect-video relative bg-[#f4f4f6] rounded-2xl overflow-hidden">
+          <div className="w-full lg:w-1/2 aspect-video relative bg-[#f4f4f6] rounded-2xl overflow-hidden shadow-inner">
             <Image 
               src="/images/products/mk4-box.webp"
               alt="MK 4 Box Content" 
