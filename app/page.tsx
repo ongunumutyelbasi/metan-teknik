@@ -44,7 +44,8 @@ export default function MetanPage() {
       {/* --- MAIN COMPANY SHOWCASE --- */}
       <main 
         data-nav-color="light" 
-        className="relative flex h-screen w-full overflow-hidden bg-[var(--color-sennheiser-footer)]"
+        /* Changed to flex-col on mobile, h-[70dvh] to make the section shorter on mobile */
+        className="relative flex flex-col lg:flex-row h-[70dvh] lg:h-screen w-full overflow-hidden bg-[var(--color-sennheiser-footer)]"
       >
         {companies.map((company, index) => (
           <Link
@@ -52,7 +53,8 @@ export default function MetanPage() {
             key={company.id}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            className={`relative h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center overflow-hidden ${"" /* border-r border-white/10 last:border-0 */}`}
+            /* Added w-full on mobile, and changed flex logic to apply to both row/column flows */
+            className={`relative w-full lg:h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center overflow-hidden`}
             style={{ 
               flex: hoveredIndex === null ? 1 : (hoveredIndex === index ? 1.5 : 0.75),
               willChange: 'flex'
@@ -81,26 +83,28 @@ export default function MetanPage() {
                   alt={`${company.name} Logo`} 
                   width={300} 
                   height={150} 
-                  className={`${company.logoClass} w-auto object-contain brightness-0 invert transition-transform duration-700 ${
+                  /* Responsive logo sizing for mobile vs desktop */
+                  className={`${company.logoClass} h-5 lg:h-7 w-auto object-contain brightness-0 invert transition-transform duration-700 ${
                     hoveredIndex === index ? "scale-110" : "scale-100"
                   }`}
                 />
             </div>
 
             {/* Detail Section */}
-            <div className={`absolute top-[58%] left-0 w-full px-10 transition-all duration-700 flex flex-col items-center text-center ${
+            {/* Adjusted top position for mobile to keep button visible in shorter sections */}
+            <div className={`absolute top-[65%] lg:top-[58%] left-0 w-full px-10 transition-all duration-700 flex flex-col items-center text-center ${
               hoveredIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}>
-              <div className="inline-flex items-center bg-white space-x-3 text-[var(--color-sennheiser-footer)] border border-white/50 px-8 py-3 rounded-full transition-all duration-300 group">
-                <span className="text-xs font-bold uppercase tracking-regular">Markayı Keşfedin</span>
-                <ArrowUpRight className="w-4 h-4 transition-transform" />
+              <div className="inline-flex items-center bg-white space-x-3 text-[var(--color-sennheiser-footer)] border border-white/50 px-6 py-2.5 lg:px-8 lg:py-3 rounded-full transition-all duration-300 group">
+                <span className="text-[10px] lg:text-xs font-bold uppercase tracking-regular">Markayı Keşfedin</span>
+                <ArrowUpRight className="w-3.5 h-3.5 lg:w-4 h-4 transition-transform" />
               </div>
             </div>
           </Link>
         ))}
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none">
+        {/* Scroll Indicator - Hidden on mobile to keep it clean since section is shorter */}
+        <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
           <span className="text-white/70 text-[14px] uppercase tracking-regular mb-2 animate-pulse font-regular">
             Daha fazlası için kaydırın
           </span>
@@ -109,8 +113,9 @@ export default function MetanPage() {
       </main>
 
       {/* --- SECONDARY FEATURE --- */}
-      <section data-nav-color="dark" className="flex h-[80vh] w-full overflow-hidden bg-white">
-        <div className="w-1/2 relative bg-[#f4f4f6]">
+      {/* Changed to flex-col on mobile */}
+      <section data-nav-color="dark" className="flex flex-col lg:flex-row h-auto lg:h-[80vh] w-full overflow-hidden bg-white">
+        <div className="w-full lg:w-1/2 h-[40vh] lg:h-full relative bg-[#f4f4f6]">
           <Image 
             src="/images/hero-slide/md421-kompakt-drum.avif" 
             alt="Feature Lifestyle" 
@@ -118,10 +123,10 @@ export default function MetanPage() {
             className="object-cover" 
           />
         </div>
-        <div className="w-1/2 flex flex-col justify-center bg-white px-20">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-16 lg:px-20 lg:py-0">
           <h4 className="text-metan-orange font-bold uppercase tracking-widest text-xs mb-4">Öne Çıkan Ürün</h4>
-          <h3 className="text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
-          <p className="text-xl text-[#5d5b5c] mb-10 max-w-md leading-relaxed">
+          <h3 className="text-3xl lg:text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
+          <p className="text-lg lg:text-xl text-[#5d5b5c] mb-10 max-w-md leading-relaxed">
             Canlı performanslar ve stüdyo kayıtları için tasarlanmış, efsanevi MD 421 sesini sunan kompakt yapı.
           </p>
           <button className="cursor-pointer bg-black text-white px-10 py-5 rounded-full text-sm font-bold flex items-center space-x-3 hover:bg-metan-orange transition-all w-fit group shadow-lg hover:shadow-metan-orange/20">
