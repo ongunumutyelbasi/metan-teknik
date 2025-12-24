@@ -10,16 +10,18 @@ export default function MetanTeknikFooter() {
 
   const techLinks = [
     { name: "Teknik Servis", href: "#" },
-    { name: "Yazılım Güncellemeleri", href: "#" },
-    { name: "Yedek Parça Kataloğu", href: "#" },
-    { name: "Garanti Sorgulama", href: "#" },
+    { name: "Servis Ücretleri", href: "#" },
+    { name: "Müşteri Memnuniyeti", href: "#" },
+    { name: "Garanti Koşulları", href: "#" },
   ];
 
   const resourceLinks = [
-    { name: "Kullanım Kılavuzları", href: "#" },
-    { name: "CAD Çizimleri", href: "#" },
-    { name: "API Dokümantasyonu", href: "#" },
-    { name: "Eğitim Videoları", href: "#" },
+    { name: "Hakkımızda", href: "#" },
+    { name: "Künye", href: "#" },
+    { name: "Bayilerimiz", href: "#" },
+    { name: "Referanslarımız", href: "#" },
+    { name: "Finans", href: "#" },
+    { name: "İletişim Bilgilerimiz", href: "#" },
   ];
 
   return (
