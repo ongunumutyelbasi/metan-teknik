@@ -76,7 +76,8 @@ export default function MetanHeader() {
       <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-0 lg:px-8">
         
         {/* --- BRANDING (BASE LAYER) --- */}
-        <div className={`relative z-[40] flex-shrink-0 flex items-center h-10 pl-8 lg:pl-0 lg:pr-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        {/* Changed pl-8 to pl-4 for mobile only */}
+        <div className={`relative z-[40] flex-shrink-0 flex items-center h-10 pl-4 lg:pl-0 lg:pr-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/" className="px-2 py-1">
             <Image 
               src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
@@ -162,9 +163,10 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        {/* DUPLICATE LOGO (OVERLAY LAYER) - Matches exact position of base logo */}
+        {/* DUPLICATE LOGO (OVERLAY LAYER) */}
+        {/* Changed pl-8 to pl-4 here as well to match the base layer */}
         <div className="absolute top-0 left-0 w-full h-[76px] flex items-center pr-6 pl-0">
-          <div className="relative flex-shrink-0 flex items-center h-10 pl-8">
+          <div className="relative flex-shrink-0 flex items-center h-10 pl-4">
             <Link href="/" className="px-2 py-1">
               <Image 
                 src="/images/metan-logo.webp"
