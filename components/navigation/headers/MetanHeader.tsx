@@ -87,7 +87,7 @@ export default function MetanHeader() {
               <li key={link.href}>
                 <Link 
                   href={link.href} 
-                  className={`text-[11px] font-medium uppercase tracking-[0.2em] transition-all duration-300 relative group ${
+                  className={`text-[11px] font-medium uppercase tracking-regular transition-all duration-300 relative group ${
                     isScrolled ? 'text-dark-gray' : (navTheme === 'light' ? 'text-white' : 'text-dark-gray')
                   }`}
                 >
