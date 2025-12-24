@@ -97,16 +97,16 @@ export default function SennheiserMK4Page() {
           <nav className="flex items-center space-x-2 text-[12px] text-gray-400 mb-10 font-medium">
             <Home className="w-3.5 h-3.5" />
             <span>/</span>
-            <span className="hover:text-black cursor-pointer tracking-widest text-[10px]">Products</span>
+            <span className="hover:text-black cursor-pointer tracking-regular text-[10px]">Products</span>
             <span>/</span>
-            <span className="hover:text-black cursor-pointer tracking-widest text-[10px]">Microphones</span>
+            <span className="hover:text-black cursor-pointer tracking-regular text-[10px]">Microphones</span>
             <span>/</span>
-            <span className="text-black font-bold tracking-widest text-[10px]">MK 4</span>
+            <span className="text-black font-bold tracking-regular text-[10px]">MK 4</span>
           </nav>
 
           <div className="max-w-md">
             <h1 className="text-[80px] leading-[0.9] font-bold mb-6 tracking-tighter">MK 4</h1>
-            <p className="text-[13px] text-gray-500 mb-12 tracking-wide font-medium">Article No. 504298</p>
+            <p className="text-[13px] text-gray-500 mb-12 tracking-regular font-medium">Article No. 504298</p>
             
             <div className="mb-10">
               <span className="text-[42px] font-bold tracking-tight">£339.00*</span>
@@ -114,7 +114,7 @@ export default function SennheiserMK4Page() {
             </div>
 
             <div className="flex items-center gap-4">
-              <button className="flex-1 bg-black text-white py-5 rounded-full text-[14px] font-bold hover:bg-[#333] transition-all tracking-wide uppercase">
+              <button className="flex-1 bg-black text-white py-5 rounded-full text-[14px] font-bold hover:bg-[#333] transition-all tracking-regular uppercase">
                 Add to cart
               </button>
               <button className="w-[60px] h-[60px] rounded-full bg-[#f6f6f6] flex items-center justify-center hover:bg-[#eeeeee] transition-all group active:scale-95">
@@ -132,14 +132,14 @@ export default function SennheiserMK4Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 border-t border-gray-200">
             {specs.map((spec, i) => (
               <div key={i} className="flex justify-between py-6 border-b border-gray-200">
-                <span className="font-bold text-[#a0a0a0] uppercase tracking-widest text-[11px] self-center">{spec.label}</span>
+                <span className="font-bold text-[#a0a0a0] uppercase tracking-regular text-[11px] self-center">{spec.label}</span>
                 <span className="text-right font-bold text-black text-[15px]">{spec.value}</span>
               </div>
             ))}
           </div>
           
           <div className="mt-16">
-            <button className="flex items-center space-x-3 text-[12px] font-bold border-b-2 border-black pb-1 hover:text-gray-500 transition-all uppercase tracking-widest">
+            <button className="flex items-center space-x-3 text-[12px] font-bold border-b-2 border-black pb-1 hover:text-gray-500 transition-all uppercase tracking-regular">
               <Download className="w-4 h-4" />
               <span>Spec Sheet (PDF)</span>
             </button>
