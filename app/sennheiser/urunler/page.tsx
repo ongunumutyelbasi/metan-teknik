@@ -49,29 +49,41 @@ export default function SennheiserMK4Page() {
               />
             </div>
 
-            {/* NAVIGATION: Pinned to bottom-right with px-6/px-8 equivalent padding */}
+            {/* NAVIGATION */}
             <div className="absolute bottom-8 right-8 flex items-center gap-6 z-30">
               <span className="text-[13px] font-bold text-black tabular-nums">
                 {currentImg + 1} / {productImages.length}
               </span>
               
               <div className="flex gap-2">
+                {/* PREVIOUS BUTTON */}
                 <button 
                   onClick={prevImg}
                   disabled={currentImg === 0}
-                  className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all hover:bg-brand-blue group disabled:opacity-20 disabled:hover:bg-white disabled:cursor-not-allowed"
+                  className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-brand-blue group disabled:cursor-not-allowed disabled:hover:bg-white"
                 >
-                  <svg width="12" height="12" viewBox="0 0 32 32" className="fill-black group-hover:fill-white transition-colors">
+                  <svg 
+                    width="12" 
+                    height="12" 
+                    viewBox="0 0 32 32" 
+                    className="transition-colors duration-300 fill-black group-disabled:fill-black/20 group-hover:fill-white group-disabled:group-hover:fill-black/20"
+                  >
                     <path d="M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z"></path>
                   </svg>
                 </button>
 
+                {/* NEXT BUTTON */}
                 <button 
                   onClick={nextImg}
                   disabled={currentImg === productImages.length - 1}
-                  className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all hover:bg-brand-blue group disabled:opacity-20 disabled:hover:bg-white disabled:cursor-not-allowed"
+                  className="w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-brand-blue group disabled:cursor-not-allowed disabled:hover:bg-white"
                 >
-                  <svg width="12" height="12" viewBox="0 0 32 32" className="fill-black group-hover:fill-white transition-colors">
+                  <svg 
+                    width="12" 
+                    height="12" 
+                    viewBox="0 0 32 32" 
+                    className="transition-colors duration-300 fill-black group-disabled:fill-black/20 group-hover:fill-white group-disabled:group-hover:fill-black/20"
+                  >
                     <path d="M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z"></path>
                   </svg>
                 </button>
