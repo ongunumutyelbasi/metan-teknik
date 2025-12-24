@@ -10,6 +10,7 @@ export default function MetanHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [navTheme, setNavTheme] = useState<'dark' | 'light'>('dark');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileBrandsOpen, setIsMobileBrandsOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -39,15 +40,16 @@ export default function MetanHeader() {
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
+    if (!isMobileMenuOpen) setIsMobileBrandsOpen(false);
   }, [isMobileMenuOpen]);
 
   const links = [
     { name: "Hakkımızda", href: "/hakkimizda" },
     { name: "Künye", href: "/kunye" },
-    { name: "Bayilerimiz", href: "/hakkimizda/finans" },
-    { name: "Referanslarımız", href: "/hakkimizda/iletisim-bilgileri" },
-    { name: "Finans", href: "/hakkimizda/iletisim-bilgileri" },
-    { name: "İletişim", href: "/hakkimizda/iletisim-bilgileri" },
+    { name: "Bayilerimiz", href: "/bayilerimiz" },
+    { name: "Referanslarımız", href: "/referanslarimiz" },
+    { name: "Finans", href: "/finans" },
+    { name: "İletişim", href: "/iletisim" },
   ];
 
   const brands = [
@@ -59,7 +61,6 @@ export default function MetanHeader() {
 
   const utilityBaseClass = "transition-all duration-500 backdrop-blur-xl border flex items-center justify-center rounded-xl";
   
-  // Forces dark icons/borders if either scrolled or mobile menu is open
   const utilityThemeClass = (isScrolled || isMobileMenuOpen) 
     ? "border-black/[0.12] text-black hover:bg-black/[0.15]" 
     : (navTheme === 'light' 
@@ -75,7 +76,7 @@ export default function MetanHeader() {
       <div className="max-w-[1800px] w-full mx-auto flex items-center px-6 lg:px-12">
         
         {/* --- BRANDING --- */}
-        <div className={`flex-shrink-0 pr-6 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        <div className={`relative z-[70] flex-shrink-0 pr-6 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/">
             <Image 
               src={isScrolled || isMobileMenuOpen || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"}
@@ -107,7 +108,6 @@ export default function MetanHeader() {
         {/* --- UTILITIES --- */}
         <div className="flex items-center ml-auto">
           <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
-            
             <div className="relative group">
               <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
                 <span>Markalar</span>
@@ -129,7 +129,6 @@ export default function MetanHeader() {
                           maskImage: `url(${brand.logo})`,
                           WebkitMaskImage: `url(${brand.logo})`,
                           maskRepeat: 'no-repeat',
-                          WebkitMaskRepeat: 'no-repeat',
                           maskSize: 'contain',
                         }}
                       />
@@ -149,7 +148,6 @@ export default function MetanHeader() {
 
           {/* Mobile Controls */}
           <div className="flex lg:hidden items-center space-x-3">
-             {/* Search button now has z-[70] and stays visible when menu is open */}
              <button className={`relative z-[70] ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}>
                 <Search size={20} strokeWidth={2} />
              </button>
@@ -167,54 +165,69 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="flex flex-col h-full pt-28 pb-12 px-10">
-          <div className="text-[11px] font-medium tracking-regular uppercase text-gray-400 mb-10 border-b border-gray-100 pb-4">
-            Keşfet
-          </div>
-          <nav className="flex flex-col space-y-8">
+        <div className="flex flex-col h-full pt-[76px] px-10">
+          {/* Top Divider */}
+          <div className="mt-8 border-b border-gray-100" />
+          
+          <nav className="flex flex-col space-y-6 mt-8">
             {links.map((link, idx) => (
               <Link 
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-4xl font-light uppercase tracking-tighter text-black transition-all duration-700 transform ${
+                className={`text-2xl font-light uppercase tracking-tighter text-black transition-all duration-700 transform ${
                   isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                 }`}
-                style={{ transitionDelay: `${idx * 100}ms` }}
+                style={{ transitionDelay: `${idx * 50}ms` }}
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          <div className={`mt-auto transition-all duration-1000 delay-500 ${
-            isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <div className="flex flex-col space-y-10">
-              <div className="grid grid-cols-2 gap-4">
+          {/* Brand Drop-up Area */}
+          <div className="mt-auto mb-12">
+            <div className={`relative transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              
+              {/* Drop-up Content */}
+              <div className={`flex flex-col space-y-2 mb-4 transition-all duration-500 overflow-hidden ${isMobileBrandsOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
                 {brands.map((brand) => (
-                   <Link key={brand.name} href={brand.href} className="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
-                      <div 
-                        className="w-4 h-4 bg-gray-400"
-                        style={{
-                          maskImage: `url(${brand.logo})`,
-                          WebkitMaskImage: `url(${brand.logo})`,
-                          maskRepeat: 'no-repeat',
-                          maskSize: 'contain',
-                        }}
-                      />
-                      <span className="text-[10px] font-bold tracking-regular uppercase text-gray-500">{brand.name.split(' ')[0]}</span>
-                   </Link>
+                  <Link 
+                    key={brand.name} 
+                    href={brand.href} 
+                    className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl"
+                  >
+                    <div 
+                      className="w-5 h-5 bg-gray-500"
+                      style={{
+                        maskImage: `url(${brand.logo})`,
+                        WebkitMaskImage: `url(${brand.logo})`,
+                        maskRepeat: 'no-repeat',
+                        maskSize: 'contain',
+                      }}
+                    />
+                    <span className="text-xs font-bold tracking-regular uppercase text-gray-700">{brand.name}</span>
+                  </Link>
                 ))}
               </div>
-              
-              <div className="flex items-center justify-between border-t border-gray-100 pt-8">
-                {/* <div className="flex items-center space-x-6 text-xs font-medium tracking-regular text-black uppercase"> */}
-                {/*  <button className="text-metan-orange font-bold">TR</button> */}
-                {/*  <button className="text-gray-300">EN</button> */}
-                {/*  <button className="text-gray-300">DE</button> */}
-                {/*</div> */}
-                <div className="text-[10px] font-medium text-gray-400">© 2025 METAN</div>
+
+              {/* Main Brand Trigger Button */}
+              <button 
+                onClick={() => setIsMobileBrandsOpen(!isMobileBrandsOpen)}
+                className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl bg-white shadow-sm"
+              >
+                <span className="text-[11px] font-bold uppercase tracking-regular text-gray-900">Markalarımız</span>
+                <ChevronDown size={16} className={`transition-transform duration-500 ${isMobileBrandsOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              <div className="mt-8 border-t border-gray-100 pt-8">
+                 {/* TR, EN, DE buttons remain hidden as requested */}
+                 {/* <div className="flex items-center space-x-6 text-[11px] font-bold tracking-regular text-black uppercase">
+                    <button className="text-metan-orange">TR</button>
+                    <button className="text-gray-300">EN</button>
+                    <button className="text-gray-300">DE</button>
+                 </div> 
+                 */}
               </div>
             </div>
           </div>
