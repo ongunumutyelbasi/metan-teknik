@@ -118,16 +118,7 @@ export default function MetanPage() {
         data-nav-color="dark" 
         className="relative flex flex-col lg:flex-row-reverse w-full overflow-hidden bg-white"
       >
-        {/* Image side: Fixed height on mobile, auto on desktop with min-height */}
-        <div className="w-full lg:w-1/2 h-[40vh] lg:min-h-[600px] relative bg-[#f4f4f6]">
-          <Image 
-            src="/images/hero-slide/md421-kompakt-drum.avif" 
-            alt="Feature Lifestyle" 
-            fill 
-            className="object-cover" 
-          />
-        </div>
-        
+
         {/* Content side: Reduced padding for more compact feel */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-12 lg:px-20 lg:py-16 xl:px-28">
           <div className="max-w-xl">
@@ -143,13 +134,16 @@ export default function MetanPage() {
           </div>
         </div>
 
-        {/* Pulsing indicator - can be removed if the section is very short */}
-        <div className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-none">
-          <span className="text-black/30 text-[12px] uppercase tracking-regular mb-1 animate-pulse">
-            Daha fazlası için kaydırın
-          </span>
-          <ChevronDown className="text-black/10 w-6 h-6 animate-bounce" />
+        {/* Image side: Fixed height on mobile, auto on desktop with min-height */}
+        <div className="w-full lg:w-1/2 h-[40vh] lg:min-h-[600px] relative bg-[#f4f4f6]">
+          <Image 
+            src="/images/hero-slide/md421-kompakt-drum.avif" 
+            alt="Feature Lifestyle" 
+            fill 
+            className="object-cover" 
+          />
         </div>
+
       </section>
     </div>
   );
