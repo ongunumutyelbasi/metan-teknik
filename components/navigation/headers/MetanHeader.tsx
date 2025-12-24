@@ -73,7 +73,7 @@ export default function MetanHeader() {
         ? 'bg-white border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
     }`}>
-      <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-4 lg:px-8">
+      <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-0 lg:px-8">
         
         {/* --- BRANDING --- */}
         <div className={`relative z-[70] flex-shrink-0 flex items-center h-10 px-6 transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
@@ -162,7 +162,7 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="flex flex-col h-full pt-[76px] pr-6 pl-4 relative">
+        <div className="flex flex-col h-full pt-[76px] pr-6 pl-0 relative">
           
           <div className="mt-8 border-b border-gray-100" />
           
