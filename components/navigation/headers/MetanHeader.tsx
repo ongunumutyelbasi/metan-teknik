@@ -73,7 +73,7 @@ export default function MetanHeader() {
         <div className={`flex-shrink-0 pr-10 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/">
             <Image 
-              src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.png" : "/images/metan-logo-white.png"} 
+              src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"} 
               alt="Metan Logo" width={120} height={32} priority 
               className="h-7 w-auto object-contain transition-all duration-500"
             />
