@@ -55,30 +55,30 @@ export default function MetanHeader() {
     { name: "MERGING", href: "/merging", logo: "/images/SVG/merging-icon.svg", hoverColor: "#e30613" },
   ];
 
-  const utilityBaseClass = "transition-all duration-700 backdrop-blur-xl border flex items-center justify-center rounded-xl";
+  // Logic: Keep backdrop-blur-xl locked. Transition colors only.
+  const utilityBaseClass = "transition-all duration-500 backdrop-blur-xl border flex items-center justify-center rounded-xl";
   
-  // Refined theme class for seamless fading between states
   const utilityThemeClass = isScrolled 
-    ? "bg-black/[0.05] border-black/[0.08] text-black hover:bg-black/[0.12]" 
+    ? "bg-black/[0.08] border-black/[0.12] text-black hover:bg-black/[0.15]" 
     : (navTheme === 'light' 
-        ? "bg-white/[0.12] border-white/[0.15] text-white hover:bg-white/[0.25]" 
-        : "bg-black/[0.05] border-black/[0.08] text-black hover:bg-black/[0.12]");
+        ? "bg-white/[0.15] border-white/[0.2] text-white hover:bg-white/[0.3]" 
+        : "bg-black/[0.08] border-black/[0.12] text-black hover:bg-black/[0.15]");
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 border-b h-[76px] flex items-center ${
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b h-[76px] flex items-center ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-md border-black/5 shadow-sm' 
+        ? 'bg-white border-black/5 shadow-sm' 
         : 'bg-transparent border-transparent'
     }`}>
       <div className="max-w-[1800px] w-full mx-auto flex items-center px-6 lg:px-12">
         
         {/* --- BRANDING --- */}
-        <div className={`flex-shrink-0 pr-10 h-10 flex items-center transition-all duration-700 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
+        <div className={`flex-shrink-0 pr-10 h-10 flex items-center transition-all duration-500 ${isScrolled ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/">
             <Image 
               src={isScrolled || navTheme === 'dark' ? "/images/metan-logo.webp" : "/images/metan-logo-white.png"} 
               alt="Metan Logo" width={120} height={32} priority 
-              className="h-7 w-auto object-contain transition-all duration-700"
+              className="h-7 w-auto object-contain transition-all duration-500"
             />
           </Link>
         </div>
@@ -104,7 +104,7 @@ export default function MetanHeader() {
 
         {/* --- UTILITIES --- */}
         <div className="flex items-center ml-auto">
-          <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-700 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
+          <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
             
             <div className="relative group">
               <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
