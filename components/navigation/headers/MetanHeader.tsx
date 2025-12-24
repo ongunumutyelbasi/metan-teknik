@@ -108,15 +108,47 @@ export default function MetanHeader() {
         {/* --- UTILITIES --- */}
         <div className="flex items-center ml-auto">
           <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isScrolled ? 'border-black/5' : 'border-white/10'}`}>
-            <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
-              <span>Markalar</span>
-              <ChevronDown size={14} />
-            </button>
+            
+            {/* Desktop Brand Dropdown */}
+            <div className="relative group">
+              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
+                <span>Markalar</span>
+                <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
+              </button>
+              
+              <div className="absolute right-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                <div className="w-max bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-black/5 p-2 overflow-hidden">
+                  {brands.map((brand) => (
+                    <Link 
+                      key={brand.name} 
+                      href={brand.href} 
+                      className="flex items-center space-x-4 px-4 py-3 rounded-xl hover:bg-black/5 transition-all duration-300 group/item"
+                      style={{ '--brand-color': brand.hoverColor } as React.CSSProperties}
+                    >
+                      <div 
+                        className="w-5 h-5 bg-gray-400 group-hover/item:bg-[var(--brand-color)] transition-colors duration-300"
+                        style={{
+                          maskImage: `url(${brand.logo})`,
+                          WebkitMaskImage: `url(${brand.logo})`,
+                          maskRepeat: 'no-repeat',
+                          maskSize: 'contain',
+                        }}
+                      />
+                      <span className="text-[12.5px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap uppercase tracking-regular">
+                        {brand.name}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             <button className={`${utilityBaseClass} ${utilityThemeClass} w-9 h-9 cursor-pointer`}>
               <Search size={16} strokeWidth={2.5} />
             </button>
           </div>
 
+          {/* Mobile Controls */}
           <div className="flex lg:hidden items-center space-x-3">
              <button className={`relative z-[70] ${utilityBaseClass} ${utilityThemeClass} w-10 h-10`}>
                 <Search size={20} strokeWidth={2} />
@@ -155,10 +187,8 @@ export default function MetanHeader() {
             ))}
           </nav>
 
-          {/* Bottom Brands Section - Locked to bottom */}
+          {/* Bottom Brands Section */}
           <div className="mt-auto mb-10 relative">
-            
-            {/* Brands Drop-up: Absolute positioned so it doesn't push the button */}
             <div className={`absolute bottom-full left-0 w-full mb-4 flex flex-col space-y-2 transition-all duration-500 ${
               isMobileBrandsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
             }`}>
@@ -182,7 +212,6 @@ export default function MetanHeader() {
               ))}
             </div>
 
-            {/* Trigger Button: Remains in a fixed position at the bottom */}
             <button 
               onClick={() => setIsMobileBrandsOpen(!isMobileBrandsOpen)}
               className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-xl bg-white shadow-sm active:bg-gray-50 transition-colors"
@@ -191,7 +220,6 @@ export default function MetanHeader() {
               <ChevronDown size={16} className={`transition-transform duration-500 ${isMobileBrandsOpen ? 'rotate-180' : ''}`} />
             </button>
             
-            {/* Added a small buffer to the bottom divider */}
             <div className="mt-8 border-t border-gray-100" />
           </div>
         </div>
