@@ -76,15 +76,14 @@ export default function SennheiserPage() {
     <div className="min-h-screen bg-white text-[#1a1a1a] font-sans overflow-x-hidden">
 
       {/* --- HERO SPLIT SECTION --- */}
-      {/* Changed to flex-col on mobile and reduced height */}
-      <main data-nav-color="dark" className="flex flex-col lg:flex-row lg:h-[90vh] w-full overflow-hidden">
+      <main data-nav-color="dark" className="flex h-[90vh] w-full overflow-hidden">
         
-        {/* LEFT PANEL (Product & Text) */}
-        <div className="w-full lg:w-1/2 flex flex-col h-full bg-white relative px-6 pb-12 lg:pb-6">
+        {/* LEFT PANEL */}
+        <div className="w-1/2 flex flex-col h-full bg-white relative px-6 pb-6">
           <div className="h-[76px] w-full flex-shrink-0" />
 
-          {/* IMAGE SECTION - Scaled for mobile */}
-          <div className="flex-1 flex items-center justify-center w-full h-[40vh] lg:h-auto min-h-0 relative"> 
+          {/* IMAGE SECTION */}
+          <div className="flex-1 flex items-center justify-center w-full min-h-0 relative"> 
             {slides.map((slide, index) => (
               <div 
                 key={`product-${slide.id}`}
@@ -92,7 +91,7 @@ export default function SennheiserPage() {
                   index === current ? "opacity-100 z-10" : "opacity-0 z-0"
                 }`}
               >
-                <div className="relative w-full max-w-sm lg:max-w-xl aspect-square">
+                <div className="relative w-full max-w-xl aspect-square">
                   <Image 
                     src={slide.productImg}
                     alt={slide.alt}
@@ -105,12 +104,12 @@ export default function SennheiserPage() {
             ))}
           </div>
 
-          {/* TEXT & BUTTON SECTION - Responsive sizes */}
-          <div className="w-full flex-shrink-0 pt-4 lg:pt-0 relative z-20">
-            <h3 className="text-xl lg:text-3xl font-semibold text-gray-600 mb-0 tracking-tight">
+          {/* TEXT & BUTTON SECTION */}
+          <div className="w-full flex-shrink-0 pt-0 relative z-20">
+            <h3 className="text-3xl font-semibold text-gray-600 mb-0 tracking-tight">
               {slides[current].title}
             </h3>
-            <h3 className="text-2xl lg:text-3xl font-semibold mb-6 leading-tight">
+            <h3 className="text-3xl font-semibold mb-6 leading-tight">
               {slides[current].subtitle}
             </h3>
             <button className="cursor-pointer bg-black text-white px-8 py-4 rounded-full text-sm font-bold flex items-center space-x-2 hover:bg-brand-blue transition-all w-fit group">
@@ -119,8 +118,8 @@ export default function SennheiserPage() {
             </button>
           </div>
 
-          {/* PAGINATION - Repositioned for mobile flow */}
-          <div className="mt-8 lg:mt-0 lg:absolute lg:bottom-6 lg:right-6 flex items-center space-x-6 z-30">
+          {/* PAGINATION & CIRCULAR TIMER */}
+          <div className="absolute bottom-6 right-6 flex items-center space-x-6 z-30">
             <div className="relative flex items-center justify-center w-12 h-12">
               <svg className="w-full h-full transform -rotate-90">
                 <circle cx="24" cy="24" r="22" stroke="currentColor" strokeWidth="2" fill="transparent" className="text-gray-200" />
@@ -147,8 +146,8 @@ export default function SennheiserPage() {
           </div>
         </div>
 
-        {/* RIGHT PANEL (Lifestyle) - Shorter height on mobile */}
-        <div className="w-full lg:w-1/2 h-[45vh] lg:h-full relative bg-[#f4f4f6]">
+        {/* RIGHT PANEL */}
+        <div className="w-1/2 relative bg-[#f4f4f6]">
           {slides.map((slide, index) => (
             <Image 
               key={`lifestyle-${slide.id}`}
@@ -164,21 +163,20 @@ export default function SennheiserPage() {
       </main>
 
       {/* --- FEATURED PRODUCT SECTION --- */}
-      {/* Applying same stacking logic here for consistency */}
-      <section className="flex flex-col lg:flex-row lg:h-[70vh] w-full overflow-hidden bg-white border-t border-gray-100">
-        <div className="w-full lg:w-1/2 h-[40vh] lg:h-full relative bg-[#f4f4f6]">
+      <section className="flex h-[70vh] w-full overflow-hidden bg-white border-t border-gray-100">
+        <div className="w-1/2 relative bg-[#f4f4f6]">
           <Image src="/images/hero-slide/md421-kompakt-drum.avif" alt="Feature Lifestyle" fill className="object-cover" />
         </div>
-        <div className="w-full lg:w-1/2 flex flex-col h-full bg-white relative px-6 pb-12 lg:pb-6">
-          <div className="lg:h-[76px] w-full flex-shrink-0" />
-          <div className="flex-1 flex items-center justify-center w-full h-[40vh] lg:h-auto min-h-0 mt-8 lg:mt-0"> 
-            <div className="relative w-full max-w-sm lg:max-w-xl aspect-square">
+        <div className="w-1/2 flex flex-col h-full bg-white relative px-6 pb-6">
+          <div className="h-[76px] w-full flex-shrink-0" />
+          <div className="flex-1 flex items-center justify-center w-full min-h-0"> 
+            <div className="relative w-full max-w-xl aspect-square">
               <Image src="/images/hero-slide/md-421-kompakt-productImage.webp" alt="Feature Product" fill className="object-contain" />
             </div>
           </div>
-          <div className="w-full flex-shrink-0 pt-4 lg:pt-0 relative z-20">
-            <h3 className="text-xl lg:text-3xl font-semibold text-gray-600 mb-0 tracking-tight">MD 421 Kompakt</h3>
-            <h3 className="text-2xl lg:text-3xl font-semibold mb-6 leading-tight">Canlı ve kayıt uygulamaları için çok amaçlı dinamik kardioid mikrofon</h3>
+          <div className="w-full flex-shrink-0 pt-0 relative z-20">
+            <h3 className="text-3xl font-semibold text-gray-600 mb-0 tracking-tight">MD 421 Kompakt</h3>
+            <h3 className="text-3xl font-semibold mb-6 leading-tight">Canlı ve kayıt uygulamaları için çok amaçlı dinamik kardioid mikrofon</h3>
             <button className="cursor-pointer bg-black text-white px-8 py-4 rounded-full text-sm font-bold flex items-center space-x-2 hover:bg-brand-blue transition-all w-fit group">
               <span>İncele</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -202,7 +200,7 @@ export default function SennheiserPage() {
                     activeCategory === index ? "bg-brand-blue text-white" : "bg-transparent text-black"
                   }`}
                 >
-                  <h3 className="text-xl lg:text-3xl font-semibold tracking-tight">{cat.name}</h3>
+                  <h3 className="text-3xl font-semibold tracking-tight">{cat.name}</h3>
                   <ArrowRight className={`w-6 h-6 text-white transition-all duration-300 ${
                     activeCategory === index ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
                   }`} />
@@ -217,7 +215,7 @@ export default function SennheiserPage() {
           </div>
 
           {/* RIGHT SIDE: Dynamic Image Display */}
-          <div className="w-full md:w-1/2 relative h-[400px] lg:h-[600px] overflow-hidden bg-[#f4f4f6]">
+          <div className="w-full md:w-1/2 relative h-[600px] overflow-hidden bg-[#f4f4f6]">
             {categories.map((cat, index) => (
               <div
                 key={`cat-img-${cat.id}`}

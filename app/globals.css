@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+/* 1. Define Font-Face here to ensure Vercel/Turbopack finds it */
+@font-face {
+  font-family: 'Sennheiser Neue';
+  src: url('/fonts/sennheiser-neue/senn-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sennheiser Neue';
+  src: url('/fonts/sennheiser-neue/senn-sb.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
 @theme {
   /* Brand Colors */
   --color-brand-blue: rgb(3, 124, 194);
@@ -14,15 +29,13 @@
   --sennheiser-light-gray: rgb(236, 236, 240);
   --sennheiser-very-light-gray: rgb(244, 244, 246);
 
-  /* Font Family Mapping for Tailwind v4
-     This maps the 'font-neumann' class to your local font variable 
-  */
+  /* 2. Map the font class */
+  --font-sennheiser: "Sennheiser Neue", ui-sans-serif, system-ui;
   --font-neumann: var(--font-ff-unit-pro);
 }
 
 @layer base {
   html, body {
-    @apply antialiased font-sans;
-    /* Remove any background-color lines from here */
+    @apply antialiased font-sennheiser;
   }
 }
