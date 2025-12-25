@@ -88,14 +88,35 @@ export default function SennheiserMK4Page() {
         {/* RIGHT PANEL: Scrollable Content architecture */}
         <div className='w-1/2'>
           <div className='h-screen flex flex-col px-16 pt-20 justify-center'>
-            <nav aria-label='Breadcrumb navigation' className='flex items-center gap-2 mb-8 text-[13px] text-[#666] font-normal'>
-              <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M19.5 9.75 12 2.25l-7.5 7.5V21h5.25v-7.5h4.5V21h5.25z'></path></svg>
-              <span>/</span>
-              <span className='hover:text-brand-blue cursor-pointer'>Products</span>
-              <span>/</span>
-              <span className='hover:text-brand-blue cursor-pointer'>Microphones</span>
-              <span>/</span>
-              <span className='font-semibold hover:text-brand-blue text-black'>MK 4</span>
+            <nav aria-label='Breadcrumb navigation' className='flex items-center gap-2 mb-8 text-[13px] text-[#666] font-normal font-[family-name:var(--font-sennheiser)]'>
+                {/* Home Item */}
+                <button className='group flex items-center cursor-pointer'>
+                    <svg 
+                    xmlns='http://www.w3.org/2000/svg' 
+                    width='14' 
+                    height='14' 
+                    fill='none' 
+                    viewBox='0 0 24 24' 
+                    className='transition-colors duration-200 group-hover:text-[#037cc2]'
+                    >
+                    <path fill='currentColor' d='M19.5 9.75 12 2.25l-7.5 7.5V21h5.25v-7.5h4.5V21h5.25z'></path>
+                    </svg>
+                </button>
+
+                <span>/</span>
+
+                {/* Products Item */}
+                <span className='hover:text-[#037cc2] cursor-pointer transition-colors duration-200'>Products</span>
+                
+                <span>/</span>
+
+                {/* Category Item */}
+                <span className='hover:text-[#037cc2] cursor-pointer transition-colors duration-200'>Microphones</span>
+                
+                <span>/</span>
+
+                {/* Active Item */}
+                <span className='font-semibold text-black uppercase'>MK 4</span>
             </nav>
 
             <h1 className='text-[80px] leading-[0.85] font-semibold mb-6 tracking-tighter'>MK 4</h1>
