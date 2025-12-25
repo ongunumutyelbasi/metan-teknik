@@ -118,11 +118,11 @@ export default function SennheiserPage() {
             </button>
           </div>
 
-          {/* navigation & timer area */}
-          <div className='absolute bottom-6 right-6 flex items-center space-x-4 z-30'>
+          {/* navigation & timer area - perfectly aligned bottom and right margins */}
+          <div className='absolute bottom-[30px] right-[30px] flex items-center space-x-4 z-30'>
             {/* circular timer & pagination */}
             <div className='relative flex items-center justify-center w-[54px] h-[54px]'>
-              <svg className='w-full h-full transform -rotate-90'>
+              <svg className='w-full h-full transform -rotate-90' viewBox='0 0 54 54'>
                 <circle cx='27' cy='27' r='25' stroke='currentColor' strokeWidth='2' fill='transparent' className='text-light-gray' />
                 <circle
                   cx='27' cy='27' r='25' stroke='currentColor' strokeWidth='2' fill='transparent'
@@ -139,7 +139,7 @@ export default function SennheiserPage() {
             </div>
 
             {/* arrow buttons */}
-            <div className='relative flex space-x-2 items-center'>
+            <div className='flex space-x-2 items-center'>
               <button onClick={prevSlide} className='cursor-pointer group w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-brand-hover-blue transition-all duration-300'>
                 <ChevronLeft className='w-5 h-5 text-dark-gray group-hover:text-white transition-colors' />
               </button>
