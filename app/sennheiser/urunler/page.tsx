@@ -18,10 +18,9 @@ export default function SennheiserMK4Page() {
   return (
     <div className='min-h-screen bg-white text-[#1a1a1a] font-sans selection:bg-black selection:text-white'>
       
-      {/* Main Hero Container */}
       <main className='flex w-full'>
         
-        {/* LEFT PANEL: Sticky Media (Image Gallery) */}
+        {/* LEFT PANEL: Sticky Media */}
         <div className='w-1/2 bg-[#f0f0f2] border-r border-gray-100 relative'>
           <div className='sticky top-0 h-screen flex flex-col pt-[69px]'>
             <div className='flex-1 flex items-center justify-center relative p-12 lg:p-24'> 
@@ -45,7 +44,7 @@ export default function SennheiserMK4Page() {
                   <button 
                     onClick={prevImg}
                     disabled={currentImg === 0}
-                    className='w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-brand-blue group cursor-pointer disabled:cursor-default disabled:pointer-events-none'
+                    className='w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-[#037cc2] group cursor-pointer disabled:cursor-default disabled:pointer-events-none'
                   >
                     <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[#666666] group-hover:fill-white'>
                       <path d='M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z'></path>
@@ -55,7 +54,7 @@ export default function SennheiserMK4Page() {
                   <button 
                     onClick={nextImg}
                     disabled={currentImg === productImages.length - 1}
-                    className='w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-brand-blue group cursor-pointer disabled:cursor-default disabled:pointer-events-none'
+                    className='w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-[#037cc2] group cursor-pointer disabled:cursor-default disabled:pointer-events-none'
                   >
                     <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[#666666] group-hover:fill-white'>
                       <path d='M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z'></path>
@@ -70,13 +69,11 @@ export default function SennheiserMK4Page() {
         {/* RIGHT PANEL: Content Area */}
         <div className='w-1/2 flex flex-col'>
           
-          {/* FOLD 1: Breadcrumbs & Purchase Tools */}
           <div className='min-h-[calc(100vh-69px)] flex flex-col pt-[69px] px-[20px] pb-[20px]'>
             
-            {/* Breadcrumbs Navigation - Styled exactly to your HTML snippet */}
             <nav aria-label='Breadcrumb navigation' className='flex items-center py-4 flex-wrap'>
               <button className='flex items-center group cursor-pointer'>
-                <div className='text-[#1a1a1a] transition-colors group-hover:text-brand-blue'>
+                <div className='text-[#1a1a1a] transition-colors group-hover:text-[#037cc2]'>
                   <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M19.5 9.75 12 2.25l-7.5 7.5V21h5.25v-7.5h4.5V21h5.25z'></path></svg>
                 </div>
                 <span className='mx-2.5 text-[#666666] text-[13px]'>/</span>
@@ -94,7 +91,6 @@ export default function SennheiserMK4Page() {
               </button>
             </nav>
 
-            {/* Content Bottom Aligned with mt-auto */}
             <div className='mt-auto'>
               <h1 className='text-[80px] leading-[0.85] font-bold mb-6 tracking-tighter'>MK 4</h1>
               <div className='text-[13px] text-[#666666] mb-12 font-medium uppercase tracking-wide'>Article No. 504298</div>
@@ -106,14 +102,18 @@ export default function SennheiserMK4Page() {
               </div>
 
               <div className='flex items-center gap-4'>
-                {/* Updated Button based on exact CSS Rules provided */}
+                {/* Fixed dimensions based on your specific CSS rules */}
                 <button 
-                  className='flex-1 flex items-center justify-center gap-[6px] rounded-[50rem] border border-transparent transition-[color,background-color,border] duration-200 ease-in-out bg-[#000000] text-[#ffffff] hover:bg-[#037cc2] active:bg-[#000000] active:border-[#35a0d8] disabled:bg-[#f4f4f6] disabled:text-[#adadad] uppercase tracking-widest'
+                  className='flex-1 flex items-center justify-center gap-[6px] rounded-[50rem] border border-transparent transition-[color,background-color,border] duration-200 ease-in-out bg-[#000000] text-[#ffffff] hover:bg-[#037cc2] active:bg-[#000000] active:border-[#35a0d8] disabled:bg-[#f4f4f6] disabled:text-[#adadad] uppercase'
                   style={{
-                    padding: '20px 18px 18px',
-                    fontSize: '13px',
+                    paddingTop: '20px',    // 1rem
+                    paddingBottom: '18px', // 0.9rem
+                    paddingLeft: '18px',   // 0.9rem
+                    paddingRight: '18px',  // 0.9rem
+                    fontSize: '13px',      // 0.65rem
                     fontWeight: '500',
-                    lineHeight: '1.0769230769'
+                    lineHeight: '1.0769230769',
+                    letterSpacing: '0.05em'
                   }}
                 >
                   Add to cart
@@ -125,7 +125,7 @@ export default function SennheiserMK4Page() {
             </div>
           </div>
 
-          {/* FOLD 2: Description Section (Sits below initial fold) */}
+          {/* Description Section */}
           <div className='px-[1rem] pb-[1rem] pt-12 border-t border-gray-50'>
             <div className='max-w-full'>
               <p className='text-[1rem] leading-[1.2] font-semibold text-black mb-10'>
