@@ -112,7 +112,7 @@ export default function SennheiserPage() {
             <h3 className='text-[1.5rem] font-medium mb-6 leading-tight'>
               {slides[current].subtitle}
             </h3>
-            <button className='cursor-pointer bg-black text-white px-8 py-4 rounded-full text-[0.65rem] font-medium flex items-center space-x-2 hover:bg-hover-blue transition-all w-fit group uppercase tracking-widest'>
+            <button className='cursor-pointer bg-black text-white px-8 py-4 rounded-full text-[0.65rem] font-medium flex items-center space-x-2 hover:bg-brand-hover-blue transition-all w-fit group uppercase tracking-widest'>
               <span>Daha fazla bilgi</span>
               <ArrowUpRight className='w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform' />
             </button>
@@ -127,7 +127,7 @@ export default function SennheiserPage() {
                   cx='24' cy='24' r='22' stroke='currentColor' strokeWidth='2' fill='transparent'
                   strokeDasharray='138.23' key={current}
                   style={{ strokeDashoffset: 138.23, animation: `countdown ${duration}ms linear forwards` }}
-                  className='text-hover-blue'
+                  className='text-brand-hover-blue'
                 />
               </svg>
               <span className='absolute text-[10px] font-medium text-black whitespace-nowrap tabular-nums'>
@@ -136,10 +136,10 @@ export default function SennheiserPage() {
             </div>
 
             <div className='flex space-x-2'>
-              <button onClick={prevSlide} className='cursor-pointer group w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-hover-blue transition-all duration-300'>
+              <button onClick={prevSlide} className='cursor-pointer group w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-brand-hover-blue transition-all duration-300'>
                 <ChevronLeft className='w-5 h-5 text-dark-gray group-hover:text-white transition-colors' />
               </button>
-              <button onClick={nextSlide} className='cursor-pointer group w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-hover-blue transition-all duration-300'>
+              <button onClick={nextSlide} className='cursor-pointer group w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-brand-hover-blue transition-all duration-300'>
                 <ChevronRight className='w-5 h-5 text-dark-gray group-hover:text-white transition-colors' />
               </button>
             </div>
@@ -177,7 +177,7 @@ export default function SennheiserPage() {
           <div className='w-full flex-shrink-0 pt-0 relative z-20'>
             <h3 className='text-[1.5rem] font-medium text-dark-gray mb-0 tracking-tight'>MD 421 Kompakt</h3>
             <h3 className='text-[1.5rem] font-medium mb-6 leading-tight'>Canlı ve kayıt uygulamaları için çok amaçlı dinamik kardioid mikrofon</h3>
-            <button className='cursor-pointer bg-black text-white px-8 py-4 rounded-full text-[0.65rem] font-medium flex items-center space-x-2 hover:bg-hover-blue transition-all w-fit group uppercase tracking-widest'>
+            <button className='cursor-pointer bg-black text-white px-8 py-4 rounded-full text-[0.65rem] font-medium flex items-center space-x-2 hover:bg-brand-hover-blue transition-all w-fit group uppercase tracking-widest'>
               <span>İncele</span>
               <ArrowUpRight className='w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform' />
             </button>
@@ -197,7 +197,7 @@ export default function SennheiserPage() {
                   key={cat.id}
                   onMouseEnter={() => setActiveCategory(index)}
                   className={`group cursor-pointer border-x border-b border-light-gray py-5 transition-all duration-300 flex items-center justify-between px-4 ${
-                    activeCategory === index ? 'bg-hover-blue text-white' : 'bg-transparent text-black'
+                    activeCategory === index ? 'bg-brand-hover-blue text-white' : 'bg-transparent text-black'
                   }`}
                 >
                   <h3 className='text-[1.5rem] font-medium tracking-tight'>{cat.name}</h3>
@@ -208,7 +208,7 @@ export default function SennheiserPage() {
               ))}
             </div>
 
-            <button className='cursor-pointer group mt-6 bg-black text-white px-8 py-4 rounded-full text-[0.65rem] font-medium w-fit flex items-center space-x-2 hover:bg-hover-blue transition-colors uppercase tracking-widest'>
+            <button className='cursor-pointer group mt-6 bg-black text-white px-8 py-4 rounded-full text-[0.65rem] font-medium w-fit flex items-center space-x-2 hover:bg-brand-hover-blue transition-colors uppercase tracking-widest'>
               <span>Tüm ürünleri görüntüle</span>
               <ArrowUpRight className='w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform' />
             </button>
