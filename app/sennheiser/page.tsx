@@ -7,8 +7,8 @@ import { ArrowUpRight, ArrowRight } from 'lucide-react';
 const slides = [
   {
     id: 1,
-    title: 'spectera',
-    subtitle: 'dünyanın ilk geniş bant ve çift yönlü kablosuz ekosistemi!',
+    title: 'Spectera',
+    subtitle: 'Dünyanın ilk geniş bant ve çift yönlü kablosuz ekosistemi!',
     productImg: '/images/hero-slide/spectera-unit.avif',
     lifestyleImg: '/images/hero-slide/Spectera_Product_Shot_In_Use_39_.webp',
     alt: 'spectera system',
@@ -16,7 +16,7 @@ const slides = [
   },
   {
     id: 2,
-    title: 'teamconnect bars',
+    title: 'TeamConnect Bars',
     subtitle: 'sınıfının en fazla özelliğe sahip çok işlevli işitsel ve görsel konferans cihazları',
     productImg: '/images/hero-slide/teamconnect-bar.avif',
     lifestyleImg: '/images/hero-slide/teamconnect-meeting.webp',
@@ -26,7 +26,7 @@ const slides = [
   {
     id: 3,
     title: 'e904',
-    subtitle: 'bu ayın mikrofonu',
+    subtitle: 'Bu ayın mikrofonu',
     productImg: '/images/hero-slide/e904.webp',
     lifestyleImg: '/images/hero-slide/e904-drum.webp',
     alt: 'e904',
@@ -34,8 +34,8 @@ const slides = [
   },
   {
     id: 4,
-    title: 'yeni',
-    subtitle: 'intermodülasyonsuz (girişimsiz) rahat bir frekans dağılımından daha fazlası',
+    title: 'YENİ',
+    subtitle: 'Intermodülasyonsuz (girişimsiz) rahat bir frekans dağılımından daha fazlası',
     productImg: '/images/hero-slide/holidaysavings.avif',
     lifestyleImg: '/images/hero-slide/banner-holidaysavings.webp',
     alt: 'hd 660s2',
@@ -118,7 +118,7 @@ export default function SennheiserPage() {
             </button>
           </div>
 
-          {/* updated navigation area from products page */}
+          {/* navigation area from products page */}
           <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
             <div className='text-[13px] font-medium text-black tabular-nums'>
               {current + 1} / {slides.length}
@@ -233,13 +233,6 @@ export default function SennheiserPage() {
           </div>
         </div>
       </section>
-
-      <style jsx global>{`
-        @keyframes countdown {
-          from { stroke-dashoffset: 157.08; }
-          to { stroke-dashoffset: 0; }
-        }
-      `}</style>
     </div>
   );
 }
