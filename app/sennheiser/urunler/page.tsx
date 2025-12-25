@@ -38,31 +38,40 @@ export default function SennheiserMK4Page() {
               ))}
             </div>
 
-            {/* GALLERY NAVIGATION */}
+            {/* GALLERY NAVIGATION: Updated to match original Sennheiser DOM order */}
             <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
-              <div className='text-[13px] font-medium text-black tabular-nums'>
-                {currentImg + 1} / {productImages.length}
-              </div>
               <div className='flex gap-2'>
                 <button
+                  type='button'
+                  aria-label='Previous slide'
                   onClick={prevImg}
                   disabled={currentImg === 0}
-                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:bg-[var(--color-brand-blue)] group cursor-pointer disabled:pointer-events-none'
+                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:enabled:bg-[var(--color-brand-blue)] group cursor-pointer disabled:pointer-events-none'
                 >
-                  <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-disabled:fill-[var(--sennheiser-disabled-gray)] group-hover:fill-white'>
+                  <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-disabled:fill-[var(--sennheiser-disabled-gray)] group-hover:enabled:fill-white'>
                     <path d='M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z'></path>
                   </svg>
                 </button>
 
                 <button
+                  type='button'
+                  aria-label='Next slide'
                   onClick={nextImg}
                   disabled={currentImg === productImages.length - 1}
-                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:bg-[var(--color-brand-blue)] group cursor-pointer disabled:pointer-events-none'
+                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:enabled:bg-[var(--color-brand-blue)] group cursor-pointer disabled:pointer-events-none'
                 >
-                  <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-disabled:fill-[var(--sennheiser-disabled-gray)] group-hover:fill-white'>
+                  <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-disabled:fill-[var(--sennheiser-disabled-gray)] group-hover:enabled:fill-white'>
                     <path d='M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z'></path>
                   </svg>
                 </button>
+              </div>
+              
+              <div 
+                className='text-[13px] font-medium text-black tabular-nums'
+                aria-live='polite'
+                role='status'
+              >
+                <div>{currentImg + 1} / {productImages.length}</div>
               </div>
             </div>
           </div>
@@ -83,11 +92,11 @@ export default function SennheiserMK4Page() {
               <span>/</span>
               <span className='hover:text-[var(--color-brand-blue)] cursor-pointer transition-colors duration-200'>Microphones</span>
               <span>/</span>
-              <span className='font-medium text-black'>MK 4</span>
+              <span className='font-medium text-black uppercase'>MK 4</span>
             </nav>
 
             <h1 className='text-[80px] leading-[0.85] font-medium mb-6 tracking-tighter'>MK 4</h1>
-            <div className='text-[14px] text-[var(--sennheiser-dark-gray)] mb-12 font-medium tracking-wide'>Article No. 504298</div>
+            <div className='text-[14px] text-[var(--sennheiser-dark-gray)] mb-12 font-medium uppercase tracking-wide'>Article No. 504298</div>
             
             <div className='mb-10'>
               <span className='text-[42px] font-medium tracking-tight'>£339.00*</span>
@@ -96,7 +105,7 @@ export default function SennheiserMK4Page() {
             </div>
 
             <div className='flex items-center gap-[6px]'>
-              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[var(--color-brand-blue)] transition-colors text-[11px] font-medium tracking-wider w-[140px] h-[54px]'>
+              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[var(--color-brand-blue)] transition-colors uppercase text-[11px] font-medium tracking-wider w-[140px] h-[54px]'>
                 Add to cart
               </button>
               <button className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center hover:bg-gray-200 transition-all group'>
@@ -115,7 +124,7 @@ export default function SennheiserMK4Page() {
                 A 1 inch true condenser capsule produces powerful warm sound. High sensitivity. 
                 Ideal for vocals and acoustic instruments.
               </p>
-              <div className='text-[22px] leading-[1.3] text-[#666] space-y-6'>
+              <div className='text-[17px] leading-[1.6] text-[#666] space-y-6'>
                 <p>
                   The MK 4 is a large-diaphragm true condenser microphone for professional studio recordings. 
                   Featuring fine resolution and outstanding sound quality, the MK 4 is easy to handle and 
