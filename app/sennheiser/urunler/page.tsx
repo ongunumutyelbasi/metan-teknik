@@ -108,7 +108,7 @@ export default function SennheiserMK4Page() {
             </div>
 
             <div className='flex items-center gap-[6px]'>
-              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#0096d6] transition-colors text-[11px] font-medium tracking-wider w-[140px] h-[54px]'>
+              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#0096d6] transition-colors text-[0.65rem] font-medium tracking-wider w-[140px] h-[54px]'>
                 Add to cart
               </button>
               <button className='w-[54px] h-[54px] rounded-full bg-[#f4f4f6] flex items-center justify-center hover:bg-[#ececf0] transition-all group'>
@@ -127,7 +127,7 @@ export default function SennheiserMK4Page() {
                 A 1 inch true condenser capsule produces powerful warm sound. High sensitivity. 
                 Ideal for vocals and acoustic instruments.
               </p>
-              <div className='text-[17px] leading-[1.2] text-[#545252] mb-[1rem]'>
+              <div className='text-[17px] leading-[1.2] text-normal text-[#545252] mb-[1rem]'>
                 <p>
                   The MK 4 is a large-diaphragm true condenser microphone for professional studio recordings. 
                   Featuring fine resolution and outstanding sound quality, the MK 4 is easy to handle and 
