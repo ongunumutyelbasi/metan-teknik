@@ -50,7 +50,7 @@ export default function SennheiserMK4Page() {
                   aria-label='Previous slide'
                   onClick={prevImg}
                   disabled={currentImg === 0}
-                  className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center transition-all duration-300 hover:enabled:bg-brand-blue group cursor-pointer disabled:cursor-default'
+                  className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center transition-all duration-300 hover:enabled:bg-brand-hover-blue group cursor-pointer disabled:cursor-default'
                 >
                   <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-dark-gray group-disabled:fill-disabled-gray group-hover:enabled:fill-white'>
                     <path d='M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z'></path>
@@ -62,7 +62,7 @@ export default function SennheiserMK4Page() {
                   aria-label='Next slide'
                   onClick={nextImg}
                   disabled={currentImg === productImages.length - 1}
-                  className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center transition-all duration-300 hover:enabled:bg-brand-blue group cursor-pointer disabled:cursor-default'
+                  className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center transition-all duration-300 hover:enabled:bg-brand-hover-blue group cursor-pointer disabled:cursor-default'
                 >
                   <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-dark-gray group-disabled:fill-disabled-gray group-hover:enabled:fill-white'>
                     <path d='M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z'></path>
@@ -79,14 +79,14 @@ export default function SennheiserMK4Page() {
           <div className='h-screen flex flex-col px-6 pb-6 pt-20 justify-end'>
             <nav aria-label='Breadcrumb navigation' className='flex items-center gap-2 mb-8 text-[13px] text-dark-gray font-normal'>
               <button className='group flex items-center cursor-pointer'>
-                <svg width='14' height='14' fill='none' viewBox='0 0 24 24' className='transition-colors duration-200 group-hover:text-brand-blue'>
+                <svg width='14' height='14' fill='none' viewBox='0 0 24 24' className='transition-colors duration-200 group-hover:text-brand-hover-blue'>
                    <path fill='currentColor' d='M19.5 9.75 12 2.25l-7.5 7.5V21h5.25v-7.5h4.5V21h5.25z'></path>
                 </svg>
               </button>
               <span>/</span>
-              <span className='text-[14px] hover:text-brand-blue cursor-pointer transition-colors duration-200'>Products</span>
+              <span className='text-[14px] hover:text-brand-hover-blue cursor-pointer transition-colors duration-200'>Products</span>
               <span>/</span>
-              <span className='text-[14px] hover:text-brand-blue cursor-pointer transition-colors duration-200'>Microphones</span>
+              <span className='text-[14px] hover:text-brand-hover-blue cursor-pointer transition-colors duration-200'>Microphones</span>
               <span>/</span>
               <span className='text-[14px] font-medium text-black'>MK 4</span>
             </nav>
@@ -101,7 +101,7 @@ export default function SennheiserMK4Page() {
             </div>
 
             <div className='flex items-center gap-[6px]'>
-              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-brand-blue transition-colors text-[0.65rem] font-medium w-[140px] h-[54px]'>
+              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-brand-hover-blue transition-colors text-[0.65rem] font-medium w-[140px] h-[54px]'>
                 Add to cart
               </button>
               <button className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-light-gray transition-all group'>

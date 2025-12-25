@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowRight } from 'lucide-reac
 const slides = [
   {
     id: 1,
-    title: 'spectera',
-    subtitle: 'dünyanın ilk geniş bant ve çift yönlü kablosuz ekosistemi!',
+    title: 'Spectera',
+    subtitle: 'Dünyanın ilk geniş bant ve çift yönlü kablosuz ekosistemi!',
     productImg: '/images/hero-slide/spectera-unit.avif',
     lifestyleImg: '/images/hero-slide/Spectera_Product_Shot_In_Use_39_.webp',
     alt: 'spectera system',
@@ -16,8 +16,8 @@ const slides = [
   },
   {
     id: 2,
-    title: 'teamconnect bars',
-    subtitle: 'sınıfının en fazla özelliğe sahip çok işlevli işitsel ve görsel konferans cihazları',
+    title: 'TeamConnect Bars',
+    subtitle: 'Sınıfının en fazla özelliğe sahip çok işlevli işitsel ve görsel konferans cihazları',
     productImg: '/images/hero-slide/teamconnect-bar.avif',
     lifestyleImg: '/images/hero-slide/teamconnect-meeting.webp',
     alt: 'teamconnect bars',
@@ -26,7 +26,7 @@ const slides = [
   {
     id: 3,
     title: 'e904',
-    subtitle: 'bu ayın mikrofonu',
+    subtitle: 'Bu ayın mikrofonu',
     productImg: '/images/hero-slide/e904.webp',
     lifestyleImg: '/images/hero-slide/e904-drum.webp',
     alt: 'e904',
@@ -34,8 +34,8 @@ const slides = [
   },
   {
     id: 4,
-    title: 'yeni',
-    subtitle: 'intermodülasyonsuz (girişimsiz) rahat bir frekans dağılımından daha fazlası',
+    title: 'Yeni',
+    subtitle: 'Intermodülasyonsuz (girişimsiz) rahat bir frekans dağılımından daha fazlası',
     productImg: '/images/hero-slide/holidaysavings.avif',
     lifestyleImg: '/images/hero-slide/banner-holidaysavings.webp',
     alt: 'hd 660s2',
@@ -132,7 +132,7 @@ export default function SennheiserPage() {
                 />
               </svg>
               <div className='absolute inset-0 flex items-center justify-center'>
-                <span className='text-[9px] font-medium text-black whitespace-nowrap tabular-nums leading-none'>
+                <span className='text-[0.65rem] font-medium text-black whitespace-nowrap tabular-nums leading-none'>
                   {current + 1} / {slides.length}
                 </span>
               </div>
