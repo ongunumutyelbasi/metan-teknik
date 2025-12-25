@@ -139,7 +139,7 @@ export default function SennheiserPage() {
             </div>
 
             {/* arrow buttons */}
-            <div className='flex space-x-2 items-center'>
+            <div className='relative flex space-x-2 items-center'>
               <button onClick={prevSlide} className='cursor-pointer group w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-brand-hover-blue transition-all duration-300'>
                 <ChevronLeft className='w-5 h-5 text-dark-gray group-hover:text-white transition-colors' />
               </button>
