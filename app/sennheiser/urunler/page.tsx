@@ -106,7 +106,16 @@ export default function SennheiserMK4Page() {
               </div>
 
               <div className='flex items-center gap-4'>
-                <button className='flex-1 bg-black text-white py-5 rounded-full text-[14px] font-bold hover:bg-[#333] transition-all tracking-widest uppercase'>
+                {/* Updated Button based on exact CSS Rules provided */}
+                <button 
+                  className='flex-1 flex items-center justify-center gap-[6px] rounded-[50rem] border border-transparent transition-[color,background-color,border] duration-200 ease-in-out bg-[#000000] text-[#ffffff] hover:bg-[#037cc2] active:bg-[#000000] active:border-[#35a0d8] disabled:bg-[#f4f4f6] disabled:text-[#adadad] uppercase tracking-widest'
+                  style={{
+                    padding: '20px 18px 18px',
+                    fontSize: '13px',
+                    fontWeight: '500',
+                    lineHeight: '1.0769230769'
+                  }}
+                >
                   Add to cart
                 </button>
                 <button className='w-[60px] h-[60px] rounded-full bg-[#f6f6f6] border border-transparent flex items-center justify-center hover:bg-[#eeeeee] transition-all group'>
@@ -117,14 +126,14 @@ export default function SennheiserMK4Page() {
           </div>
 
           {/* FOLD 2: Description Section (Sits below initial fold) */}
-          <div className='px-[20px] pb-[20px] pt-12 border-t border-gray-50'>
+          <div className='px-[1rem] pb-[1rem] pt-12 border-t border-gray-50'>
             <div className='max-w-full'>
               <p className='text-[1rem] leading-[1.2] font-semibold text-black mb-10'>
                 Professional quality cardioid condenser microphone for home, project, and professional studios. 
                 A 1 inch true condenser capsule produces powerful warm sound. High sensitivity. 
                 Ideal for vocals and acoustic instruments.
               </p>
-              <p className='text-[18px] leading-[1.2] font-normal text-[#666666]'>
+              <p className='text-[1rem] leading-[1.2] font-normal text-[#666666]'>
                 The MK 4 is a large-diaphragm true condenser microphone for professional studio recordings. 
                 Featuring fine resolution and outstanding sound quality, the MK 4 is easy to handle and 
                 excellent value for money, making it an ideal choice for professional project studios and 
