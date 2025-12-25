@@ -91,15 +91,15 @@ export default function SennheiserMK4Page() {
             <nav aria-label='Breadcrumb navigation' className='flex items-center gap-2 mb-8 text-[13px] text-[#666] font-normal'>
               <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M19.5 9.75 12 2.25l-7.5 7.5V21h5.25v-7.5h4.5V21h5.25z'></path></svg>
               <span>/</span>
-              <span className='hover:text-black cursor-pointer'>Products</span>
+              <span className='hover:text-brand-blue cursor-pointer'>Products</span>
               <span>/</span>
-              <span className='hover:text-black cursor-pointer'>Microphones</span>
+              <span className='hover:text-brand-blue cursor-pointer'>Microphones</span>
               <span>/</span>
-              <span className='font-semibold text-black uppercase'>MK 4</span>
+              <span className='font-semibold hover:text-brand-blue text-black'>MK 4</span>
             </nav>
 
             <h1 className='text-[80px] leading-[0.85] font-semibold mb-6 tracking-tighter'>MK 4</h1>
-            <div className='text-[14px] text-[#666] mb-12 font-normal uppercase tracking-wide'>Article No. 504298</div>
+            <div className='text-[14px] text-[#666] mb-12 font-normal tracking-wide'>Article No. 504298</div>
             
             <div className='mb-10'>
               <span className='text-[42px] font-semibold tracking-tight'>£339.00*</span>
@@ -108,7 +108,7 @@ export default function SennheiserMK4Page() {
             </div>
 
             <div className='flex items-center gap-[6px]'>
-              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#037cc2] transition-colors uppercase text-[11px] font-semibold tracking-wider w-[140px] h-[54px]'>
+              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#037cc2] transition-colors text-[11px] font-semibold tracking-wider w-[140px] h-[54px]'>
                 Add to cart
               </button>
               <button className='w-[54px] h-[54px] rounded-full bg-[#f4f4f6] flex items-center justify-center hover:bg-gray-200 transition-all'>
