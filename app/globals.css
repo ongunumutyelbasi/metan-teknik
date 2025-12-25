@@ -11,6 +11,7 @@
   --color-dark-gray: #525252;
   --sennheiser-disabled-gray: rgb(173, 173, 173);
   --sennheiser-dark-gray: rgb(84, 82, 82);
+  --sennheiser-light-gray: rgb(236, 236, 240);
   --sennheiser-very-light-gray: rgb(244, 244, 246);
 
   /* Font Family Mapping for Tailwind v4

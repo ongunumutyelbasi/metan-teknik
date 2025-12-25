@@ -21,7 +21,7 @@ export default function SennheiserMK4Page() {
       <main className='flex w-full'>
         
         {/* LEFT PANEL: Sticky Media */}
-        <div className='w-1/2 bg-[#f0f0f2] border-r border-gray-100 relative'>
+        <div className='w-1/2 bg-[var(--sennheiser-light-gray)] border-r border-gray-100 relative'>
           <div className='sticky top-0 h-screen flex flex-col pt-[69px]'>
             <div className='flex-1 flex items-center justify-center relative p-12 lg:p-24'> 
               <div className='relative w-full h-full max-w-[500px] aspect-square'>
