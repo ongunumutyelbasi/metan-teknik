@@ -108,11 +108,11 @@ export default function SennheiserMK4Page() {
                   style={{
                     width: '106px',
                     height: '54px',
-                    paddingTop: '20px',    // 1rem
-                    paddingBottom: '18px', // 0.9rem
-                    paddingLeft: '18px',   // 0.9rem
-                    paddingRight: '18px',  // 0.9rem
-                    fontSize: '13px',      // 0.65rem
+                    paddingTop: '1rem',    // 1rem
+                    paddingBottom: '0.9rem', // 0.9rem
+                    paddingLeft: '0.9rem',   // 0.9rem
+                    paddingRight: '0.9rem',  // 0.9rem
+                    fontSize: '0.65rem',      // 0.65rem
                     fontWeight: '500',
                     lineHeight: '1.0769230769',
                   }}
