@@ -66,7 +66,7 @@ export default function SennheiserMK4Page() {
                     width="12" 
                     height="12" 
                     viewBox="0 0 32 32" 
-                    className="transition-colors duration-300 fill-black group-disabled:fill-black/20 group-hover:fill-white group-disabled:group-hover:fill-black/20"
+                    className="transition-colors duration-300 fill-[#666666] group-disabled:fill-[#666666]/20 group-hover:fill-white group-disabled:group-hover:fill-[#666666]/20"
                   >
                     <path d="M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z"></path>
                   </svg>
@@ -82,7 +82,7 @@ export default function SennheiserMK4Page() {
                     width="12" 
                     height="12" 
                     viewBox="0 0 32 32" 
-                    className="transition-colors duration-300 fill-black group-disabled:fill-black/20 group-hover:fill-white group-disabled:group-hover:fill-black/20"
+                    className="transition-colors duration-300 fill-[#666666] group-disabled:fill-[#666666]/20 group-hover:fill-white group-disabled:group-hover:fill-[#666666]/20"
                   >
                     <path d="M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z"></path>
                   </svg>
