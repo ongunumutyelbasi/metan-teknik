@@ -120,14 +120,14 @@ export default function SennheiserMK4Page() {
           </div>
 
           {/* Detailed Description Section: Updated with px-6 and py-6 and line-height 1.75 */}
-          <div className='px-6 py-6 border-t border-gray-100 font-medium'>
+          <div className='px-6 py-6 font-medium'>
             <div className='max-w-full'>
-              <p className='text-[1rem] leading-[1.1] text-black mb-[1rem]'>
+              <p className='text-[1rem] leading-[1.2] text-black mb-[1rem]'>
                 Professional quality cardioid condenser microphone for home, project, and professional studios. 
                 A 1 inch true condenser capsule produces powerful warm sound. High sensitivity. 
                 Ideal for vocals and acoustic instruments.
               </p>
-              <div className='text-[17px] leading-[1.1] text-[#545252] mb-[1rem]'>
+              <div className='text-[17px] leading-[1.2] text-[#545252] mb-[1rem]'>
                 <p>
                   The MK 4 is a large-diaphragm true condenser microphone for professional studio recordings. 
                   Featuring fine resolution and outstanding sound quality, the MK 4 is easy to handle and 
