@@ -2,7 +2,23 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Star } from 'lucide-react';
+import localFont from 'next/font/local';
+
+const sennheiserNeue = localFont({
+  src: [
+    {
+      path: '../../public/fonts/sennheiser-neue/senn-regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/sennheiser-neue/senn-sb.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-sennheiser'
+});
 
 export default function SennheiserMK4Page() {
   const [currentImg, setCurrentImg] = useState(0);
@@ -16,7 +32,7 @@ export default function SennheiserMK4Page() {
   const prevImg = () => setCurrentImg((prev) => (prev === 0 ? productImages.length - 1 : prev - 1));
 
   return (
-    <div className='min-h-screen bg-white text-[#1a1a1a] font-sans selection:bg-black selection:text-white'>
+    <div className={`${sennheiserNeue.variable} min-h-screen bg-white text-[#1a1a1a] font-[family-name:var(--font-sennheiser)] selection:bg-black selection:text-white`}>
       <main className='flex w-full'>
         
         {/* LEFT PANEL: Sticky Media with sliding logic */}
@@ -41,7 +57,7 @@ export default function SennheiserMK4Page() {
 
             {/* RESTORED NAVIGATION BUTTONS */}
             <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
-              <div className='text-[13px] font-bold text-black tabular-nums'>
+              <div className='text-[13px] font-semibold text-black tabular-nums'>
                 {currentImg + 1} / {productImages.length}
               </div>
               <div className='flex gap-2'>
@@ -83,28 +99,28 @@ export default function SennheiserMK4Page() {
         <div className='w-1/2'>
           {/* Viewport 1: Hero Information */}
           <div className='h-screen flex flex-col px-16 pt-20 justify-center'>
-            <nav aria-label='Breadcrumb navigation' className='flex items-center gap-2 mb-8 text-[13px] text-[#666]'>
+            <nav aria-label='Breadcrumb navigation' className='flex items-center gap-2 mb-8 text-[13px] text-[#666] font-normal'>
               <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24'><path fill='currentColor' d='M19.5 9.75 12 2.25l-7.5 7.5V21h5.25v-7.5h4.5V21h5.25z'></path></svg>
               <span>/</span>
               <span className='hover:text-black cursor-pointer'>Products</span>
               <span>/</span>
               <span className='hover:text-black cursor-pointer'>Microphones</span>
               <span>/</span>
-              <span className='font-bold text-black uppercase'>MK 4</span>
+              <span className='font-semibold text-black uppercase'>MK 4</span>
             </nav>
 
-            <h1 className='text-[80px] leading-[0.85] font-bold mb-6 tracking-tighter'>MK 4</h1>
-            <div className='text-[14px] text-[#666] mb-12 font-medium uppercase tracking-wide'>Article No. 504298</div>
+            <h1 className='text-[80px] leading-[0.85] font-semibold mb-6 tracking-tighter'>MK 4</h1>
+            <div className='text-[14px] text-[#666] mb-12 font-normal uppercase tracking-wide'>Article No. 504298</div>
             
             <div className='mb-10'>
-              <span className='text-[42px] font-bold tracking-tight'>£339.00*</span>
-              <div className='text-[12px] text-[#666] mt-1 font-medium'>*incl. VAT</div>
-              <div className='text-[14px] text-black font-medium mt-4'>Delivery time: 3-5 days</div>
+              <span className='text-[42px] font-semibold tracking-tight'>£339.00*</span>
+              <div className='text-[12px] text-[#666] mt-1 font-normal'>*incl. VAT</div>
+              <div className='text-[14px] text-black font-semibold mt-4'>Delivery time: 3-5 days</div>
             </div>
 
             <div className='flex items-center gap-[6px]'>
               <button 
-                className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#037cc2] transition-colors uppercase text-[11px] font-bold tracking-wider w-[140px] h-[54px]'
+                className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#037cc2] transition-colors uppercase text-[11px] font-semibold tracking-wider w-[140px] h-[54px]'
               >
                 Add to cart
               </button>
@@ -117,14 +133,14 @@ export default function SennheiserMK4Page() {
           </div>
 
           {/* Scrolled Section: Description appears as you scroll up */}
-          <div className='px-16 pb-32 border-t border-gray-50 pt-16'>
+          <div className='px-16 pb-32 border-t border-gray-50 pt-16 font-normal'>
             <div className='max-w-full'>
-              <p className='text-[22px] leading-[1.3] font-bold text-black mb-10'>
+              <p className='text-[22px] leading-[1.3] font-semibold text-black mb-10'>
                 Professional quality cardioid condenser microphone for home, project, and professional studios. 
                 A 1 inch true condenser capsule produces powerful warm sound. High sensitivity. 
                 Ideal for vocals and acoustic instruments.
               </p>
-              <div className='text-[17px] leading-[1.6] text-[#666] font-normal space-y-6'>
+              <div className='text-[17px] leading-[1.6] text-[#666] space-y-6'>
                 <p>
                   The MK 4 is a large-diaphragm true condenser microphone for professional studio recordings. 
                   Featuring fine resolution and outstanding sound quality, the MK 4 is easy to handle and 
