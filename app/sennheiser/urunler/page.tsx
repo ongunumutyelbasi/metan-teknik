@@ -4,16 +4,16 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import localFont from 'next/font/local';
 
-/* Updated path to use absolute project-root referencing for Vercel compatibility */
+/* Standard project-root referencing for Sennheiser Neue fonts */
 const sennheiserNeue = localFont({
   src: [
     {
-      path: './public/fonts/sennheiser-neue/senn-regular.woff2',
+      path: '../../../public/fonts/sennheiser-neue/senn-regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: './public/fonts/sennheiser-neue/senn-sb.woff2',
+      path: '../../../public/fonts/sennheiser-neue/senn-sb.woff2',
       weight: '600',
       style: 'normal',
     },
@@ -56,7 +56,6 @@ export default function SennheiserMK4Page() {
               ))}
             </div>
 
-            {/* RESTORED NAVIGATION BUTTONS */}
             <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
               <div className='text-[13px] font-semibold text-black tabular-nums'>
                 {currentImg + 1} / {productImages.length}
@@ -126,8 +125,17 @@ export default function SennheiserMK4Page() {
                 Ideal for vocals and acoustic instruments.
               </p>
               <div className='text-[17px] leading-[1.6] text-[#666] space-y-6'>
-                <p>The MK 4 is a large-diaphragm true condenser microphone...</p>
-                <p>It features a 1 inch true condenser capsule...</p>
+                <p>
+                  The MK 4 is a large-diaphragm true condenser microphone for professional studio recordings. 
+                  Featuring fine resolution and outstanding sound quality, the MK 4 is easy to handle and 
+                  excellent value for money, making it an ideal choice for professional project studios and 
+                  home recordists. 
+                </p>
+                <p>
+                  It features a 1 inch true condenser capsule based on the acoustics of the e 965 high-end vocal mic, 
+                  optimised for recording. Its transducer being manufactured in the same clean room as all high-end 
+                  Sennheiser condenser capsules.
+                </p>
               </div>
             </div>
           </div>
