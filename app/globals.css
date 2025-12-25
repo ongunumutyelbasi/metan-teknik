@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* 1. Define Font-Face */
+/* 1. Sennheiser Neue Font-Face */
 @font-face {
   font-family: 'Sennheiser Neue';
   src: url('/fonts/sennheiser-neue/senn-regular.woff2') format('woff2');
@@ -15,24 +15,51 @@
   font-style: normal;
 }
 
+/* 2. Neumann (FF Unit Pro) Font-Face Restoration */
+@font-face {
+  font-family: 'FF Unit Pro';
+  src: url('/fonts/ff-unit-pro/FF Unit Pro Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FF Unit Pro';
+  src: url('/fonts/ff-unit-pro/FF Unit Pro Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FF Unit Pro';
+  src: url('/fonts/ff-unit-pro/FF Unit Pro Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
   /* Sennheiser Exact Base Font Size */
   font-size: 20px;
 
-  /* Brand Colors from Sennheiser Root Findings */
+  /* Sennheiser Brand Colors */
   --pure-black: #000000;
   --pure-white: #ffffff;
-  --sennheiser-blue: rgb(3, 124, 194);
-  --hover-blue: rgb(3, 124, 194);
+  --sennheiser-blue: rgb(0, 150, 214);   
+  --hover-blue: rgb(3, 124, 194);        
   --petrol: #003746;
   --light-grey: #ececf0;
   --very-light-grey: #f4f4f6;
   --disabled-grey: #adadad;
   --grey-on-light: #545252;
+
+  /* Existing Custom Brand Variables */
+  --metan-orange: #df532b;
+  --neumann-orange: #ef7622;
+  --merging-red: #fe6466;
 }
 
 @theme {
-  /* Synced Tailwind Theme Colors */
+  /* Sennheiser Theme Mapping */
   --color-brand-blue: var(--sennheiser-blue);
   --color-brand-hover-blue: var(--hover-blue);
   --color-sennheiser-gray: var(--very-light-grey);
@@ -41,18 +68,18 @@
   --color-disabled-gray: var(--disabled-grey);
   --color-light-gray: var(--light-grey);
   
-  /* Retaining your existing palette */
-  --color-metan-orange: #df532b;
-  --color-neumann-orange: #ef7622;
-  --color-merging-red: #fe6466;
+  /* Existing Palette Integration */
+  --color-metan-orange: var(--metan-orange);
+  --color-neumann-orange: var(--neumann-orange);
+  --color-merging-red: var(--merging-red);
 
   /* Font Mapping */
   --font-sennheiser: "Sennheiser Neue", ui-sans-serif, system-ui;
+  --font-neumann: "FF Unit Pro", ui-sans-serif, system-ui;
 }
 
 @layer base {
   html {
-    /* Critical for proper rem scaling and type rendering */
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
