@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 
 const slides = [
   {
     id: 1,
-    title: 'Spectera',
-    subtitle: 'Dünyanın ilk geniş bant ve çift yönlü kablosuz ekosistemi!',
+    title: 'spectera',
+    subtitle: 'dünyanın ilk geniş bant ve çift yönlü kablosuz ekosistemi!',
     productImg: '/images/hero-slide/spectera-unit.avif',
     lifestyleImg: '/images/hero-slide/Spectera_Product_Shot_In_Use_39_.webp',
     alt: 'spectera system',
@@ -16,8 +16,8 @@ const slides = [
   },
   {
     id: 2,
-    title: 'TeamConnect Bars',
-    subtitle: 'Sınıfının en fazla özelliğe sahip çok işlevli işitsel ve görsel konferans cihazları',
+    title: 'teamconnect bars',
+    subtitle: 'sınıfının en fazla özelliğe sahip çok işlevli işitsel ve görsel konferans cihazları',
     productImg: '/images/hero-slide/teamconnect-bar.avif',
     lifestyleImg: '/images/hero-slide/teamconnect-meeting.webp',
     alt: 'teamconnect bars',
@@ -26,7 +26,7 @@ const slides = [
   {
     id: 3,
     title: 'e904',
-    subtitle: 'Bu ayın mikrofonu',
+    subtitle: 'bu ayın mikrofonu',
     productImg: '/images/hero-slide/e904.webp',
     lifestyleImg: '/images/hero-slide/e904-drum.webp',
     alt: 'e904',
@@ -34,8 +34,8 @@ const slides = [
   },
   {
     id: 4,
-    title: 'Yeni',
-    subtitle: 'Intermodülasyonsuz (girişimsiz) rahat bir frekans dağılımından daha fazlası',
+    title: 'yeni',
+    subtitle: 'intermodülasyonsuz (girişimsiz) rahat bir frekans dağılımından daha fazlası',
     productImg: '/images/hero-slide/holidaysavings.avif',
     lifestyleImg: '/images/hero-slide/banner-holidaysavings.webp',
     alt: 'hd 660s2',
@@ -118,33 +118,33 @@ export default function SennheiserPage() {
             </button>
           </div>
 
-          {/* navigation & timer area - perfectly aligned bottom and right margins */}
-          <div className='absolute bottom-[30px] right-[30px] flex items-center space-x-4 z-30'>
-            {/* circular timer & pagination */}
-            <div className='relative flex items-center justify-center w-[54px] h-[54px]'>
-              <svg className='w-full h-full transform -rotate-90' viewBox='0 0 54 54'>
-                <circle cx='27' cy='27' r='25' stroke='currentColor' strokeWidth='2' fill='transparent' className='text-light-gray' />
-                <circle
-                  cx='27' cy='27' r='25' stroke='currentColor' strokeWidth='2' fill='transparent'
-                  strokeDasharray='157.08' key={current}
-                  style={{ strokeDashoffset: 157.08, animation: `countdown ${duration}ms linear forwards` }}
-                  className='text-brand-hover-blue'
-                />
-              </svg>
-              <div className='absolute inset-0 flex items-center justify-center'>
-                <span className='text-[0.65rem] font-medium text-black whitespace-nowrap tabular-nums leading-none'>
-                  {current + 1} / {slides.length}
-                </span>
-              </div>
+          {/* updated navigation area from products page */}
+          <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
+            <div className='text-[13px] font-medium text-black tabular-nums'>
+              {current + 1} / {slides.length}
             </div>
 
-            {/* arrow buttons */}
-            <div className='flex space-x-2 items-center'>
-              <button onClick={prevSlide} className='cursor-pointer group w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-brand-hover-blue transition-all duration-300'>
-                <ChevronLeft className='w-5 h-5 text-dark-gray group-hover:text-white transition-colors' />
+            <div className='flex gap-2'>
+              <button
+                type='button'
+                aria-label='previous slide'
+                onClick={prevSlide}
+                className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center transition-all duration-300 hover:enabled:bg-brand-hover-blue group cursor-pointer disabled:cursor-default'
+              >
+                <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-dark-gray group-hover:enabled:fill-white'>
+                  <path d='M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z'></path>
+                </svg>
               </button>
-              <button onClick={nextSlide} className='cursor-pointer group w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-brand-hover-blue transition-all duration-300'>
-                <ChevronRight className='w-5 h-5 text-dark-gray group-hover:text-white transition-colors' />
+
+              <button
+                type='button'
+                aria-label='next slide'
+                onClick={nextSlide}
+                className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center transition-all duration-300 hover:enabled:bg-brand-hover-blue group cursor-pointer disabled:cursor-default'
+              >
+                <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-dark-gray group-hover:enabled:fill-white'>
+                  <path d='M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z'></path>
+                </svg>
               </button>
             </div>
           </div>
