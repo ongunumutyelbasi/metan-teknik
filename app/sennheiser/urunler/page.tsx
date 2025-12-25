@@ -7,10 +7,10 @@ import { Star } from 'lucide-react';
 export default function SennheiserMK4Page() {
   const [currentImg, setCurrentImg] = useState(0);
   
-  const productImages = [
-    'https://www.sennheiser.com/cdn-cgi/image/width=1080,format=avif,quality=75/globalassets/digizuite/38564-en-mk_4_product_shot_cutout_solo.png.png',
-    'https://www.sennheiser.com/cdn-cgi/image/width=1080,format=avif,quality=75/globalassets/digizuite/48198-en-spectera_base_station_product_shot_cutout_front.png'
-  ];
+    const productImages = [
+        '/images/sennheiser/urunler/mk4/mk4-1.webp',
+        '/images/sennheiser/urunler/mk4/mk4-2.avif'
+    ];
 
   const nextImg = () => setCurrentImg((prev) => (prev === productImages.length - 1 ? 0 : prev + 1));
   const prevImg = () => setCurrentImg((prev) => (prev === 0 ? productImages.length - 1 : prev - 1));
