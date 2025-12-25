@@ -39,7 +39,7 @@ export default function SennheiserMK4Page() {
             </div>
 
             {/* GALLERY NAVIGATION */}
-            <div className='absolute bottom-10 right-10 flex items-center gap-6 z-30'>
+            <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
               <div className='text-[13px] font-semibold text-black tabular-nums'>
                 {currentImg + 1} / {productImages.length}
               </div>
@@ -47,7 +47,7 @@ export default function SennheiserMK4Page() {
                 <button
                   onClick={prevImg}
                   disabled={currentImg === 0}
-                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:bg-[var(--color-brand-blue)] group cursor-pointer disabled:opacity-30 disabled:pointer-events-none'
+                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:bg-[var(--color-brand-blue)] group cursor-pointer disabled:pointer-events-none'
                 >
                   <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-hover:fill-white'>
                     <path d='M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z'></path>
@@ -57,7 +57,7 @@ export default function SennheiserMK4Page() {
                 <button
                   onClick={nextImg}
                   disabled={currentImg === productImages.length - 1}
-                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:bg-[var(--color-brand-blue)] group cursor-pointer disabled:opacity-30 disabled:pointer-events-none'
+                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:bg-[var(--color-brand-blue)] group cursor-pointer disabled:pointer-events-none'
                 >
                   <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-hover:fill-white'>
                     <path d='M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z'></path>
