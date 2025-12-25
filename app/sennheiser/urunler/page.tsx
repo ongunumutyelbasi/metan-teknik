@@ -40,7 +40,7 @@ export default function SennheiserMK4Page() {
             </div>
 
             {/* RESTORED NAVIGATION BUTTONS */}
-            <div className='absolute bottom-10 right-10 flex items-center gap-6 z-30'>
+            <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
               <div className='text-[13px] font-bold text-black tabular-nums'>
                 {currentImg + 1} / {productImages.length}
               </div>
