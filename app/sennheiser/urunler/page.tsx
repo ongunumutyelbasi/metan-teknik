@@ -23,15 +23,24 @@ export default function SennheiserMK4Page() {
         {/* LEFT PANEL: Sticky Media */}
         <div className='w-1/2 bg-[var(--sennheiser-light-gray)] border-r border-gray-100 relative'>
           <div className='sticky top-0 h-screen flex flex-col pt-[69px]'>
-            <div className='flex-1 flex items-center justify-center relative p-12 lg:p-24'> 
-              <div className='relative w-full h-full max-w-[500px] aspect-square'>
-                <Image 
-                  src={productImages[currentImg]}
-                  alt='MK 4'
-                  fill
-                  className='object-contain mix-blend-multiply'
-                  priority
-                />
+            <div className='flex-1 flex items-center justify-center relative p-12 lg:p-24 overflow-hidden'> 
+              
+              {/* SLIDING CONTAINER */}
+              <div 
+                className='relative w-full h-full max-w-[700px] aspect-square flex transition-transform duration-500 ease-in-out'
+                style={{ transform: `translateX(-${currentImg * 100}%)` }}
+              >
+                {productImages.map((src, index) => (
+                  <div key={index} className='relative min-w-full h-full'>
+                    <Image 
+                      src={src}
+                      alt={`MK 4 - View ${index + 1}`}
+                      fill
+                      className='object-contain mix-blend-multiply'
+                      priority={index === 0}
+                    />
+                  </div>
+                ))}
               </div>
 
               {/* NAVIGATION */}
@@ -112,18 +121,17 @@ export default function SennheiserMK4Page() {
                 <div className='text-[12px] text-[#666666] font-medium'>Delivery time: 3-5 days</div>
               </div>
 
-              {/* Flex container with fixed gap of 6px per rules */}
               <div className='flex items-center gap-[6px]'>
                 <button 
                   className='flex items-center justify-center rounded-[50rem] border border-transparent transition-[color,background-color,border] duration-200 ease-in-out bg-[#000000] text-[#ffffff] hover:bg-[#037cc2] active:bg-[#000000] active:border-[#35a0d8] disabled:bg-[#f4f4f6] disabled:text-[#adadad] uppercase'
                   style={{
                     width: '106px',
                     height: '54px',
-                    paddingTop: '1rem',    // 1rem
-                    paddingBottom: '0.9rem', // 0.9rem
-                    paddingLeft: '0.9rem',   // 0.9rem
-                    paddingRight: '0.9rem',  // 0.9rem
-                    fontSize: '0.65rem',      // 0.65rem
+                    paddingTop: '1rem',
+                    paddingBottom: '0.9rem',
+                    paddingLeft: '0.9rem',
+                    paddingRight: '0.9rem',
+                    fontSize: '0.65rem',
                     fontWeight: '500',
                     lineHeight: '1.0769230769',
                   }}
