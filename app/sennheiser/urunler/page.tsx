@@ -41,26 +41,37 @@ export default function SennheiserMK4Page() {
                 </div>
                 
                 <div className='flex gap-2'>
-                  <button 
-                    onClick={prevImg}
-                    disabled={currentImg === 0}
-                    className='w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-[#037cc2] group cursor-pointer disabled:cursor-default disabled:pointer-events-none'
-                  >
-                    <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[#666666] group-disabled:fill-[#999999] group-hover:fill-white'>
-                      <path d='M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z'></path>
-                    </svg>
-                  </button>
+                    <button
+                        onClick={prevImg}
+                        disabled={currentImg === 0}
+                        className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:bg-[var(--color-brand-blue)] group cursor-pointer disabled:cursor-default disabled:pointer-events-none'
+                    >
+                        <svg
+                        width='12'
+                        height='12'
+                        viewBox='0 0 32 32'
+                        className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-disabled:fill-[var(--sennheiser-disabled-gray)] group-hover:fill-white'
+                        >
+                        <path d='M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z'></path>
+                        </svg>
+                    </button>
 
-                  <button 
-                    onClick={nextImg}
-                    disabled={currentImg === productImages.length - 1}
-                    className='w-[54px] h-[54px] rounded-full bg-white flex items-center justify-center transition-all duration-300 hover:bg-[#037cc2] group cursor-pointer disabled:cursor-default disabled:pointer-events-none'
-                  >
-                    <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[#666666] group-disabled:fill-[#999999] group-hover:fill-white'>
-                      <path d='M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z'></path>
-                    </svg>
-                  </button>
+                    <button
+                        onClick={nextImg}
+                        disabled={currentImg === productImages.length - 1}
+                        className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:bg-[var(--color-brand-blue)] group cursor-pointer disabled:cursor-default disabled:pointer-events-none'
+                    >
+                        <svg
+                        width='12'
+                        height='12'
+                        viewBox='0 0 32 32'
+                        className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-disabled:fill-[var(--sennheiser-disabled-gray)] group-hover:fill-white'
+                        >
+                        <path d='M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z'></path>
+                        </svg>
+                    </button>
                 </div>
+
               </div>
             </div>
           </div>
