@@ -94,18 +94,18 @@ export default function SennheiserMK4Page() {
               <span className='font-medium text-black'>MK 4</span>
             </nav>
 
-            <h1 className='text-[80px] leading-[0.85] font-medium mb-6 tracking-tighter'>MK 4</h1>
-            <div className='text-[14px] text-[var(--sennheiser-dark-gray)] mb-12 font-medium tracking-wide'>Article No. 504298</div>
+            <h1 className='text-[2.5rem] leading-[0.85] font-medium mb-6 tracking-tighter'>MK 4</h1>
+            <div className='text-[1rem] text-[var(--sennheiser-dark-gray)] mb-12 font-medium tracking-wide'>Article No. 504298</div>
             
             <div className='mb-10'>
-              <span className='text-[42px] font-medium tracking-tight'>£339.00*</span>
-              <div className='text-[12px] text-[var(--sennheiser-dark-gray)] mt-1 font-medium'>*incl. VAT</div>
-              <div className='text-[14px] text-black font-medium mt-4'>Delivery time: 3-5 days</div>
+              <span className='text-[32px] font-medium tracking-tight'>£339.00*</span>
+              <div className='text-[13px] text-[var(--sennheiser-dark-gray)] mt-1 font-medium'>*incl. VAT</div>
+              <div className='text-[1rem] text-black font-medium mt-4'>Delivery time: 3-5 days</div>
             </div>
 
             <div className='flex items-center gap-[6px]'>
-              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[var(--color-brand-blue)] transition-colors text-[11px] font-medium tracking-wider w-[140px] h-[54px]'>
-                Add to cart
+              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[var(--color-brand-blue)] transition-colors text-[0.65rem] font-medium tracking-wider w-[140px] h-[54px]'>
+                Satın al
               </button>
               <button className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center hover:bg-gray-200 transition-all group'>
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
