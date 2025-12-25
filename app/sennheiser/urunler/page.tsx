@@ -95,11 +95,11 @@ export default function SennheiserMK4Page() {
               <span>/</span>
               <span className='hover:text-[#0096d6] cursor-pointer transition-colors duration-200'>Microphones</span>
               <span>/</span>
-              <span className='font-medium text-black uppercase'>MK 4</span>
+              <span className='font-medium text-black'>MK 4</span>
             </nav>
 
             <h1 className='text-[80px] leading-[0.85] font-medium mb-6 tracking-tighter'>MK 4</h1>
-            <div className='text-[14px] text-[#545252] mb-12 font-medium uppercase tracking-wide'>Article No. 504298</div>
+            <div className='text-[14px] text-[#545252] mb-12 font-medium tracking-wide'>Article No. 504298</div>
             
             <div className='mb-10'>
               <span className='text-[42px] font-medium tracking-tight'>£339.00*</span>
@@ -108,7 +108,7 @@ export default function SennheiserMK4Page() {
             </div>
 
             <div className='flex items-center gap-[6px]'>
-              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#0096d6] transition-colors uppercase text-[11px] font-medium tracking-wider w-[140px] h-[54px]'>
+              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#0096d6] transition-colors text-[11px] font-medium tracking-wider w-[140px] h-[54px]'>
                 Add to cart
               </button>
               <button className='w-[54px] h-[54px] rounded-full bg-[#f4f4f6] flex items-center justify-center hover:bg-[#ececf0] transition-all group'>
@@ -122,12 +122,12 @@ export default function SennheiserMK4Page() {
           {/* Detailed Description Section: Updated with px-6 and py-6 and line-height 1.75 */}
           <div className='px-6 py-6 border-t border-gray-100 font-medium'>
             <div className='max-w-full'>
-              <p className='text-[22px] leading-[1.3] text-black mb-10'>
+              <p className='text-[1rem] leading-[1.1] text-black mb-[1rem]'>
                 Professional quality cardioid condenser microphone for home, project, and professional studios. 
                 A 1 inch true condenser capsule produces powerful warm sound. High sensitivity. 
                 Ideal for vocals and acoustic instruments.
               </p>
-              <div className='text-[17px] leading-[1.75] text-[#545252] space-y-6 font-normal'>
+              <div className='text-[17px] leading-[1.1] text-[#545252] mb-[1rem]'>
                 <p>
                   The MK 4 is a large-diaphragm true condenser microphone for professional studio recordings. 
                   Featuring fine resolution and outstanding sound quality, the MK 4 is easy to handle and 
