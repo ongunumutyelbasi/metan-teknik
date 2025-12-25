@@ -22,7 +22,7 @@
   /* Brand Colors from Sennheiser Root Findings */
   --pure-black: #000000;
   --pure-white: #ffffff;
-  --sennheiser-blue: #0096d6;
+  --sennheiser-blue: rgb(3, 124, 194);
   --hover-blue: #037cc2;
   --petrol: #003746;
   --light-grey: #ececf0;

@@ -91,24 +91,24 @@ export default function SennheiserMK4Page() {
                 </svg>
               </button>
               <span>/</span>
-              <span className='hover:text-[#0096d6] cursor-pointer transition-colors duration-200'>Products</span>
+              <span className='text-[14px] hover:text-[#0096d6] cursor-pointer transition-colors duration-200'>Products</span>
               <span>/</span>
-              <span className='hover:text-[#0096d6] cursor-pointer transition-colors duration-200'>Microphones</span>
+              <span className='text-[14px] hover:text-[#0096d6] cursor-pointer transition-colors duration-200'>Microphones</span>
               <span>/</span>
-              <span className='font-medium text-black'>MK 4</span>
+              <span className='text-[14px] font-medium text-black'>MK 4</span>
             </nav>
 
-            <h1 className='text-[80px] leading-[0.85] font-medium mb-6 tracking-tighter'>MK 4</h1>
-            <div className='text-[14px] text-[#545252] mb-12 font-medium tracking-wide'>Article No. 504298</div>
+            <h1 className='text-[2.5rem] leading-[0.85] font-medium mb-6 tracking-tighter'>MK 4</h1>
+            <div className='text-[1rem] text-[#545252] mb-12 font-medium tracking-wide'>Article No. 504298</div>
             
             <div className='mb-10'>
-              <span className='text-[42px] font-medium tracking-tight'>£339.00*</span>
-              <div className='text-[12px] text-[#545252] mt-1 font-medium'>*incl. VAT</div>
-              <div className='text-[14px] text-black font-medium mt-4'>Delivery time: 3-5 days</div>
+              <span className='text-[32px] font-medium tracking-tight'>£339.00*</span>
+              <div className='text-[13px] text-[#545252] mt-1 font-medium'>*incl. VAT</div>
+              <div className='text-[1rem] text-black font-medium mt-4'>Delivery time: 3-5 days</div>
             </div>
 
             <div className='flex items-center gap-[6px]'>
-              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#0096d6] transition-colors text-[0.65rem] font-medium tracking-wider w-[140px] h-[54px]'>
+              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[#0096d6] transition-colors text-[0.65rem] font-medium w-[140px] h-[54px]'>
                 Add to cart
               </button>
               <button className='w-[54px] h-[54px] rounded-full bg-[#f4f4f6] flex items-center justify-center hover:bg-[#ececf0] transition-all group'>
