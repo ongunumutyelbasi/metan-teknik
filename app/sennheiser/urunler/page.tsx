@@ -40,7 +40,7 @@ export default function SennheiserMK4Page() {
 
             {/* GALLERY NAVIGATION */}
             <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
-              <div className='text-[13px] font-semibold text-black tabular-nums'>
+              <div className='text-[13px] font-medium text-black tabular-nums'>
                 {currentImg + 1} / {productImages.length}
               </div>
               <div className='flex gap-2'>
@@ -83,20 +83,20 @@ export default function SennheiserMK4Page() {
               <span>/</span>
               <span className='hover:text-[var(--color-brand-blue)] cursor-pointer transition-colors duration-200'>Microphones</span>
               <span>/</span>
-              <span className='font-semibold text-black uppercase'>MK 4</span>
+              <span className='font-medium text-black uppercase'>MK 4</span>
             </nav>
 
-            <h1 className='text-[80px] leading-[0.85] font-semibold mb-6 tracking-tighter'>MK 4</h1>
-            <div className='text-[14px] text-[#666] mb-12 font-normal uppercase tracking-wide'>Article No. 504298</div>
+            <h1 className='text-[80px] leading-[0.85] font-medium mb-6 tracking-tighter'>MK 4</h1>
+            <div className='text-[14px] text-[var(--sennheiser-dark-gray)] mb-12 font-normal uppercase tracking-wide'>Article No. 504298</div>
             
             <div className='mb-10'>
-              <span className='text-[42px] font-semibold tracking-tight'>£339.00*</span>
-              <div className='text-[12px] text-[#666] mt-1 font-normal'>*incl. VAT</div>
-              <div className='text-[14px] text-black font-semibold mt-4'>Delivery time: 3-5 days</div>
+              <span className='text-[42px] font-medium tracking-tight'>£339.00*</span>
+              <div className='text-[12px] text-[var(--sennheiser-dark-gray)] mt-1 font-normal'>*incl. VAT</div>
+              <div className='text-[14px] text-black font-medium mt-4'>Delivery time: 3-5 days</div>
             </div>
 
             <div className='flex items-center gap-[6px]'>
-              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[var(--color-brand-blue)] transition-colors uppercase text-[11px] font-semibold tracking-wider w-[140px] h-[54px]'>
+              <button className='flex items-center justify-center rounded-full bg-black text-white hover:bg-[var(--color-brand-blue)] transition-colors uppercase text-[11px] font-medium tracking-wider w-[140px] h-[54px]'>
                 Add to cart
               </button>
               <button className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center hover:bg-gray-200 transition-all group'>
@@ -110,7 +110,7 @@ export default function SennheiserMK4Page() {
           {/* Detailed Description Section */}
           <div className='px-16 pb-32 border-t border-gray-50 pt-16 font-normal'>
             <div className='max-w-full'>
-              <p className='text-[22px] leading-[1.3] font-semibold text-black mb-10'>
+              <p className='text-[22px] leading-[1.3] font-medium text-black mb-10'>
                 Professional quality cardioid condenser microphone for home, project, and professional studios. 
                 A 1 inch true condenser capsule produces powerful warm sound. High sensitivity. 
                 Ideal for vocals and acoustic instruments.
