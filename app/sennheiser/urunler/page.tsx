@@ -41,7 +41,7 @@ export default function SennheiserMK4Page() {
             </div>
 
             {/* GALLERY NAVIGATION: Synced with Sennheiser Root Variables */}
-            <div className='absolute bottom-10 right-10 flex items-center gap-8 z-30'>
+            <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
               <div 
                 className='text-[13px] font-medium text-black tabular-nums'
                 aria-live='polite'
@@ -83,7 +83,7 @@ export default function SennheiserMK4Page() {
         {/* RIGHT PANEL: Scrollable Content */}
         <div className='w-1/2'>
           {/* Hero Section: Updated with px-6 and pb-6 */}
-          <div className='h-screen flex flex-col px-6 pb-6 pt-20 justify-center'>
+          <div className='h-screen flex flex-col px-6 pb-6 pt-20 justify-end'>
             <nav aria-label='Breadcrumb navigation' className='flex items-center gap-2 mb-8 text-[13px] text-[#545252] font-normal'>
               <button className='group flex items-center cursor-pointer'>
                 <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24' className='transition-colors duration-200 group-hover:text-[#0096d6]'>
