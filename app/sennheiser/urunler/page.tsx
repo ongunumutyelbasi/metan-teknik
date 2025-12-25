@@ -18,7 +18,7 @@ export default function SennheiserMK4Page() {
     <div className='min-h-screen bg-white text-[#1a1a1a] font-sennheiser selection:bg-black selection:text-white'>
       <main className='flex w-full'>
         
-        {/* LEFT PANEL: Sticky Media */}
+        {/* LEFT PANEL: Sticky Media Area */}
         <div className='w-1/2 bg-[var(--sennheiser-light-gray)] relative border-r border-gray-100'>
           <div className='sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden'> 
             <div 
@@ -38,15 +38,23 @@ export default function SennheiserMK4Page() {
               ))}
             </div>
 
-            {/* GALLERY NAVIGATION: Updated to match original Sennheiser DOM order */}
-            <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
+            {/* GALLERY NAVIGATION */}
+            <div className='absolute bottom-10 right-10 flex items-center gap-8 z-30'>
+              <div 
+                className='text-[13px] font-medium text-black tabular-nums'
+                aria-live='polite'
+                role='status'
+              >
+                <div>{currentImg + 1} / {productImages.length}</div>
+              </div>
+
               <div className='flex gap-2'>
                 <button
                   type='button'
                   aria-label='Previous slide'
                   onClick={prevImg}
                   disabled={currentImg === 0}
-                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:enabled:bg-[var(--color-brand-blue)] group cursor-pointer disabled:pointer-events-none'
+                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:enabled:bg-[var(--color-brand-blue)] group cursor-pointer disabled:cursor-default'
                 >
                   <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-disabled:fill-[var(--sennheiser-disabled-gray)] group-hover:enabled:fill-white'>
                     <path d='M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z'></path>
@@ -58,20 +66,12 @@ export default function SennheiserMK4Page() {
                   aria-label='Next slide'
                   onClick={nextImg}
                   disabled={currentImg === productImages.length - 1}
-                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:enabled:bg-[var(--color-brand-blue)] group cursor-pointer disabled:pointer-events-none'
+                  className='w-[54px] h-[54px] rounded-full bg-[var(--sennheiser-very-light-gray)] flex items-center justify-center transition-all duration-300 hover:enabled:bg-[var(--color-brand-blue)] group cursor-pointer disabled:cursor-default'
                 >
                   <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-[var(--sennheiser-dark-gray)] group-disabled:fill-[var(--sennheiser-disabled-gray)] group-hover:enabled:fill-white'>
                     <path d='M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z'></path>
                   </svg>
                 </button>
-              </div>
-              
-              <div 
-                className='text-[13px] font-medium text-black tabular-nums'
-                aria-live='polite'
-                role='status'
-              >
-                <div>{currentImg + 1} / {productImages.length}</div>
               </div>
             </div>
           </div>
@@ -79,8 +79,7 @@ export default function SennheiserMK4Page() {
 
         {/* RIGHT PANEL: Scrollable Content */}
         <div className='w-1/2'>
-          {/* Hero Section */}
-          <div className='h-screen flex flex-col px-16 pt-20 justify-center'>
+          <div className='h-screen flex flex-col px-6 pb-6 pt-20 justify-center'>
             <nav aria-label='Breadcrumb navigation' className='flex items-center gap-2 mb-8 text-[13px] text-[#666] font-normal'>
               <button className='group flex items-center cursor-pointer'>
                 <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24' className='transition-colors duration-200 group-hover:text-[var(--color-brand-blue)]'>
@@ -116,8 +115,7 @@ export default function SennheiserMK4Page() {
             </div>
           </div>
 
-          {/* Detailed Description Section */}
-          <div className='px-16 pb-32 border-t border-gray-50 pt-16 font-medium'>
+          <div className='px-6 py-6 border-t border-gray-50 font-medium'>
             <div className='max-w-full'>
               <p className='text-[22px] leading-[1.3] text-black mb-10'>
                 Professional quality cardioid condenser microphone for home, project, and professional studios. 
@@ -134,10 +132,6 @@ export default function SennheiserMK4Page() {
                 <p>
                   It features a 1 inch true condenser capsule based on the acoustics of the e 965 high-end vocal mic, 
                   optimised for recording. Its transducer being manufactured in the same clean room as all high-end 
-                  Sennheiser condenser capsules.
-                </p>
-                <p>
-                  Made in Germany, the transducer is manufactured in the same clean room as all high-end 
                   Sennheiser condenser capsules.
                 </p>
               </div>
