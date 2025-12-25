@@ -101,11 +101,13 @@ export default function SennheiserMK4Page() {
                 <div className='text-[12px] text-[#666666] font-medium'>Delivery time: 3-5 days</div>
               </div>
 
-              <div className='flex items-center gap-4'>
-                {/* Fixed dimensions based on your specific CSS rules */}
+              {/* Flex container with fixed gap of 6px per rules */}
+              <div className='flex items-center gap-[6px]'>
                 <button 
-                  className='flex-1 flex items-center justify-center gap-[6px] rounded-[50rem] border border-transparent transition-[color,background-color,border] duration-200 ease-in-out bg-[#000000] text-[#ffffff] hover:bg-[#037cc2] active:bg-[#000000] active:border-[#35a0d8] disabled:bg-[#f4f4f6] disabled:text-[#adadad] uppercase'
+                  className='flex items-center justify-center rounded-[50rem] border border-transparent transition-[color,background-color,border] duration-200 ease-in-out bg-[#000000] text-[#ffffff] hover:bg-[#037cc2] active:bg-[#000000] active:border-[#35a0d8] disabled:bg-[#f4f4f6] disabled:text-[#adadad] uppercase'
                   style={{
+                    width: '106px',
+                    height: '54px',
                     paddingTop: '20px',    // 1rem
                     paddingBottom: '18px', // 0.9rem
                     paddingLeft: '18px',   // 0.9rem
@@ -113,19 +115,23 @@ export default function SennheiserMK4Page() {
                     fontSize: '13px',      // 0.65rem
                     fontWeight: '500',
                     lineHeight: '1.0769230769',
-                    letterSpacing: '0.05em'
                   }}
                 >
                   Add to cart
                 </button>
-                <button className='w-[60px] h-[60px] rounded-full bg-[#f6f6f6] border border-transparent flex items-center justify-center hover:bg-[#eeeeee] transition-all group'>
+                <button 
+                  className='rounded-full bg-[#f6f6f6] border border-transparent flex items-center justify-center hover:bg-[#eeeeee] transition-all group'
+                  style={{
+                    width: '54px',
+                    height: '54px'
+                  }}
+                >
                   <Star className='w-5 h-5 text-black transition-all' />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Description Section */}
           <div className='px-[1rem] pb-[1rem] pt-12 border-t border-gray-50'>
             <div className='max-w-full'>
               <p className='text-[1rem] leading-[1.2] font-semibold text-black mb-10'>
@@ -137,9 +143,7 @@ export default function SennheiserMK4Page() {
                 The MK 4 is a large-diaphragm true condenser microphone for professional studio recordings. 
                 Featuring fine resolution and outstanding sound quality, the MK 4 is easy to handle and 
                 excellent value for money, making it an ideal choice for professional project studios and 
-                home recordists. It features a 1 inch true condenser capsule based on the acoustics of the 
-                e 965 high-end vocal mic, optimised for recording. Its transducer being manufactured in the 
-                same clean room as all high-end Sennheiser condenser capsules.
+                home recordists.
               </p>
             </div>
           </div>
