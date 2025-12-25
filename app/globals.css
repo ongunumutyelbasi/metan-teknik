@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* 1. Define Font-Face here to ensure Vercel/Turbopack finds it */
+/* 1. Define Font-Face */
 @font-face {
   font-family: 'Sennheiser Neue';
   src: url('/fonts/sennheiser-neue/senn-regular.woff2') format('woff2');
@@ -15,27 +15,53 @@
   font-style: normal;
 }
 
+:root {
+  /* Sennheiser Exact Base Font Size */
+  font-size: 20px;
+
+  /* Brand Colors from Sennheiser Root Findings */
+  --pure-black: #000000;
+  --pure-white: #ffffff;
+  --sennheiser-blue: #0096d6;
+  --hover-blue: #037cc2;
+  --petrol: #003746;
+  --light-grey: #ececf0;
+  --very-light-grey: #f4f4f6;
+  --disabled-grey: #adadad;
+  --grey-on-light: #545252;
+}
+
 @theme {
-  /* Brand Colors */
-  --color-brand-blue: rgb(3, 124, 194);
-  --color-sennheiser-gray: #f4f4f6;
-  --color-sennheiser-footer: #013746;
+  /* Synced Tailwind Theme Colors */
+  --color-brand-blue: var(--sennheiser-blue);
+  --color-brand-hover-blue: var(--hover-blue);
+  --color-sennheiser-gray: var(--very-light-grey);
+  --color-sennheiser-footer: var(--petrol);
+  --color-dark-gray: var(--grey-on-light);
+  --color-disabled-gray: var(--disabled-grey);
+  --color-light-gray: var(--light-grey);
+  
+  /* Retaining your existing palette */
   --color-metan-orange: #df532b;
   --color-neumann-orange: #ef7622;
   --color-merging-red: #fe6466;
-  --color-dark-gray: #525252;
-  --sennheiser-disabled-gray: rgb(173, 173, 173);
-  --sennheiser-dark-gray: rgb(84, 82, 82);
-  --sennheiser-light-gray: rgb(236, 236, 240);
-  --sennheiser-very-light-gray: rgb(244, 244, 246);
 
-  /* 2. Map the font class */
+  /* Font Mapping */
   --font-sennheiser: "Sennheiser Neue", ui-sans-serif, system-ui;
-  --font-neumann: var(--font-ff-unit-pro);
 }
 
 @layer base {
-  html, body {
-    @apply antialiased font-sennheiser;
+  html {
+    /* Critical for proper rem scaling and type rendering */
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply font-sennheiser bg-white text-black;
+    line-height: 1.75;
+    font-weight: 400;
   }
 }
