@@ -50,7 +50,8 @@
   --light-grey: #ececf0;
   --very-light-grey: #f4f4f6;
   --disabled-grey: #adadad;
-  --grey-on-light: #545252;
+  --grey-on-light: rgb(109, 109, 111);
+  --dark-grey: rgb(84, 82, 82);
 
   /* Existing Custom Brand Variables */
   --metan-orange: #df532b;
@@ -64,9 +65,10 @@
   --color-brand-hover-blue: var(--hover-blue);
   --color-sennheiser-gray: var(--very-light-grey);
   --color-sennheiser-footer: var(--petrol);
-  --color-dark-gray: var(--grey-on-light);
+  --color-grey-on-light: var(--grey-on-light);
   --color-disabled-gray: var(--disabled-grey);
   --color-light-gray: var(--light-grey);
+  --color-dark-gray: var(--dark-grey);
   
   /* Existing Palette Integration */
   --color-metan-orange: var(--metan-orange);

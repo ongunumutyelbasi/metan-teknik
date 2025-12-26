@@ -2,8 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
+// COMPONENTS
+import ActionButton from '@/components/ui/ActionButton';
+import NavArrow from '@/components/ui/NavArrow';
+import PaginationCounter from '@/components/ui/PaginationCounter';
+
+// HERO SLIDES CONTENT
 const slides = [
   {
     id: 1,
@@ -112,42 +118,23 @@ export default function SennheiserPage() {
             <h3 className='text-[1.5rem] font-medium mb-6 leading-tight'>
               {slides[current].subtitle}
             </h3>
-            <button className='cursor-pointer bg-black text-white px-6 py-3 rounded-full text-[0.65rem] font-medium flex items-center space-x-2 hover:bg-brand-hover-blue transition-all w-fit group tracking-tight'>
-              <span>daha fazla bilgi</span>
-              <ArrowUpRight className='w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform' />
-            </button>
+            <ActionButton text='Daha fazla bilgi' Icon={ArrowUpRight} />
           </div>
 
-          {/* navigation area from products page */}
-          <div className='absolute bottom-6 right-6 flex items-center gap-6 z-30'>
-            <div className='text-[13px] font-medium text-black tabular-nums'>
-              {current + 1} / {slides.length}
+          {/* navigation area */}
+            <div className='absolute bottom-4 right-4 flex items-center gap-[16px] z-30'>
+                <PaginationCounter 
+                    current={current + 1} 
+                    total={slides.length} 
+                    duration={duration}
+                />
+
+                <div className='flex gap-[4px]'>
+                    <NavArrow direction='prev' onClick={prevSlide} />
+                    <NavArrow direction='next' onClick={nextSlide} />
+                </div>
             </div>
 
-            <div className='flex gap-2'>
-              <button
-                type='button'
-                aria-label='previous slide'
-                onClick={prevSlide}
-                className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center transition-all duration-300 hover:enabled:bg-brand-hover-blue group cursor-pointer disabled:cursor-default'
-              >
-                <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-dark-gray group-hover:enabled:fill-white'>
-                  <path d='M20.957 0.344l1.958 1.958-14.058 14.058 14.058 14.058-1.958 1.958-16.017-16.014 16.017-16.017z'></path>
-                </svg>
-              </button>
-
-              <button
-                type='button'
-                aria-label='next slide'
-                onClick={nextSlide}
-                className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center transition-all duration-300 hover:enabled:bg-brand-hover-blue group cursor-pointer disabled:cursor-default'
-              >
-                <svg width='12' height='12' viewBox='0 0 32 32' className='transition-colors duration-300 fill-dark-gray group-hover:enabled:fill-white'>
-                  <path d='M11.075 0.344l-1.958 1.958 14.058 14.058-14.058 14.058 1.958 1.958 16.017-16.014-16.017-16.017z'></path>
-                </svg>
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* right panel */}
@@ -181,10 +168,7 @@ export default function SennheiserPage() {
           <div className='w-full flex-shrink-0 pt-0 relative z-20'>
             <h3 className='text-[1.5rem] font-medium text-dark-gray mb-0 tracking-tight'>md 421 kompakt</h3>
             <h3 className='text-[1.5rem] font-medium mb-6 leading-tight'>canlı ve kayıt uygulamaları için çok amaçlı dinamik kardioid mikrofon</h3>
-            <button className='cursor-pointer bg-black text-white px-6 py-3 rounded-full text-[0.65rem] font-medium flex items-center space-x-2 hover:bg-brand-hover-blue transition-all w-fit group tracking-tight'>
-              <span>incele</span>
-              <ArrowUpRight className='w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform' />
-            </button>
+            <ActionButton text='incele' Icon={ArrowUpRight} />
           </div>
         </div>
       </section>
@@ -193,7 +177,6 @@ export default function SennheiserPage() {
       <section className='w-full bg-white py-6 px-6 border-light-gray'>
         <div className='max-w-full mx-auto flex flex-col md:flex-row gap-5'>
           
-          {/* left side: hoverable headlines */}
           <div className='w-full md:w-1/2 flex flex-col'>
             <div className='space-y-0 border-t border-light-gray'>
               {categories.map((cat, index) => (
@@ -205,20 +188,20 @@ export default function SennheiserPage() {
                   }`}
                 >
                   <h3 className='text-[1.5rem] font-medium tracking-tight'>{cat.name}</h3>
-                  <ArrowRight className={`w-6 h-6 text-white transition-all duration-300 ${
+                  <div className={`transition-all duration-300 ${
                     activeCategory === index ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
-                  }`} />
+                  }`}>
+                    <ArrowUpRight className='w-6 h-6' />
+                  </div>
                 </div>
               ))}
             </div>
 
-            <button className='cursor-pointer group mt-6 bg-black text-white px-6 py-3 rounded-full text-[0.65rem] font-medium w-fit flex items-center space-x-2 hover:bg-brand-hover-blue transition-colors tracking-tight'>
-              <span>tüm ürünleri görüntüle</span>
-              <ArrowUpRight className='w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform' />
-            </button>
+            <div className='mt-6'>
+              <ActionButton text='tüm ürünleri görüntüle' Icon={ArrowUpRight} />
+            </div>
           </div>
 
-          {/* right side: dynamic image display */}
           <div className='w-full md:w-1/2 relative h-[600px] overflow-hidden bg-sennheiser-gray'>
             {categories.map((cat, index) => (
               <div
