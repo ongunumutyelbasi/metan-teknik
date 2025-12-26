@@ -73,8 +73,8 @@ export default function Footer() {
         {/* --- NAVIGATION LINKS GRID --- */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
           <div className="space-y-2">
-            <h4 className="font-bold text-[#999999] text-sm">Ürünler</h4>
-            <ul className="space-y-2 font-bold text-xs text-gray-300">
+            <h4 className="font-bold text-[#999999] text-[.65rem]">Ürünler</h4>
+            <ul className="space-y-2 font-bold text-[.65rem] text-gray-300">
               {/* Product categories are currently static, but they can be wrapped in <FooterLink> as well if they become routes */}
               <li className="hover:text-brand-blue cursor-pointer">Aksesuarlar</li>
               <li className="hover:text-brand-blue cursor-pointer">Kulaklıklar</li>
@@ -91,9 +91,9 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-2">
-            <h4 className="font-bold text-[#999999] text-sm">Kurumsal</h4>
+            <h4 className="font-bold text-[#999999] text-[.65rem]">Kurumsal</h4>
             <nav aria-label="Footer Navigation">
-                <ul className="space-y-2 font-bold text-xs text-white">
+                <ul className="space-y-2 font-bold text-[.65rem] text-white">
                     <li><FooterLink href="/hakkimizda">Hakkımızda</FooterLink></li>
                     <li><FooterLink href="/hakkimizda/bayilerimiz">Bayilerimiz</FooterLink></li>
                     <li><FooterLink href="/hakkimizda/referanslarimiz">Referanslarımız</FooterLink></li>
@@ -104,8 +104,8 @@ export default function Footer() {
             </nav>
           </div>
           <div className="space-y-2">
-            <h4 className="font-bold text-[#999999] text-sm">Destek</h4>
-            <ul className="space-y-2 font-bold text-xs text-white">
+            <h4 className="font-bold text-[#999999] text-[.65rem]">Destek</h4>
+            <ul className="space-y-2 font-bold text-[.65rem] text-white">
               <li><FooterLink href="/teknik-servis">Teknik Servis</FooterLink></li>
               <li className="hover:text-brand-blue cursor-pointer">Servis Ücretleri</li>
               <li className="hover:text-brand-blue cursor-pointer">Müşteri Memnuniyeti</li>
@@ -113,8 +113,8 @@ export default function Footer() {
           </div>
 
           <div className="space-y-2">
-            <h4 className="font-bold text-[#999999] text-sm">Bilgi</h4>
-            <ul className="space-y-2 font-bold text-xs text-white">
+            <h4 className="font-bold text-[#999999] text-[.65rem]">Bilgi</h4>
+            <ul className="space-y-2 font-bold text-[.65rem] text-white">
               <li className="hover:text-brand-blue cursor-pointer">Garanti Koşulları</li>
               <li className="hover:text-brand-blue cursor-pointer">Gizlilik Politikası</li>
               <li className="hover:text-brand-blue cursor-pointer">Kullanım Koşulları</li>
@@ -124,7 +124,7 @@ export default function Footer() {
         </div>
 
         {/* --- BOTTOM SECTION --- */}
-        <div className="mt-8 pt-6 border-t border-white/20 text-xs text-white flex justify-between">
+        <div className="mt-8 pt-6 border-t border-white/20 text-[.65rem] text-white flex justify-between">
           <div className="flex space-x-6">
             <span className="font-bold hover:text-brand-blue cursor-pointer">Gizlilik Politikası</span>
             <span className="font-bold hover:text-brand-blue cursor-pointer">Yasal Uyarı</span>
