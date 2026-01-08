@@ -55,10 +55,10 @@ export default function MetanTeknikFooter() {
 
             {/* KURUMSAL */}
             <div>
-              <h4 className="text-white text-xs font-bold uppercase tracking-regular mb-3 flex items-center">
+              <h4 className="text-white text-[0.5rem] font-bold uppercase tracking-regular mb-3 flex items-center">
                 Kurumsal
               </h4>
-              <ul className="space-y-3 text-sm">
+              <ul className="space-y-3 text-[0.5rem]">
                 {resourceLinks.map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className="hover:text-metan-orange transition-colors duration-200">
@@ -71,10 +71,10 @@ export default function MetanTeknikFooter() {
 
             {/* DESTEK */}
             <div>
-              <h4 className="text-white text-xs font-bold uppercase tracking-regular mb-3 flex items-center">
+              <h4 className="text-white text-[0.5rem] font-bold uppercase tracking-regular mb-3 flex items-center">
                 Destek
               </h4>
-              <ul className="space-y-3 text-sm">
+              <ul className="space-y-3 text-[0.5rem]">
                 {techLinks.map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className="hover:text-metan-orange transition-colors duration-200">
