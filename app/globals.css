@@ -47,11 +47,12 @@
   --sennheiser-blue: rgb(0, 150, 214);   
   --hover-blue: rgb(3, 124, 194);        
   --petrol: #003746;
-  --light-grey: #ececf0;
+  --light-grey: rgb(236, 236, 240);
   --very-light-grey: #f4f4f6;
   --disabled-grey: #adadad;
-  --grey-on-light: rgb(109, 109, 111);
+  --grey-on-light: rgb(84, 82, 82);
   --dark-grey: rgb(84, 82, 82);
+  --breadcrumbs-grey: rgb(109, 109, 111);
 
   /* Existing Custom Brand Variables */
   --metan-orange: #df532b;
@@ -69,6 +70,7 @@
   --color-disabled-gray: var(--disabled-grey);
   --color-light-gray: var(--light-grey);
   --color-dark-gray: var(--dark-grey);
+  --color-breadcrumbs-gray: var(--breadcrumbs-grey);
   
   /* Existing Palette Integration */
   --color-metan-orange: var(--metan-orange);

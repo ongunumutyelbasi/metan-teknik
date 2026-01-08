@@ -36,11 +36,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#013746] text-white pt-6 pb-6 px-6 mt-0">
+    <footer className="bg-[#013746] text-white pt-[20px] pb-[20px] px-[20px] mt-0">
       <div className="max-w-full mx-auto">
         
         {/* --- TOP SECTION: LOGO & SCROLL BUTTON --- */}
-        <div className="flex justify-between items-center pb-24">
+        <div className="flex justify-between items-center pb-[125px]">
           <div className="flex-shrink-0">
             <Link 
               href="/" 
@@ -53,7 +53,7 @@ export default function Footer() {
               }}
             >
                 <svg 
-                viewBox="0 0 155 20" 
+                viewBox="0 0 148 24" 
                 className="h-5 w-auto fill-white cursor-pointer hover:fill-brand-blue transition-colors duration-300"
                 aria-label="Sennheiser Logo"
                 >
@@ -62,20 +62,20 @@ export default function Footer() {
             </Link>
           </div>
           
-          <button 
-            onClick={scrollToTop}
-            className="w-6 h-6 cursor-pointer rounded-full bg-white text-[#013746] border-white/20 flex items-center justify-center hover:bg-[var(--color-brand-blue)] hover:text-white transition-all duration-300 group"
-          >
-            <ArrowUp className="w-4 h-4 group-hover:text-white transition-transform" />
+          <button type='button' onClick={scrollToTop} aria-label='Scroll to top' className={`inline-flex items-center justify-center shrink-0 w-[24px] h-[24px] aspect-square rounded-full bg-[#f4f4f6] text-black transition-all duration-200 ease-in-out hover:bg-[#037cc2] hover:text-white cursor-pointer`}>
+            <svg width='12' height='12' viewBox='0 0 32 32' fill='currentColor'>
+              <title>arrow-up</title>
+              <path d='M4.076 15.659l-1.689-1.689 13.626-13.627 0.12 0.12 0.002-0.002 13.509 13.509-1.689 1.689-10.746-10.746v27.462l-2.388 0v-27.462l-10.746 10.746z'></path>
+            </svg>
           </button>
         </div>
 
         {/* --- NAVIGATION LINKS GRID --- */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
-          <div className="space-y-2">
+        <div className="grid grid-cols-1 md:grid-cols-6 mb-3 gap-10">
+          
+          <div className="space-y-[8px]">
             <h4 className="font-bold text-[#999999] text-[.65rem]">Ürünler</h4>
-            <ul className="space-y-2 font-bold text-[.65rem] text-gray-300">
-              {/* Product categories are currently static, but they can be wrapped in <FooterLink> as well if they become routes */}
+            <ul className="space-y-[8px] font-bold text-[.65rem] leading-[18px] text-gray-300">
               <li className="hover:text-brand-blue cursor-pointer">Aksesuarlar</li>
               <li className="hover:text-brand-blue cursor-pointer">Kulaklıklar</li>
               <li className="hover:text-brand-blue cursor-pointer">Toplantı ve Konferans Sistemleri</li>
@@ -90,10 +90,11 @@ export default function Footer() {
               <li className="hover:text-brand-blue cursor-pointer">Yedek Parça</li>
             </ul>
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-[8px]">
             <h4 className="font-bold text-[#999999] text-[.65rem]">Kurumsal</h4>
             <nav aria-label="Footer Navigation">
-                <ul className="space-y-2 font-bold text-[.65rem] text-white">
+                <ul className="space-y-[8px] font-bold text-[.65rem] leading-[18px] text-white">
                     <li><FooterLink href="/hakkimizda">Hakkımızda</FooterLink></li>
                     <li><FooterLink href="/hakkimizda/bayilerimiz">Bayilerimiz</FooterLink></li>
                     <li><FooterLink href="/hakkimizda/referanslarimiz">Referanslarımız</FooterLink></li>
@@ -103,18 +104,19 @@ export default function Footer() {
                 </ul>
             </nav>
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-[8px]">
             <h4 className="font-bold text-[#999999] text-[.65rem]">Destek</h4>
-            <ul className="space-y-2 font-bold text-[.65rem] text-white">
+            <ul className="space-y-[8px] font-bold text-[.65rem] leading-[18px] text-white">
               <li><FooterLink href="/teknik-servis">Teknik Servis</FooterLink></li>
               <li className="hover:text-brand-blue cursor-pointer">Servis Ücretleri</li>
               <li className="hover:text-brand-blue cursor-pointer">Müşteri Memnuniyeti</li>
             </ul>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-[8px]">
             <h4 className="font-bold text-[#999999] text-[.65rem]">Bilgi</h4>
-            <ul className="space-y-2 font-bold text-[.65rem] text-white">
+            <ul className="space-y-[8px] font-bold text-[.65rem] leading-[18px] text-white">
               <li className="hover:text-brand-blue cursor-pointer">Garanti Koşulları</li>
               <li className="hover:text-brand-blue cursor-pointer">Gizlilik Politikası</li>
               <li className="hover:text-brand-blue cursor-pointer">Kullanım Koşulları</li>
@@ -124,13 +126,38 @@ export default function Footer() {
         </div>
 
         {/* --- BOTTOM SECTION --- */}
-        <div className="mt-8 pt-6 border-t border-white/20 text-[.65rem] text-white flex justify-between">
-          <div className="flex space-x-6">
-            <span className="font-bold hover:text-brand-blue cursor-pointer">Gizlilik Politikası</span>
-            <span className="font-bold hover:text-brand-blue cursor-pointer">Yasal Uyarı</span>
+        <div className="mt-3 pt-3 border-t border-white/20 text-[.65rem] text-white -mx-[20px] px-[20px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-6 md:gap-0">
+            
+            {/* left column: links */}
+            <div className="flex space-x-6 justify-start order-2 md:order-1">
+              <span className="font-bold hover:text-brand-blue cursor-pointer transition-colors">Gizlilik Politikası</span>
+              <span className="font-bold hover:text-brand-blue cursor-pointer transition-colors">Yasal Uyarı</span>
+            </div>
+
+            {/* middle column: social icons */}
+            <div className="flex items-center justify-center gap-8 order-1 md:order-2">
+              <a href='https://www.instagram.com/metan_teknik' target='_blank' aria-label='Instagram' className='hover:text-brand-blue transition-colors'>
+                <svg width='20' height='20' viewBox='0 0 18 18' fill='currentColor'><path d='M6,9c0-0.6,0.2-1.2,0.5-1.7c0.3-0.5,0.8-0.9,1.3-1.1C8.4,6,9,5.9,9.6,6c0.6,0.1,1.1,0.4,1.5,0.8c0.4,0.4,0.7,1,0.8,1.5 c0.1,0.6,0.1,1.2-0.2,1.7c-0.2,0.5-0.6,1-1.1,1.3S9.6,12,9,12c-0.8,0-1.6-0.3-2.1-0.9C6.3,10.6,6,9.8,6,9z M4.4,9 c0,0.9,0.3,1.8,0.8,2.6c0.5,0.8,1.2,1.4,2.1,1.7c0.8,0.4,1.8,0.4,2.7,0.3c0.9-0.2,1.7-0.6,2.4-1.3c0.6-0.6,1.1-1.5,1.3-2.4 s0.1-1.8-0.3-2.7c-0.4-0.8-0.9-1.6-1.7-2.1S9.9,4.4,9,4.4c-1.2,0-2.4,0.5-3.3,1.4C4.9,6.6,4.4,7.8,4.4,9z M12.8,4.2 c0,0.2,0.1,0.4,0.2,0.6s0.3,0.3,0.5,0.4c0.2,0.1,0.4,0.1,0.6,0.1c0.2,0,0.4-0.1,0.6-0.3c0.2-0.2,0.3-0.3,0.3-0.6 c0-0.2,0-0.4-0.1-0.6c-0.1-0.2-0.2-0.4-0.4-0.5c-0.2-0.1-0.4-0.2-0.6-0.2c-0.1,0-0.3,0-0.4,0.1c-0.1,0.1-0.3,0.1-0.4,0.2 c-0.1,0.1-0.2,0.2-0.2,0.4C12.8,3.9,12.8,4,12.8,4.2z M5.4,16.3c-0.6,0-1.1-0.1-1.7-0.3c-0.4-0.1-0.7-0.4-1-0.7 c-0.3-0.3-0.5-0.6-0.7-1c-0.2-0.5-0.3-1.1-0.3-1.7c0-0.9,0-6.3,0-7.3c0-0.6,0.1-1.1,0.3-1.7c0.2-0.4,0.4-0.7,0.7-1 c0.3-0.3,0.6-0.5,1-0.7c0.5-0.2,1.1-0.3,1.7-0.3c0.9,0,6.3,0,7.3,0c0.6,0,1.1,0.1,1.7,0.3c0.4,0.2,0.7,0.4,1,0.7 c0.3,0.3,0.5,0.6,0.7,1c0.2,0.5,0.3,1.1,0.3,1.7c0,1,0,6.3,0,7.3c0,0.6-0.1,1.1-0.3,1.7c-0.2,0.4-0.4,0.7-0.7,1 c-0.3,0.3-0.6,0.5-1,0.7c-0.5,0.2-1.1,0.3-1.7,0.3c-1,0-1.2,0.1-3.6,0.1C6.6,16.4,6.3,16.4,5.4,16.3z M5.3,0c-0.7,0-1.5,0.2-2.2,0.4 C2.5,0.7,2,1,1.5,1.5c-0.5,0.5-0.8,1-1,1.6C0.2,3.8,0,4.5,0,5.3c0,1,0,6.5,0,7.4c0,0.7,0.2,1.5,0.4,2.2c0.2,0.6,0.6,1.1,1,1.6 c0.5,0.5,1,0.8,1.6,1c0.7,0.3,1.4,0.4,2.2,0.4C6.2,18,6.5,18,9,18s2.8,0,3.7-0.1c0.7,0,1.5-0.2,2.2-0.4c0.6-0.2,1.1-0.6,1.6-1 c0.5-0.5,0.8-1,1-1.6c0.3-0.7,0.4-1.4,0.4-2.2c0-1,0-6.5,0-7.4c0-0.7-0.2-1.5-0.4-2.2c-0.2-0.6-0.6-1.1-1-1.6c-0.5-0.5-1-0.8-1.6-1 C14.2,0.2,13.5,0,12.7,0C11.8,0,6.2,0,5.3,0'></path></svg>
+              </a>
+              <a href='https://www.youtube.com/@metanteknik103' target='_blank' aria-label='Youtube' className='hover:text-brand-blue transition-colors'>
+                <svg width='20' height='20' viewBox='0 0 461.001 461.001' fill='currentColor'><path d='M365.257,67.393H95.744C42.866,67.393,0,110.259,0,163.137v134.728 c0,52.878,42.866,95.744,95.744,95.744h269.513c52.878,0,95.744-42.866,95.744-95.744V163.137 C461.001,110.259,418.135,67.393,365.257,67.393z M300.506,237.056l-126.06,60.123c-3.359,1.602-7.239-0.847-7.239-4.568V168.607 c0-3.774,3.982-6.22,7.348-4.514l126.06,63.881C304.363,229.873,304.298,235.248,300.506,237.056z'></path></svg>
+              </a>
+              <a href='https://www.facebook.com/metanteknik' target='_blank' aria-label='Facebook' className='hover:text-brand-blue transition-colors'>
+                <svg width='20' height='20' viewBox='0 0 18 18' fill='currentColor'><path d='M17,0H1C0.7,0,0.5,0.1,0.3,0.3S0,0.7,0,1v16c0,0.3,0.1,0.5,0.3,0.7C0.5,17.9,0.7,18,1,18h8.6v-7H7.3V8.3h2.3v-2 c0-2.3,1.4-3.6,3.5-3.6c0.7,0,1.4,0,2.1,0.1v2.4h-1.4c-1.1,0-1.3,0.5-1.3,1.3v1.7h2.7L14.8,11h-2.3v7H17c0.3,0,0.5-0.1,0.7-0.3 c0.2-0.2,0.3-0.4,0.3-0.7V1c0-0.3-0.1-0.5-0.3-0.7C17.5,0.1,17.3,0,17,0z'></path></svg>
+              </a>
+              <a href='https://www.linkedin.com/company/metan-teknik/' target='_blank' aria-label='LinkedIn' className='hover:text-brand-blue transition-colors'>
+                <svg width='20' height='20' viewBox='0 0 18 18' fill='currentColor'><path d='M16.7,0H1.3C1.2,0,1,0,0.8,0.1C0.7,0.2,0.5,0.3,0.4,0.4S0.2,0.6,0.1,0.8C0,1,0,1.1,0,1.3v15.4c0,0.2,0,0.3,0.1,0.5 c0.1,0.2,0.2,0.3,0.3,0.4c0.1,0.1,0.3,0.2,0.4,0.3C1,18,1.2,18,1.3,18h15.3c0.3,0,0.7-0.1,0.9-0.4c0.3-0.2,0.4-0.6,0.4-0.9V1.3 c0-0.3-0.1-0.7-0.4-0.9C17.4,0.1,17,0,16.7,0z M5.3,15.3H2.7V6.8h2.7V15.3z M4,5.6c-0.3,0-0.6-0.1-0.9-0.3C2.9,5.2,2.7,4.9,2.6,4.6 C2.5,4.4,2.4,4,2.5,3.7C2.5,3.4,2.7,3.2,2.9,3c0.2-0.2,0.5-0.4,0.8-0.4c0.3-0.1,0.6,0,0.9,0.1c0.3,0.1,0.5,0.3,0.7,0.6 C5.5,3.4,5.5,3.7,5.6,4c0,0.4-0.2,0.8-0.5,1.1C4.8,5.4,4.4,5.6,4,5.6L4,5.6z M15.3,15.3h-2.7v-4.2c0-1,0-2.3-1.4-2.3 S9.7,10,9.7,11.1v4.2H7V6.8h2.6v1.2c0.3-0.4,0.6-0.8,1.1-1c0.4-0.2,0.9-0.4,1.5-0.3c2.7,0,3.2,1.8,3.2,4.1L15.3,15.3z'></path></svg>
+              </a>
+            </div>
+
+            {/* right column: copyright */}
+            <div className="flex justify-end order-3">
+              <p className="font-bold text-[#999999]">© 2025 Metan Teknik Müm. ve Tic. AŞ. | Türkiye</p>
+            </div>
           </div>
-          <p className="font-bold text-[#999999]">© 2025 Metan Teknik Müm. ve Tic. AŞ. | Türkiye</p>
         </div>
+
       </div>
     </footer>
   );

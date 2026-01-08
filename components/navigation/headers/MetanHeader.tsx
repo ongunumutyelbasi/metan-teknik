@@ -85,7 +85,6 @@ export default function MetanHeader() {
     }`}>
       <div className="max-w-[1800px] w-full mx-auto flex items-center pr-6 pl-0 lg:px-8">
         
-        {/* --- BRANDING: z-[80] keeps it above the mobile menu --- */}
         <div className={`relative z-[80] flex-shrink-0 flex items-center h-10 pl-4 lg:pl-0 lg:pr-6 transition-all duration-500 ${isHeaderSolid ? 'lg:border-black/5' : 'lg:border-white/10'} lg:border-r`}>
           <Link href="/" className="px-2 py-1">
             <Image 
@@ -97,17 +96,18 @@ export default function MetanHeader() {
         </div>
 
         <nav className="hidden lg:flex flex-grow pl-6">
-          <ul className="flex items-center space-x-2">
+          <ul className="flex items-center">
             {links.map((link) => (
-              <li key={link.href}>
+              <li key={link.href} className="px-4"> {/* padding moved here to isolate text width */}
                 <Link 
                   href={link.href} 
-                  className={`inline-block px-4 py-3 text-[12px] font-medium uppercase tracking-regular transition-all duration-300 relative group ${
+                  className={`inline-block py-2 text-[12px] font-medium uppercase tracking-regular transition-all duration-300 relative group ${
                     isHeaderSolid ? 'text-black' : (navTheme === 'light' ? 'text-white' : 'text-black')
                   }`}
                 >
                   {link.name}
-                  <span className="absolute bottom-2 left-4 right-4 h-0.5 bg-metan-orange transition-all duration-300 w-0 group-hover:w-[calc(100%-32px)]" />
+                  {/* underline: spans 100% of the text width, originating from left */}
+                  <span className="absolute bottom-2 left-0 h-[1.5px] bg-metan-orange transition-all duration-300 w-0 group-hover:w-full" />
                 </Link>
               </li>
             ))}
@@ -117,29 +117,32 @@ export default function MetanHeader() {
         <div className="flex items-center ml-auto">
           <div className={`hidden lg:flex items-center space-x-3 pl-10 border-l transition-all duration-500 ${isHeaderSolid ? 'border-black/5' : 'border-white/10'}`}>
             <div className="relative group">
-              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-2`}>
+              <button className={`${utilityBaseClass} ${utilityThemeClass} px-4 h-9 text-[12px] font-medium uppercase cursor-pointer tracking-regular space-x-1`}>
                 <span>Markalar</span>
                 <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
               </button>
-              <div className="absolute right-0 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                <div className="w-max bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-black/5 p-2 overflow-hidden">
+              
+              {/* COMPACT DROPDOWN CONTAINER */}
+              <div className="absolute right-0 top-full pt-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="w-max bg-white/95 backdrop-blur-xl rounded-xl shadow-xl border border-black/5 p-1 overflow-hidden">
                   {brands.map((brand) => (
                     <Link 
                       key={brand.name} 
                       href={brand.href} 
-                      className="flex items-center space-x-4 px-4 py-3 rounded-xl hover:bg-black/5 transition-all duration-300 group/item"
-                      style={{ '--brand-color': brand.hoverColor } as React.CSSProperties}
+                      className="flex items-center space-x-3 px-4 py-1.5 rounded-lg hover:bg-black/5 transition-all duration-300 group/brand"
+                      style={{ '--brand-hover': brand.hoverColor } as React.CSSProperties}
                     >
                       <div 
-                        className="w-5 h-5 bg-gray-400 group-hover/item:bg-[var(--brand-color)] transition-colors duration-300"
+                        className="w-5 h-5 transition-colors duration-300 bg-[#b3b8be] group-hover/brand:bg-[var(--brand-hover)]"
                         style={{
                           maskImage: `url(${brand.logo})`,
                           WebkitMaskImage: `url(${brand.logo})`,
                           maskRepeat: 'no-repeat',
                           maskSize: 'contain',
+                          maskPosition: 'center',
                         }}
                       />
-                      <span className="text-[12.5px] font-medium text-gray-600 group-hover/item:text-black transition-colors whitespace-nowrap uppercase tracking-regular">
+                      <span className="text-[13px] font-medium text-[#5d5b5c] group-hover/brand:text-black transition-colors whitespace-nowrap uppercase tracking-regular">
                         {brand.name}
                       </span>
                     </Link>
@@ -147,6 +150,7 @@ export default function MetanHeader() {
                 </div>
               </div>
             </div>
+
             <button className={`${utilityBaseClass} ${utilityThemeClass} w-9 h-9 cursor-pointer`}>
               <Search size={16} strokeWidth={2.5} />
             </button>
@@ -170,7 +174,6 @@ export default function MetanHeader() {
       <div className={`fixed inset-0 bg-white z-[60] w-screen h-[dvh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] lg:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        {/* Removed duplicate logo container as main logo is now visible via z-index */}
         <div className="flex flex-col h-full pt-[76px] relative">
           <div className="mt-2 border-b border-gray-100 mx-8" />
           

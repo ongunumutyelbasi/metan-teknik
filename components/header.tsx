@@ -163,7 +163,7 @@ export default function Header() {
                   <Link 
                     key={brand.name}
                     href={brand.href}
-                    className={`flex items-center space-x-3 px-5 py-4 hover:bg-gray-200 transition-colors duration-200 group/item text-black ${brand.hoverColor}`}
+                    className={`flex items-center space-x-3 px-3 py-2 hover:bg-gray-200 transition-colors duration-200 group/item text-black ${brand.hoverColor}`}
                   >
                     <div className="w-6 h-6 flex items-center justify-center shrink-0">
                       {brand.name === "Sennheiser" && (

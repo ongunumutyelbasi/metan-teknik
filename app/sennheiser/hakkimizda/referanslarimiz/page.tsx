@@ -136,15 +136,14 @@ const referanslar = [
 
 export default function Referanslarimiz() {
   const hakkimizdaLinks = [
-    { name: "Hakkımızda", href: "/hakkimizda" },
-    { name: "Bayilerimiz", href: "/hakkimizda/bayilerimiz" },
-    { name: "Referanslarımız", href: "/hakkimizda/referanslarimiz" },
-    { name: "Finans", href: "/hakkimizda/finans" },
-    { name: "İletişim Bilgileri", href: "/hakkimizda/iletisim-bilgileri" },
-    { name: "Künye", href: "/hakkimizda/kunye" },
+    { name: "Hakkımızda", href: "/sennheiser/hakkimizda" },
+    { name: "Bayilerimiz", href: "/sennheiser/hakkimizda/bayilerimiz" },
+    { name: "Referanslarımız", href: "/sennheiser/hakkimizda/referanslarimiz" },
+    { name: "Finans", href: "/sennheiser/hakkimizda/finans" },
+    { name: "İletişim Bilgileri", href: "/sennheiser/hakkimizda/iletisim-bilgileri" },
+    { name: "Künye", href: "/sennheiser/hakkimizda/kunye" },
   ];
 
-  // State to track which accordion is open. null means all are closed.
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleAccordion = (index: number) => {
@@ -153,7 +152,6 @@ export default function Referanslarimiz() {
 
   return (
     <main className="min-h-screen bg-white text-black">
-      {/* Hero Section */}
       <section data-nav-color="light" className="relative h-[80vh] flex items-center px-12 md:px-24 overflow-hidden">
         <div 
           className="absolute inset-0 z-0"
@@ -178,11 +176,9 @@ export default function Referanslarimiz() {
 
       <SubNav links={hakkimizdaLinks} />
 
-      {/* References Content */}
       <section className="px-6 md:px-16 pt-6 pb-12 bg-white">
-        {/* Changed from max-w-4xl to max-w-full to go full width */}
         <div className="max-w-full mx-auto">
-          <div className="space-y-4">
+          <div className="space-y-3">
             {referanslar.map((ref, index) => (
               <ReferenceAccordion 
                 key={index} 
@@ -199,7 +195,6 @@ export default function Referanslarimiz() {
   );
 }
 
-// 2. Accordion Component
 function ReferenceAccordion({ 
   category, 
   items, 
@@ -212,12 +207,13 @@ function ReferenceAccordion({
   onToggle: () => void;
 }) {
   return (
-    <div className={`border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'border-brand-blue ring-1 ring-brand-blue/10' : ''}`}>
+    <div className={`border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'border-brand-blue' : ''}`}>
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 transition-colors duration-200 text-left"
+        /* Tightened padding from p-6 to py-3 px-6 */
+        className="cursor-pointer w-full flex items-center justify-between py-3 px-6 bg-white hover:bg-gray-50 transition-colors duration-200 text-left"
       >
-        <span className={`text-xl font-medium transition-colors duration-200 ${isOpen ? 'text-brand-blue' : 'text-gray-900'}`}>
+        <span className={`text-lg font-medium transition-colors duration-200 ${isOpen ? 'text-brand-blue' : 'text-gray-900'}`}>
           {category}
         </span>
         {isOpen ? (
@@ -229,15 +225,16 @@ function ReferenceAccordion({
 
       <div 
         className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+          isOpen ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="p-6 pt-0 bg-white">
-          <div className="h-[1px] w-full bg-gray-100 mb-6" />
-          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-3 gap-x-12">
+        <div className="px-6 pb-5 bg-white">
+          <div className="h-[1px] w-full bg-gray-100 mb-4" />
+          {/* Reduced gap-y for a more compact list */}
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-1.5 gap-x-12">
             {items.map((item, idx) => (
-              <li key={idx} className="flex items-start text-[16px] text-gray-600 py-1">
-                <Circle className="w-1.5 h-1.5 mt-2 mr-3 text-brand-blue fill-brand-blue flex-shrink-0" />
+              <li key={idx} className="flex items-start text-[15px] text-gray-600 leading-tight">
+                <Circle className="w-1.5 h-1.5 mt-1.5 mr-3 text-brand-blue fill-brand-blue flex-shrink-0" />
                 {item}
               </li>
             ))}

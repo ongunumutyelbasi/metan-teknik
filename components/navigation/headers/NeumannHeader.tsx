@@ -56,10 +56,9 @@ function BrandsDropdown() {
 
   return (
     <div className="relative group" ref={dropdownRef}>
-      {/* Button: Clickable on mobile, hover handles desktop via group class */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center space-x-2 px-3 lg:px-4 py-2 border rounded-full text-[10px] lg:text-[12px] tracking-[0.1em] font-medium transition-all duration-300 uppercase 
+        className={`cursor-pointer flex items-center space-x-2 px-3 lg:px-4 py-2 border rounded-full text-[10px] lg:text-[12px] tracking-[0.1em] font-medium transition-all duration-300 uppercase 
           ${isOpen ? 'border-[#ef7622] text-[#ef7622]' : 'border-white/20 text-white'} 
           lg:group-hover:border-[#ef7622] lg:group-hover:text-[#ef7622]`}
       >
@@ -67,17 +66,19 @@ function BrandsDropdown() {
         <ChevronDown size={14} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''} lg:group-hover:rotate-180`} />
       </button>
 
-      {/* Dropdown Menu: Visible via state (mobile) OR hover (desktop) */}
-      <div className={`absolute right-0 top-full pt-3 transition-all duration-300 z-[70] 
+      {/* Dropdown Menu: Reduced pt-3 to pt-1.5 for a tighter float */}
+      <div className={`absolute right-0 top-full pt-1.5 transition-all duration-300 z-[70] 
         ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible lg:group-hover:opacity-100 lg:group-hover:visible'}
       `}>
-        <div className="w-max bg-[#111] border border-white/10 rounded-xl shadow-2xl p-2 overflow-hidden">
+        {/* Container: Reduced p-2 to p-1 */}
+        <div className="w-max bg-[#111] border border-white/10 rounded-xl shadow-2xl p-1 overflow-hidden">
           {brands.map((brand) => (
             <Link 
               key={brand.name} 
               href={brand.href} 
               onClick={() => setIsOpen(false)}
-              className="flex items-center space-x-4 px-4 py-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/brand"
+              /* Items: Reduced py-3 to py-1.5 and space-x-4 to space-x-3 */
+              className="flex items-center space-x-3 px-3 py-1.5 rounded-lg hover:bg-white/5 transition-all duration-300 group/brand"
               style={{ '--brand-hover': brand.hoverColor } as React.CSSProperties}
             >
               <div 

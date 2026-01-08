@@ -6,16 +6,16 @@ import SubNav from '@/components/SubNav';
 export default function Hakkimizda() {
   // Navigation links for the Hakkımızda sub-menu
   const hakkimizdaLinks = [
-    { name: "Hakkımızda", href: "/hakkimizda" },
-    { name: "Bayilerimiz", href: "/hakkimizda/bayilerimiz" },
-    { name: "Referanslarımız", href: "/hakkimizda/referanslarimiz" },
-    { name: "Finans", href: "/hakkimizda/finans" },
-    { name: "İletişim Bilgileri", href: "/hakkimizda/iletisim-bilgileri" },
-    { name: "Künye", href: "/hakkimizda/kunye" },
+    { name: "Hakkımızda", href: "/sennheiser/hakkimizda" },
+    { name: "Bayilerimiz", href: "/sennheiser/hakkimizda/bayilerimiz" },
+    { name: "Referanslarımız", href: "/sennheiser/hakkimizda/referanslarimiz" },
+    { name: "Finans", href: "/sennheiser/hakkimizda/finans" },
+    { name: "İletişim Bilgileri", href: "/sennheiser/hakkimizda/iletisim-bilgileri" },
+    { name: "Künye", href: "/sennheiser/hakkimizda/kunye" },
   ];
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen font-sennheiser bg-white text-black">
       {/* 1. Hero Section */}
       <section data-nav-color="light" className="relative h-[80vh] flex items-center px-12 md:px-24 overflow-hidden">
         {/* Background Image Layer */}
@@ -33,7 +33,7 @@ export default function Hakkimizda() {
         {/* Content Layer */}
         <div className="max-w-4xl w-full relative z-10">
           {/* Title */}
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white">
+          <h1 className="text-4xl md:text-4xl font-semibold tracking-tight text-white">
             Hakkımızda
           </h1>
 
@@ -61,17 +61,17 @@ export default function Hakkimizda() {
       {/* 3. Main Content - Hikayemiz Section */}
       <section className="max-w-full mx-auto grid md:grid-cols-2 gap-6 items-center">
         <div className="py-6 pl-16 pr-6">
-            <h2 className="text-3xl font-bold mb-4">Metan Teknik Hakkında</h2>
-            <p className="text-gray-600 mb-4">
+            <h2 className="text-2xl font-semibold mb-2">Metan Teknik Hakkında</h2>
+            <p className="text-m text-gray-600 mb-4 leading-snug">
                 1992 yılında İstanbul’da kurulan ve bu yıl {new Date().getFullYear() - 1992}. yılını kutlamakta olan metan A.Ş. kurulduğu yıldan beri Alman elektronik devi Sennheiser’in Türkiye distribütörlüğünü üstlenmektedir. Sektörde uzun yılların getirdiği birikim ile saygınlık ilkesinden ayrılmadan bugünkü yerini belirlemiştir.
             </p>
-            <p className="text-gray-600 mb-4">
+            <p className="text-m text-gray-600 mb-4 leading-snug">
                 Bugün Sennheiser Group dahilindeki kalitesi tartışılmayan Neumann kayıt mikrofonlarının, Klein+Hummel serisi hoparlörlerin, Avusturyalı projeksiyon ve minyatür kulak içi monitörleme sistemlerinin tartışmasız teknolojik lideri İsviçreli Phonak Communications firmasının ROGER serisi IE/IFB kulaklıklarının Türkiye distribütörü konumunda olan şirket, başarı grafiği nedeniyle 1998 ve 2007 yıllarında Sennheiser tarafından “Distributor of the Year Award” ile ödüllendirildi ve iki kez dünya çapında yılın distribütörü seçildi.
             </p>
-            <p className="text-gray-600 mb-4">
+            <p className="text-m text-gray-600 mb-4 leading-snug">
                 2016 yılı itibari ile Consumer ürün grubunun distribütörlüğünü ve satış sonrası desteğini Bircom firmasına devreden firmamız, bu tarih itibari ile Consumer ürün gruplarını ürün pörtföyünden ayırmış ve sadece profesyonel ürün grubunu teşkil eden Sennheiser Pro Audio ürün grubunda radyo/TV, canlı yayın, stüdyo, işyeri, toplantı odası ve konferans amaçlı mikrofon, kulaklık, monitör hoparlör ve fabrikalar/müzeler için sesli ziyaretçi rehberliği ürünlerine yoğunlaşmıştır.
             </p>
-            <p className="text-gray-600">
+            <p className="text-m text-gray-600 mb-4 leading-snug">
                 Sitemiz katalog amaçlı bir ürün tanıtım sitesidir ve online satışımız (e-Ticaret) bulunmamaktadır.
             </p>
         </div>
@@ -101,15 +101,15 @@ export default function Hakkimizda() {
         </div>
         
         <div className="py-6 pl-6 pr-16">
-            <h2 className="text-3xl font-bold mb-4">Vizyonumuz</h2>
-            <p className="text-gray-600 mb-4">
+            <h2 className="text-2xl font-semibold mb-2">Vizyonumuz</h2>
+            <p className="text-m text-gray-600 mb-4 leading-snug">
                 Müşterilerimizin ihtiyaçları doğrultusunda ürün araştırmalarında önceliğimiz doğru ve orijinal ürün seçimini gerçekleştirmek, müşteri isteklerini en hızlı şekilde ve maksimum seviyede fiyat/performans başarısı ile  yüksek tutarak karşılamaktır.
             </p>
-            <p className="text-gray-600 mb-10">
+            <p className="text-m text-gray-600 mb-10 leading-snug">
                 Müşterilerimize sunulan hizmet ve ürünlerdeki gelişen teknolojiyi takip etmek, sürekli gelişmeyi sağlamak, tüm kaynakları etkin şekilde kullanarak müşteri memnuniyetini arttırmak, insan kaynaklarına yatırım yapmak, eğitimlerle mevcut kadromuzu ve müşterilerimizi daima canlı, dinamik ve verimli kılmak olup en iyi hizmeti en uygun maliyetle ve zamanında yapmak, satış sonrası ürünlerimizin arkasında durmak ve saha uygulamalarında teknik destek vermek genel amacımızdır.
             </p>
-            <h2 className="text-3xl font-bold mb-4">Misyonumuz</h2>
-            <p className="text-gray-600 mb-4">
+            <h2 className="text-2xl font-semibold mb-2">Misyonumuz</h2>
+            <p className="text-m text-gray-600 mb-4 leading-snug">
                 Metan’ın ana hedefi; hizmet kalitesini sürekli kılarak gerek koşulsuz müşteri memnuniyeti anlayışı, gerek doğru teknik servis hizmeti, gerekse bünyesindeki güvenilir markaların ürün satışı ile şirketin iş hacmini artırmak, Türkiye’deki Ses Işık Görüntü sektörüne yön veren seçkin firmalar arasında, donanımsal ses zincirinin basındaki Mikrofondan, sonundaki Hoparlöre Donanımsal ses ürünlerinde firmamız “Metan Tek. Müm. ve Tic. AŞ.” ‘yi üst sıralara taşımaktır.
             </p>
         </div>

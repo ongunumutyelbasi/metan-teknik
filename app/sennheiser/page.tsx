@@ -50,11 +50,11 @@ const slides = [
 ];
 
 const categories = [
-  { id: 1, name: 'kablosuz sistemler', img: '/images/homePage-categories/wireless-systems.avif' },
-  { id: 2, name: 'aksesuarlar', img: '/images/homePage-categories/accessories.avif' },
-  { id: 3, name: 'mikrofonlar', img: '/images/homePage-categories/microphones.avif' },
-  { id: 4, name: 'toplantı ve konferans sistemleri', img: '/images/homePage-categories/meeting-systems.avif' },
-  { id: 5, name: 'kulaklıklar', img: '/images/homePage-categories/headphones.avif' },
+  { id: 1, name: 'Kablosuz Sistemler', img: '/images/homePage-categories/wireless-systems.avif' },
+  { id: 2, name: 'Aksesuarlar', img: '/images/homePage-categories/accessories.avif' },
+  { id: 3, name: 'Mikrofonlar', img: '/images/homePage-categories/microphones.avif' },
+  { id: 4, name: 'Toplantı ve Konferans Sistemleri', img: '/images/homePage-categories/meeting-systems.avif' },
+  { id: 5, name: 'Kulaklıklar', img: '/images/homePage-categories/headphones.avif' },
 ];
 
 export default function SennheiserPage() {
@@ -166,9 +166,9 @@ export default function SennheiserPage() {
             </div>
           </div>
           <div className='w-full flex-shrink-0 pt-0 relative z-20'>
-            <h3 className='text-[1.5rem] font-medium text-dark-gray mb-0 tracking-tight'>md 421 kompakt</h3>
-            <h3 className='text-[1.5rem] font-medium mb-6 leading-tight'>canlı ve kayıt uygulamaları için çok amaçlı dinamik kardioid mikrofon</h3>
-            <ActionButton text='incele' Icon={ArrowUpRight} />
+            <h3 className='text-[1.5rem] font-medium text-dark-gray mb-0 tracking-tight'>MD 421 KOMPAKT</h3>
+            <h3 className='text-[1.5rem] font-medium mb-6 leading-tight'>Canlı ve kayıt uygulamaları için çok amaçlı dinamik kardioid mikrofon</h3>
+            <ActionButton text='İncele' Icon={ArrowUpRight} />
           </div>
         </div>
       </section>
@@ -198,7 +198,7 @@ export default function SennheiserPage() {
             </div>
 
             <div className='mt-6'>
-              <ActionButton text='tüm ürünleri görüntüle' Icon={ArrowUpRight} />
+              <ActionButton text='Tüm ürünleri görüntüle' Icon={ArrowUpRight} />
             </div>
           </div>
 

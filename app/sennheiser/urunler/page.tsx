@@ -31,7 +31,7 @@ export default function SennheiserMK4Page() {
         <div className='w-1/2 bg-light-gray relative border-r border-gray-100'>
           <div className='sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden'> 
             <div 
-              className='relative w-full h-full max-w-[500px] aspect-square flex transition-transform duration-300 ease-in-out'
+              className='relative w-full h-full max-w-[675px] aspect-square flex transition-transform duration-300 ease-in-out'
               style={{ transform: `translateX(-${currentImg * 100}%)` }}
             >
               {productImages.map((src, index) => (
@@ -40,7 +40,7 @@ export default function SennheiserMK4Page() {
                     src={src}
                     alt={`MK 4 - View ${index + 1}`}
                     fill
-                    className='object-contain mix-blend-multiply px-12'
+                    className='object-contain mix-blend-multiply pt-12 px-12'
                     priority={index === 0}
                   />
                 </div>
@@ -77,7 +77,7 @@ export default function SennheiserMK4Page() {
                       height='14' 
                       fill='none' 
                       viewBox='0 0 24 24' 
-                      className='text-gray-on-light transition-colors duration-200 group-hover:text-brand-hover-blue -translate-y-[2.4px]'
+                      className='text-gray-on-light transition-colors duration-300 group-hover:text-brand-hover-blue -translate-y-[2.4px]'
                   >
                       <path fill='currentColor' d='M19.5 9.75 12 2.25l-7.5 7.5V21h5.25v-7.5h4.5V21h5.25z'></path>
                   </svg>
@@ -120,22 +120,22 @@ export default function SennheiserMK4Page() {
                 onClick={() => console.log('added to cart')}
               />
               
-              <button className='w-[54px] h-[54px] rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-light-gray transition-all group'>
+              <button className='w-[54px] h-[54px] cursor-pointer rounded-full bg-sennheiser-gray flex items-center justify-center hover:bg-brand-hover-blue transition-all group duration-300'>
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                  <path d="M14.6874 15.9125L13.0374 10.8313L17.0687 8.09377L16.8749 7.50002H11.8749L10.3124 2.80627H9.6874L8.1249 7.50002H3.1249L2.93115 8.09377L6.9624 10.8313L5.3124 15.9125L5.8124 16.2875L9.9999 13.2688L14.1874 16.2875L14.6874 15.9125Z" fill="currentColor" className="text-dark-gray"></path>
+                  <path d="M14.6874 15.9125L13.0374 10.8313L17.0687 8.09377L16.8749 7.50002H11.8749L10.3124 2.80627H9.6874L8.1249 7.50002H3.1249L2.93115 8.09377L6.9624 10.8313L5.3124 15.9125L5.8124 16.2875L9.9999 13.2688L14.1874 16.2875L14.6874 15.9125Z" fill="currentColor" className="text-dark-gray group-hover:fill-white group-transition-transform duration-300"></path>
                 </svg>
               </button>
             </div>
           </div>
 
-          <div className='px-6 py-6 font-medium'>
+          <div className='px-6 py-6 font-normal'>
             <div className='max-w-full'>
-              <p className='text-[1rem] leading-[1.2] text-black mb-[1rem]'>
+              <p className='antialiased subpixel-antialiased text-[1rem] leading-[1.2] font-medium mb-[1rem]'>
                 Professional quality cardioid condenser microphone for home, project, and professional studios. 
                 A 1 inch true condenser capsule produces powerful warm sound. High sensitivity. 
                 Ideal for vocals and acoustic instruments.
               </p>
-              <div className='text-[1rem] leading-[1.2] font-normal text-dark-gray mb-[1rem]'>
+              <div className='antialiased subpixel-antialiased text-[1rem] leading-[1.2] font-normal text-dark-gray'>
                 <p className='mb-4'>
                   The MK 4 is a large-diaphragm true condenser microphone for professional studio recordings. 
                   Featuring fine resolution and outstanding sound quality, the MK 4 is easy to handle and 
@@ -152,6 +152,10 @@ export default function SennheiserMK4Page() {
           </div>
         </div>
       </main>
+
+      <section className='w-full bg-light-gray py-10 px-6'>
+      </section>
+
     </div>
   );
 }

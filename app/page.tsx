@@ -97,7 +97,7 @@ export default function MetanPage() {
                   isMobile || hoveredIndex === index ? "opacity-100 translate-y-0" : "lg:opacity-0 lg:translate-y-10"
                 }`}>
                   <div className="inline-flex items-center bg-white/10 backdrop-blur-md lg:bg-white space-x-2 text-white lg:text-black border border-white/20 px-5 py-2 rounded-full transition-all duration-300">
-                    <span className="text-[10px] font-bold uppercase tracking-widest">Markayı Keşfet</span>
+                    <span className="text-[10px] font-bold uppercase tracking-regular">Markayı Keşfet</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </div>

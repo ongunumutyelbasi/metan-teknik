@@ -6,12 +6,12 @@ import { ArrowUpRight } from 'lucide-react';
 
 export default function KunyePage() {
   const hakkimizdaLinks = [
-    { name: "Hakkımızda", href: "/hakkimizda" },
-    { name: "Bayilerimiz", href: "/hakkimizda/bayilerimiz" },
-    { name: "Referanslarımız", href: "/hakkimizda/referanslarimiz" },
-    { name: "Finans", href: "/hakkimizda/finans" },
-    { name: "İletişim Bilgileri", href: "/hakkimizda/iletisim-bilgileri" },
-    { name: "Künye", href: "/hakkimizda/kunye" },
+    { name: "Hakkımızda", href: "/sennheiser/hakkimizda" },
+    { name: "Bayilerimiz", href: "/sennheiser/hakkimizda/bayilerimiz" },
+    { name: "Referanslarımız", href: "/sennheiser/hakkimizda/referanslarimiz" },
+    { name: "Finans", href: "/sennheiser/hakkimizda/finans" },
+    { name: "İletişim Bilgileri", href: "/sennheiser/hakkimizda/iletisim-bilgileri" },
+    { name: "Künye", href: "/sennheiser/hakkimizda/kunye" },
   ];
 
   return (

@@ -6,12 +6,12 @@ import { MapPin, Phone, Printer, Mail, Clock, Send, CheckCircle2 } from 'lucide-
 
 export default function IletisimBilgileri() {
   const hakkimizdaLinks = [
-    { name: "Hakkımızda", href: "/hakkimizda" },
-    { name: "Bayilerimiz", href: "/hakkimizda/bayilerimiz" },
-    { name: "Referanslarımız", href: "/hakkimizda/referanslarimiz" },
-    { name: "Finans", href: "/hakkimizda/finans" },
-    { name: "İletişim Bilgileri", href: "/hakkimizda/iletisim-bilgileri" },
-    { name: "Künye", href: "/hakkimizda/kunye" },
+    { name: "Hakkımızda", href: "/sennheiser/hakkimizda" },
+    { name: "Bayilerimiz", href: "/sennheiser/hakkimizda/bayilerimiz" },
+    { name: "Referanslarımız", href: "/sennheiser/hakkimizda/referanslarimiz" },
+    { name: "Finans", href: "/sennheiser/hakkimizda/finans" },
+    { name: "İletişim Bilgileri", href: "/sennheiser/hakkimizda/iletisim-bilgileri" },
+    { name: "Künye", href: "/sennheiser/hakkimizda/kunye" },
   ];
 
   const mapAddress = encodeURIComponent("Metan Teknik Müm. ve Tic. AŞ. Esentepe Mah. Yazarlar Sok. No:17 Şişli İstanbul");

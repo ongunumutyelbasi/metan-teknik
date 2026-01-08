@@ -19,7 +19,7 @@ export default function NavArrow({
       aria-label={`${direction} slide`}
       className={`
         cursor-pointer group rounded-full flex items-center justify-center 
-        transition-all duration-[200ms] ease-in-out
+        transition-all duration-[300ms] ease-in-out
         w-[50px] aspect-square
         /* Inactive/Base State */
         bg-[#f4f4f6] 
@@ -36,7 +36,7 @@ export default function NavArrow({
         height='12' 
         viewBox='0 0 32 32' 
         /* This class handles the icon color swap */
-        className='transition-colors duration-[200ms] fill-[#5d5e63] group-disabled:fill-[#adadad] group-hover:fill-white group-hover-disabled:fill-disabled-gray shrink-0'
+        className='transition-colors duration-[300ms] fill-[#5d5e63] group-disabled:fill-[#adadad] group-hover:fill-white group-hover-disabled:fill-disabled-gray shrink-0'
       >
         <path d={paths[direction]}></path>
       </svg>

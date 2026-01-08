@@ -19,7 +19,7 @@ export default function PaginationCounter({
   const circumference = radius * 2 * Math.PI;
 
   return (
-    <div className={`relative flex items-center justify-center ${className}`} style={{ width: size, height: size }}>
+    <div className={`relative font-sennheiser flex items-center justify-center ${className}`} style={{ width: size, height: size }}>
       {/* progress circle - only shows if duration is passed */}
       {duration > 0 && (
         <svg 
@@ -60,8 +60,14 @@ export default function PaginationCounter({
       )}
 
       {/* counter text */}
-      <div className='text-[13px] font-medium text-black tabular-nums relative z-10'>
-        {current} / {total}
+      <div className='flex items-center justify-center text-[0.65rem] antialiased subpixel-antialiased font-sennheiser font-medium text-black relative z-10'>
+        <span className='w-[1ch] flex justify-center'>
+          {current}
+        </span>
+        <span className='mx-0.5'>/</span>
+        <span className='w-[1ch] flex justify-center'>
+          {total}
+        </span>
       </div>
     </div>
   );

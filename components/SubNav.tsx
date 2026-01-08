@@ -35,7 +35,7 @@ export default function SubNav({ links }: SubNavProps) {
               key={link.href}
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.href)}
-              className="px-4 py-2 rounded-full text-[12px] font-semibold transition-all duration-300 whitespace-nowrap bg-white/80 backdrop-blur-md text-[#5d5b5c] border border-gray-200 hover:bg-brand-blue hover:text-white hover:border-brand-blue"
+              className="px-3 py-1 rounded-full text-[12px] antialiased subpixel-antialiased font-medium transition-all duration-300 whitespace-nowrap bg-sennheiser-gray/60 backdrop-blur-md text-black border border-sennheiser-gray hover:bg-brand-hover-blue hover:text-white hover:border-brand-blue"
             >
               {link.name}
             </Link>
