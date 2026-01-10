@@ -133,7 +133,7 @@ export default function MetanHeader() {
                       style={{ '--brand-hover': brand.hoverColor } as React.CSSProperties}
                     >
                       <div 
-                        className="w-5 h-5 transition-colors duration-300 bg-[#b3b8be] group-hover/brand:bg-[var(--brand-hover)]"
+                        className="w-4 h-4 transition-colors duration-300 bg-[#b3b8be] group-hover/brand:bg-[var(--brand-hover)]"
                         style={{
                           maskImage: `url(${brand.logo})`,
                           WebkitMaskImage: `url(${brand.logo})`,

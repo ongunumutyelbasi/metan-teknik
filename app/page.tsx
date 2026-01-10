@@ -120,16 +120,16 @@ export default function MetanPage() {
       >
 
         {/* Content side: Reduced padding for more compact feel */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-12 lg:px-20 lg:py-16 xl:px-28">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center bg-white px-8 py-12 lg:px-8 lg:py-12 xl:px-8">
           <div className="max-w-xl">
             <h4 className="text-metan-orange font-bold uppercase tracking-widest text-xs mb-4">Öne Çıkan Ürün</h4>
-            <h3 className="text-3xl lg:text-4xl xl:text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
-            <p className="text-base lg:text-lg text-[#5d5b5c] mb-8 leading-relaxed font-light">
+            <h3 className="text-3xl lg:text-[2rem] xl:text-5xl font-semibold mb-6 leading-tight tracking-tight text-[#1a1a1a]">MD 421 Kompakt</h3>
+            <p className="text-base lg:text-[1rem] text-[#5d5b5c] mb-8 leading-relaxed font-regular">
               Canlı performanslar ve stüdyo kayıtları için tasarlanmış, efsanevi MD 421 sesini sunan kompakt yapı.
             </p>
-            <button className="cursor-pointer bg-black text-white px-8 py-4 rounded-full text-sm font-bold flex items-center space-x-3 hover:bg-metan-orange transition-all w-fit group shadow-lg hover:shadow-metan-orange/20">
+            <button className="cursor-pointer bg-black text-white px-3 py-2 rounded-full text-[0.7rem] font-bold flex items-center space-x-3 hover:bg-metan-orange transition-all w-fit group">
               <span>Ürünü İncele</span>
-              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
           </div>
         </div>

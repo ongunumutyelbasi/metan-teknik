@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
 // COMPONENTS
@@ -168,7 +169,9 @@ export default function SennheiserPage() {
           <div className='w-full flex-shrink-0 pt-0 relative z-20'>
             <h3 className='text-[1.5rem] font-medium text-dark-gray mb-0 tracking-tight'>MD 421 KOMPAKT</h3>
             <h3 className='text-[1.5rem] font-medium mb-6 leading-tight'>Canlı ve kayıt uygulamaları için çok amaçlı dinamik kardioid mikrofon</h3>
-            <ActionButton text='İncele' Icon={ArrowUpRight} />
+            <Link href='/sennheiser/urunler/mikrofonlar/md-421-kompakt'>
+              <ActionButton text='İncele' Icon={ArrowUpRight} />
+            </Link>
           </div>
         </div>
       </section>
@@ -191,7 +194,7 @@ export default function SennheiserPage() {
                   <div className={`transition-all duration-300 ${
                     activeCategory === index ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
                   }`}>
-                    <ArrowUpRight className='w-6 h-6' />
+                    <ArrowUpRight className='text-white w-6 h-6' />
                   </div>
                 </div>
               ))}

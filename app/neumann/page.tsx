@@ -20,7 +20,7 @@ const slides = [
   {
     id: 2,
     title: "rime 1.5 güncellemesi",
-    subtitle: "Gerçek derinlik, şimdi daha keskin - tec ödülleri finalistlerimizi keşfedin.",
+    subtitle: "Gerçek derinlik, şimdi daha keskin - TEC ödülleri finalistlerimizi keşfedin.",
     productImg: "/images/hero-slide/rime-box.png",
     lifestyleImg: "https://www.neumann.com/globalassets/digizuite/50259-en-homepage_slider_rime_v3_schatten_1600x620.jpg",
     alt: "rime 1.5",
@@ -123,10 +123,10 @@ export default function NeumannPage() {
                 <div className={`transition-all duration-1000 transform ${
                   index === current ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
                 }`}>
-                  <span className='text-[#ef7622] text-[11px] font-semibold tracking-tight mb-4 block'>
+                  <span className='text-[#ef7622] text-[0.6rem] font-medium tracking-tight mb-4 block'>
                     NEUMANN   //   0{index + 1}
                   </span>
-                  <h2 className='text-3xl md:text-5xl font-medium mb-4 uppercase tracking-tighter text-white leading-tight'>
+                  <h2 className='text-4xl md:text-4xl font-medium mb-4 uppercase tracking-tighter text-white leading-tighter'>
                     {slide.title}
                   </h2>
                   <p className='text-lg font-light mb-8 text-white/50 max-w-md leading-snug'>
@@ -134,9 +134,9 @@ export default function NeumannPage() {
                   </p>
                   <Link 
                     href={slide.link}
-                    className='group inline-flex items-center gap-4 text-white text-[13px] font-bold tracking-tight border-b border-white/10 pb-2 hover:border-[#ef7622] transition-all'
+                    className='group inline-flex items-center gap-4 text-white text-[13px] font-medium tracking-tight border-b border-white/10 pb-0.5 hover:border-[#ef7622] transition-all'
                   >
-                    DETAYLI BİLGİ <ArrowUpRight size={14} className='group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform' />
+                    DETAYLI BİLGİ <ArrowUpRight size={14} className='group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform' />
                   </Link>
                 </div>
 

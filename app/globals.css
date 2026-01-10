@@ -52,7 +52,8 @@
   --disabled-grey: #adadad;
   --grey-on-light: rgb(84, 82, 82);
   --dark-grey: rgb(84, 82, 82);
-  --breadcrumbs-grey: rgb(109, 109, 111);
+  --breadcrumbs-grey: rgb(31, 31, 34, .65);
+  /* --breadcrumbs-grey: rgb(109, 109, 111); */
 
   /* Existing Custom Brand Variables */
   --metan-orange: #df532b;

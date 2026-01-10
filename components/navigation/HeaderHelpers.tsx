@@ -44,7 +44,7 @@ export const BrandsDropdown = () => {
           <Link 
             key={brand.name} 
             href={brand.href} 
-            className='flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-100 transition-all duration-300 group/brand'
+            className='flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-all duration-300 group/brand'
             // Set the variable on the Link so the child div can use it
             style={{ '--brand-hover': brand.hoverColor } as React.CSSProperties}
           >

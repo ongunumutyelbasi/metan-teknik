@@ -120,7 +120,7 @@ export default function NeumannHeader() {
               alt="Neumann Logo" 
               width={256} 
               height={56} 
-              className="h-14 w-auto object-contain"
+              className="h-10 w-auto object-contain"
               priority
             />
           </Link>
@@ -142,7 +142,7 @@ export default function NeumannHeader() {
             <Link 
               key={link.name} 
               href={link.href}
-              className="text-[14px] xl:text-[16px] text-white font-light tracking-[0.05em] hover:text-[#ef7622] transition-colors duration-200"
+              className="text-[0.7rem] xl:text-[0.7rem] text-white font-light tracking-[0.05em] hover:text-[#ef7622] transition-colors duration-200"
             >
               {link.name}
             </Link>
