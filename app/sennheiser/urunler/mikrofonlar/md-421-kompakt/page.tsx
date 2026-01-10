@@ -15,7 +15,7 @@ import PaginationCounter from '@/components/ui/PaginationCounter';
 export default function SennheiserMK4Page() {
     
     const [isVariantOpen, setIsVariantOpen] = useState(false);
-    const [openAccordionId, setOpenAccordionId] = useState<string | null>('teknik-ozellikler');
+    const [openAccordionId, setOpenAccordionId] = useState<string | null>('null');
 
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
