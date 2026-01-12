@@ -57,7 +57,7 @@ export default function SennheiserHeader() {
   }, [isMobileMenuOpen]);
 
   const links = [
-    { name: 'Ürünler', href: '/sennheiser/urunler' },
+    { name: 'Ürünler', href: '/sennheiser/urunler/mikrofonlar' },
     { name: 'Uygulamalar', href: '/sennheiser/uygulamalar' },
     { name: 'Hikayeler', href: '/sennheiser/hikayeler' },
     { name: 'Eğitim', href: '/sennheiser/egitim' },
