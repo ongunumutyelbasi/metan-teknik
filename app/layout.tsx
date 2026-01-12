@@ -3,10 +3,14 @@ import "./globals.css";
 import MainHeader from "@/components/navigation/MainHeader"; 
 import MainFooter from "@/components/navigation/MainFooter";
 import BrandThemeObserver from "@/components/BrandThemeObserver";
+import type { Metadata } from 'next';
 
 export const metadata = {
-  title: "Sennheiser TR",
+  title: "Metan Teknik",
   description: "Metan Teknik - Sennheiser Yetkili Distribütörü",
+  icons: {
+    icon: '/favicon.ico', 
+  },
 };
 
 export const viewport = {

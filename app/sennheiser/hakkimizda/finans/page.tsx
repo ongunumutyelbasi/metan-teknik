@@ -35,7 +35,7 @@ export default function Finans() {
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/40" />
         </div>
         <div className="max-w-4xl w-full relative z-10">
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white">

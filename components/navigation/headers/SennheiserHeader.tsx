@@ -14,17 +14,14 @@ export default function SennheiserHeader() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // 1. sticky event listener for the sub-navigation row
     const handleSticky = (e: any) => {
       setIsSubNavStuck(e.detail);
     };
 
-    // 2. handle the scroll animation for the logo and pill shrinking
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    // 3. intersection observer for changing text color based on section
     const observerOptions = { rootMargin: '-10% 0px -85% 0px', threshold: 0 };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -40,7 +37,6 @@ export default function SennheiserHeader() {
       sections.forEach((section) => observer.observe(section));
     }, 100);
 
-    // attach all listeners
     window.addEventListener('sennheiser-subnav-sticky', handleSticky);
     window.addEventListener('scroll', handleScroll);
 
@@ -72,7 +68,7 @@ export default function SennheiserHeader() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 px-5 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-1000 px-4 ${
         isSubNavStuck 
           ? 'bg-white/90 backdrop-blur-md border-b border-light-gray pt-0' 
           : 'pt-5'
@@ -80,21 +76,23 @@ export default function SennheiserHeader() {
     >
       <div className='max-w-full mx-auto flex items-center h-[52px]'>
         
-        {/* LOGO AREA (Desktop) - Controlled by isScrolled */}
+        {/* LOGO AREA (Desktop) - Synchronized simultaneous transition */}
         <div 
-          className={`hidden lg:flex items-center shrink-0 overflow-hidden transition-all duration-700`}
+          className="hidden lg:flex items-center shrink-0 overflow-hidden transition-all duration-600"
           style={{
-            // Using inline styles for precise timing control
             transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-            width: isScrolled ? '0px' : '155px', // 155px logo + 20px margin
             opacity: isScrolled ? 0 : 1,
-            marginRight: isScrolled ? '0px' : '20px'
+            width: isScrolled ? '0px' : '155px',
+            marginRight: isScrolled ? '0px' : '20px',
+            // No delays - everything moves at the exact same time
           }}
         >
-          <Link href='/sennheiser' className='group'>
+          <Link href='/sennheiser' className='group shrink-0'>
             <svg 
               viewBox='0 0 155 20' 
-              className={`h-4 w-[155px] fill-current transition-colors duration-500 ${
+              // Fixed width on the SVG itself prevents it from "shrinking" or "erasing" 
+              // as the parent container collapses. It will simply be clipped.
+              className={`h-4 w-[155px] min-w-[155px] fill-current transition-colors duration-500 ${
                 navTheme === 'light' ? 'text-white' : 'text-black'
               } group-hover:text-brand-hover-blue`}
             >
@@ -105,7 +103,8 @@ export default function SennheiserHeader() {
 
         {/* PILL NAVIGATION (Desktop) */}
         <nav className={`relative hidden lg:flex items-center h-full rounded-full bg-sennheiser-gray transition-all duration-700 ease-in-out px-4`}>
-          <div className={`antialiased subpixel-antialiased transition-all duration-500 flex items-center overflow-hidden ${isScrolled ? 'w-8 opacity-100 mr-2' : 'w-0 opacity-0'}`}>
+          {/* Internal S-Logo: Synchronized with the external logo removal */}
+          <div className={`antialiased subpixel-antialiased transition-all duration-700 flex items-center overflow-hidden ${isScrolled ? 'w-8 opacity-100 mr-2' : 'w-0 opacity-0'}`}>
             <Link href='/sennheiser' className='group flex items-center shrink-0'>
               <svg viewBox='0 0 27.82 19.14' className='h-5 w-[27.82px] fill-current text-black group-hover:text-brand-hover-blue transition-colors duration-300'>
                 <path d='M14.61,0H0v14.64h1.81V1.81h11.11c.57-.85,1.14-1.43,1.68-1.81h0ZM13.21,19.14h14.61V4.51h-1.81v12.8h-11.11c-.54.86-1.11,1.45-1.68,1.84h0ZM14.33,16.5c-1.61,2.62-3.11,2.64-4.95,2.64H0v-3.71h2.93c1.94,0,3.5-.98,4.33-2.38L13.52,2.64C15.1.03,16.6,0,18.44,0h9.38v3.68h-2.93c-1.94,0-3.5.98-4.33,2.41l-6.24,10.41h0Z' />
@@ -124,14 +123,13 @@ export default function SennheiserHeader() {
           </ul>
         </nav>
 
-        {/* ACTIONS (Search / Brands) */}
+        {/* ACTIONS */}
         <div className='ml-auto flex items-center h-full'>
           <div className='hidden lg:flex items-center space-x-2'>
               <BrandsDropdown />
               <SearchButton hoverClass='hover:bg-brand-hover-blue' />
           </div>
 
-          {/* MOBILE TOGGLE & S-LOGO */}
           <div className='lg:hidden flex items-center gap-4 z-[70]'>
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -149,7 +147,6 @@ export default function SennheiserHeader() {
         </div>
       </div>
 
-      {/* MOBILE MENU OVERLAY */}
       <div className={`fixed inset-0 bg-white transition-transform duration-500 ease-in-out lg:hidden z-[60] ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className='flex flex-col h-full pt-28 px-8'>
           <nav className='flex flex-col space-y-6 mb-12'>
@@ -164,7 +161,6 @@ export default function SennheiserHeader() {
               </Link>
             ))}
           </nav>
-
           <div className='mt-auto mb-12 pt-8 border-t border-gray-100'>
              <div className='scale-110 origin-left'>
                 <BrandsDropdown />

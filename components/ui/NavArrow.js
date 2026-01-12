@@ -20,7 +20,7 @@ export default function NavArrow({
       className={`
         cursor-pointer group rounded-full flex items-center justify-center 
         transition-all duration-[300ms] ease-in-out
-        w-[50px] aspect-square
+        w-[54px] aspect-square
         /* Inactive/Base State */
         bg-[#f4f4f6] 
         /* Hover State */

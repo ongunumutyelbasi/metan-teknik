@@ -65,14 +65,14 @@ export default function SubNavigationRow({ items, onStickyChange }: SubNavigatio
     <div 
       ref={observerRef}
       // logic: always has border-t, but color becomes transparent (or white) when stuck
-      className={`w-full h-[63px] sticky top-[76px] z-40 flex items-center transition-all duration-500 ease-in-out border-t ${
+      className={`w-full h-[68px] sticky top-[76px] z-40 flex items-center transition-all duration-500 ease-in-out border-t ${
         isStuck 
           ? 'bg-white/90 border-white/90 backdrop-blur-md' 
           : 'bg-white/100 border-light-gray backdrop-blur-md'
       }`}
     >
       <div className='max-w-full w-full mx-auto px-3 flex items-center h-full relative overflow-hidden'>
-        <span className='text-[0.55rem] font-semibold mr-1 whitespace-nowrap hidden sm:block'>
+        <span className='text-[0.55rem] text-grey-on-light font-medium mr-1 whitespace-nowrap hidden sm:block'>
           Hızlı erişim:
         </span>
 
