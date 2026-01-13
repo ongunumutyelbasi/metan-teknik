@@ -132,6 +132,8 @@ export default function MicrophonesPage() {
         return ["All", ...Array.from(new Set(cats))];
     }, []);
 
+    const [isPageSizeOpen, setIsPageSizeOpen] = useState(false);
+
     const filteredProducts = useMemo(() => {
         // 1. If there's no search and no filters, return everything
         if (!searchQuery && !hasActiveFilters) return sennheiserProducts;
@@ -200,6 +202,19 @@ export default function MicrophonesPage() {
         });
     }, [searchQuery, filters, hasActiveFilters, sennheiserProducts]);
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage, setProductsPerPage] = useState(24);
+
+    // Reset to page 1 whenever filters or search change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, filters]);
+
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
     const relatedSeries: FamilyCard[] = [
         { title: "evolution", description: "Bu serideki tüm mikrofonların ortak noktası; etkileyici ses performansı, yapılan işe tam uyum ve üstün dayanıklılıktır. Alman mühendisliğinin en iyi geleneklerine sadık kalınarak tasarlanan bu ürünler; mühendislerimizin özverisinin, sayısız testin ve en titiz üretim süreçlerinin bir sonucudur.", image: "/images/sennheiser/mikrofonlar-sayfasi/evolution.avif", href: "/ev" },
         { title: "MK Series", description: "Yetenekleri şaşırtan performans. Kayıtlarınız için en doğru mikrofon.", image: "/images/sennheiser/mikrofonlar-sayfasi/mk.avif", href: "/mk" },
@@ -256,7 +271,7 @@ export default function MicrophonesPage() {
                 </div>
 
                 {/* Filter & Search Bar Row */}
-                <div className="sticky top-[76px] z-30 backdrop-blur-md border-b border-light-gray px-[20px] py-4 mb-8">
+                <div className="sticky top-[76px] z-30 backdrop-blur-md border-b border-light-gray px-[20px] py-4">
                     <div className="max-w-full mx-auto flex items-center gap-[4px] h-[36px]">
                         
                         {/* Search Container */}
@@ -404,10 +419,10 @@ export default function MicrophonesPage() {
                     </div>
                 </div>
 
-                {/* 5. Product Grid */}
-                <div className="px-[20px] pb-16 w-full">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
-                        {filteredProducts.map((product) => (
+                {/* 5. Product Grid & Pagination */}
+                <div className="px-[20px] pb-16 pt-[20px] w-full flex flex-col items-center">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 w-full pb-[16px]">
+                        {currentProducts.map((product) => (
                             <a 
                                 key={product.id} 
                                 href={product.link}
@@ -441,9 +456,108 @@ export default function MicrophonesPage() {
                         ))}
                     </div>
 
-                    {filteredProducts.length === 0 && (
+                    {filteredProducts.length === 0 ? (
                         <div className="py-20 text-center text-gray-400 italic">
                             Aradığınız kriterlere uygun ürün bulunamadı.
+                        </div>
+                    ) : (
+                        /* Removed cursor-pointer from this wrapper so it only applies to the buttons themselves */
+                        <div className="mt-[16px] mb-[0px] flex flex-col items-center gap-2">
+                            
+                            {/* Pagination Numbers */}
+                            {totalPages > 1 && (
+                                <nav aria-label="Pagination">
+                                    <div className="flex items-center justify-center gap-1" role="list">
+                                        {[...Array(totalPages)].map((_, i) => {
+                                            const pageNum = i + 1;
+                                            const isActive = currentPage === pageNum;
+                                            return (
+                                                <button
+                                                    key={pageNum}
+                                                    role="listitem"
+                                                    aria-current={isActive ? "page" : undefined}
+                                                    onClick={() => setCurrentPage(pageNum)}
+                                                    className={`
+                                                        flex items-center justify-center rounded-full transition-colors antialiased subpixel-antialiased
+                                                        w-[32px] h-[32px] min-w-[32px] max-w-[32px] min-h-[32px] max-h-[32px] 
+                                                        cursor-pointer text-[13px] font-[400] leading-[0]
+                                                        ${isActive 
+                                                            ? 'bg-light-gray text-black' 
+                                                            : 'bg-transparent text-black hover:bg-light-gray'}
+                                                    `}
+                                                >
+                                                    {pageNum}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </nav>
+                            )}
+
+                            {/* Products Per Page Dropdown */}
+                            <div className="flex items-center gap-2">
+                                <span className="text-[13px] text-black font-normal antialiased subpixel-antialiased">
+                                    Sayfada gösterilen ürün sayısı:
+                                </span>
+                                <div className="relative">
+                                    {/* Backdrop for closing dropdown */}
+                                    {isPageSizeOpen && (
+                                        <div 
+                                            className="fixed inset-0 cursor-default" 
+                                            onClick={() => setIsPageSizeOpen(false)}
+                                        />
+                                    )}
+
+                                    {/* Custom Drop-down Menu */}
+                                    {isPageSizeOpen && (
+                                        <div className="absolute top-full -mt-[1px] left-0 w-full bg-white border-x border-b border-light-gray rounded-b-[16px] shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-1 duration-200">
+                                            <div className="flex flex-col pt-0">
+                                                {[24, 48, 72].map((size) => {
+                                                    const isActive = productsPerPage === size;
+                                                    return (
+                                                        <button
+                                                            key={size}
+                                                            onClick={() => {
+                                                                setProductsPerPage(size);
+                                                                setCurrentPage(1);
+                                                                setIsPageSizeOpen(false);
+                                                            }}
+                                                            className={`px-1 py-1 pl-3 pr-3 text-[13px] font-medium transition-colors duration-200 leading-[1.2] flex items-left justify-left ${
+                                                                isActive 
+                                                                    ? 'text-[var(--color-brand-hover-blue)] cursor-default'
+                                                                    : 'text-black hover:bg-light-gray cursor-pointer'
+                                                            }`}
+                                                        >
+                                                            {size}
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Trigger Button */}
+                                    <button 
+                                        onClick={() => setIsPageSizeOpen(!isPageSizeOpen)}
+                                        className={`
+                                            relative flex items-center gap-2 antialiased subpixel-antialiased text-black text-[13px] font-medium 
+                                            py-1 pl-3 pr-3 cursor-pointer focus:outline-none transition-all duration-200 min-w-[60px] justify-between
+                                            border
+                                            ${isPageSizeOpen 
+                                                ? 'bg-[#E9E9ED] rounded-t-[16px] rounded-b-none border-[#E9E9ED]' 
+                                                : 'bg-[#F5F5F7] hover:bg-[#E9E9ED] rounded-[16px] border-transparent'}
+                                        `}
+                                    >
+                                        <span>{productsPerPage}</span>
+                                        <svg 
+                                            viewBox="0 0 32 32" 
+                                            className={`w-[8px] h-[8px] fill-current transition-transform duration-300 ${isPageSizeOpen ? 'rotate-180' : ''}`}
+                                        >
+                                            <path d="M1.1,1.1l15,29.9L30.9,1.1H1.1z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     )}
                 </div>
