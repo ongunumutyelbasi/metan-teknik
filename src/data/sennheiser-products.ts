@@ -65,7 +65,7 @@ export const sennheiserProducts: SennheiserProduct[] = [
         "category": "Microphones",
         "productSeries": [],
         "applicationTypes": ["Live Production & Touring", "Live theatre", "Places of worship", "Studio recording"],
-        "link": "sennheiser/urunler/mikrofonlar/md-421-kompakt",
+        "link": "/sennheiser/urunler/mikrofonlar/md-421-kompakt",
         "microphoneForm": ["Stand / boom mounted"],
         "pickupPattern": ["Cardioid"],
         "transducerType": ["Dynamic"],
