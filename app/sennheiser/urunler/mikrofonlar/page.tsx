@@ -356,43 +356,43 @@ export default function MicrophonesPage() {
 
                         {/* Dropdown Filters */}
                         <FilterDropdown 
-                            title="Application type" 
+                            title="Uygulama türü" 
                             items={applicationTypes} 
                             selectedItems={filters.applicationTypes}
                             onSelectionChange={(val) => setFilters({...filters, applicationTypes: val})}
                         />
                         <FilterDropdown 
-                            title="Microphone form" 
+                            title="Mikrofon formu" 
                             items={microphoneForm} 
                             selectedItems={filters.microphoneForm}
                             onSelectionChange={(val) => setFilters({...filters, microphoneForm: val})}
                         />
                         <FilterDropdown 
-                            title="Pickup pattern" 
+                            title="Kutup deseni" 
                             items={pickupPattern} 
                             selectedItems={filters.pickupPattern}
                             onSelectionChange={(val) => setFilters({...filters, pickupPattern: val})}
                         />
                         <FilterDropdown 
-                            title="Transducer type" 
+                            title="Transformatör tipi" 
                             items={transducerType} 
                             selectedItems={filters.transducerType}
                             onSelectionChange={(val) => setFilters({...filters, transducerType: val})}
                         />
                         <FilterDropdown 
-                            title="Connection" 
+                            title="Bağlantı" 
                             items={connection} 
                             selectedItems={filters.connection}
                             onSelectionChange={(val) => setFilters({...filters, connection: val})}
                         />
                         <FilterDropdown 
-                            title="Connectors" 
+                            title="Konektörler" 
                             items={connectors} 
                             selectedItems={filters.connectors}
                             onSelectionChange={(val) => setFilters({...filters, connectors: val})}
                         />
                         <FilterDropdown 
-                            title="Product series" 
+                            title="Ürün serisi" 
                             items={productSeries} 
                             selectedItems={filters.productSeries}
                             onSelectionChange={(val) => setFilters({...filters, productSeries: val})}
