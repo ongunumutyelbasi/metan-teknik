@@ -78,9 +78,9 @@ export function FilterDropdown({ title, items, selectedItems, onSelectionChange 
                 <div 
                     ref={menuRef}
                     style={{ left: leftOffset }}
-                    className="absolute top-[41px] z-50 w-max max-w-[320px] md:max-w-[500px] lg:max-w-[600px] rounded-[24px] bg-white shadow-xl p-3 border border-[#E9E9ED] animate-in fade-in slide-in-from-top-1 duration-200"
+                    className="absolute top-[41px] z-50 w-max max-w-[320px] md:max-w-[500px] lg:max-w-[600px]"
                 >
-                    <div className="flex flex-wrap gap-1 justify-start">
+                    <div className="flex flex-wrap gap-1">
                         {items.map((item) => (
                             <button
                                 key={item}
