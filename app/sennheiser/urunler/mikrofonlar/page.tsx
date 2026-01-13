@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import Fuse from 'fuse.js';
 import SubNavigationRow from '@/components/navigation/SubNavigationRow';
 import { useProductUI } from '@/app/hooks/useProductUI';
@@ -422,14 +423,13 @@ export default function MicrophonesPage() {
                 {/* 5. Product Grid & Pagination */}
                 <div className="px-[20px] pb-16 pt-[20px] w-full flex flex-col items-center">
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 w-full pb-[16px]">
-                        {currentProducts.map((product) => (
-                            <a 
-                                key={product.id} 
-                                href={product.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative aspect-square bg-[var(--color-light-gray)] overflow-hidden transition-colors"
-                            >
+                        {currentProducts.map((product) => {
+                        // Check if the link is external (starts with http)
+                        const isExternal = product.link.startsWith('http');
+
+                        // We use a constant for the inner UI to keep the code clean
+                        const CardContent = (
+                            <div className="group relative aspect-square bg-[var(--color-light-gray)] overflow-hidden transition-colors">
                                 <div className="absolute inset-0 flex items-center justify-center p-8">
                                     {product.image ? (
                                         <img 
@@ -452,8 +452,33 @@ export default function MicrophonesPage() {
                                         {product.name}
                                     </h3>
                                 </div>
-                            </a>
-                        ))}
+                            </div>
+                        );
+
+                        if (isExternal) {
+                            return (
+                                <a 
+                                    key={product.id} 
+                                    href={product.link}
+                                    target="_blank" // Keeps external Sennheiser links in a new tab
+                                    rel="noopener noreferrer"
+                                >
+                                    {CardContent}
+                                </a>
+                            );
+                        }
+
+                        return (
+                            <Link 
+                                key={product.id} 
+                                href={product.link}
+                                // No target="_blank" here, so it opens in the same tab
+                            >
+                                {CardContent}
+                            </Link>
+                        );
+                    })}
+
                     </div>
 
                     {filteredProducts.length === 0 ? (
