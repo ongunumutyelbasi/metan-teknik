@@ -84,8 +84,8 @@ export default function Footer() {
                     <li><FooterLink href="/sennheiser/urunler/monitorleme">Monitörleme</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/sesli-rehberlik-sistemleri">Sesli Rehberlik Sistemleri</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/kablosuz-sistemler">Kablosuz Sistemler</FooterLink></li>
-                    <li><FooterLink href="/sennheiser/urunler/cift-yonlu-haberlesme">Çift Yönlü Haberleşme</FooterLink></li>
-                    <li><FooterLink href="/sennheiser/urunler/video-konferans-sistemleri">Video Konferans Sistemleri</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/cift-yonlu-iletisim">Çift Yönlü İletişim</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/toplanti-ve-konferans-sistemleri">Toplantı ve Konferans Sistemleri</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/ambeo">Ambeo (3 Boyutlu Ses)</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/yazilimlar">Yazılımlar</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/yedek-parca">Yedek Parça</FooterLink></li>
