@@ -6,8 +6,8 @@ import Fuse from 'fuse.js';
 import SubNavigationRow from '@/components/navigation/SubNavigationRow';
 import { useProductUI } from '@/app/hooks/useProductUI';
 import Image from 'next/image';
-import { sennheiserProducts } from '@/src/data/sennheiser-products';
-import { Breadcrumbs, FamilySlider, FamilyCard, FilterDropdown, } from '@/components/Sennheiser';
+import { SennheiserProduct, sennheiserProducts } from '@/src/data/sennheiser-products';
+import { ProductGrid, CategoryHero, Breadcrumbs, FamilySlider, FamilyCard, FilterDropdown, } from '@/components/Sennheiser';
 import { APPLICATION_TYPES, MICROPHONE_FORMS, PICKUP_PATTERN, TRANSDUCER_TYPE, CONNECTION, CONNECTOR, PRODUCT_SERIES } from '@/src/types/product-schema';
 
 export default function MicrophonesPage() {
@@ -30,24 +30,21 @@ export default function MicrophonesPage() {
 
     // A simple function to clear everything
     const resetFilters = () => {
-        // 1. Clear all the dropdown arrays
-        setFilters({
-            applicationTypes: [],
-            microphoneForm: [],
-            pickupPattern: [],
-            transducerType: [],
-            connection: [],
-            connectors: [],
-            productSeries: [],
+        // 1. Clear all dropdown arrays dynamically
+        setFilters(prev => {
+            const resetState = { ...prev };
+            (Object.keys(resetState) as Array<keyof typeof prev>).forEach(key => {
+                resetState[key] = [];
+            });
+            return resetState;
         });
 
-        setSearchQuery(""); // 2. Clear the search text
-        setIsSearchOpen(false);  // 3. Close the expanded search bar UI
+        // 2. Clear UI and Search
+        setSearchQuery("");
+        setIsSearchOpen(false);
 
-        // 4. Remove focus from the input (optional but cleaner)
-        if (inputRef.current) {
-            inputRef.current.blur();
-        }
+        // 3. Remove focus
+        inputRef.current?.blur();
     };
 
     const { scrollToSection } = useProductUI();
@@ -61,9 +58,10 @@ export default function MicrophonesPage() {
     
     // This checks if any part of the filter state is "active"
     const hasActiveFilters = useMemo(() => {
-        // Check if any dropdown array has at least one item
-        const dropdownsActive = Object.values(filters).some(arr => arr.length > 0);
-        // Check if search has text
+        // 1. Check if any array in the filters object is not empty
+        const dropdownsActive = Object.values(filters).some(selectedArray => selectedArray.length > 0);
+        
+        // 2. Check if the search query is not empty
         const searchActive = searchQuery.trim().length > 0;
         
         return dropdownsActive || searchActive;
@@ -135,11 +133,12 @@ export default function MicrophonesPage() {
 
     const [isPageSizeOpen, setIsPageSizeOpen] = useState(false);
 
-    const filteredProducts = useMemo(() => {
-        // 1. If there's no search and no filters, return everything
-        if (!searchQuery && !hasActiveFilters) return sennheiserProducts;
+    const PAGE_CATEGORY = "Microphones";
 
-        let results = [...sennheiserProducts];
+    const filteredProducts = useMemo(() => {
+        let results = sennheiserProducts.filter(
+            product => product.category === PAGE_CATEGORY
+        );
 
         // 2. Apply Fuzzy Search first if there's a query
         if (searchQuery.trim() !== "") {
@@ -151,55 +150,25 @@ export default function MicrophonesPage() {
             results = fuse.search(searchQuery).map(result => result.item);
         }
 
-        // 3. Apply all 7 Pill Filters
-        return results.filter(product => {
-            // Safety Fallbacks (matches the Array types in your interface)
-            const pApps = product.applicationTypes ?? [];
-            const pForm = product.microphoneForm ?? []; 
-            const pPattern = product.pickupPattern ?? [];
-            const pTransducer = product.transducerType ?? "";
-            const pConnection = product.connection ?? "";
-            const pConnectors = product.connectors ?? [];
-            const pSeries = product.productSeries ?? [];
+        // 3. Apply Pill Filters
+        return results.filter((product) => {
+            return (Object.keys(filters) as Array<keyof typeof filters>).every((key) => {
+                const selectedValues = filters[key];
 
-            // Application Types (Multiple Selection - Match any)
-            const matchesApplication = filters.applicationTypes.length === 0 || 
-                filters.applicationTypes.some(type => pApps.includes(type));
-            
-            // Microphone Form (Match any selected form against product forms array)
-            const matchesForm = filters.microphoneForm.length === 0 || 
-                filters.microphoneForm.some(selectedForm => pForm.includes(selectedForm));
+                if (selectedValues.length === 0) return true;
 
-            // Pickup Pattern (Multiple Selection - Match any)
-            const matchesPattern = filters.pickupPattern.length === 0 ||
-                filters.pickupPattern.some(pattern => pPattern.includes(pattern));
+                // Use a type cast to tell TS that we expect an array or undefined for these specific keys
+                const productValues = product[key as keyof SennheiserProduct];
 
-            // Transducer Type (Checks if the product's type is in the selected filters array)
-            const matchesTransducer = filters.transducerType.length === 0 ||
-                filters.transducerType.some(pattern => pTransducer.includes(pattern));
+                // Ensure we are dealing with an array before calling .some()
+                if (Array.isArray(productValues)) {
+                    return selectedValues.some((val) => productValues.includes(val));
+                } else if (typeof productValues === 'string') {
+                    return selectedValues.includes(productValues);
+                }
 
-            // Connection (Checks if the product's connection is in the selected filters array)
-            const matchesConnection = filters.connection.length === 0 ||
-                filters.connection.includes(pConnection);
-
-            // Connectors (Multiple Selection - Match any)
-            const matchesConnectors = filters.connectors.length === 0 ||
-                filters.connectors.some(conn => pConnectors.includes(conn));
-
-            // Product Series (Multiple Selection - Match any)
-            const matchesSeries = filters.productSeries.length === 0 ||
-                filters.productSeries.some(series => pSeries.includes(series));
-
-            // Product must pass ALL active filter categories
-            return (
-                matchesApplication && 
-                matchesForm && 
-                matchesPattern && 
-                matchesTransducer && 
-                matchesConnection && 
-                matchesConnectors && 
-                matchesSeries
-            );
+                return false;
+            });
         });
     }, [searchQuery, filters, hasActiveFilters, sennheiserProducts]);
 
@@ -227,31 +196,16 @@ export default function MicrophonesPage() {
     return (
         <div className="min-h-screen bg-white font-sennheiser selection:bg-black selection:text-white">
             {/* 1. Hero Section */}
-            <section data-nav-color="light" className="relative w-full h-[500px] overflow-hidden">
-                <Image 
-                    src="/images/sennheiser/hero-sections/microphones_pageHero.webp"
-                    alt="Sennheiser Hero"
-                    fill
-                    priority 
-                    className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <div className="absolute inset-0 z-[2] flex flex-col justify-end pb-[90px] px-[20px] text-white antialiased subpixel-antialiased">
-                    <div className="max-w-full text-left pb-[0px] md:pb-0">
-                        <h1 className="text-[50px] leading-[1.1] pb-[20px] font-medium [hyphens:auto]">
-                            Mikrofonlar
-                        </h1>
-                        <p className="text-[32px] leading-[1.1] opacity-75 font-medium [hyphens:auto]">
-                            Sahne, stüdyo, konferans salonu, oditoryum ve daha fazı için efsanevi istikrar...
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <CategoryHero 
+                title="Mikrofonlar"
+                subtitle="Sahne, stüdyo, konferans salonu, oditoryum ve daha fazı için efsanevi istikrar..."
+                imageSrc="/images/sennheiser/hero-sections/microphones_pageHero.webp"
+            />
 
             {/* 2. Main Product Info Area */}
             <main className="flex w-full">
                 <div className="px-[20px] pt-[20px] antialiased subpixel-antialiased">
-                    <Breadcrumbs category="Mikrofonlar" className="mb-0" />
+                    <Breadcrumbs category="Mikrofonlar" categoryHref="/sennheiser/urunler/mikrofonlar" className="mb-0" />
                 </div>
             </main>
 
@@ -272,9 +226,16 @@ export default function MicrophonesPage() {
                 </div>
 
                 {/* Filter & Search Bar Row */}
-                <div className="sticky top-[76px] z-30 backdrop-blur-md border-b border-light-gray px-[20px] py-4">
+                <div className="sticky top-[76px] z-30 backdrop-blur-md border-light-gray px-[20px] py-4">
                     <div className="max-w-full mx-auto flex items-center gap-[4px] h-[36px]">
                         
+                        <span 
+                            className="antialiased subpixel-antialiased text-grey-on-light mr-1"
+                            style={{ fontSize: '0.65rem', fontWeight: 400 }}
+                        >
+                            Filtreler:
+                        </span>
+
                         {/* Search Container */}
                         <div 
                             ref={searchRef}
@@ -421,171 +382,17 @@ export default function MicrophonesPage() {
                 </div>
 
                 {/* 5. Product Grid & Pagination */}
-                <div className="px-[20px] pb-16 pt-[20px] w-full flex flex-col items-center">
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 w-full pb-[16px]">
-                        {currentProducts.map((product) => {
-                        // Check if the link is external (starts with http)
-                        const isExternal = product.link.startsWith('http');
-
-                        // We use a constant for the inner UI to keep the code clean
-                        const CardContent = (
-                            <div className="group relative aspect-square bg-[var(--color-light-gray)] overflow-hidden transition-colors">
-                                <div className="absolute inset-0 flex items-center justify-center p-8">
-                                    {product.image ? (
-                                        <img 
-                                            src={product.image} 
-                                            alt={product.name}
-                                            className="antialiased subpixel-antialiased object-contain w-full h-full transition-transform duration-300 ease-out group-hover:scale-110"
-                                        />
-                                    ) : (
-                                        <span className="antialiased subpixel-antialiased text-[10px] text-gray-300 tracking-widest">
-                                            {product.articleNo}
-                                        </span>
-                                    )}
-                                </div>
-
-                                <div className="absolute bottom-3 left-3 right-3 pointer-events-none">
-                                    <h3 
-                                        className="antialiased subpixel-antialiased font-medium transition-colors duration-300 group-hover:text-[var(--color-brand-hover-blue)]"
-                                        style={{ fontSize: '0.65rem', lineHeight: '110%', fontWeight: 500, letterSpacing: '0.02em' }}
-                                    >
-                                        {product.name}
-                                    </h3>
-                                </div>
-                            </div>
-                        );
-
-                        if (isExternal) {
-                            return (
-                                <a 
-                                    key={product.id} 
-                                    href={product.link}
-                                    target="_blank" // Keeps external Sennheiser links in a new tab
-                                    rel="noopener noreferrer"
-                                >
-                                    {CardContent}
-                                </a>
-                            );
-                        }
-
-                        return (
-                            <Link 
-                                key={product.id} 
-                                href={product.link}
-                                // No target="_blank" here, so it opens in the same tab
-                            >
-                                {CardContent}
-                            </Link>
-                        );
-                    })}
-
-                    </div>
-
-                    {filteredProducts.length === 0 ? (
-                        <div className="py-20 text-center text-gray-400 italic">
-                            Aradığınız kriterlere uygun ürün bulunamadı.
-                        </div>
-                    ) : (
-                        /* Removed cursor-pointer from this wrapper so it only applies to the buttons themselves */
-                        <div className="mt-[16px] mb-[0px] flex flex-col items-center gap-2">
-                            
-                            {/* Pagination Numbers */}
-                            {totalPages > 1 && (
-                                <nav aria-label="Pagination">
-                                    <div className="flex items-center justify-center gap-1" role="list">
-                                        {[...Array(totalPages)].map((_, i) => {
-                                            const pageNum = i + 1;
-                                            const isActive = currentPage === pageNum;
-                                            return (
-                                                <button
-                                                    key={pageNum}
-                                                    role="listitem"
-                                                    aria-current={isActive ? "page" : undefined}
-                                                    onClick={() => setCurrentPage(pageNum)}
-                                                    className={`
-                                                        flex items-center justify-center rounded-full transition-colors antialiased subpixel-antialiased
-                                                        w-[32px] h-[32px] min-w-[32px] max-w-[32px] min-h-[32px] max-h-[32px] 
-                                                        cursor-pointer text-[13px] font-[400] leading-[0]
-                                                        ${isActive 
-                                                            ? 'bg-light-gray text-black' 
-                                                            : 'bg-transparent text-black hover:bg-light-gray'}
-                                                    `}
-                                                >
-                                                    {pageNum}
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-                                </nav>
-                            )}
-
-                            {/* Products Per Page Dropdown */}
-                            <div className="flex items-center gap-2">
-                                <span className="text-[13px] text-black font-normal antialiased subpixel-antialiased">
-                                    Sayfada gösterilen ürün sayısı:
-                                </span>
-                                <div className="relative">
-                                    {/* Backdrop for closing dropdown */}
-                                    {isPageSizeOpen && (
-                                        <div 
-                                            className="fixed inset-0 cursor-default" 
-                                            onClick={() => setIsPageSizeOpen(false)}
-                                        />
-                                    )}
-
-                                    {/* Custom Drop-down Menu */}
-                                    {isPageSizeOpen && (
-                                        <div className="absolute top-full -mt-[1px] left-0 w-full bg-white border-x border-b border-light-gray rounded-b-[16px] shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-1 duration-200">
-                                            <div className="flex flex-col pt-0">
-                                                {[24, 48, 72].map((size) => {
-                                                    const isActive = productsPerPage === size;
-                                                    return (
-                                                        <button
-                                                            key={size}
-                                                            onClick={() => {
-                                                                setProductsPerPage(size);
-                                                                setCurrentPage(1);
-                                                                setIsPageSizeOpen(false);
-                                                            }}
-                                                            className={`px-1 py-1 pl-3 pr-3 text-[13px] font-medium transition-colors duration-200 leading-[1.2] flex items-left justify-left ${
-                                                                isActive 
-                                                                    ? 'text-[var(--color-brand-hover-blue)] cursor-default'
-                                                                    : 'text-black hover:bg-light-gray cursor-pointer'
-                                                            }`}
-                                                        >
-                                                            {size}
-                                                        </button>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {/* Trigger Button */}
-                                    <button 
-                                        onClick={() => setIsPageSizeOpen(!isPageSizeOpen)}
-                                        className={`
-                                            relative flex items-center gap-2 antialiased subpixel-antialiased text-black text-[13px] font-medium 
-                                            py-1 pl-3 pr-3 cursor-pointer focus:outline-none transition-all duration-200 min-w-[60px] justify-between
-                                            border
-                                            ${isPageSizeOpen 
-                                                ? 'bg-[#E9E9ED] rounded-t-[16px] rounded-b-none border-[#E9E9ED]' 
-                                                : 'bg-[#F5F5F7] hover:bg-[#E9E9ED] rounded-[16px] border-transparent'}
-                                        `}
-                                    >
-                                        <span>{productsPerPage}</span>
-                                        <svg 
-                                            viewBox="0 0 32 32" 
-                                            className={`w-[8px] h-[8px] fill-current transition-transform duration-300 ${isPageSizeOpen ? 'rotate-180' : ''}`}
-                                        >
-                                            <path d="M1.1,1.1l15,29.9L30.9,1.1H1.1z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                <ProductGrid 
+                    currentProducts={currentProducts}
+                    filteredProducts={filteredProducts}
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    productsPerPage={productsPerPage}
+                    setCurrentPage={setCurrentPage}
+                    setProductsPerPage={setProductsPerPage}
+                    isPageSizeOpen={isPageSizeOpen}
+                    setIsPageSizeOpen={setIsPageSizeOpen}
+                />
             </section>
         </div>
     );

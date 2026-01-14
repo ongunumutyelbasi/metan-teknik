@@ -11,3 +11,6 @@ export * from './ProductDownloads';
 export * from './ProductVariantPicker';
 export * from './FamilySlider';
 export * from './FilterDropdown';
+export { default as CategoryHero } from './CategoryHero';
+export { default as ProductGrid } from './ProductGrid';
+export * from './ProductFilterBar';

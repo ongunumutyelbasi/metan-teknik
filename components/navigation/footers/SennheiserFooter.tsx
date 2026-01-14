@@ -75,20 +75,22 @@ export default function Footer() {
           
           <div className="space-y-[8px]">
             <h4 className="font-bold text-[#999999] text-[.65rem]">Ürünler</h4>
-            <ul className="space-y-[8px] font-bold text-[.65rem] leading-[18px] text-gray-300">
-              <li className="hover:text-brand-blue cursor-pointer">Aksesuarlar</li>
-              <li className="hover:text-brand-blue cursor-pointer">Kulaklıklar</li>
-              <li className="hover:text-brand-blue cursor-pointer">Toplantı ve Konferans Sistemleri</li>
-              <li className="hover:text-brand-blue cursor-pointer">Mikrofonlar</li>
-              <li className="hover:text-brand-blue cursor-pointer">Monitörler</li>
-              <li className="hover:text-brand-blue cursor-pointer">Sesli Rehberlik Sistemleri</li>
-              <li className="hover:text-brand-blue cursor-pointer">Kablosuz Sistemler</li>
-              <li className="hover:text-brand-blue cursor-pointer">Çift Yönlü Haberleşme</li>
-              <li className="hover:text-brand-blue cursor-pointer">Video Konferans Sistemleri</li>
-              <li className="hover:text-brand-blue cursor-pointer">Ambeo (3 Boyutlu Ses)</li>
-              <li className="hover:text-brand-blue cursor-pointer">Yazılımlar</li>
-              <li className="hover:text-brand-blue cursor-pointer">Yedek Parça</li>
-            </ul>
+            <nav aria-label="Footer Navigation">
+                <ul className="space-y-[8px] font-bold text-[.65rem] leading-[18px] text-white">
+                    <li><FooterLink href="/sennheiser/urunler/aksesuarlar">Aksesuarlar</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/kulakliklar">Kulaklıklar</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/toplanti-ve-konferans-sistemleri">Toplantı ve Konferans Sistemleri</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/mikrofonlar">Mikrofonlar</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/monitorler">Monitörler</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/sesli-rehberlik-sistemleri">Sesli Rehberlik Sistemleri</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/kablosuz-sistemler">Kablosuz Sistemler</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/cift-yonlu-haberlesme">Çift Yönlü Haberleşme</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/video-konferans-sistemleri">Video Konferans Sistemleri</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/ambeo">Ambeo (3 Boyutlu Ses)</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/yazilimlar">Yazılımlar</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/yedek-parca">Yedek Parça</FooterLink></li>
+                </ul>
+            </nav>
           </div>
 
           <div className="space-y-[8px]">
@@ -107,11 +109,13 @@ export default function Footer() {
 
           <div className="space-y-[8px]">
             <h4 className="font-bold text-[#999999] text-[.65rem]">Destek</h4>
-            <ul className="space-y-[8px] font-bold text-[.65rem] leading-[18px] text-white">
-              <li><FooterLink href="/teknik-servis">Teknik Servis</FooterLink></li>
-              <li className="hover:text-brand-blue cursor-pointer">Servis Ücretleri</li>
-              <li className="hover:text-brand-blue cursor-pointer">Müşteri Memnuniyeti</li>
-            </ul>
+            <nav aria-label="Footer Navigation">
+                <ul className="space-y-[8px] font-bold text-[.65rem] leading-[18px] text-white">
+                    <li><FooterLink href="/sennheiser/urunler/aksesuarlar">Teknik Servis</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/kulakliklar">Servis Ücretleri</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/toplanti-ve-konferans-sistemleri">Müşteri Memnuniyeti</FooterLink></li>
+                </ul>
+            </nav>
           </div>
 
           <div className="space-y-[8px]">

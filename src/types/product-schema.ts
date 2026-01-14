@@ -48,6 +48,7 @@ export const CONNECTION = [
 
 export const CONNECTOR = [
     "3.5mm",
+    "6.3mm",
     "3-pin XLR",
     "5-pin XLR",
     "USB",
@@ -77,6 +78,49 @@ export const PRODUCT_SERIES = [
     "Profile",
 ] as const;
 
+export const SYSTEM_PART = [
+    "Aksesuarlar",
+    "Mikrofonlar",
+    "Setler",
+    "Masa üstü ayaklar",
+    "Vericiler",
+    "Bodypacks",
+    "Combiners",
+    "Handheld",
+    "Monitoring",
+    "Alıcılar",
+    "Antenler",
+] as const;
+
+export const PRODUCT_TYPE = [
+    "Çift Yönlü İletişim",
+    "Monitörleme",
+    "Kablosuz Sistemler",
+    "Yedek Parçalar",
+    "Yazılımlar",
+] as const;
+
+export const LOCATION = [
+    "Küçük oda",
+    "Orta boy oda",
+] as const;
+
+export const TECHNOLOGY = [
+    "Analog",
+    "Dijital",
+] as const;
+
+export const WEARING_STYLE = [
+    "Kulak içi",
+    "Kulak çevreleyen",
+    "Kulak üstü"
+] as const;
+
+export const AUDIO_SOURCE = [
+    "Enstrüman",
+    "Vokal"
+] as const;
+
 // This turns the lists above into "Types"
 export type ApplicationType = typeof APPLICATION_TYPES[number];
 export type MicrophoneForm = typeof MICROPHONE_FORMS[number];
@@ -85,6 +129,12 @@ export type TransducerType = typeof TRANSDUCER_TYPE[number];
 export type Connection = typeof CONNECTION[number];
 export type Connector = typeof CONNECTOR[number];
 export type ProductSeries = typeof PRODUCT_SERIES[number];
+export type SystemPart = typeof SYSTEM_PART[number];
+export type ProductType = typeof PRODUCT_TYPE[number];
+export type Location = typeof LOCATION[number];
+export type WearingStyle = typeof WEARING_STYLE[number];
+export type AudioSource = typeof AUDIO_SOURCE[number];
+export type Technology = typeof TECHNOLOGY[number];
 
 export interface SennheiserProduct {
     id: number;
@@ -98,4 +148,12 @@ export interface SennheiserProduct {
     productSeries?: ProductSeries[];  // Optional array of values from that list
     articleNo: string;
     link: string;
+    systemPart?: string[];
+    productType?: string[];   
+    location?: string[];
+    technology?: string[];
+    wearingStyle?: WearingStyle[];
+    audioSource?: AudioSource[];
+    image?: string[];
+    category: string;
 }

@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 interface FilterDropdownProps {
     title: string;
-    items: string[];
+    items: readonly string[];
     selectedItems: string[];
     onSelectionChange: (selected: string[]) => void;
 }

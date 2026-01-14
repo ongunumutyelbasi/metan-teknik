@@ -1,18 +1,23 @@
-
 export interface SennheiserProduct {
-    id: number;
+    id?: number;
     name: string;
-    articleNo: string;
+    articleNo?: string;
     category: string;
     link: string;
-    image?: string;
-    applicationTypes?: string[];   // Array because one mic can have multiple uses
-    microphoneForm?: string[];       // Usually a single form (e.g., "Handheld")
-    pickupPattern?: string[];      // Some mics have switchable patterns
-    transducerType?: string[];       
-    connection?: "Kablolu" | "Kablosuz" | "";
-    connectors?: string[];         // Some mics come with multiple cable options
-    productSeries?: string[];        
+    image?: string[];
+    applicationTypes?: string[];
+    microphoneForm?: string[];
+    pickupPattern?: string[];
+    transducerType?: string[]; 
+    connection?: string; // "Kablolu" | "Kablosuz"
+    connectors?: string[];
+    productSeries?: string[];
+    systemPart?: string[];
+    productType?: string[];     
+    location?: string[];
+    technology?: string[];
+    wearingStyle?: string[];
+    audioSource?: string[];
 }
 
 export const sennheiserProducts: SennheiserProduct[] = [
@@ -1807,5 +1812,305 @@ export const sennheiserProducts: SennheiserProduct[] = [
         "connection": "",
         "connectors": [],
         "productSeries": []
-    }
+    },
+    {
+        "articleNo": "509164",
+        "name": "Spectera SEK",
+        "category": "Çift Yönlü İletişim",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "productType": ["Çift Yönlü İletişim", "Monitörleme", "Kablosuz Sistemler"],
+    },
+    {
+        "articleNo": "508895",
+        "name": "MobileConnect",
+        "category": "Çift Yönlü İletişim",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "productType": ["Çift Yönlü İletişim"],
+    },
+    {
+        "name": "MobileConnect App",
+        "category": "Çift Yönlü İletişim",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "productType": ["Yazılımlar"],
+    },
+    {
+        "name": "MobileConnect Manager",
+        "category": "Çift Yönlü İletişim",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "productType": ["Yazılımlar"],
+    },
+    {
+        "articleNo": "509169",
+        "name": "SPECTERA DAD",
+        "category": "Çift Yönlü İletişim",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "productType": ["Çift Yönlü İletişim", "Kablosuz Sistemler"],
+    },
+    {
+        "articleNo": "700073",
+        "name": "SPECTERA FILTER SET",
+        "category": "Çift Yönlü İletişim",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "productType": ["Çift Yönlü İletişim", "Kablosuz Sistemler", "Yedek Parçalar"],
+    },
+    {
+        "articleNo": "509161",
+        "name": "TeamConnect Ceiling 2",
+        "category": "Toplantı ve Konferans Sistemleri",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "productSeries": ["Teamconnect"],
+        "systemPart": ["Mikrofonlar"],
+        "microphoneForm": ["Ceiling microphone"],
+        "applicationTypes": ["Corporate", "Education", "Meeting and conference"],
+        "location": ["Orta boy oda"],
+    },
+    {
+        "articleNo": "700286",
+        "name": "HD 490 PRO",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Studio recording"],
+        "connectors": ["3.5mm", "6.3mm"],
+        "wearingStyle": ["Kulak çevreleyen"],
+    },
+    {
+        "articleNo": "506909",
+        "name": "HD 25",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Filmmaking", "Broadcast", "Live production & touring"],
+        "connectors": ["3.5mm", "6.3mm"],
+        "wearingStyle": ["Kulak üstü"],
+    },
+    {
+        "articleNo": "507182",
+        "name": "HD 200 PRO",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Filmmaking", "Broadcast", "Live production & touring"],
+        "connectors": ["3.5mm", "6.3mm"],
+        "wearingStyle": ["Kulak çevreleyen"],
+    },
+    {
+        "articleNo": "506845",
+        "name": "HD 280 PRO",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Filmmaking", "Broadcast", "Live production & touring"],
+        "connectors": ["3.5mm", "6.3mm"],
+        "wearingStyle": ["Kulak çevreleyen"],
+    },
+    {
+        "articleNo": "508941",
+        "name": "IE 100 PRO",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Live production & touring"],
+        "connectors": ["3.5mm"],
+        "wearingStyle": ["Kulak içi"],
+        "audioSource": ["Enstrüman", "Vokal"],
+    },
+    {
+        "articleNo": "509171",
+        "name": "IE 100 PRO WIRELESS",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Live production & touring"],
+        "wearingStyle": ["Kulak içi"],
+        "audioSource": ["Enstrüman", "Vokal"],
+    },
+    {
+        "articleNo": "700315",
+        "name": "HMD 300",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Broadcast"],
+        "wearingStyle": ["Kulak çevreleyen"],
+        "audioSource": ["Vokal"],
+    },
+    {
+        "articleNo": "700322",
+        "name": "HME 27",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Broadcast"],
+        "wearingStyle": ["Kulak çevreleyen"],
+        "audioSource": ["Vokal"],
+    },
+    {
+        "articleNo": "506898",
+        "name": "HD 300 PROtect",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Broadcast", "Filmmaking", "Live production & touring"],
+        "wearingStyle": ["Kulak çevreleyen"],
+        "connectors": ["3.5mm", "6.3mm"],
+    },
+    {
+        "articleNo": "700318",
+        "name": "HMD 26 S",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Broadcast"],
+        "wearingStyle": ["Kulak üstü"],
+        "audioSource": ["Vokal"],
+    },
+    {
+        "articleNo": "700047",
+        "name": "HD 400 PRO",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Broadcast", "Filmmaking", "Live production & touring"],
+        "wearingStyle": ["Kulak çevreleyen"],
+        "connectors": ["3.5mm", "6.3mm"],
+    },
+    {
+        "articleNo": "506908",
+        "name": "HD 25 Plus",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Broadcast", "Filmmaking", "Live production & touring"],
+        "wearingStyle": ["Kulak üstü"],
+        "connectors": ["3.5mm", "6.3mm"],
+    },
+    {
+        "articleNo": "700487",
+        "name": "HD 26",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Broadcast"],
+        "wearingStyle": ["Kulak üstü"],
+        "audioSource": ["Vokal"],
+    },
+    {
+        "articleNo": "508288",
+        "name": "HD 300 PRO",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Broadcast", "Filmmaking", "Live production & touring"],
+        "wearingStyle": ["Kulak çevreleyen"],
+        "connectors": ["3.5mm", "6.3mm"],
+    },
+    {
+        "articleNo": "508664",
+        "name": "HD 25 Light",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Broadcast", "Filmmaking", "Live production & touring"],
+        "wearingStyle": ["Kulak üstü"],
+        "connectors": ["3.5mm", "6.3mm"],
+    },
+    {
+        "articleNo": "500432",
+        "name": "IE 4",
+        "category": "Kulaklıklar",
+        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/mkh-50/mkh-50-p48-003109",
+        "applicationTypes": ["Live production & touring"],
+        "wearingStyle": ["Kulak içi"],
+        "audioSource": ["Enstrüman", "Vokal"],
+    },
+    {
+        "name": "MobileConnect Manager",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/mobileconnect-manager-product/mobileconnect-manager-product-789123",
+        "applicationTypes": ["Assistive listening and audience engagement", "Meeting and conference", "Corporate", "Education", "Presentation"],
+        "image": [
+            "/images/sennheiser/yazilimlar/mobileconnect-manager/mobileconnect-manager-1.webp",
+            "/images/sennheiser/yazilimlar/mobileconnect-manager/mobileconnect-manager-2.webp",
+            "/images/sennheiser/yazilimlar/mobileconnect-manager/mobileconnect-manager-3.webp",
+            "/images/sennheiser/yazilimlar/mobileconnect-manager/mobileconnect-manager-4.webp"
+        ],
+    },
+    {
+        "name": "SPECTERA LINKDESK",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/spectera-link-desk-829c7449/spectera-linkdesk-linkdesk",
+        "applicationTypes": ["Broadcast", "Places of worship", "Live theatre", "Live production & touring"],
+        "image": [
+            "/images/sennheiser/yazilimlar/spectera-linkdesk/spectera-linkdesk-1.avif",
+            "/images/sennheiser/yazilimlar/spectera-linkdesk/spectera-linkdesk-2.avif",
+        ],
+    },
+    {
+        "name": "Firmware Updater",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/firmware-updater/beta-release-121025",
+        "applicationTypes": [],
+        "image": [
+            "/images/sennheiser/yazilimlar/firmware-updater/firmware-updater-1.webp",
+            "/images/sennheiser/yazilimlar/firmware-updater/firmware-updater-2.webp",
+        ]
+    },
+    {
+        "name": "Spectera WebUI",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/spectera-webui/spectera-webui-webui",
+        "applicationTypes": ["Broadcast", "Places of worship", "Live theatre", "Live production & touring"],
+        "image": [
+            "/images/sennheiser/yazilimlar/spectera-webui/spectera-webui-1.avif",
+        ]
+    },
+    {
+        "name": "MobileConnect App",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/applications/assistive-listening-and-audience-engagement/mobileconnect-app-223344/mobileconnect-app-product-123456",
+        "applicationTypes": ["Assistive listening and audience engagement", "Meeting and conference", "Corporate", "Presentation"],
+        "image": [
+            "/images/sennheiser/yazilimlar/mobileconnect-app/mobileconnect-app.webp",
+        ]
+    },
+    {
+        "name": "SoundBase",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/soundbase/soundbase-se-888888",
+        "applicationTypes": [],
+        "image": [
+            "/images/sennheiser/yazilimlar/soundbase/soundbase.avif",
+        ]
+    },
+    {
+        "name": "Wireless Systems Manager",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/wireless-systems-manager/wsm-111113",
+        "applicationTypes": [],
+        "image": [
+            "/images/sennheiser/yazilimlar/wireless-system-manager/wireless-system-manager.avif",
+        ]
+    },
+    {
+        "name": "SPECTERA Licenses",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/spectera-licenses-b6572ce1/spectera-lic-zone-01-700532",
+        "applicationTypes": ["Broadcast", "Places of worship", "Live theatre", "Live production & touring"],
+        "image": [
+            "/images/sennheiser/yazilimlar/spectera-licenses/spectera-licenses-1.avif",
+        ]
+    },
+    {
+        "name": "Control Cockpit",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/control-cockpit/control-cockpit-111111",
+        "applicationTypes": ["Meeting and conference", "Corporate", "Education", "Presentation"],
+        "image": [
+            "/images/sennheiser/yazilimlar/control-cockpit/control-cockpit-1.avif",
+        ]
+    },
+    {
+        "name": "SmartAssist",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/smart-assist/smart-assist-app-111112",
+        "applicationTypes": [],
+        "image": [
+            "/images/sennheiser/yazilimlar/smartassist/smartassist-1.webp",
+        ]
+    },
+    {
+        "name": "AMBEO Pattern Plugin",
+        "category": "Yazılımlar",
+        "link": "https://www.sennheiser.com/en-de/catalog/products/software/ambeo-pattern-plugin/ambeo-pattern-plugin-111114",
+        "applicationTypes": [],
+        "image": [
+            "/images/sennheiser/yazilimlar/ambeo-pattern-plugin/ambeo-pattern-plugin-1.avif",
+        ]
+    },
 ];
