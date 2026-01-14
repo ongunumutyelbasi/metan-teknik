@@ -81,7 +81,7 @@ export default function Footer() {
                     <li><FooterLink href="/sennheiser/urunler/kulakliklar">Kulaklıklar</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/toplanti-ve-konferans-sistemleri">Toplantı ve Konferans Sistemleri</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/mikrofonlar">Mikrofonlar</FooterLink></li>
-                    <li><FooterLink href="/sennheiser/urunler/monitorler">Monitörler</FooterLink></li>
+                    <li><FooterLink href="/sennheiser/urunler/monitorleme">Monitörleme</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/sesli-rehberlik-sistemleri">Sesli Rehberlik Sistemleri</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/kablosuz-sistemler">Kablosuz Sistemler</FooterLink></li>
                     <li><FooterLink href="/sennheiser/urunler/cift-yonlu-haberlesme">Çift Yönlü Haberleşme</FooterLink></li>
