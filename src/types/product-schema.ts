@@ -1,21 +1,21 @@
 export const APPLICATION_TYPES = [
     "Assistive listening and audience engagement", "Filmmaking", "Broadcast", "Corporate", "Education", 
-    "Live production & touring", "Live theatre", "Meeting and conference", "Mobile journalism", "Presentation",
-    "Studio recording", "Virtual reality", "Visitor guidance", "Places of worship"
+    "Live production & touring", "Live theatre", "Meeting and conference", "Mobile journalism", "Presentation", "Speech",
+    "Studio recording", "Virtual reality", "Visitor guidance", "Places of worship", "Podcasting", "Streaming", "Gaming", "Lead vocals"
 ] as const;
 
 export const MICROPHONE_FORMS = [
     "Bodypack", 
     "Boundary microphone", 
-    "Camera", 
-    "Capsule",
-    "Ceiling microphone",
-    "Clip",
+    "Kamera mikrofonu", 
+    "Kapsül",
+    "Tavan mikrofonu",
+    "Klips",
     "Gooseneck microphone",
     "Handheld",
     "Headset",
     "Lavalier",
-    "Miniature microphone",
+    "Minyatür mikrofon",
     "Shotgun",
     "Side address",
     "Stand / boom mounted",
@@ -32,6 +32,7 @@ export const PICKUP_PATTERN = [
     "Multipattern",
     "Omnidirectional",
     "Supercardioid",
+    "Figure-of-eight",
 ] as const;
 
 export const TRANSDUCER_TYPE = [
@@ -54,6 +55,7 @@ export const CONNECTOR = [
     "USB",
     "LEMO3",
     "RJ45 (for Ethernet)",
+    "USB-C"
 ] as const;
 
 export const PRODUCT_SERIES = [
@@ -137,17 +139,24 @@ export type AudioSource = typeof AUDIO_SOURCE[number];
 export type Technology = typeof TECHNOLOGY[number];
 
 export interface SennheiserProduct {
-    id: number;
+    id?: number;
     name: string;
-    applicationTypes: ApplicationType[]; // Only allows values from the list above
-    microphoneForm: MicrophoneForm[];      // Only allows one value from that list
-    pickupPattern: PickupPattern;        // Only allows one value from that list
-    transducerType?: TransducerType;  // Optional field
-    connection?: Connection;          // Optional field
-    connectors?: Connector[];         // Optional array of values from that list
-    productSeries?: ProductSeries[];  // Optional array of values from that list
-    articleNo: string;
+    articleNo?: string;
     link: string;
+    category: string;
+    applicationTypes?: ApplicationType[]; 
+    microphoneForm?: MicrophoneForm[];      
+    pickupPattern?: PickupPattern[];        
+    transducerType?: TransducerType[]; 
+
+    // Allows for "Kablolu", "Kablosuz", or an empty string
+    connection?: Connection | "";          
+
+    // Added "?" to these two because software/accessories often lack them
+    connectors?: Connector[];         
+    productSeries?: ProductSeries[];  
+
+    // Optional fields for extended product data
     systemPart?: string[];
     productType?: string[];   
     location?: string[];
@@ -155,5 +164,25 @@ export interface SennheiserProduct {
     wearingStyle?: WearingStyle[];
     audioSource?: AudioSource[];
     image?: string[];
-    category: string;
+
+    // Description and Feature fields
+    shortDescription?: string;
+    longDescription?: string;
+    features?: string[];
+
+    // Deeply nested structures for technical details
+    highlightedFeatures?: Array<{
+        label: string;
+        value: string;
+    }>;
+    technicalSpecs?: Array<{
+        mainTitle: string; 
+        specs: Array<{ label: string; value: string }>;
+    }>;
+    boxContents?: Array<{
+        item: string;
+        quantity: number;
+    }>;
+    relatedProducts?: string[];
+    variants?: string[];
 }

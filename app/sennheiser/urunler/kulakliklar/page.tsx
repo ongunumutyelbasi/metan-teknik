@@ -13,6 +13,7 @@ import { AUDIO_SOURCE, WEARING_STYLE, CONNECTOR, TECHNOLOGY, PRODUCT_TYPE, SYSTE
 // import { ArrowUpRight } from 'lucide-react';
 
 export default function KulakliklarPage() {
+    
     const PAGE_CATEGORY = "Kulaklıklar";
     
     const allowedConnectors = ["3.5mm", "6.3mm"];
@@ -135,12 +136,11 @@ export default function KulakliklarPage() {
 
     const filteredProducts = useMemo(() => {
         // 1. Start with the category-specific list for this page
-        // This ensures no products from other categories appear.
         let results = sennheiserProducts.filter(
             product => product.category === PAGE_CATEGORY
         );
 
-        // 2. Apply Fuzzy Search if there is a search query
+        // 2. Apply Fuzzy Search
         if (searchQuery.trim() !== "") {
             const fuse = new Fuse(results, {
                 keys: ['name', 'articleNo', 'productSeries'],
@@ -150,19 +150,22 @@ export default function KulakliklarPage() {
             results = fuse.search(searchQuery).map(result => result.item);
         }
 
-        // 3. Apply the Dropdown Pill Filters (System Part & Product Type)
+        // 3. Apply the Dropdown Pill Filters
         return results.filter((product) => {
             return (Object.keys(filters) as Array<keyof typeof filters>).every((key) => {
                 const selectedValues = filters[key];
 
                 if (selectedValues.length === 0) return true;
 
-                // Use a type cast to tell TS that we expect an array or undefined for these specific keys
-                const productValues = product[key as keyof SennheiserProduct];
+                // Using 'any' here is the cleanest way to tell TS: 
+                // "I know some fields are objects now, but the ones in 'filters' are definitely strings."
+                const productValues = product[key as keyof SennheiserProduct] as any;
 
-                // Ensure we are dealing with an array before calling .some()
                 if (Array.isArray(productValues)) {
-                    return selectedValues.some((val) => productValues.includes(val));
+                    // Ensure we are checking against an array of strings
+                    return selectedValues.some((val) => 
+                        typeof productValues[0] === 'string' && productValues.includes(val)
+                    );
                 } else if (typeof productValues === 'string') {
                     return selectedValues.includes(productValues);
                 }

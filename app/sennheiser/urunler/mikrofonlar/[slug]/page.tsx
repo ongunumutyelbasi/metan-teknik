@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useParams } from 'next/navigation';
 import { useProductUI } from '@/app/hooks/useProductUI';
 import { products as sennheiserProducts } from '@/src/data/sennheiser-products';
 
@@ -21,21 +22,53 @@ import {
 } from '@/components/Sennheiser';
 import { ProductHeader } from '@/components/Sennheiser/ProductHeader';
 
-export default function SennheiserMK4Page() {
-    // 1. Get Data
-    const product = sennheiserProducts.find(p => p.articleNo === "700587");
-    if (!product) return <div>Ürün Bulunamadı</div>;
+export default function SennheiserDynamicProductPage() {
+    const params = useParams();
+    const slug = params.slug as string;
+
+    // 1. Get Data by extracting articleNo from the end of the slug
+    // This regex grabs the digits at the end of the string
+    const articleNoFromSlug = slug?.split('-').pop(); 
+    
+    const product = useMemo(() => {
+        return sennheiserProducts.find(p => p.articleNo === articleNoFromSlug);
+    }, [articleNoFromSlug]);
+
+    if (!product) return <div className="min-h-screen flex items-center justify-center">Ürün Bulunamadı</div>;
     
     // 2. State & UI Hooks
     const { openAccordionId, handleInteraction, scrollToSection } = useProductUI();
     const [currentImg, setCurrentImg] = useState(0);
 
     // 3. Derived Data
-    const relatedProductsData = sennheiserProducts
-        .filter(p => product.relatedProducts?.includes(p.articleNo || ""))
-        .sort((a, b) => 
-            (a.articleNo || "").localeCompare(b.articleNo || "", undefined, { numeric: true })
-        );
+    const relatedProductsData = useMemo(() => {
+        return sennheiserProducts
+            .filter(p => product.relatedProducts?.includes(p.articleNo || ""))
+            .sort((a, b) => 
+                (a.articleNo || "").localeCompare(b.articleNo || "", undefined, { numeric: true })
+            );
+    }, [product]);
+
+    const variantsData = useMemo(() => {
+        // Check if there are actually any variants defined in the product edit portal
+        if (!product.variants || product.variants.length === 0) {
+            return [];
+        }
+
+        // Combine current product with its siblings for the dropdown list
+        const allVariantIds = [
+            product.articleNo, 
+            ...product.variants
+        ].filter(Boolean);
+        
+        return sennheiserProducts
+            .filter(p => allVariantIds.includes(p.articleNo || ""))
+            .map(v => ({
+                name: v.name,
+                href: `${v.link}-${v.articleNo}`
+            }))
+            .sort((a, b) => a.name.localeCompare(b.name));
+    }, [product]);
 
     const productNav = [
         { label: 'Özellikler', id: 'ozellikler' },
@@ -45,12 +78,6 @@ export default function SennheiserMK4Page() {
         { label: 'Aksesuarlar ve İlgili Ürünler', id: 'ilgili-urunler' },
         { label: 'İndirmeler', id: 'indirmeler' },
         { label: 'Satın Alma Seçenekleri', id: 'satin-alma-secenekleri' },
-    ];
-
-    // Local variant logic (these are usually specific to the page)
-    const productVariants = [
-        { name: 'MD 421 KOMPAKT', href: '/sennheiser/urunler/mikrofonlar/md-421-kompakt' },
-        { name: 'MD 421 KOMPAKT + DRUM CLAMP', href: '/sennheiser/urunler/mikrofonlar/md-421-kompakt-drum-clamp' },
     ];
 
     const nextImg = () => setCurrentImg((prev) => (prev === (product.image?.length || 1) - 1 ? 0 : prev + 1));
@@ -70,15 +97,16 @@ export default function SennheiserMK4Page() {
                     productName={product.name}
                     category={product.category}
                     articleNo={product.articleNo ?? ""}
-                    variants={productVariants}
+                    variants={variantsData.length > 0 ? variantsData : undefined} 
                     onPurchaseClick={() => scrollToSection('satin-alma-secenekleri')}
                 >
+                    {/* Update leading-[1.2] to leading-[1.4] to match the Markdown style */}
                     <p className='antialiased subpixel-antialiased text-[1rem] leading-[1.2] font-medium mb-[1rem]'>
                         {product.shortDescription}
                     </p>
-                    <div className='antialiased subpixel-antialiased text-[1rem] leading-[1.2] font-normal text-dark-gray'>
-                        <p>{product.longDescription}</p>
-                    </div>
+                    
+                    {/* This will inherit leading-[1.4] from the ReactMarkdown component mapping */}
+                    {product.longDescription}
                 </ProductHeader>
             </main>
 
@@ -141,7 +169,7 @@ export default function SennheiserMK4Page() {
                 />
             </AccordionSection>
 
-            {/* Related Products Accordion - Only renders if matches exist */}
+            {/* Related Products Accordion */}
             {relatedProductsData.length > 0 && (
                 <AccordionSection 
                     id="ilgili-urunler" 
@@ -160,7 +188,7 @@ export default function SennheiserMK4Page() {
                 </AccordionSection>
             )}
 
-            <ProductDownloads href="https://www.sennheiser.com/en-gb/support/downloads-and-instructions?filtersSearch=md+421+kompakt&filtersPage=1" />
+            <ProductDownloads href={`https://www.sennheiser.com/en-gb/support/downloads-and-instructions?filtersSearch=${encodeURIComponent(product.name)}&filtersPage=1`} />
 
             {/* Purchase Options */}
             <section id="satin-alma-secenekleri" className='w-full bg-white pt-[80px] pb-[40px]'>

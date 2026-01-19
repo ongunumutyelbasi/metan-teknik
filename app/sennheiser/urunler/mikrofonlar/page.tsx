@@ -6,7 +6,8 @@ import Fuse from 'fuse.js';
 import SubNavigationRow from '@/components/navigation/SubNavigationRow';
 import { useProductUI } from '@/app/hooks/useProductUI';
 import Image from 'next/image';
-import { SennheiserProduct, sennheiserProducts } from '@/src/data/sennheiser-products';
+import { products } from '@/src/data/sennheiser-products';
+import { SennheiserProduct } from '@/src/types/product-schema';
 import { ProductGrid, CategoryHero, Breadcrumbs, FamilySlider, FamilyCard, FilterDropdown, } from '@/components/Sennheiser';
 import { APPLICATION_TYPES, MICROPHONE_FORMS, PICKUP_PATTERN, TRANSDUCER_TYPE, CONNECTION, CONNECTOR, PRODUCT_SERIES } from '@/src/types/product-schema';
 
@@ -91,7 +92,6 @@ export default function MicrophonesPage() {
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-                // Now this will correctly see the current text
                 if (searchQuery.trim().length === 0) {
                     setIsSearchOpen(false);
                     inputRef.current?.blur();
@@ -127,50 +127,51 @@ export default function MicrophonesPage() {
 
     // Get unique categories from the product data
     const categories = useMemo(() => {
-        const cats = sennheiserProducts.map(p => p.category);
+        const cats = products.map(p => p.category);
         return ["All", ...Array.from(new Set(cats))];
     }, []);
 
     const [isPageSizeOpen, setIsPageSizeOpen] = useState(false);
 
-    const PAGE_CATEGORY = "Microphones";
+    const PAGE_CATEGORY = "Mikrofonlar";
 
     const filteredProducts = useMemo(() => {
-        let results = sennheiserProducts.filter(
+        // 1. Initial filter for category
+        let results = products.filter(
             product => product.category === PAGE_CATEGORY
         );
 
-        // 2. Apply Fuzzy Search first if there's a query
+        // 2. Apply Fuzzy Search and maintain relevance order
         if (searchQuery.trim() !== "") {
             const fuse = new Fuse(results, {
-                keys: ['name', 'articleNo', 'productSeries'],
+                keys: ['name', 'subtitle', 'slug'],
                 threshold: 0.3, 
                 distance: 100,
+                includeScore: true, // We need this to verify internal sorting if needed
             });
+            
+            // Fuse.js automatically returns results sorted by relevance (score)
             results = fuse.search(searchQuery).map(result => result.item);
         }
 
-        // 3. Apply Pill Filters
+        // 3. Apply Pill Filters to the (possibly ordered) results
         return results.filter((product) => {
             return (Object.keys(filters) as Array<keyof typeof filters>).every((key) => {
                 const selectedValues = filters[key];
-
                 if (selectedValues.length === 0) return true;
 
-                // Use a type cast to tell TS that we expect an array or undefined for these specific keys
+                // Changed SennheiserProduct -> Product
                 const productValues = product[key as keyof SennheiserProduct];
 
-                // Ensure we are dealing with an array before calling .some()
                 if (Array.isArray(productValues)) {
-                    return selectedValues.some((val) => productValues.includes(val));
+                    return selectedValues.some((val) => (productValues as string[]).includes(val));
                 } else if (typeof productValues === 'string') {
                     return selectedValues.includes(productValues);
                 }
-
                 return false;
             });
         });
-    }, [searchQuery, filters, hasActiveFilters, sennheiserProducts]);
+    }, [searchQuery, filters, products]);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage, setProductsPerPage] = useState(24);

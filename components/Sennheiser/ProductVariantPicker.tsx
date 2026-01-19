@@ -42,7 +42,7 @@ export const ProductVariantPicker = ({ variants, currentProduct }: ProductVarian
                                     key={variant.href}
                                     href={variant.href}
                                     onClick={(e) => isActive && e.preventDefault()}
-                                    className={`px-4 py-3 text-[13px] font-medium transition-colors duration-200 leading-[1.2] flex items-center justify-between ${
+                                    className={`px-4 py-3 text-[13px] font-medium uppercase transition-colors duration-200 leading-[1.2] flex items-center justify-between ${
                                         isActive 
                                             ? 'text-brand-hover-blue cursor-default pointer-events-none'
                                             : 'text-black hover:bg-sennheiser-gray cursor-pointer'
@@ -50,7 +50,7 @@ export const ProductVariantPicker = ({ variants, currentProduct }: ProductVarian
                                 >
                                     <span>{variant.name}</span>
                                     {isActive && (
-                                        <div className='w-1.5 h-1.5 rounded-full bg-brand-hover-blue' />
+                                        <div className='w-1.5 h-1.5 rounded-full bg-brand-hover-blue shrink-0 ml-4' />
                                     )}
                                 </Link>
                             );

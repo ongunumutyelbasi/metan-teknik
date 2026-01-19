@@ -12,6 +12,8 @@ import { PRODUCT_TYPE, SYSTEM_PART } from '@/src/types/product-schema';
 
 export default function CiftYonluIletisimPage() {
     
+    const PAGE_CATEGORY = "Çift Yönlü İletişim";
+
     const normalizeString = (str: string) => {
         // 1. Convert to lowercase
         // 2. Remove all spaces, hyphens, and special characters
@@ -123,8 +125,6 @@ export default function CiftYonluIletisimPage() {
     }, []);
 
     const [isPageSizeOpen, setIsPageSizeOpen] = useState(false);
-
-    const PAGE_CATEGORY = "Çift Yönlü İletişim";
 
     const filteredProducts = useMemo(() => {
         // 1. Start with the category-specific list for this page

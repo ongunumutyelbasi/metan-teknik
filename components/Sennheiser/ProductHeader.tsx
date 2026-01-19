@@ -4,12 +4,14 @@ import React from 'react';
 import { Breadcrumbs } from './ProductBreadcrumbs';
 import { ProductVariantPicker } from './ProductVariantPicker';
 import ActionButton from '@/components/ui/ActionButton';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface ProductHeaderProps {
     productName: string;
     category: string;
     articleNo: string;
-    variants: { name: string; href: string }[];
+    variants?: { name: string; href: string }[];
     onPurchaseClick: () => void;
     children: React.ReactNode; // This will hold your description text
 }
@@ -27,7 +29,7 @@ export const ProductHeader = ({
             <div className='h-[calc(100vh-68px)] flex flex-col px-[20px] pb-[20px] pt-20 justify-end'>
                 <Breadcrumbs category={category} productName={productName} />
 
-                <div className='antialiased subpixel-antialiased text-[2.5rem] leading-[0.85] font-medium mb-[1rem] tracking-regular flex gap-1'>
+                <div className='antialiased subpixel-antialiased text-[2.5rem] leading-[1.1] font-medium mb-[1rem] tracking-regular flex gap-1'>
                     <span>{productName}</span>
                 </div>
                 
@@ -43,16 +45,39 @@ export const ProductHeader = ({
                         onClick={onPurchaseClick}
                     />
                     
-                    <ProductVariantPicker 
-                        variants={variants} 
-                        currentProduct={productName} 
-                    />
+                    {variants && variants.length > 0 && (
+                        <ProductVariantPicker 
+                            variants={variants} 
+                            currentProduct={productName} 
+                        />
+                    )}
                 </div>
             </div>
 
             <div className='antialiased subpixel-antialiased px-[16px] pt-[50px] py-[16px] font-normal'>
-                <div className='antialiased subpixel-antialiased max-w-full'>
-                    {children}
+                <div className='antialiased subpixel-antialiased max-w-full leading-[1.2]'>
+                    {React.Children.map(children, (child) => {
+                        // If the child is a raw string (your longDescription), parse it
+                        if (typeof child === 'string') {
+                            return (
+                                <ReactMarkdown 
+                                    remarkPlugins={[remarkGfm]}
+                                    components={{
+                                        p: ({node, ...props}) => (
+                                            <p className="mb-4 last:mb-0 text-dark-gray" {...props} />
+                                        ),
+                                        strong: ({node, ...props}) => (
+                                            <strong className="font-medium text-dark-gray" {...props} />
+                                        ),
+                                    }}
+                                >
+                                    {child}
+                                </ReactMarkdown>
+                            );
+                        }
+                        // If it's JSX (your shortDescription <p> tag), render as is
+                        return child;
+                    })}
                 </div>
             </div>
         </div>
