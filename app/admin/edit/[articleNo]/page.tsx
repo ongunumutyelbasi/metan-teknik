@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useParams, useRouter } from 'next/navigation';
-import { products as sennheiserProducts } from '@/src/data/sennheiser-products';
+import { type SennheiserProduct, products as sennheiserProducts } from '@/src/data/sennheiser-products';
 
 // External Admin Components
 import { TechnicalSpecsEditor } from '@/components/admin/TechnicalSpecsEditor';
@@ -66,8 +66,17 @@ export default function EditProductPage() {
 
     const onSubmit = async (data: any) => {
         try {
+            // We spread the original 'product' first to ensure filter arrays 
+            // (like applicationTypes) are preserved even if not present in the edit form.
+            const updatedProduct: SennheiserProduct = {
+                ...product, 
+                ...data,
+                // Use data.technicalSpecs directly to support multiple custom sections.
+                technicalSpecs: data.technicalSpecs,
+            };
+
             const updatedProducts = sennheiserProducts.map(p => 
-                p.articleNo === articleNo ? data : p
+                p.articleNo === articleNo ? updatedProduct : p
             );
 
             const res = await fetch('/api/admin/save-products', {

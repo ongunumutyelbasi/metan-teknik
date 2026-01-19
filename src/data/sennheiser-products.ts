@@ -1,4 +1,5 @@
 import { SennheiserProduct } from '../types/product-schema';
+export type { SennheiserProduct };
 
 export const products: SennheiserProduct[] = [
     {

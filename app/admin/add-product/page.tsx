@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { products as sennheiserProducts } from '@/src/data/sennheiser-products';
+import { type SennheiserProduct, products as sennheiserProducts } from '@/src/data/sennheiser-products';
 
 // External Admin Components
 import { TechnicalSpecsEditor } from '@/components/admin/TechnicalSpecsEditor';
@@ -85,16 +85,14 @@ export default function AddProductPage() {
         name: "highlightedFeatures"
     });
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: Product) => {
         try {
-            // 1. Prevent duplicate article numbers
             const exists = sennheiserProducts.some(p => p.articleNo === data.articleNo);
             if (exists) {
                 setModal({ show: true, type: 'error', message: 'Bu ürün kodu zaten mevcut!' });
                 return;
             }
 
-            // 2. Slugification helper for the link
             const slugify = (text: string) => 
                 text.toLowerCase()
                     .trim()
@@ -107,13 +105,14 @@ export default function AddProductPage() {
             const nameSlug = slugify(data.name);
             const categorySlug = slugify(data.category);
             
-            // 3. Construct the full product object to match SennheiserProduct schema
-            const finalProductData = {
+            const finalProductData: SennheiserProduct = {
                 ...data,
                 id: Number(data.articleNo) || Math.floor(Math.random() * 10000),
                 link: `/sennheiser/urunler/${categorySlug}/${nameSlug}-${data.articleNo}`,
                 image: [`/images/sennheiser/urunler/${nameSlug}/1.webp`],
-                // Default values for required filter arrays
+                // Directly use data.technicalSpecs because the Editor already 
+                // structures it as an array of sections with mainTitle and specs.
+                technicalSpecs: data.technicalSpecs as any,
                 applicationTypes: [],
                 microphoneForm: [],
                 pickupPattern: [],
@@ -125,7 +124,6 @@ export default function AddProductPage() {
                 connection: ""
             };
 
-            // 4. Save to the JSON file via API
             const res = await fetch('/api/admin/save-products', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -136,14 +134,9 @@ export default function AddProductPage() {
             });
 
             if (res.ok) {
-                setModal({ show: true, type: 'success', message: 'Yeni ürün başarıyla eklendi! Düzenleme sayfasına aktarılıyorsunuz...' });
-                
-                // 5. Reset the form state
+                setModal({ show: true, type: 'success', message: 'Yeni ürün başarıyla eklendi!' });
                 reset(data); 
-                
-                // 6. Navigate to the edit page so you can continue adding details
                 setTimeout(() => {
-                    // Ensure the refresh happens so the Edit page can find the new data
                     router.refresh(); 
                     router.push(`/admin/edit/${data.articleNo}`);
                 }, 1500);
