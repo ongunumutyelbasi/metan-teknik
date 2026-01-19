@@ -10,9 +10,10 @@ interface NavItem {
 interface SubNavigationRowProps {
   items: NavItem[];
   onStickyChange?: (isStuck: boolean) => void;
+  onItemClick?: (id: string, isOpen: boolean) => void;
 }
 
-export default function SubNavigationRow({ items, onStickyChange }: SubNavigationRowProps) {
+export default function SubNavigationRow({ items, onStickyChange, onItemClick }: SubNavigationRowProps) {
   const [isStuck, setIsStuck] = useState(false);
   const observerRef = useRef<HTMLDivElement>(null);
 
@@ -47,6 +48,11 @@ export default function SubNavigationRow({ items, onStickyChange }: SubNavigatio
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
+    
+    if (onItemClick) {
+      onItemClick(id, true);
+    }
+    
     if (element) {
       const offset = 140; 
       const bodyRect = document.body.getBoundingClientRect().top;

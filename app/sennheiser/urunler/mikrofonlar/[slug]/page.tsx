@@ -111,7 +111,10 @@ export default function SennheiserDynamicProductPage() {
             </main>
 
             <div className='sticky top-[76px] bottom-0 z-40 border-light-gray'>
-                <SubNavigationRow items={productNav} />
+                <SubNavigationRow 
+                    items={productNav} 
+                    onItemClick={handleInteraction}
+                />
             </div>
 
             {/* Features */}
