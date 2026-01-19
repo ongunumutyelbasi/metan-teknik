@@ -3,6 +3,10 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
     const { password } = await request.json();
 
+    console.log("Input Password:", password);
+    console.log("Expected Password:", process.env.ADMIN_PASSWORD);
+    console.log("Is there a match?:", password === process.env.ADMIN_PASSWORD);
+
     if (password === process.env.ADMIN_PASSWORD) {
         const response = NextResponse.json({ success: true });
         
