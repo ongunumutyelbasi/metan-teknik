@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useProductUI } from '@/app/hooks/useProductUI';
-import { products as sennheiserProducts } from '@/src/data/sennheiser-products';
+import { sennheiserProducts } from '@/src/data/sennheiser-products';
 
 // UI and Sennheiser Components
 import SubNavigationRow from '@/components/navigation/SubNavigationRow';

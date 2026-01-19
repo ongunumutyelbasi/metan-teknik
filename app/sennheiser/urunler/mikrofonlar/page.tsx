@@ -6,7 +6,7 @@ import Fuse from 'fuse.js';
 import SubNavigationRow from '@/components/navigation/SubNavigationRow';
 import { useProductUI } from '@/app/hooks/useProductUI';
 import Image from 'next/image';
-import { products } from '@/src/data/sennheiser-products';
+import { sennheiserProducts } from '@/src/data/sennheiser-products';
 import { SennheiserProduct } from '@/src/types/product-schema';
 import { ProductGrid, CategoryHero, Breadcrumbs, FamilySlider, FamilyCard, FilterDropdown, } from '@/components/Sennheiser';
 import { APPLICATION_TYPES, MICROPHONE_FORMS, PICKUP_PATTERN, TRANSDUCER_TYPE, CONNECTION, CONNECTOR, PRODUCT_SERIES } from '@/src/types/product-schema';
@@ -127,7 +127,7 @@ export default function MicrophonesPage() {
 
     // Get unique categories from the product data
     const categories = useMemo(() => {
-        const cats = products.map(p => p.category);
+        const cats = sennheiserProducts.map(p => p.category);
         return ["All", ...Array.from(new Set(cats))];
     }, []);
 
@@ -137,7 +137,7 @@ export default function MicrophonesPage() {
 
     const filteredProducts = useMemo(() => {
         // 1. Initial filter for category
-        let results = products.filter(
+        let results = sennheiserProducts.filter(
             product => product.category === PAGE_CATEGORY
         );
 
@@ -171,7 +171,7 @@ export default function MicrophonesPage() {
                 return false;
             });
         });
-    }, [searchQuery, filters, products]);
+    }, [searchQuery, filters, sennheiserProducts]);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage, setProductsPerPage] = useState(24);

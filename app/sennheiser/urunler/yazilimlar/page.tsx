@@ -163,7 +163,7 @@ export default function YazilimPage() {
 
                 // Ensure we are dealing with an array before calling .some()
                 if (Array.isArray(productValues)) {
-                    return selectedValues.some((val) => productValues.includes(val));
+                    return selectedValues.some((val) => (productValues as string[]).includes(val));
                 } else if (typeof productValues === 'string') {
                     return selectedValues.includes(productValues);
                 }

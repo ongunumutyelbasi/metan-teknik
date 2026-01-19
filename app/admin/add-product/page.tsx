@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { type SennheiserProduct, products as sennheiserProducts } from '@/src/data/sennheiser-products';
+import { sennheiserProducts } from '@/src/data/sennheiser-products';
+import { type SennheiserProduct } from '@/src/types/product-schema';
 
 // External Admin Components
 import { TechnicalSpecsEditor } from '@/components/admin/TechnicalSpecsEditor';

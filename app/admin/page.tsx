@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { products as sennheiserProducts } from '@/src/data/sennheiser-products';
+import { sennheiserProducts } from '@/src/data/sennheiser-products';
 import { 
   Plus, Search, ArrowUpDown, Filter, X,
   LayoutDashboard, Package, Users, Settings, LogOut, ChevronRight 

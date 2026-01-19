@@ -1,7 +1,7 @@
 import { SennheiserProduct } from '../types/product-schema';
 export type { SennheiserProduct };
 
-export const products: SennheiserProduct[] = [
+export const sennheiserProducts: SennheiserProduct[] = [
     {
         "id": 6051,
         "articleNo": "700268",

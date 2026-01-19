@@ -3,7 +3,8 @@
 import React, { useMemo, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useParams, useRouter } from 'next/navigation';
-import { type SennheiserProduct, products as sennheiserProducts } from '@/src/data/sennheiser-products';
+import { sennheiserProducts } from '@/src/data/sennheiser-products';
+import { type SennheiserProduct } from '@/src/types/product-schema';
 
 // External Admin Components
 import { TechnicalSpecsEditor } from '@/components/admin/TechnicalSpecsEditor';
@@ -71,7 +72,6 @@ export default function EditProductPage() {
             const updatedProduct: SennheiserProduct = {
                 ...product, 
                 ...data,
-                // Use data.technicalSpecs directly to support multiple custom sections.
                 technicalSpecs: data.technicalSpecs,
             };
 
