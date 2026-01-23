@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { useProductUI } from '@/app/hooks/useProductUI';
-import { sennheiserProducts } from '@/src/data/sennheiser-products';
+import { products as sennheiserProducts } from '@/src/data/sennheiser-products';
 
 // UI and Sennheiser Components
 import SubNavigationRow from '@/components/navigation/SubNavigationRow';

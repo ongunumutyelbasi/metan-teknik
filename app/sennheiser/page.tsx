@@ -5,50 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
+// DATA IMPORT
+import initialSlides from '@/data/hero-slides.json';
+
 // COMPONENTS
 import ActionButton from '@/components/ui/ActionButton';
 import NavArrow from '@/components/ui/NavArrow';
 import PaginationCounter from '@/components/ui/PaginationCounter';
-
-// HERO SLIDES CONTENT
-const slides = [
-  {
-    id: 1,
-    title: 'Spectera',
-    subtitle: 'Dünyanın ilk geniş bant ve çift yönlü kablosuz ekosistemi!',
-    productImg: '/images/hero-slide/spectera-unit.avif',
-    lifestyleImg: '/images/hero-slide/Spectera_Product_Shot_In_Use_39_.webp',
-    alt: 'spectera system',
-    link: '#'
-  },
-  {
-    id: 2,
-    title: 'TeamConnect Bars',
-    subtitle: 'sınıfının en fazla özelliğe sahip çok işlevli işitsel ve görsel konferans cihazları',
-    productImg: '/images/hero-slide/teamconnect-bar.avif',
-    lifestyleImg: '/images/hero-slide/teamconnect-meeting.webp',
-    alt: 'teamconnect bars',
-    link: '#'
-  },
-  {
-    id: 3,
-    title: 'e904',
-    subtitle: 'Bu ayın mikrofonu',
-    productImg: '/images/hero-slide/e904.webp',
-    lifestyleImg: '/images/hero-slide/e904-drum.webp',
-    alt: 'e904',
-    link: '#'
-  },
-  {
-    id: 4,
-    title: 'YENİ',
-    subtitle: 'Intermodülasyonsuz (girişimsiz) rahat bir frekans dağılımından daha fazlası',
-    productImg: '/images/hero-slide/holidaysavings.avif',
-    lifestyleImg: '/images/hero-slide/banner-holidaysavings.webp',
-    alt: 'hd 660s2',
-    link: '#'
-  }
-];
 
 const categories = [
   { id: 1, name: 'Kablosuz Sistemler', img: '/images/homePage-categories/wireless-systems.avif' },
@@ -59,9 +22,16 @@ const categories = [
 ];
 
 export default function SennheiserPage() {
+  // Use the imported JSON as the source of truth
+  const [slides, setSlides] = useState(initialSlides);
   const [current, setCurrent] = useState(0);
   const [activeCategory, setActiveCategory] = useState(0);
   const duration = 8000;
+
+  // Sync slides if the JSON file changes (useful during development/refresh)
+  useEffect(() => {
+    setSlides(initialSlides);
+  }, []);
 
   const nextSlide = () => {
     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -72,12 +42,15 @@ export default function SennheiserPage() {
   };
 
   useEffect(() => {
+    if (slides.length === 0) return;
     const timer = setInterval(() => {
       nextSlide();
     }, duration);
 
     return () => clearInterval(timer);
-  }, [current]);
+  }, [current, slides.length]);
+
+  if (!slides || slides.length === 0) return null;
 
   return (
     <div className='min-h-screen bg-white text-black font-sennheiser overflow-x-hidden selection:bg-black selection:text-white'>
@@ -101,7 +74,7 @@ export default function SennheiserPage() {
                 <div className='relative w-full max-w-xl aspect-square'>
                   <Image 
                     src={slide.productImg}
-                    alt={slide.alt}
+                    alt={slide.title}
                     fill
                     className='object-contain mix-blend-multiply'
                     priority={index === 0}
@@ -119,7 +92,9 @@ export default function SennheiserPage() {
             <h3 className='text-[1.5rem] font-medium mb-6 leading-tight'>
               {slides[current].subtitle}
             </h3>
-            <ActionButton text='Daha fazla bilgi' Icon={ArrowUpRight} />
+            <Link href={slides[current].link || '#'}>
+                <ActionButton text='Daha fazla bilgi' Icon={ArrowUpRight} />
+            </Link>
           </div>
 
           {/* navigation area */}
@@ -154,7 +129,7 @@ export default function SennheiserPage() {
         </div>
       </main>
 
-      {/* --- featured product section --- */}
+      {/* --- Rest of the sections (Featured, Categories) stay the same --- */}
       <section className='flex h-[70vh] w-full overflow-hidden bg-white border-t border-light-gray'>
         <div className='w-1/2 relative bg-sennheiser-gray'>
           <Image src='/images/hero-slide/md421-kompakt-drum.avif' alt='feature lifestyle' fill className='object-cover' />
@@ -176,10 +151,8 @@ export default function SennheiserPage() {
         </div>
       </section>
 
-      {/* --- audio categories section --- */}
       <section className='w-full bg-white py-6 px-6 border-light-gray'>
         <div className='max-w-full mx-auto flex flex-col md:flex-row gap-5'>
-          
           <div className='w-full md:w-1/2 flex flex-col'>
             <div className='space-y-0 border-t border-light-gray'>
               {categories.map((cat, index) => (
@@ -199,12 +172,10 @@ export default function SennheiserPage() {
                 </div>
               ))}
             </div>
-
             <div className='mt-6'>
               <ActionButton text='Tüm ürünleri görüntüle' Icon={ArrowUpRight} />
             </div>
           </div>
-
           <div className='w-full md:w-1/2 relative h-[600px] overflow-hidden bg-sennheiser-gray'>
             {categories.map((cat, index) => (
               <div

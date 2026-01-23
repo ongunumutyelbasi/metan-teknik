@@ -2,11 +2,9 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { sennheiserProducts } from '@/src/data/sennheiser-products';
-import { 
-  Plus, Search, ArrowUpDown, Filter, X,
-  LayoutDashboard, Package, Users, Settings, LogOut, ChevronRight 
-} from 'lucide-react';
+import { products as sennheiserProducts } from '@/src/data/sennheiser-products';
+import type { SennheiserProduct } from '@/src/types/product-schema';
+import { Check, Plus, Search, ArrowUpDown, Filter, X, ChevronRight, Package, ChevronLeft, ListFilter } from 'lucide-react';
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,12 +16,17 @@ import {
   DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 const CATEGORIES = ["Mikrofonlar", "Kulaklıklar", "Kablosuz Sistemler", "Konferans & Rehber Sistemleri", "Aksesuarlar", "Yazılımlar", "Çift Yönlü İletişim"];
 
 export default function AdminDashboard() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategories, setSelectedCategories] = useState<string[]>(CATEGORIES);
     const [sortConfig, setSortConfig] = useState<{key: 'name' | 'articleNo' | 'category' | null, direction: 'asc' | 'desc'}>({ key: null, direction: 'asc' });
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(15);
 
     const handleSort = (key: 'name' | 'articleNo' | 'category') => {
         setSortConfig(prev => ({
@@ -32,183 +35,297 @@ export default function AdminDashboard() {
         }));
     };
 
-    const processedProducts = useMemo(() => {
-        let filtered = sennheiserProducts.filter(p => {
-            // 1. Improved Search Logic
+    const filteredProducts = useMemo(() => {
+        return sennheiserProducts.filter(p => {
             const searchWords = searchTerm.toLowerCase().split(' ').filter(word => word !== '');
-            
-            // Check if the product name contains EVERY word in the search query
             const matchesSearch = searchWords.every(word => 
                 p.name.toLowerCase().includes(word) || 
                 p.articleNo?.toLowerCase().includes(word)
             );
-
-            // 2. Category Matching
             const productCategories = p.category.split(',').map((cat: string) => cat.trim());
             const matchesCategory = productCategories.some((cat: string) => 
                 selectedCategories.includes(cat)
             );
-
             return matchesSearch && matchesCategory;
         });
+    }, [searchTerm, selectedCategories]);
 
-        // ... sorting logic remains the same
+    const sortedProducts = useMemo(() => {
+        let sorted = [...filteredProducts];
         if (sortConfig.key) {
-            filtered.sort((a, b) => {
+            sorted.sort((a, b) => {
                 const aVal = (a[sortConfig.key!] || '').toString().toLowerCase();
                 const bVal = (b[sortConfig.key!] || '').toString().toLowerCase();
                 return sortConfig.direction === 'asc' ? (aVal < bVal ? -1 : 1) : (aVal > bVal ? -1 : 1);
             });
         }
-        return filtered;
-    }, [searchTerm, selectedCategories, sortConfig]);
+        return sorted;
+    }, [filteredProducts, sortConfig]);
+
+    const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentItems = sortedProducts.slice(startIndex, startIndex + itemsPerPage);
+
+    const handlePageJump = (val: string) => {
+        const page = parseInt(val);
+        if (page > 0 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
+    const toggleAllCategories = () => {
+        if (selectedCategories.length === CATEGORIES.length) {
+            setSelectedCategories([]);
+        } else {
+            setSelectedCategories(CATEGORIES);
+        }
+    };
 
     return (
-        <div className="min-h-screen bg-white font-sennheiser pt-[100px]">
-            {/* The main wrapper remains in the normal flow so the whole page scrolls */}
-            <div className="flex w-full items-start">
+        <div className="space-y-3 animate-in fade-in duration-500">
+            {/* Compact Header Stats */}
+            <div className="flex items-center justify-between bg-white px-2 py-2 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-3">
+                    <div className="p-2 bg-slate-50 text-slate-500 rounded-lg border border-slate-100">
+                        <Package size={16} />
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-regular leading-none mb-1">Envanter Özeti</p>
+                        <p className="text-sm font-bold text-slate-900 leading-none">
+                            {sennheiserProducts.length} <span className="text-[11px] font-medium text-slate-500">Toplam Sennheiser Ürünü</span>
+                        </p>
+                    </div>
+                </div>
                 
-                {/* COLUMN 1: SIDEBAR 
-                    - h-[calc(100vh-100px)]: Ensures it takes up exactly the visible height.
-                    - sticky top-[100px]: Freezes it relative to the header while scrolling.
-                */}
-                <aside className="w-64 flex-none sticky top-[100px] h-[calc(100vh-100px)] border-r border-gray-100 bg-white hidden md:block">
-                    <div className="flex flex-col h-full p-6 sticky top-[100px]">
-                        <p className="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-6">Yönetim Paneli</p>
-                        
-                        <nav className="space-y-1 flex-1">
-                            <Link href="/admin" className="flex items-center gap-3 px-3 py-2 bg-black text-white rounded-md text-xs font-bold transition-all">
-                                <LayoutDashboard size={14} /> Ürün Yönetimi
-                            </Link>
-                            <Link href="/admin/products" className="flex items-center gap-3 px-3 py-2 text-gray-500 hover:bg-gray-50 hover:text-black rounded-md text-xs font-bold transition-all">
-                                <Package size={14} /> Dashboard
-                            </Link>
-                            <Link href="/admin/users" className="flex items-center gap-3 px-3 py-2 text-gray-500 hover:bg-gray-50 hover:text-black rounded-md text-xs font-bold transition-all">
-                                <Users size={14} /> Kullanıcılar
-                            </Link>
-                        </nav>
+                {selectedCategories.length < CATEGORIES.length && (
+                  <div className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md border border-blue-100 uppercase tracking-tight">
+                    {selectedCategories.length} Kategori Filtrelendi
+                  </div>
+                )}
+            </div>
 
-                        <div className="pt-6 border-t border-gray-50 space-y-1 mt-auto">
-                            <Link href="/admin/settings" className="flex items-center gap-3 px-3 py-2 text-gray-500 hover:text-black rounded-md text-xs font-bold transition-all">
-                                <Settings size={14} /> Ayarlar
-                            </Link>
-                            <button className="flex items-center gap-3 px-3 py-2 text-red-500 hover:bg-red-50 w-full rounded-md text-xs font-bold transition-colors">
-                                <LogOut size={14} /> Çıkış Yap
-                            </button>
-                        </div>
-                    </div>
-                </aside>
-
-                {/* COLUMN 2: MAIN CONTENT 
-                    - flex-1: Automatically takes up the remaining width (100% minus 256px).
-                    - h-auto: The height will grow as long as the table requires.
-                */}
-                <main className="flex-1 bg-white min-h-[calc(100vh-100px)] border-l border-transparent">
-                    <div className="p-8 max-w-[1400px] mx-auto space-y-8">
+            {/* Action Bar */}
+            <div className="flex flex-col md:flex-row justify-between items-center bg-white px-2 py-2 rounded-xl border border-slate-200 gap-3">
+                <div className="relative w-full md:w-80">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+                    <Input
+                        placeholder="Ürün veya kod ara..."
+                        value={searchTerm}
+                        onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
+                        className="pl-9 h-8.5 text-[12.5px] border-slate-200 rounded-lg bg-slate-50/50 focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500/50 transition-all placeholder:text-slate-400"
+                    />
+                    {searchTerm && (
+                        <button onClick={() => setSearchTerm('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500 transition-colors cursor-pointer">
+                            <X size={14} />
+                        </button>
+                    )}
+                </div>
+                
+                <div className="flex items-center gap-2 w-full md:w-auto">
+                    <DropdownMenu modal={false}>
+                        <DropdownMenuTrigger asChild>
+                            <Button 
+                                variant="outline" 
+                                className={`h-8.5 px-3 border-slate-200 cursor-pointer font-bold text-[10px] uppercase tracking-wider transition-all ${
+                                    selectedCategories.length < CATEGORIES.length 
+                                    ? 'bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100' 
+                                    : 'text-slate-500 hover:bg-slate-50'
+                                }`}
+                            >
+                                <ListFilter className="mr-1.5 h-3.5 w-3.5" /> 
+                                Filtrele {selectedCategories.length < CATEGORIES.length && `(${selectedCategories.length})`}
+                            </Button>
+                        </DropdownMenuTrigger>
                         
-                        {/* Header Block */}
-                        <div className="flex justify-between items-end border-b border-gray-100 pb-5">
-                            <div>
-                                <h1 className="text-3xl font-bold tracking-tight text-black">Ürün Yönetimi</h1>
-                                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-2">
-                                    Toplam {processedProducts.length} ürün listeleniyor
-                                </p>
+                        <DropdownMenuContent align="end" className="w-64 rounded-xl border-slate-200 p-1.5 shadow-xl shadow-slate-200/50">
+                            <div className="flex items-center justify-between px-2 py-2">
+                                <DropdownMenuLabel className="text-[10px] uppercase text-slate-400 font-extrabold tracking-wider p-0">
+                                    Kategoriler
+                                </DropdownMenuLabel>
+                                <button 
+                                    onClick={toggleAllCategories}
+                                    className="text-[10px] font-bold text-brand-hover-blue hover:text-brand-hover-blue hover:underline hover:underline-offset-2 transition-colors uppercase tracking-tighter cursor-pointer"
+                                >
+                                    {selectedCategories.length === CATEGORIES.length ? 'Tümünü Kaldır' : 'Tümünü Seç'}
+                                </button>
                             </div>
-                            <div className="flex gap-3">
-                                <DropdownMenu modal={false}>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant="outline" className="h-9 bg-white text-xs font-bold cursor-pointer uppercase border-gray-200 hover:border-black transition-all">
-                                            <Filter className="mr-2 h-3.5 w-3.5" /> Filtrele
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end" className="w-56 bg-white border border-gray-200 shadow-xl z-50">
-                                        <DropdownMenuLabel className="text-[10px] uppercase text-gray-400 font-bold">Kategoriler</DropdownMenuLabel>
-                                        <DropdownMenuSeparator />
-                                        {CATEGORIES.map(cat => (
-                                            <DropdownMenuCheckboxItem
-                                                key={cat}
-                                                checked={selectedCategories.includes(cat)}
-                                                onSelect={(e) => e.preventDefault()}
-                                                onCheckedChange={() => setSelectedCategories(prev => 
-                                                    prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
-                                                )}
-                                                className="text-xs cursor-pointer font-medium"
-                                            >
+                            
+                            <DropdownMenuSeparator className="mx-1 bg-slate-100" />
+                            
+                            <div className="grid gap-1 mt-1">
+                                {CATEGORIES.map(cat => {
+                                    const isSelected = selectedCategories.includes(cat);
+                                    return (
+                                        <div
+                                            key={cat}
+                                            onClick={() => {
+                                                setSelectedCategories(prev => 
+                                                    isSelected ? prev.filter(c => c !== cat) : [...prev, cat]
+                                                );
+                                                setCurrentPage(1);
+                                            }}
+                                            className={`
+                                                flex items-center justify-between px-2.5 py-1.5 rounded-lg cursor-pointer transition-all group
+                                                ${isSelected 
+                                                    ? 'bg-brand-hover-blue/10 text-brand-hover-blue' 
+                                                    : 'text-slate-600 hover:bg-brand-hover-blue/5'}
+                                            `}
+                                        >
+                                            <span className={`text-[11.5px] font-semibold transition-colors ${
+                                                isSelected ? 'text-brand-hover-blue' : 'group-hover:text-slate-900'
+                                            }`}>
                                                 {cat}
-                                            </DropdownMenuCheckboxItem>
-                                        ))}
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                                <Link href="/admin/add-product">
-                                    <Button className="h-9 bg-black cursor-pointer text-white hover:bg-brand-hover-blue text-xs font-bold uppercase px-6">
-                                        <Plus className="mr-2 h-4 w-4" /> Yeni Ürün
-                                    </Button>
-                                </Link>
+                                            </span>
+                                            <div className={`
+                                                w-4 h-4 rounded-md border flex items-center justify-center transition-all
+                                                ${isSelected 
+                                                    ? 'bg-brand-hover-blue border-brand-hover-blue shadow-sm shadow-brand-hover-blue/20' 
+                                                    : 'border-slate-300 bg-white group-hover:border-slate-400'}
+                                            `}>
+                                                {isSelected && <Check size={10} strokeWidth={4} className="text-white" />}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
-                        </div>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
 
-                        {/* Search & Table */}
-                        <div className="space-y-6">
-                            <div className="relative max-w-sm flex items-center group">
-                                <Search className="absolute left-4 h-4 w-4 text-gray-400 group-focus-within:text-black transition-colors" />
-                                <Input
-                                    placeholder="Ürün ara..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    style={{ paddingLeft: '3rem', paddingRight: '3rem' }}
-                                    className="h-10 text-xs border-x-0 border-t-0 border-b border-gray-200 rounded-none focus-visible:ring-0 focus-visible:border-black placeholder:text-gray-400 font-medium bg-transparent w-full"
-                                />
-                                {searchTerm && (
-                                    <button onClick={() => setSearchTerm('')} className="absolute right-0 p-1 cursor-pointer text-gray-400 hover:text-black transition-colors">
-                                        <X size={14} />
-                                    </button>
-                                )}
-                            </div>
+                    <Link href="/admin/add-product" className="flex-1 md:flex-none">
+                        <Button className="h-8.5 w-full bg-metan-orange hover:bg-metan-orange/85 text-white font-bold uppercase text-[10px] tracking-normal px-4 rounded-lg transition-all cursor-pointer">
+                            <Plus className="mr-1.5 h-3.5 w-3.5" /> ÜRÜN EKLE
+                        </Button>
+                    </Link>
+                </div>
+            </div>
 
-                            <div className="rounded-md border border-gray-100 mb-20">
-                                <Table>
-                                    <TableHeader>
-                                        <TableRow className="border-gray-100 hover:bg-transparent bg-gray-50/50">
-                                            <TableHead className="h-10 w-[45%] text-[10px] font-bold uppercase tracking-widest text-gray-500 pl-6 cursor-pointer" onClick={() => handleSort('name')}>
-                                                <div className="flex items-center gap-1">Ürün Adı <ArrowUpDown size={12} className="opacity-30"/></div>
-                                            </TableHead>
-                                            <TableHead className="h-10 text-[10px] font-bold uppercase tracking-widest text-gray-500">Kodu</TableHead>
-                                            <TableHead className="h-10 text-[10px] font-bold uppercase tracking-widest text-gray-500 hidden md:table-cell">Kategori</TableHead>
-                                            <TableHead className="h-10 text-right text-[10px] font-bold uppercase tracking-widest text-gray-500 pr-6">İşlem</TableHead>
-                                        </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {processedProducts.length > 0 ? (
-                                            processedProducts.map((product) => (
-                                                /* FIX 1: Add key directly to the TableRow */
-                                                <TableRow key={product.articleNo} className="border-gray-50 hover:bg-gray-50/50 transition-colors h-12 group">
-                                                    <TableCell className="pl-6 font-bold text-xs text-black">{product.name}</TableCell>
-                                                    <TableCell className="font-mono text-[12px] text-gray-500">{product.articleNo}</TableCell>
-                                                    <TableCell className="hidden md:table-cell text-[10px] font-bold text-gray-400">{product.category}</TableCell>
-                                                    <TableCell className="text-right pr-6">
-                                                        <Link href={`/admin/edit/${product.articleNo}`}>
-                                                            <Button variant="ghost" size="sm" className="h-8 gap-2 text-[12px] cursor-pointer font-bold uppercase text-gray-400 hover:text-black hover:bg-gray-100 px-3 transition-all">
-                                                                Düzenle
-                                                                <ChevronRight size={14} className="opacity-30" />
-                                                            </Button>
-                                                        </Link>
-                                                    </TableCell>
-                                                </TableRow>
-                                            ))
-                                        ) : (
-                                            /* FIX 2: Ensure the fallback row also has a key */
-                                            <TableRow key="no-results-row">
-                                                <TableCell colSpan={4} className="h-32 text-center text-xs text-gray-400 italic">
-                                                    Eşleşen ürün bulunamadı.
-                                                </TableCell>
-                                            </TableRow>
-                                        )}
-                                    </TableBody>
-                                </Table>
-                            </div>
+            {/* Table Section */}
+            <div className="space-y-3">
+                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                    <Table>
+                        <TableHeader>
+                            <TableRow className="bg-slate-50/50 hover:bg-slate-50/50 border-slate-200">
+                                <TableHead className="h-10 text-[10px] font-bold uppercase tracking-wider text-slate-500 pl-4 cursor-pointer hover:text-brand-hover-blue transition-colors" onClick={() => handleSort('name')}>
+                                    <div className="flex items-center gap-1.5">Ürün Adı <ArrowUpDown size={12} className="opacity-50"/></div>
+                                </TableHead>
+                                <TableHead className="h-10 text-[10px] font-bold uppercase tracking-wider text-slate-500">Ürün Kodu</TableHead>
+                                <TableHead className="h-10 text-[10px] font-bold uppercase tracking-wider text-slate-500 hidden lg:table-cell">Kategori</TableHead>
+                                <TableHead className="h-10 text-right text-[10px] font-bold uppercase tracking-wider text-slate-500 pr-10">Aksiyon</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {currentItems.length > 0 ? (
+                                currentItems.map((product) => (
+                                    <TableRow key={product.articleNo} className="hover:bg-slate-50/30 transition-colors group border-slate-100 h-12">
+                                        <TableCell className="pl-4 py-2">
+                                            <div className="flex flex-col leading-tight">
+                                                <span className="font-bold text-[12.5px] text-slate-900 group-hover:text-brand-hover-blue transition-colors">{product.name}</span>
+                                                <span className="text-[9px] text-slate-400 lg:hidden uppercase tracking-tighter">{product.category}</span>
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className="font-mono text-[11px] text-slate-500">{product.articleNo}</TableCell>
+                                        <TableCell className="hidden lg:table-cell">
+                                            <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-100 text-slate-500 border border-slate-200/50">
+                                                {product.category.split(',')[0]}
+                                            </span>
+                                        </TableCell>
+                                        <TableCell className="text-right pr-4">
+                                            <Link href={`/admin/edit/${product.articleNo}`} className="inline-block">
+                                                <Button 
+                                                    variant="ghost" 
+                                                    className="h-7 px-3 ml-auto flex items-center justify-end gap-1 text-[11px] font-bold text-slate-400 hover:text-brand-hover-blue hover:bg-brand-hover-blue/5 rounded-md group/btn cursor-pointer transition-all"
+                                                >
+                                                    <span className="leading-none">Düzenle</span>
+                                                    <ChevronRight 
+                                                        size={12} 
+                                                        className="opacity-0 group-hover/btn:opacity-100 transition-all -translate-x-1 group-hover/btn:translate-x-0" 
+                                                    />
+                                                </Button>
+                                            </Link>
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            ) : (
+                                <TableRow>
+                                    <TableCell colSpan={4} className="h-32 text-center">
+                                        <div className="flex flex-col items-center justify-center text-slate-400">
+                                            <Search size={24} className="mb-2 opacity-20" />
+                                            <p className="text-xs">Ürün bulunamadı.</p>
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </div>
+
+                {/* Pagination Footer */}
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-2 py-1">
+                    <div className="flex items-center gap-4">
+                        <p className="text-[11px] text-slate-500 font-medium whitespace-nowrap">
+                            Toplam <span className="text-slate-900">{sortedProducts.length}</span> üründen 
+                            <span className="text-slate-900"> {startIndex + 1}-{Math.min(startIndex + itemsPerPage, sortedProducts.length)}</span> arası gösteriliyor
+                        </p>
+                        
+                        <div className="flex items-center gap-2 border-l border-slate-200 pl-4">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase">Göster:</span>
+                            <Select 
+                                value={itemsPerPage.toString()} 
+                                onValueChange={(val) => {
+                                    setItemsPerPage(parseInt(val));
+                                    setCurrentPage(1);
+                                }}
+                            >
+                                <SelectTrigger className="h-7 w-[70px] text-[11px] cursor-pointer font-bold border-slate-200 bg-white rounded-md">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent className="rounded-lg">
+                                    {[15, 30, 45, 60].map(num => (
+                                        <SelectItem key={num.toString()} value={num.toString()} className="text-xs cursor-pointer">
+                                            {num}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
                         </div>
                     </div>
-                </main>
+
+                    <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2 mr-2">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase">Git:</span>
+                            <input 
+                                type="number"
+                                min="1"
+                                max={totalPages}
+                                value={currentPage}
+                                onChange={(e) => handlePageJump(e.target.value)}
+                                className="h-8 w-12 text-center text-[11px] font-bold border border-slate-200 rounded-lg bg-white outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                        </div>
+
+                        <div className="flex items-center gap-1">
+                            <Button 
+                                variant="outline" 
+                                disabled={currentPage === 1}
+                                onClick={() => setCurrentPage(prev => prev - 1)}
+                                className="h-8 w-8 p-0 border-slate-200 rounded-lg disabled:opacity-30 cursor-pointer bg-white"
+                            >
+                                <ChevronLeft size={14} />
+                            </Button>
+                            <div className="flex items-center px-3 h-8 rounded-lg border border-slate-200 bg-slate-50/50 text-[11px] font-bold text-slate-700">
+                                {currentPage} / {totalPages || 1}
+                            </div>
+                            <Button 
+                                variant="outline" 
+                                disabled={currentPage === totalPages || totalPages === 0}
+                                onClick={() => setCurrentPage(prev => prev + 1)}
+                                className="h-8 w-8 p-0 border-slate-200 rounded-lg disabled:opacity-30 cursor-pointer bg-white"
+                            >
+                                <ChevronRight size={14} />
+                            </Button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

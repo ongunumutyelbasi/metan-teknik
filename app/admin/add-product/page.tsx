@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { sennheiserProducts } from '@/src/data/sennheiser-products';
-import { type SennheiserProduct } from '@/src/types/product-schema';
+import { products as sennheiserProducts } from '@/src/data/sennheiser-products';
+import type { SennheiserProduct } from '@/src/types/product-schema';
 
 // External Admin Components
 import { TechnicalSpecsEditor } from '@/components/admin/TechnicalSpecsEditor';
@@ -160,7 +160,7 @@ export default function AddProductPage() {
     }, [modal.show, modal.type]);
 
     return (
-        <div className="min-h-screen pt-[96px] bg-gray-50 p-4 font-sennheiser relative">
+        <div className="relative animate-in fade-in duration-500">
             <style jsx global>{`
                 input::-webkit-outer-spin-button,
                 input::-webkit-inner-spin-button {
@@ -176,115 +176,132 @@ export default function AddProductPage() {
                 }
             `}</style>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="max-w-5xl mx-auto space-y-3 pb-10">
-                <div className="flex justify-between items-center bg-white px-4 py-2 rounded-md border border-gray-200 sticky top-[96px] z-20 shadow-sm">
-                    <h1 className="text-md font-bold text-black">Yeni Ürün Ekle</h1>
-                    <div className="flex gap-2">
-                        <ActionButton className="bg-black text-white border border-transparent hover:bg-transparent hover:text-black hover:border-black" text="İptal" type="button" onClick={() => router.back()} />
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 pb-10">
+                {/* Simplified Sticky Header for Admin Dashboard */}
+                <div className="flex justify-between items-center bg-white/80 backdrop-blur-md px-6 py-4 rounded-xl border border-slate-200 sticky top-4 z-20 shadow-sm">
+                    <div>
+                        <h1 className="text-lg font-bold text-slate-900 leading-tight">Yeni Ürün Ekle</h1>
+                        <p className="text-xs text-slate-500">Sennheiser ürün kataloğuna yeni bir öğe ekleyin</p>
+                    </div>
+                    <div className="flex gap-3">
+                        <button 
+                            type="button" 
+                            onClick={() => router.back()}
+                            className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+                        >
+                            İptal
+                        </button>
                         <ActionButton 
-                            text="Ürünü Oluştur" 
+                            text="Ürünü Kaydet" 
                             type="submit" 
-                            className="!text-white border !transition-all !duration-300 enabled:!bg-brand-hover-blue enabled:!border-brand-hover-blue enabled:hover:!bg-transparent enabled:hover:!text-brand-hover-blue" 
+                            className="!bg-metan-orange !text-white !px-6 !rounded-lg hover:!bg-metan-orange/85 !border-none !shadow-md shadow-blue-200 transition-all cursor-pointer" 
                         />
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div className="bg-white p-4 rounded-md border border-gray-200 space-y-2">
-                        <h2 className="text-xs font-bold flex items-center gap-2 border-b pb-1.5 mb-2">
-                            <Info size={14} /> Genel Bilgiler
-                        </h2>
-                        <div className="space-y-2">
-                            <div className="flex flex-col gap-0.5">
-                                <label className="text-[9px] font-bold text-gray-500 uppercase">ÜRÜN KODU (Article No)</label>
-                                <input {...register("articleNo", { required: true })} className="w-full h-[37px] p-1.5 text-xs border border-gray-200 rounded-md bg-gray-50 font-mono outline-none focus:border-brand-hover-blue" />
-                            </div>
-                            <div className="flex flex-col gap-0.5">
-                                <label className="text-[9px] font-bold text-gray-500 uppercase">Ürün Adı</label>
-                                <input {...register("name", { required: true })} className="w-full h-[37px] p-1.5 text-xs border border-gray-200 rounded-md outline-none focus:border-brand-hover-blue" />
-                            </div>
-                            <div className="flex flex-col gap-0.5">
-                                <label className="text-[9px] font-bold text-gray-500 uppercase">Kategori</label>
-                                <div className="relative group">
-                                    <select {...register("category")} className="w-full h-[37px] px-2 text-xs border border-gray-200 rounded-md outline-none bg-white appearance-none cursor-pointer focus:border-brand-hover-blue transition-colors">
-                                        <option value="">Kategori Seçin</option>
-                                        {CATEGORIES.map(cat => (
-                                            <option key={cat.value} value={cat.value}>{cat.label}</option>
-                                        ))}
-                                    </select>
-                                    <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-focus-within:text-brand-hover-blue">
-                                        <ChevronDown size={14} strokeWidth={2.5} />
+                {/* Form Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Left Column: Info */}
+                    <div className="lg:col-span-2 space-y-6">
+                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                            <h2 className="text-sm font-bold flex items-center gap-2 text-slate-800 border-b border-slate-100 pb-3">
+                                <Info size={16} className="text-blue-500" /> Genel Bilgiler
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="flex flex-col gap-1.5">
+                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">ÜRÜN KODU (Article No)</label>
+                                    <input {...register("articleNo", { required: true })} placeholder="Örn: 508826" className="w-full h-10 px-3 text-sm border border-slate-200 rounded-lg bg-slate-50 font-mono outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" />
+                                </div>
+                                <div className="flex flex-col gap-1.5">
+                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Kategori</label>
+                                    <div className="relative">
+                                        <select {...register("category")} className="w-full h-10 px-3 text-sm border border-slate-200 rounded-lg outline-none bg-white appearance-none cursor-pointer focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
+                                            <option value="">Kategori Seçin</option>
+                                            {CATEGORIES.map(cat => (
+                                                <option key={cat.value} value={cat.value}>{cat.label}</option>
+                                            ))}
+                                        </select>
+                                        <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-0.5 pt-2">
-                                <label className="text-[9px] font-bold text-gray-500 uppercase">Kısa Açıklama</label>
-                                <textarea {...register("shortDescription")} className="w-full min-h-[60px] p-1.5 text-xs border border-gray-200 rounded-md outline-none focus:border-brand-hover-blue resize-none" />
+                            <div className="flex flex-col gap-1.5">
+                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Ürün Adı</label>
+                                <input {...register("name", { required: true })} placeholder="Örn: EW-D ME2 SET" className="w-full h-10 px-3 text-sm border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" />
                             </div>
-                            <div className="flex flex-col gap-0.5">
-                                <label className="text-[9px] font-bold text-gray-500 uppercase">Uzun Açıklama (Markdown)</label>
-                                <textarea {...register("longDescription")} className="w-full min-h-[120px] p-1.5 text-xs border border-gray-200 rounded-md outline-none focus:border-brand-hover-blue font-sans" />
+                            <div className="flex flex-col gap-1.5">
+                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Kısa Açıklama</label>
+                                <textarea {...register("shortDescription")} rows={2} className="w-full p-3 text-sm border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 resize-none" />
+                            </div>
+                            <div className="flex flex-col gap-1.5">
+                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Uzun Açıklama</label>
+                                <textarea {...register("longDescription")} rows={6} className="w-full p-3 text-sm border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500" />
                             </div>
                         </div>
-                    </div>
-                    <BoxContentsEditor control={control} register={register} />
-                </div>
 
-                <FeaturesEditor control={control} register={register} />
-
-                <div className="bg-white p-4 rounded-md border border-gray-200">
-                    <div className="flex justify-between items-center mb-2 border-b pb-1.5">
-                        <h2 className="text-xs font-bold flex items-center gap-2 text-black">
-                            <CheckCircle2 size={14} /> Öne Çıkan Özellikler
-                        </h2>
-                        <button type="button" onClick={() => appendHighlight({ label: "", value: "" })} className="text-[10px] cursor-pointer font-bold text-brand-blue hover:underline flex items-center gap-1">
-                            <Plus size={12} /> Ekle
-                        </button>
+                        <FeaturesEditor control={control} register={register} />
+                        
+                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <TechnicalSpecsEditor control={control} register={register} />
+                        </div>
                     </div>
-                    <div className="space-y-2">
-                        {highlightFields.length > 0 && (
-                            <div className="flex gap-2 px-7 mb-1">
-                                <label className="flex-1 text-[8px] font-bold text-gray-400 uppercase">Başlık</label>
-                                <label className="flex-1 text-[8px] font-bold text-gray-400 uppercase">Detay</label>
-                                <div className="w-[22px]"></div>
+
+                    {/* Right Column: Sidebar content */}
+                    <div className="space-y-6">
+                        <BoxContentsEditor control={control} register={register} />
+                        
+                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <div className="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                                <h2 className="text-sm font-bold flex items-center gap-2 text-slate-800">
+                                    <CheckCircle2 size={16} className="text-emerald-500" /> Öne Çıkanlar
+                                </h2>
+                                <button type="button" onClick={() => appendHighlight({ label: "", value: "" })} className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+                                    <Plus size={14} /> Ekle
+                                </button>
                             </div>
-                        )}
-                        {highlightFields.map((field, index) => (
-                            <div key={field.id} className="flex gap-2 items-center">
-                                <div className="p-1 text-gray-300"><ChevronDown size={14} className="-rotate-90 opacity-50" /></div>
-                                <input {...register(`highlightedFeatures.${index}.label`)} className="flex-1 p-1.5 border border-gray-100 rounded-md text-xs focus:border-brand-hover-blue outline-none bg-gray-50/30" />
-                                <input {...register(`highlightedFeatures.${index}.value`)} className="flex-1 p-1.5 border border-gray-100 rounded-md text-xs focus:border-brand-hover-blue outline-none bg-gray-50/30" />
-                                <button type="button" onClick={() => removeHighlight(index)} className="p-1 cursor-pointer text-gray-300 hover:text-red-500 transition-colors"><Trash2 size={14} /></button>
-                            </div>
-                        ))}
+
+                            {/* Only render this div if there are actually fields to show */}
+                            {highlightFields.length > 0 ? (
+                                <div className="space-y-3">
+                                    {highlightFields.map((field, index) => (
+                                        <div key={field.id} className="flex gap-2 items-start group">
+                                            <div className="flex-1 space-y-1">
+                                                <input {...register(`highlightedFeatures.${index}.label`)} placeholder="Başlık" className="w-full p-2 border border-slate-100 rounded bg-slate-50/50 text-[11px] focus:bg-white focus:border-blue-500 outline-none" />
+                                                <input {...register(`highlightedFeatures.${index}.value`)} placeholder="Değer" className="w-full p-2 border border-slate-100 rounded bg-slate-50/50 text-[11px] focus:bg-white focus:border-blue-500 outline-none" />
+                                            </div>
+                                            <button type="button" onClick={() => removeHighlight(index)} className="p-2 text-slate-300 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"><Trash2 size={14} /></button>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                /* Optional: Show a placeholder so the box doesn't look "broken" when empty */
+                                <p className="text-[11px] text-slate-400 italic text-center py-2">Henüz özellik eklenmedi.</p>
+                            )}
+                        </div>
                     </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-md border border-gray-200">
-                    <TechnicalSpecsEditor control={control} register={register} />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <RelatedAndVariantsEditor control={control} register={register} name="variants" title="Varyantlar" />
-                    <RelatedAndVariantsEditor control={control} register={register} name="relatedProducts" title="İlgili Ürünler" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <RelatedAndVariantsEditor control={control} register={register} name="variants" title="Varyantlar" />
+                    </div>
+                    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <RelatedAndVariantsEditor control={control} register={register} name="relatedProducts" title="İlgili Ürünler" />
+                    </div>
                 </div>
             </form>
 
+            {/* Modal remains same but top adjusted */}
             {modal.show && (
-                <div className="fixed top-[105px] left-1/2 -translate-x-1/2 z-[100000] animate-in slide-in-from-top-4 duration-300">
-                    <div className="bg-white rounded-md shadow-xl border border-gray-200 w-[280px] overflow-hidden relative">
-                        <div className="p-3 flex items-center gap-3">
-                            {modal.type === 'success' ? <CheckCircle2 className="text-emerald-500" size={20} /> : <XCircle className="text-red-500" size={20} />}
+                <div className="fixed top-6 right-6 z-[100] animate-in slide-in-from-right-8 duration-300">
+                    <div className="bg-white rounded-xl shadow-2xl border border-slate-200 w-[320px] overflow-hidden">
+                        <div className="p-4 flex items-center gap-4">
+                            {modal.type === 'success' ? <CheckCircle2 className="text-emerald-500" size={24} /> : <XCircle className="text-red-500" size={24} />}
                             <div className="flex-1">
-                                <h3 className="text-[11px] font-bold text-black leading-none mb-0.5">{modal.type === 'success' ? 'İşlem Başarılı' : 'Hata Oluştu'}</h3>
-                                <p className="text-[10px] text-gray-500 truncate">{modal.message}</p>
+                                <h3 className="text-sm font-bold text-slate-900">{modal.type === 'success' ? 'Başarılı' : 'Hata'}</h3>
+                                <p className="text-xs text-slate-500">{modal.message}</p>
                             </div>
                         </div>
-                        {modal.type === 'success' && (
-                            <div className="absolute bottom-0 left-0 h-[2px] w-full bg-gray-100">
-                                <div className="h-full bg-emerald-500" style={{ animation: 'modalCountdown 4s linear forwards' }} />
-                            </div>
-                        )}
                     </div>
                 </div>
             )}

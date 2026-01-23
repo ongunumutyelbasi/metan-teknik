@@ -1,7 +1,7 @@
 import { SennheiserProduct } from '../types/product-schema';
 export type { SennheiserProduct };
 
-export const sennheiserProducts: SennheiserProduct[] = [
+export const products: SennheiserProduct[] = [
     {
         "id": 6051,
         "articleNo": "700268",
@@ -19,7 +19,204 @@ export const sennheiserProducts: SennheiserProduct[] = [
         "pickupPattern": [],
         "transducerType": [],
         "connection": "",
-        "connectors": []
+        "connectors": [],
+        "shortDescription": "Profile Wireless için klipsli verici",
+        "longDescription": "",
+        "boxContents": [
+            {
+                "item": "PROFILE Kablosuz Verici",
+                "quantity": 1
+            }
+        ],
+        "features": [],
+        "technicalSpecs": [
+            {
+                "mainTitle": "Lojistik",
+                "specs": [
+                    {
+                        "label": "Garanti",
+                        "value": "2 yıl"
+                    }
+                ]
+            },
+            {
+                "mainTitle": "Ürün",
+                "specs": [
+                    {
+                        "label": "Transformatör tipi",
+                        "value": "Kondenser"
+                    },
+                    {
+                        "label": "Gecikme (ms)",
+                        "value": "< 8 ms"
+                    },
+                    {
+                        "label": "Toplam harmonik bozulma",
+                        "value": "< %1.5"
+                    }
+                ]
+            },
+            {
+                "mainTitle": "Frekans Özellikleri",
+                "specs": [
+                    {
+                        "label": "Ses frekans tepkisi",
+                        "value": "60 Hz - 20.000 Hz"
+                    }
+                ]
+            },
+            {
+                "mainTitle": "Akustik Özellikler",
+                "specs": [
+                    {
+                        "label": "Örnekleme hızı",
+                        "value": "48 kHz"
+                    },
+                    {
+                        "label": "Low-cut filtresi",
+                        "value": "110 Hz"
+                    },
+                    {
+                        "label": "Maks. ses basınç seviyesi",
+                        "value": "113 dB SPL"
+                    },
+                    {
+                        "label": "Sinyal-gürültü oranı",
+                        "value": "typ. 78.5"
+                    },
+                    {
+                        "label": "Polar desen",
+                        "value": "Omnidireksiyonel"
+                    }
+                ]
+            },
+            {
+                "mainTitle": "Bağlantı",
+                "specs": [
+                    {
+                        "label": "Bağlantı girişleri",
+                        "value": "USB-C"
+                    },
+                    {
+                        "label": "Konektörler",
+                        "value": "USB-C"
+                    }
+                ]
+            },
+            {
+                "mainTitle": "Giriş/Çıkışlar",
+                "specs": [
+                    {
+                        "label": "Ses girişi",
+                        "value": "3.5 mm TRS (Kilitlenir)"
+                    }
+                ]
+            },
+            {
+                "mainTitle": "Ortam Koşulları",
+                "specs": [
+                    {
+                        "label": "Bağıl nem (≤ %)",
+                        "value": "%25 - %95 (yoğuşmasız)"
+                    },
+                    {
+                        "label": "Çalışma sıcaklığı (°C)",
+                        "value": "-10°C - +45°C"
+                    }
+                ]
+            },
+            {
+                "mainTitle": "Batarya ve Güç",
+                "specs": [
+                    {
+                        "label": "Şarj süresi (saat)",
+                        "value": "< 1.5"
+                    },
+                    {
+                        "label": "Batarya kapasitesi (Ah)",
+                        "value": "0.28"
+                    },
+                    {
+                        "label": "Batarya sayısı",
+                        "value": "1"
+                    },
+                    {
+                        "label": "Batarya",
+                        "value": "Pakete dahil değil"
+                    },
+                    {
+                        "label": "Batarya voltajı",
+                        "value": "3.7"
+                    },
+                    {
+                        "label": "Bataryayla kullanım süresi",
+                        "value": "≤ 7 saat (ileterek kaydetme)"
+                    }
+                ]
+            },
+            {
+                "mainTitle": "Elektriksel Özellikler",
+                "specs": [
+                    {
+                        "label": "İletim gücü",
+                        "value": "< 20 dBm EIRP (etkin yayılım)"
+                    }
+                ]
+            }
+        ],
+        "variants": [],
+        "relatedProducts": [
+            "700270",
+            "700271",
+            "700272",
+            "700273",
+            "700274",
+            "700275",
+            "700276",
+            "700279",
+            "700481"
+        ],
+        "highlightedFeatures": [
+            {
+                "label": "Ses girişi",
+                "value": "3.5 mm TRS (Kilitlenir)"
+            },
+            {
+                "label": "Şarj süresi (saat)",
+                "value": "< 1.5"
+            },
+            {
+                "label": "Bağlantı girişleri",
+                "value": "USB-C"
+            },
+            {
+                "label": "Gecikme (ms)",
+                "value": "< 8 ms"
+            },
+            {
+                "label": "Maks. ses basınç seviyesi",
+                "value": "113 dB SPL"
+            },
+            {
+                "label": "Polar desen",
+                "value": "Omnidireksiyonel"
+            },
+            {
+                "label": "Sinyal-gürültü oranı",
+                "value": "typ. 78.5"
+            },
+            {
+                "label": "Dönüştürücü tipi",
+                "value": "Kondenser"
+            },
+            {
+                "label": "Konektörler",
+                "value": "USB-C"
+            }
+        ],
+        "image": [
+            "/images/sennheiser/mikrofonlar/profile-wireless-transmitter/profile-wireless-transmitter-1.webp"
+        ]
     },
     {
         "id": 6185,
@@ -2126,14 +2323,56 @@ export const sennheiserProducts: SennheiserProduct[] = [
         "articleNo": "500200",
         "name": "e 904",
         "category": "Mikrofonlar",
-        "link": "https://www.sennheiser.com/en-au/catalog/products/microphones/e-904/e-904-500200",
+        "link": "/sennheiser/urunler/mikrofonlar/e-904-500200",
         "applicationTypes": [],
         "microphoneForm": [],
         "pickupPattern": [],
         "transducerType": [],
         "connection": "",
         "connectors": [],
-        "productSeries": []
+        "productSeries": [],
+        "shortDescription": "Dynamic Drum Microphone for Studio and Stage",
+        "longDescription": "The Sennheiser e 904 is a dynamic cardioid microphone built to deliver the full energy of your drum sound. Designed specifically for snares and toms, the e 904 captures full-bodied, transparent tones with fast attack and natural harmonic detail—without getting in the way of your playing.",
+        "image": [
+            "/images/sennheiser/mikrofonlar/e-904/e-904-1.avif"
+        ],
+        "features": [
+            "Davul ve perküsyon için dinamik kardioid mikrofon",
+            "Doğal armonik detaylara sahip, dolgun ve canlı ses",
+            "Hassas atak (attack) yakalama için mükemmel transient tepkisi",
+            "Tomlar, trampetler ve perküsyonlar için ideal kompakt gövde tasarımı",
+            "Hızlı ve güvenli kurulum için entegre kasnak (rim) klipsi",
+            "Turne dayanıklılığı için güçlendirilmiş sağlam metal gövde",
+            "Esnek ton şekillendirme için tutarlı frekans tepkisi",
+            "Parazitsiz performans için uğultu giderici (hum-compensating) bobin",
+            "Avrupa’da monte edilmiştir",
+            "2 yıllık (ABD için 10 yıl) Sennheiser garantisi kapsamındadır"
+        ],
+        "boxContents": [
+            {
+                "item": "e 904 Enstrüman mikrofonu",
+                "quantity": 1
+            },
+            {
+                "item": "MZH 604 mikrofon mandalı",
+                "quantity": 1
+            },
+            {
+                "item": "Taşıma kesesi",
+                "quantity": 1
+            },
+            {
+                "item": "Hızlı kılavuz",
+                "quantity": 1
+            },
+            {
+                "item": "Güvenlik kılavuzu",
+                "quantity": 1
+            }
+        ],
+        "technicalSpecs": [],
+        "variants": [],
+        "relatedProducts": []
     },
     {
         "id": 913,

@@ -29,18 +29,26 @@ export default function ProductGrid({
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 w-full pb-[16px]">
                 {currentProducts.map((product, index) => {
                     const isExternal = product.link.startsWith('http');
+                    
+                    // 1. Generate a URL-friendly slug from the name
+                    const nameSlug = product.name
+                        .toLowerCase()
+                        .trim()
+                        .replace(/[^\w\s-]/g, '')
+                        .replace(/[\s_-]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+
+                    // 2. Construct the dynamic path
+                    const categorySlug = product.category.toLowerCase().replace(/\s+/g, '-');
+                    const dynamicHref = `/sennheiser/urunler/${categorySlug}/${nameSlug}-${product.articleNo}`;
+
                     const productKey = product.id 
                         ? `id-${product.id}` 
-                        : product.articleNo 
-                            ? `art-${product.articleNo}` 
-                            : `name-${product.name}-${index}`;
+                        : `art-${product.articleNo}`;
 
+                    // RE-DEFINING THE CARD UI
                     const CardContent = (
                         <div className="group relative aspect-square bg-[var(--color-light-gray)] overflow-hidden transition-colors">
-                            {/* IMAGE CONTAINER: 
-                                inset-0 ensures it uses 100% of the square's space.
-                                p-6 provides a clean margin so the image doesn't touch the edges.
-                            */}
                             <div className="absolute inset-0 flex items-center justify-center p-3">
                                 {product.image && product.image.length > 0 ? (
                                     <img 
@@ -57,7 +65,6 @@ export default function ProductGrid({
                                 )}
                             </div>
                             
-                            {/* Product Title Overlay */}
                             <div className="absolute bottom-3 left-3 right-3 pointer-events-none">
                                 <h3 
                                     className="antialiased subpixel-antialiased font-medium transition-colors duration-200 group-hover:text-[var(--color-brand-hover-blue)]"
@@ -72,7 +79,7 @@ export default function ProductGrid({
                     return isExternal ? (
                         <a key={productKey} href={product.link} target="_blank" rel="noopener noreferrer">{CardContent}</a>
                     ) : (
-                        <Link key={productKey} href={product.link.startsWith('/') ? product.link : `/${product.link}`}>{CardContent}</Link>
+                        <Link key={productKey} href={dynamicHref}>{CardContent}</Link>
                     );
                 })}
             </div>
@@ -82,7 +89,6 @@ export default function ProductGrid({
                 <div className="py-20 text-center text-gray-400 italic">Aradığınız kriterlere uygun ürün bulunamadı.</div>
             ) : (
                 <div className="mt-[16px] mb-[0px] flex flex-col items-center gap-2">
-                    {/* Pagination Nav */}
                     {totalPages > 0 && (
                         <nav aria-label="Pagination">
                             <div className="flex items-center justify-center gap-1">
@@ -103,7 +109,6 @@ export default function ProductGrid({
                         </nav>
                     )}
 
-                    {/* Page Size Picker */}
                     <div className="flex items-center gap-2">
                         <span className="antialiased subpixel-antialiased font-regular text-[13px]">Sayfada gösterilen ürün sayısı:</span>
                         <div className="relative">

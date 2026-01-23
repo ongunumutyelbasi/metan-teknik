@@ -6,7 +6,7 @@ import Fuse from 'fuse.js';
 import SubNavigationRow from '@/components/navigation/SubNavigationRow';
 import { useProductUI } from '@/app/hooks/useProductUI';
 import Image from 'next/image';
-import { sennheiserProducts } from '@/src/data/sennheiser-products';
+import { products as sennheiserProducts } from '@/src/data/sennheiser-products';
 import { SennheiserProduct } from '@/src/types/product-schema';
 import { ProductGrid, CategoryHero, Breadcrumbs, FamilySlider, FamilyCard, FilterDropdown, } from '@/components/Sennheiser';
 import { APPLICATION_TYPES, MICROPHONE_FORMS, PICKUP_PATTERN, TRANSDUCER_TYPE, CONNECTION, CONNECTOR, PRODUCT_SERIES } from '@/src/types/product-schema';

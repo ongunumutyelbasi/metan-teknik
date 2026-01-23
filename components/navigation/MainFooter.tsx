@@ -7,11 +7,17 @@ import NeumannFooter from './footers/NeumannFooter';
 import MergingFooter from './footers/MergingFooter';
 
 export default function MainFooter() {
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
+  const lowerPath = pathname.toLowerCase();
 
-  if (pathname.startsWith('/sennheiser')) return <SennheiserFooter />;
-  if (pathname.startsWith('/neumann')) return <NeumannFooter />;
-  if (pathname.startsWith('/merging')) return <MergingFooter />;
-  
+  // 1. Check for admin path first to prevent any header from rendering
+  if (lowerPath.startsWith('/admin')) return null;
+
+  // 2. Brand specific headers
+  if (lowerPath.startsWith('/sennheiser')) return <SennheiserFooter />;
+  if (lowerPath.startsWith('/neumann')) return <NeumannFooter />;
+  if (lowerPath.startsWith('/merging')) return <MergingFooter />;
+
+  // 3. Default fallback
   return <MetanFooter />;
 }

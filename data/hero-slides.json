@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "Spectera",
+    "subtitle": "Dünyanın ilk geniş bant ve çift yönlü kablosuz ekosistemi!",
+    "productImg": "/images/hero-slide/spectera-unit.avif",
+    "lifestyleImg": "/images/hero-slide/Spectera_Product_Shot_In_Use_39_.webp",
+    "link": "/sennheiser/urunler/kablosuz-sistemler/spectera"
+  },
+  {
+    "id": 2,
+    "title": "TeamConnect Bars",
+    "subtitle": "Sınıfının en fazla özelliğe sahip çok işlevli konferans cihazları",
+    "productImg": "/images/hero-slide/teamconnect-bar.avif",
+    "lifestyleImg": "/images/hero-slide/teamconnect-meeting.webp",
+    "link": "/sennheiser/urunler/konferans-rehber-sistemleri/teamconnect-bars"
+  },
+  {
+    "id": 3,
+    "title": "e904",
+    "subtitle": "Bu ayın mikrofonu: Davul ve perküsyon için optimize edildi",
+    "productImg": "/images/hero-slide/e904.webp",
+    "lifestyleImg": "/images/hero-slide/e904-drum.webp",
+    "link": "/sennheiser/urunler/mikrofonlar/e904"
+  },
+  {
+    "id": 4,
+    "title": "YENİ",
+    "subtitle": "Intermodülasyonsuz rahat bir frekans dağılımından daha fazlası",
+    "productImg": "/images/hero-slide/holidaysavings.avif",
+    "lifestyleImg": "/images/hero-slide/banner-holidaysavings.webp",
+    "link": "/sennheiser/urunler/kulakliklar/hd-660s2"
+  }
+]

@@ -92,7 +92,7 @@ const SortableSection = ({ id, sectionIndex, control, register, onRemove }: any)
     };
 
     return (
-        <div ref={setNodeRef} style={style} className="border border-gray-200 rounded-md bg-white shadow-sm overflow-hidden w-full">
+        <div ref={setNodeRef} style={style} className="border border-gray-200 rounded-md bg-white overflow-hidden w-full">
             <div className="flex items-center gap-2 bg-gray-50 p-2 border-b border-gray-200 group">
                 <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing p-1 text-gray-400 hover:text-gray-600">
                     <GripVertical size={14} />
