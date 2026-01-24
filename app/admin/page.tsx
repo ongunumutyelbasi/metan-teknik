@@ -215,8 +215,13 @@ export default function AdminDashboard() {
                         </TableHeader>
                         <TableBody>
                             {currentItems.length > 0 ? (
-                                currentItems.map((product) => (
-                                    <TableRow key={product.articleNo} className="hover:bg-slate-50/30 transition-colors group border-slate-100 h-12">
+                                // Added 'index' here to use in the key
+                                currentItems.map((product, index) => (
+                                    // Combined articleNo and index to guarantee uniqueness
+                                    <TableRow 
+                                        key={`${product.articleNo}-${index}`} 
+                                        className="hover:bg-slate-50/30 transition-colors group border-slate-100 h-12"
+                                    >
                                         <TableCell className="pl-4 py-2">
                                             <div className="flex flex-col leading-tight">
                                                 <span className="font-bold text-[12.5px] text-slate-900 group-hover:text-brand-hover-blue transition-colors">{product.name}</span>

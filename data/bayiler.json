@@ -1,0 +1,296 @@
+[
+  {
+    "id": "istanbul-section",
+    "title": "İstanbul Satış Noktalarımız",
+    "dealers": [
+      {
+        "name": "Asimetrik",
+        "logo": "/images/bayi-logolar/asimetrik.png",
+        "city": "İstanbul",
+        "address": "Esentepe Mah. Yazarlar Sok. No:17 34394 Şişli/İstanbul",
+        "phone": "+90 (212) 212 80 75",
+        "website": "https://asimetrik.com.tr/en/home/",
+        "websiteLabel": "asimetrik.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/UhjmJQkRjPuFFisBA",
+        "id": "dlr-j2cb346bh",
+        "useLibrary": true
+      },
+      {
+        "name": "DerTech",
+        "logo": "/images/bayi-logolar/dertech.png",
+        "city": "İstanbul",
+        "address": "Akşemsettin Mah. Fatih Blv. No:541 Uzundere Mevkii, Sultanbeyli/İstanbul",
+        "phone": "+90 (216) 487 56 03",
+        "website": "http://www.dertech.com.tr/",
+        "websiteLabel": "dertech.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/L43bVaJyeBxwSwVE8",
+        "id": "dlr-iz6a0scqh",
+        "useLibrary": true
+      },
+      {
+        "name": "Devtek",
+        "logo": "/images/bayi-logolar/devtek.png",
+        "city": "İstanbul",
+        "address": "Merkez Efendi Mah. Tercüman Sitesi A2 Blok Kat:11 No:46 Cevizlibağ - Zeytinburnu/İstanbul",
+        "phone": "+90 (212) 582 23 07",
+        "website": "https://www.devtek.com.tr/tr",
+        "websiteLabel": "devtek.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/UvAy8d3FkRb2cyjeA",
+        "id": "dlr-p64ndffib",
+        "useLibrary": true
+      },
+      {
+        "name": "Elektropanç",
+        "logo": "/images/bayi-logolar/elektropanc.png",
+        "city": "İstanbul",
+        "address": "Gürsel Mah. Sevilen Sok. No:38 34400 Çağlayan/İstanbul",
+        "phone": "+90 (212) 222 83 83",
+        "website": "http://www.elektropanc.com.tr/",
+        "websiteLabel": "elektropanc.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/KgCRngQwtVb922Vf7",
+        "id": "dlr-ro6i91sqb",
+        "useLibrary": true
+      },
+      {
+        "name": "Nidah Ses Işık",
+        "logo": "/images/bayi-logolar/nidah-ses-isik.png",
+        "city": "İstanbul",
+        "address": "Defderdar Mahallesi Güldalı Sok. No:22 Kat:1 Edirnekapı – Eyüp / İstanbul",
+        "phone": "+90 (212) 631 04 49",
+        "website": "https://www.nidah.org/nidahiletisim",
+        "websiteLabel": "nidah.org",
+        "googleMapsUrl": "https://maps.app.goo.gl/cTezc4QpFooWiBRr6",
+        "id": "dlr-amsmzwpsi",
+        "useLibrary": true
+      },
+      {
+        "name": "Polokom",
+        "logo": "/images/bayi-logolar/polokom.png?v=1",
+        "city": "İstanbul",
+        "address": "Perpa Ticaret İş Merkezi 11.Kat B Blok No: 1709 Okmeydanı / İstanbul",
+        "phone": "+90 (212) 320 06 44",
+        "website": "http://www.polokom.com.tr/",
+        "websiteLabel": "polokom.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/qe8rRM6gDJfjqC9r6",
+        "id": "dlr-gdvu273ki",
+        "useLibrary": true
+      },
+      {
+        "name": "Er-Dijital",
+        "logo": "/images/bayi-logolar/erdijital.png",
+        "city": "İstanbul",
+        "address": "Hoybar Mh. Ankara Cd. Kastelli İş Merk. No:37 / İstanbul",
+        "phone": "+90 (212) 514 00 73",
+        "website": "https://www.erdijital.com/kategori/comica-mikrofon?marka=sennheiser-e,sennheiser",
+        "websiteLabel": "erdijital.com",
+        "googleMapsUrl": "https://maps.app.goo.gl/aLdzCNzFAXeQz79R6",
+        "id": "dlr-c40sburlp",
+        "useLibrary": true
+      },
+      {
+        "name": "Prokare",
+        "logo": "/images/bayi-logolar/prokare.png",
+        "city": "İstanbul",
+        "address": "Perpa Ticaret Merkezi A Blok Kat:11 No: 1455-1457-1459 Şişli/İstanbul",
+        "phone": "+90 (212) 320 23 40",
+        "website": "http://www.prokare.com.tr/",
+        "websiteLabel": "prokare.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/z4X3Pf2mhEmrGWvf7",
+        "id": "dlr-9llwd0j0z",
+        "useLibrary": true
+      },
+      {
+        "name": "Sessan",
+        "logo": "/images/bayi-logolar/sessan.png",
+        "city": "İstanbul",
+        "address": "Piyale Paşa Mah. Baruthane Cad. Stad Sk. No.27/3, Okmeydanı/İstanbul",
+        "phone": "+90 (212) 253 66 95",
+        "website": "http://www.sessan.com.tr/",
+        "websiteLabel": "sessan.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/JBKCgPBDa3Q3cBFx7",
+        "id": "dlr-r3k9mz1tx",
+        "useLibrary": true
+      },
+      {
+        "name": "Sunu Proje (Visio-Vox)",
+        "logo": "/images/bayi-logolar/sunu-proje.png",
+        "city": "İstanbul",
+        "address": "Balmumcu Plaza 3, Daire 2 Balmumcu – Beşiktaş / İstanbul",
+        "phone": "+90 (212) 327 15 15",
+        "website": "https://visio-vox.com/tr/home-turkce/",
+        "websiteLabel": "visio-vox.com",
+        "googleMapsUrl": "https://maps.app.goo.gl/ciqVLZMVFxThukG29",
+        "id": "dlr-6jkxbelz1",
+        "useLibrary": true
+      },
+      {
+        "name": "Teratek",
+        "logo": "/images/bayi-logolar/teratek.png",
+        "city": "İstanbul",
+        "address": "Kayışdağı Cad. Kor Plaza No:70 K:4 İçerenköy – Ataşehir/İstanbul",
+        "phone": "+90 (216) 577 23 77",
+        "website": "http://www.teratek.com.tr/",
+        "websiteLabel": "teratek.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/HjEzK3XDRY9GUvPj6",
+        "id": "dlr-c4mwsb9qx",
+        "useLibrary": true
+      }
+    ]
+  },
+  {
+    "id": "ankara-section",
+    "title": "Ankara Satış Noktalarımız",
+    "dealers": [
+      {
+        "name": "Asimetrik",
+        "logo": "/images/bayi-logolar/asimetrik.png",
+        "city": "Ankara",
+        "address": "İlkbahar Mah. 622. Sok. Nn:4 Oran / Çankaya / Ankara",
+        "phone": "+90 (312) 490 91 01",
+        "website": "https://asimetrik.com.tr/en/home/",
+        "websiteLabel": "asimetrik.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/o5wDsbdHV1Z82bZD7",
+        "id": "dlr-2pdwrjv2g",
+        "useLibrary": true
+      },
+      {
+        "name": "Atempo",
+        "logo": "/images/bayi-logolar/atempo.png",
+        "city": "Ankara",
+        "address": "Farabi Sokak No: 8 06680 Çankaya / Ankara",
+        "phone": "+90 (312) 466 82 00",
+        "website": "http://www.atempo.com.tr/",
+        "websiteLabel": "atempo.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/Ys4fC1mQRYoeLBrB8",
+        "id": "dlr-ufeyf575n",
+        "useLibrary": true
+      },
+      {
+        "name": "Atsan Elektronik",
+        "logo": "/images/bayi-logolar/atsan.png?v=1",
+        "city": "Ankara",
+        "address": "Konya Sk. No:13 / 34-35 06250 Ulus / Ankara",
+        "phone": "+90 (312) 309 52 26",
+        "website": "http://www.atsanelektronik.com.tr/",
+        "websiteLabel": "atsanelektronik.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/6kDU6PCgVtD5dqL2A",
+        "id": "dlr-lur1dx4xl",
+        "useLibrary": true
+      },
+      {
+        "name": "İdeapro",
+        "logo": "/images/bayi-logolar/ideapro.png",
+        "city": "Ankara",
+        "address": "Piyade Sokak No: 22/7 06550 Çankaya / Ankara",
+        "phone": "+90 (312) 438 68 18",
+        "website": "https://www.ideapro.com.tr/magaza/brand/sennheiser/",
+        "websiteLabel": "ideapro.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/GU7pByPAU3gRgqtH6",
+        "id": "dlr-m5vtd2srt",
+        "useLibrary": true
+      }
+    ]
+  },
+  {
+    "id": "antalya-section",
+    "title": "Antalya Satış Noktalarımız",
+    "dealers": [
+      {
+        "name": "Asimetrik",
+        "logo": "/images/bayi-logolar/asimetrik.png",
+        "city": "Antalya",
+        "address": "Yenigöl, Serik Cd. no: 64/1, 07230 Muratpaşa/Antalya",
+        "phone": "+90 (242) 324 61 06",
+        "website": "https://asimetrik.com.tr/",
+        "websiteLabel": "asimetrik.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/1M4mM3YqRAkayhJAA",
+        "id": "dlr-b4sg6rkpo",
+        "useLibrary": true
+      },
+      {
+        "name": "Şener Elektronik",
+        "logo": "/images/bayi-logolar/sener.png",
+        "city": "Antalya",
+        "address": "Topçular Mahhallesi Aspendos Bulvarı Kardelen İş Merkezi No:129/B 07300 Muratpaşa / Antalya",
+        "phone": "+90 (242) 244 14 00",
+        "website": "http://www.senerelektronik.com/",
+        "websiteLabel": "senerelektronik.com",
+        "googleMapsUrl": "https://maps.app.goo.gl/HdZ6G9aus8E6Bqhz8",
+        "id": "dlr-trfubsz8o",
+        "useLibrary": true
+      }
+    ]
+  },
+  {
+    "id": "bursa-section",
+    "title": "Bursa Satış Noktalarımız",
+    "dealers": [
+      {
+        "name": "Kaşif Elektronik",
+        "logo": "/images/bayi-logolar/kasif.png",
+        "city": "Bursa",
+        "address": "Yahşibey Mah. Bozkurt Cad. NO:6/A Bursa",
+        "phone": "+90 (224) 222 00 00",
+        "website": "http://www.kasifmusic.com/",
+        "websiteLabel": "kasifmusic.com",
+        "googleMapsUrl": "https://maps.app.goo.gl/YBRy9rUPgMRwq9HeA",
+        "id": "dlr-ef3u3ym0y",
+        "useLibrary": true
+      },
+      {
+        "name": "Seyfi Ses",
+        "logo": "/images/bayi-logolar/seyfi.png",
+        "city": "Bursa",
+        "address": "Alaattinbey Mahallesi Nilüfer Ticaret Merkezi Sarp Plaza No:1 Nilüfer / Bursa",
+        "phone": "+90 (224) 443 34 69",
+        "website": "http://www.kasifmusic.com/",
+        "websiteLabel": "kasifmusic.com",
+        "googleMapsUrl": "https://maps.app.goo.gl/YBRy9rUPgMRwq9HeA",
+        "id": "dlr-13wolen08",
+        "useLibrary": true
+      }
+    ]
+  },
+  {
+    "id": "izmir-section",
+    "title": "İzmir Satış Noktalarımız",
+    "dealers": [
+      {
+        "name": "Asimetrik",
+        "logo": "/images/bayi-logolar/asimetrik.png",
+        "city": "İzmir",
+        "address": "1407. Sok. No:1 D:2 Başaran Apt. Alsancak / İzmir",
+        "phone": "+90 (232) 463 60 80",
+        "website": "https://asimetrik.com.tr/",
+        "websiteLabel": "asimetrik.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/dYTgyGMpZFC3ZUvs8",
+        "id": "dlr-78wov23oa",
+        "useLibrary": true
+      },
+      {
+        "name": "Farfisfon",
+        "logo": "/images/bayi-logolar/farfisfon.png",
+        "city": "İzmir",
+        "address": "İsmet Kaptan, 1362. Sk. No:41D, 35210 Konak/İzmir",
+        "phone": "+90 (232) 425 75 75",
+        "website": "http://www.farfisfon.com.tr/",
+        "websiteLabel": "farfisfon.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/z8mU8rTnXTEKxchZ9",
+        "id": "dlr-59qixw880",
+        "useLibrary": true
+      },
+      {
+        "name": "Meteor Müzik",
+        "logo": "/images/bayi-logolar/meteor-muzik.png",
+        "city": "İzmir",
+        "address": "Belenbaşı Mahallesi, 3020 Sokak No:3/1 Meteor Plaza 35390 Buca/İzmir",
+        "phone": "+90 (232) 955 02 80",
+        "website": "https://www.meteormuzik.com.tr/tumu-c-0?k=sennheiser&siralama=a-z&markalar=19&k=sennheiser",
+        "websiteLabel": "meteormuzik.com.tr",
+        "googleMapsUrl": "https://maps.app.goo.gl/UqDkaFZqH6V1ECHw8",
+        "id": "dlr-9dc5cx0cc",
+        "useLibrary": true
+      }
+    ]
+  }
+]

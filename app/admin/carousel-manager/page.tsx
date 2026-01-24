@@ -83,7 +83,7 @@ export default function CarouselManager() {
             `}</style>
             
             {/* STICKY HEADER */}
-            <div className="flex items-center justify-between bg-white/80 backdrop-blur-md px-4 py-4 rounded-xl border border-slate-200 sticky top-4 z-50 shadow-sm mb-4">
+            <div className="flex items-center justify-between bg-white/80 backdrop-blur-md px-2 py-2 rounded-xl border border-slate-200 sticky top-4 z-50 mb-4">
                 <div className="flex items-center gap-3">
                     <div className="p-2 bg-slate-50 text-slate-500 rounded-lg border border-slate-100">
                         <Layout size={18} />
@@ -108,7 +108,7 @@ export default function CarouselManager() {
                     <Button 
                         onClick={handleSubmit(onSubmit)} 
                         disabled={!isDirty || isSaving} 
-                        className="h-8.5 bg-metan-orange hover:bg-metan-orange/85 text-white font-bold uppercase text-[10px] tracking-normal px-4 rounded-lg transition-all cursor-pointer border-none shadow-sm shadow-metan-orange/20"
+                        className="h-8.5 bg-metan-orange hover:bg-metan-orange/85 text-white font-bold uppercase text-[10px] tracking-normal px-4 rounded-lg transition-all cursor-pointer border-none"
                     >
                         <Save className="mr-1.5 h-3.5 w-3.5" /> {isSaving ? 'KAYDEDİLİYOR...' : 'DEĞİŞİKLİKLERİ KAYDET'}
                     </Button>
@@ -171,7 +171,7 @@ const SlideRow = ({ index, total, register, onRemove, onMoveUp, onMoveDown, onJu
     };
 
     return (
-        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:border-slate-300 transition-all p-2 flex items-center gap-4">
+        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition-all p-2 flex items-center gap-4">
             <div className="flex flex-col gap-0.5 items-center w-8 shrink-0">
                 <button type="button" onClick={onMoveUp} disabled={index === 0} className="p-1 hover:bg-slate-100 rounded disabled:opacity-20 cursor-pointer text-slate-400 hover:text-slate-900 transition-colors">
                     <ChevronUp size={14} />

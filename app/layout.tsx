@@ -1,21 +1,15 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import MainHeader from "@/components/navigation/MainHeader"; 
-import MainFooter from "@/components/navigation/MainFooter";
-import BrandThemeObserver from "@/components/BrandThemeObserver";
+import LayoutBody from "@/components/navigation/LayoutBody"; // Import the new wrapper
 import type { Metadata } from 'next';
 
 export const metadata = {
   title: "Metan Teknik",
   description: "Metan Teknik - Sennheiser Yetkili Distribütörü",
-  icons: {
-    icon: '/favicon.ico', 
-  },
+  icons: { icon: '/favicon.ico' },
 };
 
-export const viewport = {
-  themeColor: '#013746',
-}
+export const viewport = { themeColor: '#013746' };
 
 /* We define the font here. 
    'variable' creates the CSS variable --font-ff-unit-pro.
@@ -45,15 +39,9 @@ const ffUnitPro = localFont({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr" className={ffUnitPro.variable}>
-      <body className="antialiased min-h-screen flex flex-col font-sans">
-        <BrandThemeObserver />
-        <MainHeader />
-        {/* Children will now be able to "reach up" and change the background */}
-        <main className="flex-grow">
-          {children}
-        </main>
-        <MainFooter />
-      </body>
+      <LayoutBody>
+        {children}
+      </LayoutBody>
     </html>
   );
 }
