@@ -36,16 +36,33 @@ export default function AdminDashboard() {
     };
 
     const filteredProducts = useMemo(() => {
+        // Define your shorthands here
+        const aliases: Record<string, string> = {
+            'prfl': 'profile',
+            'mkr': 'mikrofon',
+            'klk': 'kulaklık',
+            // Add more as needed
+        };
+
         return sennheiserProducts.filter(p => {
             const searchWords = searchTerm.toLowerCase().split(' ').filter(word => word !== '');
-            const matchesSearch = searchWords.every(word => 
-                p.name.toLowerCase().includes(word) || 
-                p.articleNo?.toLowerCase().includes(word)
-            );
+            
+            const matchesSearch = searchWords.every(word => {
+                const targetWord = aliases[word] || word; // Use alias if it exists, otherwise use original word
+                
+                return (
+                    p.name.toLowerCase().includes(targetWord) || 
+                    p.articleNo?.toLowerCase().includes(targetWord) ||
+                    // Also check original word just in case
+                    p.name.toLowerCase().includes(word)
+                );
+            });
+
             const productCategories = p.category.split(',').map((cat: string) => cat.trim());
             const matchesCategory = productCategories.some((cat: string) => 
                 selectedCategories.includes(cat)
             );
+
             return matchesSearch && matchesCategory;
         });
     }, [searchTerm, selectedCategories]);
@@ -84,7 +101,7 @@ export default function AdminDashboard() {
     return (
         <div className="space-y-3 animate-in fade-in duration-500">
             {/* Compact Header Stats */}
-            <div className="flex items-center justify-between bg-white px-2 py-2 rounded-xl border border-slate-200">
+            <div className="flex items-center justify-between bg-white px-2 py-2 rounded-lg border border-slate-200">
                 <div className="flex items-center gap-3">
                     <div className="p-2 bg-slate-50 text-slate-500 rounded-lg border border-slate-100">
                         <Package size={16} />
@@ -105,7 +122,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Action Bar */}
-            <div className="flex flex-col md:flex-row justify-between items-center bg-white px-2 py-2 rounded-xl border border-slate-200 gap-3">
+            <div className="flex items-center justify-between bg-white/80 backdrop-blur-md px-2 py-2 rounded-lg border border-slate-200 sticky top-4 z-50 mb-4">
                 <div className="relative w-full md:w-80">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
                     <Input
@@ -137,7 +154,7 @@ export default function AdminDashboard() {
                             </Button>
                         </DropdownMenuTrigger>
                         
-                        <DropdownMenuContent align="end" className="w-64 rounded-xl border-slate-200 p-1.5 shadow-xl shadow-slate-200/50">
+                        <DropdownMenuContent align="end" className="w-64 rounded-lg border-slate-200 p-1.5 shadow-xl shadow-slate-200/50">
                             <div className="flex items-center justify-between px-2 py-2">
                                 <DropdownMenuLabel className="text-[10px] uppercase text-slate-400 font-extrabold tracking-wider p-0">
                                     Kategoriler
@@ -201,7 +218,7 @@ export default function AdminDashboard() {
 
             {/* Table Section */}
             <div className="space-y-3">
-                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                <div className="bg-white rounded-lg border border-slate-200 overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow className="bg-slate-50/50 hover:bg-slate-50/50 border-slate-200">

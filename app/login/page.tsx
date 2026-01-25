@@ -54,11 +54,11 @@ export default function LoginPage() {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-white font-bold text-[11px] uppercase tracking-widest leading-none">
-                                Admin Panel
+                            <span className="text-white font-bold text-[16px] tracking-normal uppercase leading-none">
+                                MeTan Admin Paneli
                             </span>
                             <span className="text-slate-500 text-[9px] uppercase mt-1 font-medium">
-                                Yetkili Erişimi
+                                Kullanıcı Girişi
                             </span>
                         </div>
                     </div>

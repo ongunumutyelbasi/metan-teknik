@@ -83,7 +83,7 @@ export default function CarouselManager() {
             `}</style>
             
             {/* STICKY HEADER */}
-            <div className="flex items-center justify-between bg-white/80 backdrop-blur-md px-2 py-2 rounded-xl border border-slate-200 sticky top-4 z-50 mb-4">
+            <div className="flex items-center justify-between bg-white/80 backdrop-blur-md px-2 py-2 rounded-lg border border-slate-200 sticky top-4 z-50 mb-4">
                 <div className="flex items-center gap-3">
                     <div className="p-2 bg-slate-50 text-slate-500 rounded-lg border border-slate-100">
                         <Layout size={18} />
@@ -135,7 +135,7 @@ export default function CarouselManager() {
             {/* UPDATED MODAL - Centered at top with progress bar */}
             {modal.show && (
                 <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] animate-in slide-in-from-top-8 duration-300">
-                    <div className="bg-white rounded-xl shadow-2xl border border-slate-200 w-[320px] overflow-hidden">
+                    <div className="bg-white rounded-lg shadow-2xl border border-slate-200 w-[320px] overflow-hidden">
                         <div className="p-4 flex items-center gap-3">
                             {modal.type === 'success' ? <CheckCircle2 className="text-emerald-500" size={24} /> : <XCircle className="text-red-500" size={24} />}
                             <div className="flex-1">
@@ -171,7 +171,7 @@ const SlideRow = ({ index, total, register, onRemove, onMoveUp, onMoveDown, onJu
     };
 
     return (
-        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition-all p-2 flex items-center gap-4">
+        <div className="bg-white border border-slate-200 rounded-lg overflow-hidden hover:border-slate-300 transition-all p-2 flex items-center gap-4">
             <div className="flex flex-col gap-0.5 items-center w-8 shrink-0">
                 <button type="button" onClick={onMoveUp} disabled={index === 0} className="p-1 hover:bg-slate-100 rounded disabled:opacity-20 cursor-pointer text-slate-400 hover:text-slate-900 transition-colors">
                     <ChevronUp size={14} />

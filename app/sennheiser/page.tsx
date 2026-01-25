@@ -14,21 +14,19 @@ import NavArrow from '@/components/ui/NavArrow';
 import PaginationCounter from '@/components/ui/PaginationCounter';
 
 const categories = [
-  { id: 1, name: 'Kablosuz Sistemler', img: '/images/homePage-categories/wireless-systems.avif' },
-  { id: 2, name: 'Aksesuarlar', img: '/images/homePage-categories/accessories.avif' },
-  { id: 3, name: 'Mikrofonlar', img: '/images/homePage-categories/microphones.avif' },
-  { id: 4, name: 'Toplantı ve Konferans Sistemleri', img: '/images/homePage-categories/meeting-systems.avif' },
-  { id: 5, name: 'Kulaklıklar', img: '/images/homePage-categories/headphones.avif' },
+  { id: 1, name: 'Kablosuz Sistemler', img: '/images/homePage-categories/wireless-systems.avif', link: '/sennheiser/urunler/kablosuz-sistemler' },
+  { id: 2, name: 'Aksesuarlar', img: '/images/homePage-categories/accessories.avif', link: '/sennheiser/urunler/aksesuarlar' },
+  { id: 3, name: 'Mikrofonlar', img: '/images/homePage-categories/microphones.avif', link: '/sennheiser/urunler/mikrofonlar' },
+  { id: 4, name: 'Toplantı ve Konferans Sistemleri', img: '/images/homePage-categories/meeting-systems.avif', link: '/sennheiser/urunler/toplanti-ve-konferans-sistemleri' },
+  { id: 5, name: 'Kulaklıklar', img: '/images/homePage-categories/headphones.avif', link: '/sennheiser/urunler/kulakliklar' },
 ];
 
 export default function SennheiserPage() {
-  // Use the imported JSON as the source of truth
   const [slides, setSlides] = useState(initialSlides);
   const [current, setCurrent] = useState(0);
   const [activeCategory, setActiveCategory] = useState(0);
   const duration = 8000;
 
-  // Sync slides if the JSON file changes (useful during development/refresh)
   useEffect(() => {
     setSlides(initialSlides);
   }, []);
@@ -57,12 +55,8 @@ export default function SennheiserPage() {
 
       {/* --- hero split section --- */}
       <main data-nav-color='dark' className='flex h-[90vh] w-full overflow-hidden'>
-        
-        {/* left panel */}
         <div className='w-1/2 flex flex-col h-full bg-white relative px-6 pb-6'>
           <div className='h-[76px] w-full flex-shrink-0' />
-
-          {/* image section */}
           <div className='flex-1 flex items-center justify-center w-full min-h-0 relative'> 
             {slides.map((slide, index) => (
               <div 
@@ -83,8 +77,6 @@ export default function SennheiserPage() {
               </div>
             ))}
           </div>
-
-          {/* text & button section */}
           <div className='w-full flex-shrink-0 pt-0 relative z-20'>
             <h3 className='text-[1.5rem] font-medium text-dark-gray mb-0 tracking-tight'>
               {slides[current].title}
@@ -96,24 +88,18 @@ export default function SennheiserPage() {
                 <ActionButton text='Daha fazla bilgi' Icon={ArrowUpRight} />
             </Link>
           </div>
-
-          {/* navigation area */}
             <div className='absolute bottom-4 right-4 flex items-center gap-[16px] z-30'>
                 <PaginationCounter 
                     current={current + 1} 
                     total={slides.length} 
                     duration={duration}
                 />
-
                 <div className='flex gap-[4px]'>
                     <NavArrow direction='prev' onClick={prevSlide} />
                     <NavArrow direction='next' onClick={nextSlide} />
                 </div>
             </div>
-
         </div>
-
-        {/* right panel */}
         <div className='w-1/2 relative bg-sennheiser-gray'>
           {slides.map((slide, index) => (
             <Image 
@@ -129,7 +115,6 @@ export default function SennheiserPage() {
         </div>
       </main>
 
-      {/* --- Rest of the sections (Featured, Categories) stay the same --- */}
       <section className='flex h-[70vh] w-full overflow-hidden bg-white border-t border-light-gray'>
         <div className='w-1/2 relative bg-sennheiser-gray'>
           <Image src='/images/hero-slide/md421-kompakt-drum.avif' alt='feature lifestyle' fill className='object-cover' />
@@ -156,24 +141,29 @@ export default function SennheiserPage() {
           <div className='w-full md:w-1/2 flex flex-col'>
             <div className='space-y-0 border-t border-light-gray'>
               {categories.map((cat, index) => (
-                <div
+                <Link
                   key={cat.id}
+                  href={cat.link}
                   onMouseEnter={() => setActiveCategory(index)}
-                  className={`group cursor-pointer border-x border-b border-light-gray py-5 transition-all duration-300 flex items-center justify-between px-4 ${
+                  className={`group block cursor-pointer border-x border-b border-light-gray py-5 transition-all duration-300 px-4 ${
                     activeCategory === index ? 'bg-brand-hover-blue text-white' : 'bg-transparent text-black'
                   }`}
                 >
-                  <h3 className='text-[1.5rem] font-medium tracking-tight'>{cat.name}</h3>
-                  <div className={`transition-all duration-300 ${
-                    activeCategory === index ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
-                  }`}>
-                    <ArrowUpRight className='text-white w-6 h-6' />
+                  <div className="flex items-center justify-between">
+                    <h3 className='text-[1.5rem] font-medium tracking-tight'>{cat.name}</h3>
+                    <div className={`transition-all duration-300 ${
+                      activeCategory === index ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
+                    }`}>
+                      <ArrowUpRight className='text-white w-6 h-6' />
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
             <div className='mt-6'>
-              <ActionButton text='Tüm ürünleri görüntüle' Icon={ArrowUpRight} />
+              <Link href="/sennheiser/urunler">
+                <ActionButton text='Tüm ürünleri görüntüle' Icon={ArrowUpRight} />
+              </Link>
             </div>
           </div>
           <div className='w-full md:w-1/2 relative h-[600px] overflow-hidden bg-sennheiser-gray'>
