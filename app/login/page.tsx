@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Lock, ShieldAlert, Loader2, ArrowLeft } from 'lucide-react';
@@ -9,7 +9,17 @@ export default function LoginPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [shouldShake, setShouldShake] = useState(false);
     const router = useRouter();
+
+    // Trigger shake when error changes
+    useEffect(() => {
+        if (error) {
+            setShouldShake(true);
+            const timer = setTimeout(() => setShouldShake(false), 500);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -37,12 +47,23 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#020617] flex items-center justify-center p-6">
-            <div className="w-full max-w-[360px]">
-                {/* Compact Rectangular Card */}
+        /* Fixed position with inset-0 is the most reliable way to kill scrolling */
+        <div className="fixed inset-0 overflow-hidden bg-[#020617] flex items-center justify-center p-6">
+            <style jsx>{`
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-6px); }
+                    50% { transform: translateX(6px); }
+                    75% { transform: translateX(-6px); }
+                }
+                .animate-shake {
+                    animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+                }
+            `}</style>
+
+            <div className={`w-full max-w-[360px] transition-transform ${shouldShake ? 'animate-shake' : ''}`}>
                 <div className="bg-[#0f172a] border border-slate-800 rounded-lg shadow-2xl overflow-hidden">
                     
-                    {/* Header Strip */}
                     <div className="bg-slate-800/50 px-6 py-4 border-b border-slate-700/50 flex items-center gap-3">
                         <div className="w-8 h-8 flex-shrink-0">
                             <Image 
@@ -63,7 +84,6 @@ export default function LoginPage() {
                         </div>
                     </div>
 
-                    {/* Form Body */}
                     <form onSubmit={handleLogin} className="p-6 space-y-4">
                         <div className="space-y-1.5">
                             <div className="relative">
@@ -102,7 +122,6 @@ export default function LoginPage() {
                     </form>
                 </div>
 
-                {/* Subtle Back Link */}
                 <button 
                     onClick={() => router.push('/')}
                     className="mt-6 flex items-center gap-2 text-slate-500 hover:text-slate-300 text-[10px] uppercase font-bold tracking-tighter mx-auto transition-colors cursor-pointer"
