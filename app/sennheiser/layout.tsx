@@ -12,7 +12,7 @@ export default function SennheiserLayout({ children }: { children: React.ReactNo
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
-        html { background-color: #057cc3 !important; }
+        html { background-color: #013746 !important; }
       `}} />
       <main className="min-h-screen">
         {children}
